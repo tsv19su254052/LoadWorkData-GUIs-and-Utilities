@@ -1,0 +1,5 @@
+USE AirPortsAndRoutesDBNew62
+GO
+
+DBCC CHECKDB
+GO
