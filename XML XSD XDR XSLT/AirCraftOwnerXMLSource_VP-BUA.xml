@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CustOwn>
+	<!-- Air Comet -->
+	<step CraftOwnerFK="123">
+		<BeginDate> 2009-01-23 </BeginDate>
+	</step>
+	<!-- Royal Jordanian -->
+	<step CraftOwnerFK="124">
+		<BeginDate> 2010-05-21 </BeginDate>
+	</step>
+	<!-- Nordwind Airlines -->
+	<step CraftOwnerFK="81">
+		<BeginDate> 2018-06-25 </BeginDate>
+	</step>
+</CustOwn>
+

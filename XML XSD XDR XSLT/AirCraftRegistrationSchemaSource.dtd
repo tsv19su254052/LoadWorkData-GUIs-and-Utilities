@@ -1,0 +1,7 @@
+<!DOCTYPE CustReg [
+		<!ELEMENT CustReg (step)*>
+		<!ELEMENT step (BeginDate)*>
+		<!ATTLIST step
+				CraftRegFK CDATA #REQUIRED>
+		<!ELEMENT BeginDate (#PCDATA)>
+		]>

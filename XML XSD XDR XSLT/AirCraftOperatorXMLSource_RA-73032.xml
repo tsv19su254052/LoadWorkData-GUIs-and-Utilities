@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CustOp>
+	<!-- KLM Royal Dutch Airlines -->
+	<step CraftOperatorFK="3957">
+		<BeginDate> 1997-05-28 </BeginDate>
+	</step>
+	<!-- Air Astana -->
+	<step CraftOperatorFK="604">
+		<BeginDate> 2007-04-23 </BeginDate>
+	</step>
+	<!-- UTair Aviation -->
+	<step CraftOperatorFK="6609">
+		<BeginDate> 2014-05-09 </BeginDate>
+	</step>
+	<!-- Azur Air -->
+	<step CraftOperatorFK="30">
+		<BeginDate> 2016-03-01 </BeginDate>
+	</step>
+</CustOp>
+

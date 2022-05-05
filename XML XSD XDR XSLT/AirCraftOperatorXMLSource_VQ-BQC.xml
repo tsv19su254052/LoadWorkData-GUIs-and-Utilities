@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CustOp>
+	<!-- Aeroflot -->
+	<step CraftOperatorFK="280">
+		<BeginDate> 2014-02-20 </BeginDate>
+	</step>
+</CustOp>
+

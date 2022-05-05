@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CustOp>
+	<!-- Air Comet -->
+	<step CraftOperatorFK="123">
+		<BeginDate> 2009-01-23 </BeginDate>
+	</step>
+	<!-- Royal Jordanian -->
+	<step CraftOperatorFK="124">
+		<BeginDate> 2010-05-21 </BeginDate>
+	</step>
+	<!-- Nordwind Airlines -->
+	<step CraftOperatorFK="81">
+		<BeginDate> 2018-06-25 </BeginDate>
+	</step>
+</CustOp>
+

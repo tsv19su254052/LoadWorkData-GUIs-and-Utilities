@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CustOp>
+	<!-- China Yunnan Airlines -->
+	<step CraftOperatorFK="1">
+		<BeginDate> 1996-09-11 </BeginDate>
+	</step>
+	<!-- China Eastern Airlines -->
+	<step CraftOperatorFK="2146">
+		<BeginDate> 2003-08-02 </BeginDate>
+	</step>
+	<!-- MIAT Mongolian Airlines -->
+	<step CraftOperatorFK="4387">
+		<BeginDate> 2011-05-01 </BeginDate>
+	</step>
+	<!-- Royal Flight -->
+	<step CraftOperatorFK="5346">
+		<BeginDate> 2017-08-18 </BeginDate>
+	</step>
+</CustOp>
+

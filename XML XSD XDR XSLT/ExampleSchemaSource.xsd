@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xsd:schema targetNamespace="NameSpace_Registration"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:sql="urn:schemas-microsoft-com:mapping-schema"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:ns="https://www.w3schools.com"
+			elementFormDefault="qualified"
+			attributeFormDefault="unqualified">
+	<!-- t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns - префиксы пространства имен (краткие псевдонимы вместо их URI) -->
+	<xsd:annotation>
+		<xsd:documentation>
+			Вставка из "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes/ContactTypes.xsd"
+		</xsd:documentation>
+	</xsd:annotation>
+	<!--  the following imports are not needed. They simply provide readability  -->
+	<xsd:import namespace="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord"/>
+	<xsd:import namespace="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes"/>
+	<xsd:complexType name="specialInstructionsType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="strict" namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="phoneNumberType">
+		<xsd:sequence>
+			<xsd:element name="number">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value="[0-9\(\)\-]*"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SpecialInstructions" type="specialInstructionsType" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="eMailType">
+		<xsd:sequence>
+			<xsd:element name="eMailAddress" type="xsd:string"/>
+			<xsd:element name="SpecialInstructions" type="specialInstructionsType" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="addressType">
+		<xsd:sequence>
+			<xsd:element name="Street" type="xsd:string" minOccurs="1" maxOccurs="2"/>
+			<xsd:element name="City" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="StateProvince" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="PostalCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="CountryRegion" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="SpecialInstructions" type="specialInstructionsType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="telephoneNumber" type="phoneNumberType"/>
+	<xsd:element name="mobile" type="phoneNumberType"/>
+	<xsd:element name="pager" type="phoneNumberType"/>
+	<xsd:element name="facsimileTelephoneNumber" type="phoneNumberType"/>
+	<xsd:element name="telexNumber" type="phoneNumberType"/>
+	<xsd:element name="internationaliSDNNumber" type="phoneNumberType"/>
+	<xsd:element name="eMail" type="eMailType"/>
+	<xsd:element name="homePostalAddress" type="addressType"/>
+	<xsd:element name="physicalDeliveryOfficeName" type="addressType"/>
+	<xsd:element name="registeredAddress" type="addressType"/>
+	<xsd:annotation>
+		<xsd:documentation>
+			Вставка из "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord/ContactRecord.xsd"
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="ContactRecord">
+		<xsd:complexType mixed="true">
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:any processContents="strict" namespace="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes"/>
+			</xsd:choice>
+			<xsd:attribute name="date" type="xsd:date"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:annotation>
+		<xsd:documentation>
+			Вставка из "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo/ContactInfo.xsd"
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="AdditionalContactInfo">
+		<xsd:complexType mixed="true">
+			<xsd:sequence>
+				<xsd:any processContents="strict" namespace="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
+
+<!--Примеры на запчасти (начало)
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://ns"
+		xmlns:ns="https://www.w3schools.com">
+	<import namespace="https://schemas.microsoft.com/sqlserver/2004/sqltypes"/>
+	<simpleType name="MyUnionType">
+		<union memberTypes="integer string"/>
+	</simpleType>
+	<element name="TestElement" type="ns:MyUnionType"/>
+</schema>'
+
+Примеры на запчасти (окончание)-->
+

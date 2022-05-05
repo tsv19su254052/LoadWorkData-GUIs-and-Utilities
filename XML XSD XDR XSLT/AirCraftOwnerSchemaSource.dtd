@@ -1,0 +1,7 @@
+<!DOCTYPE CustOwn [
+		<!ELEMENT CustOwn (step)*>
+		<!ELEMENT step (BeginDate)*>
+		<!ATTLIST step
+				CraftOwnerFK CDATA #REQUIRED>
+		<!ELEMENT BeginDate (#PCDATA)>
+		]>

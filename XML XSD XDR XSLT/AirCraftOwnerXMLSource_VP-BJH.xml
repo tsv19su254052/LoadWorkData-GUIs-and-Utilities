@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CustOwn>
+	<!-- Singapore Airlines -->
+	<step CraftOwnerFK="5680">
+		<BeginDate> 2004-03-06 </BeginDate>
+	</step>
+	<!-- GMT -->
+	<step CraftOwnerFK="1">
+		<BeginDate> 2016-01-01 </BeginDate>
+	</step>
+	<!-- Nordwind Airlines -->
+	<step CraftOwnerFK="4636">
+		<BeginDate> 2017-06-13 </BeginDate>
+	</step>
+</CustOwn>
+
