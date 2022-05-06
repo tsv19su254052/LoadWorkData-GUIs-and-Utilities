@@ -84,7 +84,7 @@ import Classes
 # А Microsoft SQL Server всегда по рукой и все серьезные SoftWare-ные компании выдают ПО, которое успешно работает с ним в том числе :)
 
 
-__Version__ = 7.75  # Версия обработки
+__Version__ = 7.77  # Версия обработки
 
 print("Обработка v", str(__Version__), "загрузки рабочих данных в БД SQL Server-а", 'blue', 'on_yellow')
 print("Разработал Тарасов Сергей tsv19su@yandex.ru")
