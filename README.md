@@ -59,10 +59,10 @@
 Остальные замечания см. в исходниках по тэгам **todo** и **fixme**
 
 В работе использовались наработки из открытых источников:
- - apinfo.ru 
- - openflights
- - ourairport.com
- - planelist.net
- - flightradar24.com
+ - http://apinfo.ru 
+ - http://openflights.org
+ - http://www1.ourairport.com/ (в России не открывается)
+ - http://planelist.net
+ - http://www.flightradar24.com
  - https://www.jetphotos.com/
 
