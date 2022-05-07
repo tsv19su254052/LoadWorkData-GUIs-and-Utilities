@@ -84,9 +84,9 @@ import Classes
 # А Microsoft SQL Server всегда по рукой и все серьезные SoftWare-ные компании выдают ПО, которое успешно работает с ним в том числе :)
 
 
-__Version__ = 7.77  # Версия обработки
+__myOwnDevelopingVersion__ = 7.77  # Версия обработки
 
-print("Обработка v", str(__Version__), "загрузки рабочих данных в БД SQL Server-а", 'blue', 'on_yellow')
+print("Обработка v", str(__myOwnDevelopingVersion__), "загрузки рабочих данных в БД SQL Server-а", 'blue', 'on_yellow')
 print("Разработал Тарасов Сергей tsv19su@yandex.ru")
 print("Пользователь = ", str(os.getlogin()))
 
@@ -416,7 +416,7 @@ def LoadThread(Csv, Log):
     DataFrameDistributionDensity.index.name = "Базы данных:"
 
     OutputString = "\n\n"
-    OutputString += "Загрузка рабочих данных (версия обработки - " + str(__Version__) + ") начата " + str(DateTime) + " \n"
+    OutputString += "Загрузка рабочих данных (версия обработки - " + str(__myOwnDevelopingVersion__) + ") начата " + str(DateTime) + " \n"
     OutputString += " Загрузка проведена с " + str(socket.gethostname()) + " \n"
     OutputString += " Источник входных данных = " + str(S.filenameCSV) + " \n"
     OutputString += " Входные данные внесены за месяц " + str(S.BeginDate) + " \n"
@@ -502,7 +502,7 @@ def myApplication():
 
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
-    myDialog.label_Version.setText("Версия обработки " + str(__Version__))
+    myDialog.label_Version.setText("Версия обработки " + str(__myOwnDevelopingVersion__))
     myDialog.radioButton_DB.setChecked(True)
     myDialog.radioButton_DB.setToolTip("Использовать имя базы данных и драйвер СУБД")
     myDialog.radioButton_DSN.setChecked(False)
