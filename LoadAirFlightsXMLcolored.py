@@ -505,7 +505,7 @@ def LoadThread(Csv, Log):
     finally:
         LogFile.close()
 
-    # fixme не дописывает
+    # fixme не дописывает - исправил
     # Дописываем в журнал (с помощью менеджера контекста)
     # with open(Log, 'a') as LogFile:
     #     LogFile.write(OutputString)
