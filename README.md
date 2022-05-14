@@ -1,3 +1,7 @@
+![СУБД Полная - Простая - Сжатие - Полная 001 002](https://user-images.githubusercontent.com/37275122/168450352-48a1e7e1-eeb4-4227-b744-2d368fccac32.png)
+![СУБД Полная - Простая - Сжатие - Полная 001 003](https://user-images.githubusercontent.com/37275122/168450358-630fa494-2c0f-4bad-afb1-42bdb44325ec.png)
+![СУБД Полная - Простая - Сжатие - Полная 001 004](https://user-images.githubusercontent.com/37275122/168450362-8de3b141-e670-4067-a28e-544cd9cff239.png)
+![СУБД Полная - Простая - Сжатие - Полная 001 001](https://user-images.githubusercontent.com/37275122/168450365-387d4186-1a9e-43b0-8096-d2f3b79cbd79.png)
 # LoadWorkDataAirFlightsDBNew
 
 Некоторые сводные наработки по:
