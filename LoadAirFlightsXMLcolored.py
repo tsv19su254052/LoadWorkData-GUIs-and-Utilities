@@ -1,9 +1,8 @@
 #  Interpreter 3.7
 
 
-#import pymssql - работает тяжелее
-import pyodbc  # установить дополнительно
-import pandas  # установить дополнительно
+import pyodbc  # pymssql работает тяжелее, можно попробовать SQLAlchemy
+import pandas
 import itertools
 import datetime
 import time
@@ -15,12 +14,13 @@ import threading
 from PyQt5 import QtWidgets  # ветка библиотек Qt - QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
 import pathlib
 #import stringcolor  # в IDLE и в pyCharm раскраска не работает, в командной строке сразу слетает
-import colorama  # установить дополнительно
-import termcolor  # установить дополнительно
+import colorama
+import termcolor
 #import tqdm  # tqdm нужен свой цикл -> сюда пока не подходит
 
 # Импорт пользовательской библиотеки (файла *.py в этой же папке). Импорт из других папок пока не работает
 import Classes
+
 
 # Библиотеки Python для ввода-вывода в файл:
 # - Pandas (анализ данных, лучше чем NumPy),
@@ -88,9 +88,7 @@ import Classes
 # Есть Oracle локально или на облаке :) С бесплатным начальным периодом :) Никто ничего на них не гарантирует :)
 # А Microsoft SQL Server всегда по рукой и все серьезные SoftWare-ные компании выдают ПО, которое успешно работает с ним в том числе :)
 
-
 __myOwnDevelopingVersion__ = 7.86  # Версия обработки с цветным выводом
-
 colorama.init(autoreset=False)  # используем Colorama, чтобы сделать работу Termcolor на Windows, оставляем цветовое оформление до следующего явного указания
 print(termcolor.colored("Обработка v" + str(__myOwnDevelopingVersion__) + " загрузки рабочих данных в БД SQL Server-а", 'blue', 'on_yellow'))
 print("Разработал Тарасов Сергей tsv19su@yandex.ru")
@@ -122,7 +120,7 @@ print(termcolor.colored("Пользователь = " + str(os.getlogin()), 'gre
 
 # Делаем экземпляр
 S = Classes.Server()
-# Добавляем аттрибуты
+# Добавляем еще аттрибуты
 S.radioButtonUseDB = True
 S.InputFileCSV = ' '
 S.LogFileTXT = ' '
@@ -236,7 +234,6 @@ def LoadThread(Csv, Log):
             ListAirLinesFailed.append(AL)
         print(" ")
         DistributionDensityAirLines[CurrentMax_i] += 1
-
         print(colorama.Fore.BLUE + " Самолет", str(AC), end=" ")
         CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
         # Цикл попыток
@@ -299,7 +296,6 @@ def LoadThread(Csv, Log):
             ListAirCraftsFailed.append(AC)
         print(" ")
         DistributionDensityAirCrafts[CurrentMax_i] += 1
-
         print(colorama.Fore.BLUE + " Маршрут", str(Dep), "-", str(Arr), end=" ")
         CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
         # Цикл попыток
@@ -350,7 +346,6 @@ def LoadThread(Csv, Log):
             CountRoutesFailed += 1
         print(" ")
         DistributionDensityAirRoutes[CurrentMax_i] += 1
-
         print(colorama.Fore.BLUE + " Авиарейс", str(AL) + str(FN), end=" ")
         CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
         if not S.SetInputDate:
@@ -404,13 +399,11 @@ def LoadThread(Csv, Log):
         # todo Сделать полосу выполнения все время внизу со всеми параметрами например с помощью tqdm
         print(colorama.Fore.CYAN + "Выполнение =", str(Execute), "%")
         #pbar.update()
-        #myDialog.progressBar_completion.setValue(int(Execute))  # выдает ошибку про рекурсивную отрисовку
+        #myDialog.progressBar_completion.setValue(int(Execute))  # выдает ошибку про рекурсивную отрисовку (см. снимок экрана)
     #pbar.close()
     print(termcolor.colored("Загрузка окончена", "red", "on_yellow"))
-
     # Отметка времени окончания загрузки
     __EndTime__ = datetime.datetime.now()
-
     # Убираем с конца столбцы с нулями
     for Index in reversed(range(MaxDelay)):
         if DistributionDensityAirLines[Index] == 0 and DistributionDensityAirCrafts[Index] == 0 and DistributionDensityAirRoutes[Index] == 0 and DistributionDensityAirFlights[Index] == 0:
@@ -420,12 +413,10 @@ def LoadThread(Csv, Log):
             DistributionDensityAirFlights.pop(Index)
         else:
             break
-
     # Собираем списки в DataFrame
     DataFrameDistributionDensity = pandas.DataFrame([DistributionDensityAirLines, DistributionDensityAirCrafts, DistributionDensityAirRoutes, DistributionDensityAirFlights],
                                                     index=[" - авиакомпании", " - самолеты", " - маршруты", " - авиарейсы"])
     DataFrameDistributionDensity.index.name = "Базы данных:"
-
     OutputString = "\n\n"
     OutputString += "Загрузка рабочих данных (версия обработки - " + str(__myOwnDevelopingVersion__) + ") начата " + str(DateTime) + " \n"
     OutputString += " Загрузка проведена с " + str(socket.gethostname()) + " \n"
@@ -443,12 +434,11 @@ def LoadThread(Csv, Log):
     OutputString += " Длительность загрузки = " + str(__EndTime__ - __StartTime__) + " \n"
     OutputString += " Пользователь = " + str(os.getlogin()) + " \n"
     OutputString += " Итоги:\n"
-
     # Формируем итоги
     # todo Сделать итоги в виде XML и писать его полем XML.Document в базу данных
     if ListAirLinesAdded:
         OutputString += " - добавлены авиакомпании:\n  "
-        OutputString += str(set(ListAirLinesAdded))  # с регистрациями NaN надолго зависает, не убирает повторы и не группирует
+        OutputString += str(set(ListAirLinesAdded))  # fixme с регистрациями NaN надолго зависает, не убирает повторы и не группирует
         OutputString += " \n"
     if ListAirLinesFailed:
         OutputString += " - не добавлены данные по авиакомпаниям:\n  "
@@ -461,7 +451,7 @@ def LoadThread(Csv, Log):
     if ListAirCraftsUpdated:
         OutputString += " - добавлены данные по самолетам:\n  "
         OutputString += str(set(ListAirCraftsUpdated))
-        # Убираем только повторы, идущие подряд, но с сохранением исходного порядка
+        # Убираем только повторы, идущие подряд, но с сохранением исходного порядка fixme не работает
         OutPutNew = [el for el, _ in itertools.groupby(ListAirCraftsUpdated)]
         OutputString += " \n"
     if ListAirCraftsFailed:
@@ -486,7 +476,6 @@ def LoadThread(Csv, Log):
     if CountProgressBarFailed:
         OutputString += " - отказов полосы выполнения =" + str(CountProgressBarFailed) + "\n"
     OutputString += " - перезапросы сервера:\n" + str(DataFrameDistributionDensity) + "\n"
-
     # Дописываем в журнал (обычным способом)
     # fixme Большая строка не дописывается, скрипт долго висит
     try:
@@ -504,13 +493,11 @@ def LoadThread(Csv, Log):
         print(colorama.Fore.LIGHTYELLOW_EX + "Ошибка дозаписи в " + str(S.filenameTXT))
     finally:
         LogFile.close()
-
     # fixme не дописывает - исправил
     # Дописываем в журнал (с помощью менеджера контекста)
     # with open(Log, 'a') as LogFile:
     #     LogFile.write(OutputString)
     #     LogFile.write('Вывод с помощью менеджера контекста\n')
-
     Disconnect_AL()
     Disconnect_AC()
     Disconnect_RT()
@@ -520,13 +507,11 @@ def LoadThread(Csv, Log):
 def myApplication():
     # Одно прикладное приложение
     myApp = QtWidgets.QApplication(sys.argv)
-
     # Делаем экземпляры
     myDialog = Classes.Ui_DialogLoadAirFlights()
     myDialog.setupUi(Dialog=myDialog)  # надо вызывать явно
     myDialog.setFixedSize(770, 380)
     myDialog.setWindowTitle('Загрузка рабочих данных')
-
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
     myDialog.label_Version.setText("Версия обработки " + str(__myOwnDevelopingVersion__))
@@ -562,7 +547,6 @@ def myApplication():
     myDialog.lineEdit_Schema_AL.setEnabled(False)
     myDialog.lineEdit_Schema_RT.setEnabled(False)
     myDialog.lineEdit_Schema_FN.setEnabled(False)
-
     # Получаем список DSN-ов
     # Добавляем атрибут DSNs по ходу действия
     S.DSNs = pyodbc.dataSources()  # добавленные DSN-ы
@@ -571,7 +555,6 @@ def myApplication():
             if not DSN:
                 break
             myDialog.comboBox_DSN_FN.addItem(str(DSN))
-
     # Получаем список драйверов баз данных
     # Добавляем атрибут DriversODBC по ходу действия
     S.DriversODBC = pyodbc.drivers()
@@ -582,7 +565,6 @@ def myApplication():
             myDialog.comboBox_Driver_AL.addItem(str(DriverODBC))
             myDialog.comboBox_Driver_RT.addItem(str(DriverODBC))
             myDialog.comboBox_Driver_FN.addItem(str(DriverODBC))
-
     # Добавляем базы данных в выпадающие списки
     myDialog.comboBox_DB_AL.addItem("AirLinesDBNew62")
     myDialog.comboBox_DB_RT.addItem("AirPortsAndRoutesDBNew62")
@@ -590,7 +572,6 @@ def myApplication():
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew52")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62Test")
-
     # Привязки обработчиков
     # todo без lambda не работает
     myDialog.pushButton_Connect_AL.clicked.connect(lambda: PushButtonSelectDB_AL())  # Подключиться к базе данных
@@ -636,11 +617,9 @@ def myApplication():
                     myDialog.progressBar_completion.setEnabled(True)
                     myDialog.progressBar_completion.reset()
                     myDialog.pushButton_GetStarted.setEnabled(True)
-
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnAL.autocommit = False
                 print("autocommit is disabled")
-
                 # Делаем свой экземпляр и ставим набор курсоров
                 # КУРСОР нужен для перехода функционального языка формул на процедурный или для вставки процедурных кусков в функциональный скрипт.
                 #
@@ -663,7 +642,6 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAL = S.cnxnAL.cursor()
                 print("seeks is on")
-
                 # Драйвер
                 myDialog.lineEdit_Driver_AL.setText(S.cnxnAL.getinfo(pyodbc.SQL_DRIVER_NAME))
                 myDialog.lineEdit_Driver_AL.setEnabled(True)
@@ -738,11 +716,9 @@ def myApplication():
                     myDialog.progressBar_completion.setEnabled(True)
                     myDialog.progressBar_completion.reset()
                     myDialog.pushButton_GetStarted.setEnabled(True)
-
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnRT.autocommit = False
                 print("autocommit is disabled")
-
                 # Делаем свой экземпляр и ставим набор курсоров
                 # КУРСОР нужен для перехода функционального языка формул на процедурный или для вставки процедурных кусков в функциональный скрипт.
                 #
@@ -765,7 +741,6 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekRT = S.cnxnRT.cursor()
                 print("seeks is on")
-
                 # Драйвер
                 myDialog.lineEdit_Driver_RT.setText(S.cnxnRT.getinfo(pyodbc.SQL_DRIVER_NAME))
                 myDialog.lineEdit_Driver_RT.setEnabled(True)
@@ -842,7 +817,6 @@ def myApplication():
             ChoiceDSN_AC = myDialog.comboBox_DSN_FN.currentText()
             # Добавляем атрибут myDSN
             S.myDSN_AC = ChoiceDSN_AC
-
             try:
                 # Добавляем атрибут cnxn
                 if S.radioButtonUseDB:
@@ -855,11 +829,9 @@ def myApplication():
                     print("  DSN = ", S.myDSN_AC, "подключен")
                 S.Connected_AC = True
                 # Переводим в рабочее состояние (продолжение)
-
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnAC.autocommit = False
                 print("autocommit is disabled")
-
                 # Делаем свой экземпляр и ставим набор курсоров
                 # КУРСОР нужен для перехода функционального языка формул на процедурный или для вставки процедурных кусков в функциональный скрипт.
                 #
@@ -882,7 +854,6 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAC = S.cnxnAC.cursor()
                 print("seeks is on")
-
             except Exception:
                 message = QtWidgets.QMessageBox()
                 message.setText("Нет подключения к базе данных самолетов")
@@ -892,7 +863,6 @@ def myApplication():
                 pass
             finally:
                 pass
-
         if not S.Connected_FN:
             # Подключаемся к базе данных авиарейсов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
@@ -904,7 +874,6 @@ def myApplication():
             ChoiceDSN_FN = myDialog.comboBox_DSN_FN.currentText()
             # Добавляем атрибут myDSN
             S.myDSN_FN = ChoiceDSN_FN
-
             try:
                 # Добавляем атрибут cnxn
                 if S.radioButtonUseDB:
@@ -934,11 +903,9 @@ def myApplication():
                     myDialog.progressBar_completion.setEnabled(True)
                     myDialog.progressBar_completion.reset()
                     myDialog.pushButton_GetStarted.setEnabled(True)
-
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnFN.autocommit = False
                 print("autocommit is disabled")
-
                 # Делаем свой экземпляр и ставим набор курсоров
                 # КУРСОР нужен для перехода функционального языка формул на процедурный или для вставки процедурных кусков в функциональный скрипт.
                 #
@@ -961,7 +928,6 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekFN = S.cnxnFN.cursor()
                 print("seeks is on")
-
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnFN.getinfo(pyodbc.SQL_SERVER_NAME))
                 myDialog.lineEdit_Server.setEnabled(True)
@@ -1054,10 +1020,8 @@ def myApplication():
         threadLoad.start()
         threadLoad.join(2)  # ждем поток в основном потоке (графическая оболочка зависает) 2 секунды
         myDialog.close()  # закрываем графическую оболочку, текстовая остается
-
     # Отрисовка диалога
     myDialog.show()
-
     # Правильное закрытие диалога
     sys.exit(myApp.exec_())
 
@@ -1065,4 +1029,3 @@ def myApplication():
 # Выполняем, если этот файл не импортированный
 if __name__ == "__main__":
     myApplication()
-
