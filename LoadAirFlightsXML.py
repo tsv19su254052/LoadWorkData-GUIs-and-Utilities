@@ -2,19 +2,20 @@
 
 
 #import pymssql - работает тяжелее
-import pyodbc  # установить дополнительно
-import pandas  # установить дополнительно
+import pyodbc
+import pandas
 import itertools  # комплектная, замена - more-itertools
 import datetime  # комплектная, Замена - DateTime
-import time  # комплектная, не ставится, просит обновить pip, обновил 9.0.3 -> 21.0.1 для 3.6.5, обновил 20.2.3 -> 21.0.1 для 3.8.8
-import os  # комплектная, Удалили, замена неизвестна
-import json  # комплектная, Удалили, замена неизвестна
+import time
+import os
+import json
 import sys
 import socket
 import threading
 from PyQt5 import QtWidgets, QtCore  # ветка библиотек Qt - QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
-# Импорт пользовательской библиотеки (файла *.py в этой же папке)
 import pathlib
+
+# Импорт пользовательской библиотеки (файла *.py в этой же папке)
 import Classes
 
 
@@ -83,7 +84,6 @@ import Classes
 # Сейчас есть столбцовые БД где-то там на облаках типа Vertica, SandBridge, Amazon RedShift и другие
 # Есть Oracle локально или на облаке :) С бесплатным начальным периодом :) Никто ничего на них не гарантирует :)
 # А Microsoft SQL Server всегда по рукой и все серьезные SoftWare-ные компании выдают ПО, которое успешно работает с ним в том числе :)
-
 __myOwnDevelopingVersion__ = 7.77  # Версия обработки
 print("Обработка v", str(__myOwnDevelopingVersion__), "загрузки рабочих данных в БД SQL Server-а", 'blue', 'on_yellow')
 print("Разработал Тарасов Сергей tsv19su@yandex.ru")

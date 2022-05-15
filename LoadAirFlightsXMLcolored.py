@@ -414,7 +414,10 @@ def LoadThread(Csv, Log):
         else:
             break
     # Собираем списки в DataFrame
-    DataFrameDistributionDensity = pandas.DataFrame([DistributionDensityAirLines, DistributionDensityAirCrafts, DistributionDensityAirRoutes, DistributionDensityAirFlights],
+    DataFrameDistributionDensity = pandas.DataFrame([DistributionDensityAirLines,
+                                                     DistributionDensityAirCrafts,
+                                                     DistributionDensityAirRoutes,
+                                                     DistributionDensityAirFlights],
                                                     index=[" - авиакомпании", " - самолеты", " - маршруты", " - авиарейсы"])
     DataFrameDistributionDensity.index.name = "Базы данных:"
     OutputString = "\n\n"
