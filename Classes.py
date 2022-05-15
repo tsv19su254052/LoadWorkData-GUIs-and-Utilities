@@ -9,6 +9,7 @@
 # Запуск Qt Designer из пакета pyQt5_tools в терминале командой
 # > pyqt5-tools designer
 
+
 from PyQt5 import QtWidgets, QtCore, QtGui
 # todo ветка библиотек Qt - QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
 # todo Какие еще есть виджеты (ссылки, изображение, видео, координаты навигации и т. д.) у этого фрэймворка?
@@ -87,7 +88,6 @@ class Server:
     # fixme Возможно надо возвращать из функций сработку (OPC-server) и результат (SQL Server) отдельно
     # todo Функции запроса при пустом ответе возвращают (None,) или None, при несработке - False
     # todo Функции обновления и вставки при сработке возвращают True, при несработке - False
-
 
     def QueryAirLineByIATA(self, iata):
         # Возвращает строку авиакомпании по ее коду IATA
