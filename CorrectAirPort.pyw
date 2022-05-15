@@ -19,15 +19,12 @@ def myApplication():
     # todo Делаем сопряжение экземпляров классов с SQL-ными базами данных - семантическими противоположностями ООП, примеров мало
     # todo Сделать скрипт, который копирует данные таблицы по коду IATA строку за строкой из одной базы в другую
     myApp = QtWidgets.QApplication(sys.argv)
-
     # fixme Правильно делать экземпляр с композицией
-
     # Делаем экземпляры
     myDialog = Classes.Ui_DialogCorrectAirPorts()
     myDialog.setupUi(Dialog=myDialog)  # надо вызывать явно
     myDialog.setFixedSize(740, 810)
     myDialog.setWindowTitle('АэроПорты')
-
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
     myDialog.comboBox_Driver.setToolTip("предпочтительно - драйвер ODBC для SDK SQL Server-а\n(работает во всех режимах, полностью функционален, расходует больше ресурсов сервера)\nдля просмотра и внесения исправлений компл. драйвер SQL Server-а\n (не отрабатывает вложенные обработки исключений)")
@@ -40,7 +37,6 @@ def myApplication():
     myDialog.lineEdit_ODBCversion.setEnabled(False)
     myDialog.lineEdit_DSN.setEnabled(False)
     myDialog.lineEdit_Schema.setEnabled(False)
-
     myDialog.lineEdit_AirPortCodeIATA.setEnabled(False)
     myDialog.lineEdit_AirPortCodeICAO.setEnabled(False)
     myDialog.lineEdit_AirPortCodeFAA_LID.setEnabled(False)
@@ -81,15 +77,12 @@ def myApplication():
     myDialog.pushButton_Next.setEnabled(False)
     myDialog.pushButton_Update.setToolTip("Запись внесенных изменений\n Перед нажатием правильно заполнить и проверить введенные данные")
     myDialog.pushButton_Update.setEnabled(False)
-
     # Добавляем атрибут ввода
     myDialog.lineEditCodeIATA = QtWidgets.QLineEdit()
     myDialog.lineEditCodeICAO = QtWidgets.QLineEdit()
     #myDialog.lineEditReserveDB = QtWidgets.QLineEdit()
-
     # Добавляем базы данных в выпадающий список
     myDialog.comboBox_DB.addItem("AirPortsAndRoutesDBNew62")
-
     # Получаем список драйверов баз данных
     # Добавляем атрибут DriversODBC по ходу действия
     S.DriversODBC = pyodbc.drivers()
@@ -98,7 +91,6 @@ def myApplication():
             if not DriverODBC:
                 break
             myDialog.comboBox_Driver.addItem(str(DriverODBC))
-
     # Привязки обработчиков
     myDialog.pushButton_SelectDB.clicked.connect(lambda: PushButtonSelectDB())
     myDialog.pushButton_Disconnect.clicked.connect(lambda: PushButtonDisconnect())
@@ -133,22 +125,18 @@ def myApplication():
                 myDialog.comboBox_Driver.setEnabled(False)
                 myDialog.pushButton_Disconnect.setEnabled(True)
                 myDialog.pushButton_Begin.setEnabled(True)  # кнопка "Начало"
-
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnAL.autocommit = False
                 S.cnxnAC.autocommit = False
                 S.cnxnRT.autocommit = False
                 S.cnxnFN.autocommit = False
                 print("autocommit is disabled")
-
                 # Ставим набор курсоров
                 # КУРСОР нужен для перехода функционального языка формул на процедурный или для вставки процедурных кусков в функциональный скрипт.
-                #
                 # Способы реализации курсоров:
                 #  - SQL, Transact-SQL,
                 #  - серверные API-курсоры (OLE DB, ADO, ODBC),
                 #  - клиентские API-курсоры (выборка кэшируется на клиенте)
-                #
                 # API-курсоры ODBC по SQLSetStmtAttr:
                 #  - тип SQL_ATTR_CURSOR_TYPE:
                 #    - однопроходный (последовательный доступ),
@@ -166,7 +154,6 @@ def myApplication():
                 S.seekRT = S.cnxnRT.cursor()
                 S.seekFN = S.cnxnFN.cursor()
                 print("seeks is on")
-
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnRT.getinfo(pyodbc.SQL_SERVER_NAME))
                 myDialog.lineEdit_Server.setEnabled(True)
@@ -224,7 +211,6 @@ def myApplication():
             myDialog.lineEdit_ODBCversion.setEnabled(False)
             myDialog.lineEdit_DSN.setEnabled(False)
             myDialog.lineEdit_Schema.setEnabled(False)
-
             myDialog.lineEdit_AirPortCodeIATA.setEnabled(False)
             myDialog.lineEdit_AirPortCodeICAO.setEnabled(False)
             myDialog.lineEdit_AirPortCodeFAA_LID.setEnabled(False)
@@ -531,10 +517,8 @@ def myApplication():
             message.setText("Запись не переписалась")
             message.setIcon(QtWidgets.QMessageBox.Warning)
             message.exec_()
-
     # Отрисовка первого окна
     myDialog.show()
-
     # Правильное закрытие окна
     sys.exit(myApp.exec_())
 
