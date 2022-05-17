@@ -1,3 +1,4 @@
+![СУБД Полная - Простая - Сжатие - Полная 001 005](https://user-images.githubusercontent.com/37275122/168890832-25179657-69dd-47e9-8bac-63e5ac56715e.png)
 # LoadWorkDataAirFlightsDBNew
 
 Некоторые сводные наработки по:
