@@ -5,3 +5,4 @@
 Ошибка дозаписи результатов по T_ONTIME_REPORTING_DL_SelectFields_2021_12.csv в LogReport_DBNew6.txt
 Ошибка дозаписи результатов по 1039942060_T_ONTIME_REPORTING_2012_02.csv в LogReport_DBNew6.txt
 Ошибка дозаписи результатов по 1039942060_T_ONTIME_REPORTING_2012_03.csv в LogReport_DBNew6.txt
+Ошибка дозаписи результатов по T_ONTIME_REPORTINGDL_SelectFields_2022_03.csv в LogReport_DBNew6.txt
