@@ -490,7 +490,7 @@ def LoadThread(Csv, Log):
             LogError = open(S.ErrorFileTXT, 'a')
             LogError.write("Ошибка дозаписи результатов по " + str(S.filenameCSV) + " в " + str(S.filenameTXT) + "\n")
         except IOError:
-            print("Ошибка дозаписи в файл журнала ошибок")
+            print("Ошибка дозаписи в файл журнала")
         finally:
             LogError.close()
         print(colorama.Fore.LIGHTYELLOW_EX + "Ошибка дозаписи в " + str(S.filenameTXT))
@@ -529,7 +529,7 @@ def myApplication():
     myDialog.dateEdit_BeginDate.setToolTip("Дата начала периода загрузки рабочих данных")
     myDialog.checkBox_SetInputDate.setChecked(False)
     myDialog.checkBox_SetInputDate.setEnabled(False)
-    myDialog.checkBox_SetInputDate.setToolTip("Перенос даты авиарейса из входных данных (пока экспериментально)")
+    myDialog.checkBox_SetInputDate.setToolTip("Перенос даты авиарейса из входных данных")
     myDialog.pushButton_ChooseCSVFile.setEnabled(False)
     myDialog.lineEdit_CSVFile.setEnabled(False)
     myDialog.pushButton_ChooseTXTFile.setEnabled(False)

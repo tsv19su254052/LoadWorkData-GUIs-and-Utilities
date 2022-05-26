@@ -51,6 +51,7 @@ class AirCraft:
         self.EndDate = '1920-01-01'
         self.Position = 1  # Позиция курсора в таблице (в SQL начинается с 1)
 
+
 # Делаем предка
 class AirPort:
     # fixme правильно писать конструктор
@@ -642,8 +643,6 @@ class Server:
 
 # Конвертация ресурсного файла *.ui -> *.py в терминале командой (командной строке)
 # > pyuic5 Qt_Designer_CorrectDialogAirPort.ui -o Qt_Designer_CorrectDialogAirPort.py
-
-
 class Ui_DialogCorrectAirPorts(QtWidgets.QDialog):
     def __init__(self):
         # просто сразу вызываем конструктор предка
@@ -922,10 +921,9 @@ class Ui_DialogCorrectAirPorts(QtWidgets.QDialog):
         else:
             event.ignore()
 
+
 # Конвертация ресурсного файла *.ui -> *.py в терминале командой (командной строке)
 # > pyuic5 Qt_Designer_LoadDialog.ui -o Qt_Designer_LoadDialog.py
-
-
 class Ui_DialogLoadAirFlights(QtWidgets.QDialog):
     def __init__(self):
         # просто сразу вызываем конструктор предка
@@ -1154,11 +1152,8 @@ class Ui_DialogLoadAirFlights(QtWidgets.QDialog):
     #         event.ignore()
 
 
-
 # Конвертация ресурсного файла *.ui -> *.py в терминале командой (командной строке)
 # > pyuic5 Qt_Designer_ReverseDialog.ui -o Qt_Designer_ReverseDialog.py
-
-
 class Ui_DialogReverse(QtWidgets.QDialog):
     def __init__(self):
         # просто сразу вызываем конструктор предка
@@ -1288,8 +1283,6 @@ class Ui_DialogReverse(QtWidgets.QDialog):
 
 # Конвертация ресурсного файла *.ui -> *.py в терминале командой (командной строке)
 # > pyuic5 Qt_Designer_CorrectDialogAirLines.ui -o Qt_Designer_CorrectDialogAirLines.py
-
-
 class Ui_DialogCorrectAirLine(QtWidgets.QDialog):
     def __init__(self):
         # просто сразу вызываем конструктор предка
@@ -1607,8 +1600,6 @@ class Ui_DialogCorrectAirLine(QtWidgets.QDialog):
 
 # Конвертация ресурсного файла *.ui -> *.py в терминале командой (командной строке)
 # > pyuic5 Qt_Designer_CorrectDialogAirLinesInput.ui -o Qt_Designer_CorrectDialogAirLinesInput.py
-
-
 class Ui_DialogCorrectAirLineInput(QtWidgets.QDialog):
     def __init__(self):
         # просто сразу вызываем конструктор предка
@@ -1671,8 +1662,6 @@ class Ui_DialogCorrectAirLineInput(QtWidgets.QDialog):
 
 # Конвертация ресурсного файла *.ui -> *.py в терминале командой (командной строке)
 # > pyuic5 Qt_Designer_CorrectDialogAirCraft.ui -o Qt_Designer_CorrectDialogAirCraft.py
-
-
 class Ui_DialogCorrectAirCraft(QtWidgets.QDialog):
     def __init__(self):
         # просто сразу вызываем конструктор предка
