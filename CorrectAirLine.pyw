@@ -623,7 +623,18 @@ def myApplication():
         index = myDialog.comboBox_Alliance.currentIndex()
         A.Aliance = index + 1
         # Вносим изменение
-        ResultUpdate = S.UpdateAirLineByIATAandICAO(A.AirLine_ID, A.AirLineName, A.AirLineAlias, A.AirLineCodeIATA, A.AirLineCodeICAO, A.AirLineCallSighn, A.AirLineCity, A.AirLineCountry, A.AirLineStatus, A.CreationDate, A.AirLineDescription, A.Aliance)
+        ResultUpdate = S.UpdateAirLineByIATAandICAO(A.AirLine_ID,
+                                                    A.AirLineName,
+                                                    A.AirLineAlias,
+                                                    A.AirLineCodeIATA,
+                                                    A.AirLineCodeICAO,
+                                                    A.AirLineCallSighn,
+                                                    A.AirLineCity,
+                                                    A.AirLineCountry,
+                                                    A.AirLineStatus,
+                                                    A.CreationDate,
+                                                    A.AirLineDescription,
+                                                    A.Aliance)
         if not ResultUpdate:
             message = QtWidgets.QMessageBox()
             message.setText("Запись не переписалась")

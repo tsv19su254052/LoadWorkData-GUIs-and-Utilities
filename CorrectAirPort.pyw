@@ -502,16 +502,18 @@ def myApplication():
         A.AirPortIncidents = myDialog.textEdit_Incidents.toPlainText()
         # Вносим изменение
         ResultUpdate = S.UpdateAirPort(A.AirPortCodeIATA,
-                                           A.AirPortCodeICAO,
-                                           A.AirPortName,
-                                           A.AirPortCity,
-                                           A.AirPortCounty,
-                                           A.AirPortCountry,
-                                           A.AirPortLatitude,
-                                           A.AirPortLongitude,
-                                           A.HeightAboveSeaLevel,
-                                           A.SourceCSVFile,
-                                           A.AirPortDescription, A.AirPortFacilities, A.AirPortIncidents)
+                                       A.AirPortCodeICAO,
+                                       A.AirPortName,
+                                       A.AirPortCity,
+                                       A.AirPortCounty,
+                                       A.AirPortCountry,
+                                       A.AirPortLatitude,
+                                       A.AirPortLongitude,
+                                       A.HeightAboveSeaLevel,
+                                       A.SourceCSVFile,
+                                       A.AirPortDescription,
+                                       A.AirPortFacilities,
+                                       A.AirPortIncidents)
         if not ResultUpdate:
             message = QtWidgets.QMessageBox()
             message.setText("Запись не переписалась")
