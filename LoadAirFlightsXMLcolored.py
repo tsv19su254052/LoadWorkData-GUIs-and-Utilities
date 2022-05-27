@@ -157,9 +157,13 @@ def Disconnect_FN():
 
 
 def LoadThread(Csv, Log):
-    # todo Указать уровень изоляции транзакции (обновление - REPEATABLE READ, вставка - SERIALIZABLE, выборка и все остальное - READ COMMITTED)
     # Читаем входной файл и перепаковываем его в DataFrame (кодировка UTF-8, шапка таблицы на столбцы, разделитель - ,)
-    print("  Чтение и перепаковка входного файла")
+    """
+    Источник BTSgov (убал из файла все косые, запятые и кавычки)
+    https://www.transtats.bts.gov/DL_SelectFields.asp - не работает
+    https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr - работает
+    """
+    print("  Чтение, перепаковка и проверка входного файла")
     print("  ожидайте ...", end=' ')
     DataFrameFromCSV = pandas.read_csv(Csv, sep=",")
     # В исходном файле *.csv подписаны столбцы -> в DataFrame можно перемещаться по именам столбцов -> Разбираем на столбцы и работаем с ними
@@ -204,8 +208,7 @@ def LoadThread(Csv, Log):
     print(termcolor.colored("Загрузка начата", "red", "on_yellow"))
     # Сигнал на обновление полоски выполнения
     # _signalUpdateProgressBar = QtCore.pyqtSignal(float)
-    # Выполнение загрузки
-    completion = 0
+    completion = 0  # Выполнение загрузки
     #pbar = tqdm.tqdm(len(ListAirLineCodeIATA))
     # Один внешний цикл и три вложенных цикла
     # fixme Оборачивать внешними обработчиками исключений не требуется -> Можно применять безусловные переходы
@@ -398,7 +401,7 @@ def LoadThread(Csv, Log):
         # todo Сделать полосу выполнения все время внизу со всеми параметрами например с помощью tqdm
         print(colorama.Fore.CYAN + "Выполнение =", str(Execute), "%")
         #pbar.update()
-        #myDialog.progressBar_completion.setValue(int(Execute))  # выдает ошибку про рекурсивную отрисовку (см. снимок экрана)
+        #myDialog.progressBar_completion.setValue(int(Execute))  # fixme выдает ошибку про рекурсивную отрисовку (см. снимок экрана)
     #pbar.close()
     print(termcolor.colored("Загрузка окончена", "red", "on_yellow"))
     # Отметка времени окончания загрузки
@@ -989,11 +992,6 @@ def myApplication():
             myDialog.lineEdit_Schema_FN.setEnabled(False)
 
     def PushButtonChooseCSVFile():
-        """
-        Источник BTSgov (убал из файла все косые, запятые и кавычки)
-        https://www.transtats.bts.gov/DL_SelectFields.asp - не работает
-        https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr - работает
-        """
         filter = "Data files (*.csv)"
         S.InputFileCSV = QtWidgets.QFileDialog.getOpenFileName(None, "Открыть рабочие данные", ' ', filter=filter)[0]
         S.urnCSV = S.InputFileCSV.rstrip(os.sep)  # не сработало

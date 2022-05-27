@@ -86,6 +86,7 @@ class Server:
         self.Connected_RT = False
         self.Connected_FN = False
 
+    # todo Указать уровень изоляции транзакции (обновление - REPEATABLE READ, вставка - SERIALIZABLE, выборка и все остальное - READ COMMITTED)
     # fixme Возможно надо возвращать из функций сработку (OPC-server) и результат (SQL Server) отдельно
     # todo Функции запроса при пустом ответе возвращают (None,) или None, при несработке - False
     # todo Функции обновления и вставки при сработке возвращают True, при несработке - False
