@@ -208,7 +208,6 @@ def LoadThread(Csv, Log):
     completion = 0
     #pbar = tqdm.tqdm(len(ListAirLineCodeIATA))
     # Один внешний цикл и три вложенных цикла
-    # Между вложенными циклами результаты запросов не переходят, все перезапрашиваем снова
     # fixme Оборачивать внешними обработчиками исключений не требуется -> Можно применять безусловные переходы
     for AL, AC, Dep, Arr, FN, FD in zip(ListAirLineCodeIATA, ListAirCraft, ListAirPortDeparture, ListAirPortArrival, ListFlightNumber, ListFlightDate):
         print(colorama.Fore.BLUE + "Авикомпания", str(AL), end=" ")

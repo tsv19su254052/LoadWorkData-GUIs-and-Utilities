@@ -187,7 +187,6 @@ def LoadThread(Csv, Log):
     # Выполнение загрузки
     completion = 0
     # Один внешний цикл и три вложенных цикла
-    # Между вложенными циклами результаты запросов не переходят, все перезапрашиваем снова
     # fixme Оборачивать внешними обработчиками исключений не требуется -> Можно применять безусловные переходы
     for AL, AC, Dep, Arr, FN, FD in zip(ListAirLineCodeIATA, ListAirCraft, ListAirPortDeparture, ListAirPortArrival, ListFlightNumber, ListFlightDate):
         print("Авикомпания", str(AL), end=" ")

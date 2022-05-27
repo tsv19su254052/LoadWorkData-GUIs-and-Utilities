@@ -365,7 +365,7 @@ class Server:
             return ResultSQL
 
     def QueryAirCraftByMSN(self, msn):
-        # Возвращает строку самолета по его LN
+        # Возвращает строку самолета по его MSN
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
             self.seekAC.execute(SQLQuery)
@@ -382,7 +382,7 @@ class Server:
             return ResultSQL
 
     def QueryAirCraftByPK(self, pk):
-        # Возвращает строку самолета по его LN
+        # Возвращает строку самолета по его первичному ключу
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
             self.seekAC.execute(SQLQuery)
