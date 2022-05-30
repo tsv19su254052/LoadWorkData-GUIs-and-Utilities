@@ -584,7 +584,6 @@ for AC, AL, FN, Dep, Arr in zip(ListAirCraft, ListAirLineCodeIATA, ListFlightNum
         print(" ")
         DistributionDensityAirCrafts[CurrentMax_i] += 1
 
-    # fixme загрузки велись неправильно (читались коды IATA, сравнивали по коду ICAO) - версии 4 и 5 с ошибками загрузки, исправил 6-ой версии
     # Если есть оба аэропорта и они разные
     if Dep and Arr and Dep != Arr:
         print(" Маршрут", str(Dep), "-", str(Arr), end=" ")
@@ -642,6 +641,7 @@ for AC, AL, FN, Dep, Arr in zip(ListAirCraft, ListAirLineCodeIATA, ListFlightNum
         print(" ")
         DistributionDensityAirRoutes[CurrentMax_i] += 1
 
+    # fixme в этом месте загрузки велись неправильно (читались коды IATA, сравнивали по коду ICAO) - версии 4 и 5 с ошибками загрузки, исправил 6-ой версии
     # Новая версия - все действия внутри обработки исключения
     # Если есть регистрационный номер самолета, код IATA авиакомпании и номер авиарейса
     if AC and AL and FN:
