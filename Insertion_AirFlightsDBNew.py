@@ -540,7 +540,6 @@ for AC, AL, FN, Dep, Arr in zip(ListAirCraft, ListAirLineCodeIATA, ListFlightNum
                 finally:
                     pass  # выполняется всегда
                 # Если самолет есть в БД, и если нет авиакомпании или неизвестная авиакомпания
-                # fixme читались коды IATA, сравнивались по коду ICAO, найти и исправить
                 if not DBAirCraft.AirCraftAirLine or DBAirLine2.AirLineCodeIATA == ('nan' or 'Unknown'):
                     # Вставляем (только один раз) авиакомпанию-оператора самолета
                     SQLUpdateAirCraft = "UPDATE dbo.AirCraftsTable SET AirCraftAirLine = " + str(DBAirLine.AirLineUniqueNumber) + " WHERE AirCraftRegistration = '" + str(AC) + "' "
@@ -585,6 +584,7 @@ for AC, AL, FN, Dep, Arr in zip(ListAirCraft, ListAirLineCodeIATA, ListFlightNum
         print(" ")
         DistributionDensityAirCrafts[CurrentMax_i] += 1
 
+    # fixme загрузка велась неправильно (читались коды IATA, сравнивали по коду ICAO) - версии 4 и 5 с ошибками загрузки, исправил 6-ой версии
     # Если есть оба аэропорта и они разные
     if Dep and Arr and Dep != Arr:
         print(" Маршрут", str(Dep), "-", str(Arr), end=" ")
