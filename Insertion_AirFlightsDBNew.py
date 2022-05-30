@@ -540,7 +540,7 @@ for AC, AL, FN, Dep, Arr in zip(ListAirCraft, ListAirLineCodeIATA, ListFlightNum
                 finally:
                     pass  # выполняется всегда
                 # Если самолет есть в БД, и если нет авиакомпании или неизвестная авиакомпания
-                # fixme где-то тут что-то пишется не туда, куда надо (надо вспомнить и найти)
+                # fixme читались коды IATA, сравнивались по коду ICAO, найти и исправить
                 if not DBAirCraft.AirCraftAirLine or DBAirLine2.AirLineCodeIATA == ('nan' or 'Unknown'):
                     # Вставляем (только один раз) авиакомпанию-оператора самолета
                     SQLUpdateAirCraft = "UPDATE dbo.AirCraftsTable SET AirCraftAirLine = " + str(DBAirLine.AirLineUniqueNumber) + " WHERE AirCraftRegistration = '" + str(AC) + "' "
