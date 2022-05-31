@@ -116,10 +116,11 @@ def QueryAirCraft(Registration):
         print("\n  самолет ", str(seekSubs.fetchall()))
     seekSubs.execute(SQLQuery)
     ResultSQL = seekSubs.fetchone()  # курсор забирает одну строку и сдвигается на строку вниз
+    # в SQL пустая ячейка в таблице -  NULL -> в Python-е - (None,) -> условия с None не работает, функция не возвращает None -> ошибка, скрипт слетает
     if ResultSQL:
         return ResultSQL
     else:
-        return False  # в SQL пустая ячейка в таблице -  NULL -> в Python-е - (None,) -> условия с None не работает, функция не возвращает None -> ошибка, скрипт слетает
+        return False
 
 
 def QueryAirLine(IATA):
@@ -346,8 +347,8 @@ else:
     print("Доступных DSN-ов нет")
 
 # fixme Если настроены DSN-ы, то используется DSN выбранной БД - сделано
-# Открываем соединение с БД
 # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
+# Открываем соединение с БД
 if __DSNs__:
     # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)
     # todo * Сделать формочку с переключателями DSN-ов и кнопкой "Записать и Закрыть" и кнопкой "Закрыть" - СДЕЛАЛ
