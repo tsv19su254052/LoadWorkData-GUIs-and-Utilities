@@ -1,4 +1,4 @@
-#  Interpreter 3.7.1
+#  Interpreter 3.7
 
 
 import pyodbc

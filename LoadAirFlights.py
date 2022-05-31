@@ -1,4 +1,4 @@
-# Interpreter 3.6.5 -> 3.7.1 (работает так же)
+# Interpreter 3.6 -> 3.7 (работает так же)
 # для Python 3.9 требуется Windows 10 или Windows Server 2012
 
 """
