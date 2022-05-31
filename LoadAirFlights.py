@@ -15,13 +15,13 @@
 
 
 #import pymssql - работает тяжелее
-import pyodbc  # установить дополнительно
-import pandas  # установить дополнительно
-import itertools  # комплектная, замена - more-itertools
-import datetime  # комплектная, Замена - DateTime
-import time  # комплектная, не ставится, просит обновить pip, обновил 9.0.3 -> 21.0.1 для 3.6.5, обновил 20.2.3 -> 21.0.1 для 3.8.8
-import os  # комплектная, Удалили, замена неизвестна
-import json  # комплектная, Удалили, замена неизвестна
+import pyodbc
+import pandas
+import itertools
+import datetime
+import time
+import os
+import json
 
 
 __Version__ = 4.85  # Версия обработки
@@ -112,7 +112,7 @@ def QueryAirCraft(Registration):
     """
     SQLQuery = "SELECT * FROM dbo.AirCraftsTable WHERE AirCraftRegistration = '" + str(Registration) + "' ORDER BY AirCraftAirLine, AirCraftRegistration"
     if __DebugOutPut__:
-        seekSubs.execute(SQLQuery)  # где-то в ОЗУ висит результат выборки по запросу
+        seekSubs.execute(SQLQuery)  # где-то в памяти висит результат выборки по запросу
         print("\n  самолет ", str(seekSubs.fetchall()))
     seekSubs.execute(SQLQuery)
     ResultSQL = seekSubs.fetchone()  # курсор забирает одну строку и сдвигается на строку вниз
@@ -696,7 +696,7 @@ for AC, AL, FN, Dep, Arr in zip(ListAirCraft, ListAirLineCodeIATA, ListFlightNum
                     else:
                         Quantity = 0  # NULL (пустая ячейка таблицы) в SQL => None (неопределенное вещественное число) в Python-е, NaN в R -> выражение с None не работает, функция не может вернуть None -> ошибка, скрипт слетает
                     Quantity += 1  # отдельно плюсуем на 1 для наглядности
-                    SQLUpdateFlight = "UPDATE dbo.AirFlightsTable SET QuantityCounted = " + str(Quantity) + " WHERE " + str(SQLExpression) + " "
+                    SQLUpdateFlight = "UPDATE dbo.AirFlightsTable SET QuantityCounted = " + str(Quantity) + " WHERE " + str(SQLExpression) + " "  # fixme ошибка (используется устаревший ответ на запрос)
                     try:
                         SetTransactionIsolationLevel("REPEATABLE READ")
                         seekFN.execute(SQLUpdateFlight)  # записываем сплюсованный авиарейс в БД
