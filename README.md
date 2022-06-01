@@ -17,7 +17,7 @@
 использовались из источников:
  - http://apinfo.ru 
  - http://openflights.org
- - http://www1.ourairport.com/ (в России не открывается)
+ - http://www1.ourairport.com/ (в России пока не открывается)
  - http://planelist.net
  - http://www.flightradar24.com
  - https://www.jetphotos.com/
