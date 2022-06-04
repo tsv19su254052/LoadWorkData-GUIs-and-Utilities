@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-
 # Обработка добавляет в БД аэропорты по коду IATA из файла-справочника типа *.csv
+
+
 import pyodbc
 import pandas
+
 
 myDriver = "SQL Server"
 myServer = "Data-Server"
@@ -16,7 +18,6 @@ cnxn = pyodbc.connect(driver=myDriver, server=myServer, database=myDataBase)
 seek = cnxn.cursor()
 
 # Читаем справочный файл типа *.csv (разделитель - |, строка 1 - шапка таблицы) и перепаковываем его в DataFrame
-
 
 # Источник ApInfoRu
 DataFrameFromCSV = pandas.read_csv("++ApInfoRu.csv", sep="|")
