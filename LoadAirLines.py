@@ -7,8 +7,10 @@
    Процедура за одну транзакцию вставляет одну строку в справочную таблицу
 '''
 
+
 import pyodbc
 import pandas
+
 
 myDriver = "SQL Server"
 myServer = "Data-Server"
