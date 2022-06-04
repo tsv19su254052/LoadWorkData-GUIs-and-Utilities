@@ -5,10 +5,12 @@
    Вставить имя файла и номер модели самолета
 '''
 
+
 import pyodbc
 import pandas
 import time
 import datetime
+
 
 __version__ = 5.1  # столько плюсов ставим в имени отработанного файла спереди
 # Отметка времени начала загрузки
@@ -165,4 +167,3 @@ if CountAirCraftsFailed:
 print(" ----")
 print("   Длительность загрузки", EndTime - StartTime)
 print("   Дата и время", DateTime)
-
