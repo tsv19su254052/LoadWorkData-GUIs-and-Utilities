@@ -1,5 +1,6 @@
 # Interpreter 3.6 -> 3.7 (работает так же)
-# для Python 3.9 требуется Windows 10 или Windows Server 2012
+# Interpreter 3.8 (пока не проверяли)
+# Interpreter 3.9 (требуется Windows 10 или Windows Server 2012)
 
 """
 Проверяем и добавляем в БД:
