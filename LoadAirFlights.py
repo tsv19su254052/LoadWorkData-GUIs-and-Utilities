@@ -25,7 +25,7 @@ import os
 import json
 
 
-__Version__ = 4.85  # Версия обработки
+__myOwnDevelopVersion__ = 4.85  # Версия обработки
 
 # Библиотеки Python для ввода-вывода в файл:
 # - Pandas (анализ данных, лучше чем NumPy),
@@ -268,7 +268,7 @@ def SetTransactionIsolationLevel(Level):
     seekSubs.execute(SQLQuery)
 
 
-print("Обработка v", str(__Version__), "загрузки рабочих данных в БД SQL Server-а")
+print("Обработка v", str(__myOwnDevelopVersion__), "загрузки рабочих данных в БД SQL Server-а")
 print("Разработал Тарасов Сергей tsv19su@yandex.ru")
 print("Пользователь = ", str(os.getlogin()))
 
@@ -480,7 +480,7 @@ Now = time.time()
 DateTime = time.ctime(Now)
 
 OutputString = "\n\n"
-OutputString += "Загрузка рабочих данных (версия обработки - " + str(__Version__) + ") начата " + str(DateTime) + " \n"
+OutputString += "Загрузка рабочих данных (версия обработки - " + str(__myOwnDevelopVersion__) + ") начата " + str(DateTime) + " \n"
 OutputString += " Источник входных данных = " + str(__InputFileCSV__) + " \n"
 OutputString += " Сервер СУБД = " + str(cnxn.getinfo(pyodbc.SQL_SERVER_NAME)) + " \n"
 OutputString += " Драйвер = " + str(cnxn.getinfo(pyodbc.SQL_DRIVER_NAME)) + " \n"
