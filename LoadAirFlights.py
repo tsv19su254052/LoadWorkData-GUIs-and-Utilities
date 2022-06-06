@@ -347,12 +347,10 @@ if __DSNs__:
 else:
     print("Доступных DSN-ов нет")
 
-# fixme Если настроены DSN-ы, то используется DSN выбранной БД - сделано
 # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
 # Открываем соединение с БД
 if __DSNs__:
     # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)
-    # todo * Сделать формочку с переключателями DSN-ов и кнопкой "Записать и Закрыть" и кнопкой "Закрыть" - СДЕЛАЛ
     #print("  Можете уточнить DSN (см. список, пусто - оставить выбранный) = ", end=" ")
     CmyDSN = str(input("  Можете уточнить DSN (см. список, пусто - оставить выбранный) = "))
     if CmyDSN:
@@ -513,7 +511,6 @@ for AC, AL, FN, Dep, Arr in zip(ListAirCraft, ListAirLineCodeIATA, ListFlightNum
         CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
         SetTransactionIsolationLevel("READ COMMITTED")
         # Цикл попыток
-        # fixme Уточнить шаг нарастания задержки - СДЕЛАЛ
         for i in range(2, MaxDelay):
             if CurrentMax_i < i:
                 CurrentMax_i = i

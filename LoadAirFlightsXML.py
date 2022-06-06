@@ -187,7 +187,6 @@ def LoadThread(Csv, Log):
     # Выполнение загрузки
     completion = 0
     # Один внешний цикл и три вложенных цикла
-    # fixme Оборачивать внешними обработчиками исключений не требуется -> Можно применять безусловные переходы
     for AL, AC, Dep, Arr, FN, FD in zip(ListAirLineCodeIATA, ListAirCraft, ListAirPortDeparture, ListAirPortArrival, ListFlightNumber, ListFlightDate):
         print("Авикомпания", str(AL), end=" ")
         CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
