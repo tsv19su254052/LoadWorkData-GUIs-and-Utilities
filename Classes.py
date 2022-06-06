@@ -1,19 +1,18 @@
 #  Interpreter 3.7
 
-# Пользовательская библиотека с классами
-# Компилируется и кладется в папку __pycache__
-# Идея выноса классов в этот отдельный файл -> Удобство просмотра типов данных
-
-# Qt Designer (см. https://build-system.fman.io/qt-designer-download)
-
-# Запуск Qt Designer из пакета pyQt5_tools в терминале командой
-# > pyqt5-tools designer
-
 
 from PyQt5 import QtWidgets, QtCore, QtGui
 # todo ветка библиотек Qt - QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
 # todo Какие еще есть виджеты (ссылки, изображение, видео, координаты навигации и т. д.) у этого фрэймворка?
 # Руководство по установке см. https://packaging.python.org/tutorials/installing-packages/
+
+
+# Пользовательская библиотека с классами
+# Компилируется и кладется в папку __pycache__
+# Идея выноса классов в этот отдельный файл -> Удобство просмотра типов данных
+# Qt Designer (см. https://build-system.fman.io/qt-designer-download)
+# Запуск Qt Designer из пакета pyQt5_tools в терминале командой
+# > pyqt5-tools designer
 
 
 # Делаем предка
