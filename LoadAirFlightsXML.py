@@ -84,7 +84,7 @@ import Classes
 # Сейчас есть столбцовые БД где-то там на облаках типа Vertica, SandBridge, Amazon RedShift и другие
 # Есть Oracle локально или на облаке :) С бесплатным начальным периодом :) Никто ничего на них не гарантирует :)
 # А Microsoft SQL Server всегда по рукой и все серьезные SoftWare-ные компании выдают ПО, которое успешно работает с ним в том числе :)
-__myOwnDevelopingVersion__ = 7.77  # Версия обработки
+__myOwnDevelopingVersion__ = 7.78  # Версия обработки
 print("Обработка v", str(__myOwnDevelopingVersion__), "загрузки рабочих данных в БД SQL Server-а", 'blue', 'on_yellow')
 print("Разработал Тарасов Сергей tsv19su@yandex.ru")
 print("Пользователь = ", str(os.getlogin()))

@@ -25,7 +25,7 @@ import os
 import json
 
 
-__myOwnDevelopVersion__ = 4.85  # Версия обработки
+__myOwnDevelopVersion__ = 4.86  # Версия обработки
 
 # Библиотеки Python для ввода-вывода в файл:
 # - Pandas (анализ данных, лучше чем NumPy),
