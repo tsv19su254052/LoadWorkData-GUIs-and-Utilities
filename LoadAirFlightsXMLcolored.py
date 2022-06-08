@@ -16,7 +16,7 @@ import pathlib
 #import stringcolor  # в IDLE и в pyCharm раскраска не работает, в командной строке сразу слетает
 import colorama
 import termcolor
-#import tqdm  # tqdm нужен свой цикл -> сюда пока не подходит
+#import tqdm  # tqdm нужен свой цикл -> сюда не подходит
 
 # Импорт пользовательской библиотеки (файла *.py в этой же папке). Импорт из других папок пока не работает
 import Classes
