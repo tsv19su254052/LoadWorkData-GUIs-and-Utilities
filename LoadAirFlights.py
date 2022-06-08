@@ -665,7 +665,7 @@ for AC, AL, FN, Dep, Arr in zip(ListAirCraft, ListAirLineCodeIATA, ListFlightNum
                     DBAirCraft = QueryAirCraft(AC)
                     SQLExpression = "(FlightNumberString = '" + str(AL) + str(FN) + "') AND ((AirRoute = " + str(DBAirRoute.AirRouteUniqueNumber) + ") AND (AirCraft = " + str(DBAirCraft.AirCraftUniqueNumber) + "))"
                     SQLQueryFlight = "SELECT * FROM dbo.AirFlightsTable WHERE " + str(SQLExpression) + " ORDER BY  AirRoute, AirCraft, FlightNumberString"
-                    seekFN.execute(SQLQueryFlight)  # много транзакций, подвисает, проигрыш при взаимоблокировке, сервер отбрасывает подключение -> скрипт слетает
+                    seekFN.execute(SQLQueryFlight)  # fixme много транзакций, подвисает, проигрыш при взаимоблокировке, сервер отбрасывает подключение -> скрипт слетает - ИСПРАВИЛ
                     DBAirFlight = seekFN.fetchone()
                     cnxn.commit()
                 except Exception:
