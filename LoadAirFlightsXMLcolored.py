@@ -13,10 +13,10 @@ import socket
 import threading
 from PyQt5 import QtWidgets  # QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
 import pathlib
-#import stringcolor  # в IDLE и в pyCharm раскраска не работает, в командной строке сразу слетает
+#import stringcolor  # fixme в IDLE и в pyCharm раскраска не работает, в командной строке сразу слетает
 import colorama
 import termcolor
-#import tqdm  # tqdm нужен свой цикл -> сюда не подходит
+#import tqdm  # fixme tqdm нужен свой цикл -> сюда не подходит
 
 # Импорт пользовательской библиотеки (файла *.py в этой же папке)
 import Classes
