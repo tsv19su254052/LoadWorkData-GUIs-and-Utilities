@@ -23,7 +23,6 @@ import datetime
 import time
 import os
 import json
-# todo ветка библиотек Qt - QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
 
 
 __myOwnDevelopVersion__ = 4.87  # Версия обработки
