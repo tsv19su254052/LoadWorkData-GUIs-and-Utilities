@@ -26,7 +26,7 @@ import json
 # todo ветка библиотек Qt - QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
 
 
-__myOwnDevelopVersion__ = 4.86  # Версия обработки
+__myOwnDevelopVersion__ = 4.87  # Версия обработки
 
 # Библиотеки Python для ввода-вывода в файл:
 # - Pandas (анализ данных, лучше чем NumPy),
