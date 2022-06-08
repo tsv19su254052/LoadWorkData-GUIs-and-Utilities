@@ -623,7 +623,7 @@ def myApplication():
                 pass
 
     def PushButtonDisconnect_AL():
-        # кнопка 'Отключиться от базы данных' нажата
+        # Обработчик кнопки 'Отключиться от базы данных'
         if S.Connected_AL:
             Disconnect_AL()
             S.Connected_AL = False
@@ -723,7 +723,7 @@ def myApplication():
                 pass
 
     def PushButtonDisconnect_RT():
-        # кнопка 'Отключиться от базы данных' нажата
+        # Обработчик кнопки 'Отключиться от базы данных'
         if S.Connected_RT:
             Disconnect_RT()
             S.Connected_RT = False

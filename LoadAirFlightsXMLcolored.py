@@ -564,8 +564,7 @@ def myApplication():
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew52")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62Test")
-    # Привязки обработчиков
-    # todo без lambda не работает
+    # Привязки обработчиков todo без lambda не работает
     myDialog.pushButton_Connect_AL.clicked.connect(lambda: PushButtonSelectDB_AL())  # Подключиться к базе данных
     myDialog.pushButton_Disconnect_AL.clicked.connect(lambda: PushButtonDisconnect_AL())  # Отключиться от базы данных
     myDialog.pushButton_Connect_RT.clicked.connect(lambda: PushButtonSelectDB_RT())
