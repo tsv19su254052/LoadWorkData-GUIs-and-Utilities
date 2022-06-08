@@ -596,6 +596,7 @@ def myApplication():
                 #  - режим работы в стиле ISO:
                 #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
                 #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
+
                 # Клиентские однопроходные , статические API-курсоры ODBC.
                 # Добавляем атрибуты seek...
                 S.seekAL = S.cnxnAL.cursor()
@@ -695,6 +696,7 @@ def myApplication():
                 #  - режим работы в стиле ISO:
                 #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
                 #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
+
                 # Клиентские однопроходные , статические API-курсоры ODBC.
                 # Добавляем атрибуты seek...
                 S.seekRT = S.cnxnRT.cursor()
@@ -808,6 +810,7 @@ def myApplication():
                 #  - режим работы в стиле ISO:
                 #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
                 #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
+
                 # Клиентские однопроходные , статические API-курсоры ODBC.
                 # Добавляем атрибуты seek...
                 S.seekAC = S.cnxnAC.cursor()
@@ -882,6 +885,7 @@ def myApplication():
                 #  - режим работы в стиле ISO:
                 #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
                 #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
+
                 # Клиентские однопроходные , статические API-курсоры ODBC.
                 # Добавляем атрибуты seek...
                 S.seekFN = S.cnxnFN.cursor()
@@ -914,7 +918,7 @@ def myApplication():
                 pass
 
     def PushButtonDisconnect_FN():
-        # кнопка 'Отключиться от базы данных' нажата
+        # Обработчик кнопки 'Отключиться от базы данных'
         if S.Connected_AC:
             Disconnect_AC()
             S.Connected_AC = False
