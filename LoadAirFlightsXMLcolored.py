@@ -11,7 +11,7 @@ import json
 import sys
 import socket
 import threading
-from PyQt5 import QtWidgets  # ветка библиотек Qt - QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
+from PyQt5 import QtWidgets  # QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
 import pathlib
 #import stringcolor  # в IDLE и в pyCharm раскраска не работает, в командной строке сразу слетает
 import colorama

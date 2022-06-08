@@ -12,7 +12,7 @@ import json
 import sys
 import socket
 import threading
-from PyQt5 import QtWidgets, QtCore  # ветка библиотек Qt - QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
+from PyQt5 import QtWidgets, QtCore  # QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
 import pathlib
 
 # Импорт пользовательской библиотеки (файла *.py в этой же папке)
