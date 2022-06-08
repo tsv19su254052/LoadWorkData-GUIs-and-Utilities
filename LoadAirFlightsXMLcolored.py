@@ -96,18 +96,6 @@ print("Разработал Тарасов Сергей tsv19su@yandex.ru")
 print(termcolor.colored("Пользователь = " + str(os.getlogin()), 'green', 'on_yellow'))
 
 
-#  При одновременном запуске нескольких обработок ожидается выигрыш по времени, удобство в запуске следующих обработок, полное использование функционала SAS-овского контроллера
-#  В случае отключения электропитания придется раскатывать бэкап и начинать все с самого начала. Или запитать всю инфраструктуру через UPS
-#  Как варианты:
-#  - использовать помеченные транзакции,
-#  - в случае сбоя делать восстановление журнала транзакций,
-#  - во входных файлах отмечать обработанные строки, чтобы пропускать их при повторном запуске,
-#  - сгенерировать таблицу (обычную или временную) для каждой обработки, перекинуть в нее данные из входного файла,
-# отмечать в ней обработанные строки, после окончания обработки таблицу удалить
-#  - не удалять таблицы обработок, а накапливать результат в промежуточной таблице и периодически переносить обработанные данные из нее в базу,
-#  - обработанные данные из промежуточной таблицы удалять
-#  Примечание: количество столбцов, их очередность и тип данных в каждом входном файле бывают разные -> не подходит
-
 # fixme Вывести в файл requirements.txt список пакетов с версиями
 # pip freeze > requirements.txt
 
@@ -211,7 +199,6 @@ def LoadThread(Csv, Log):
     completion = 0  # Выполнение загрузки
     #pbar = tqdm.tqdm(len(ListAirLineCodeIATA))
     # Один внешний цикл и три вложенных цикла
-    # fixme Оборачивать внешними обработчиками исключений не требуется -> Можно применять безусловные переходы
     for AL, AC, Dep, Arr, FN, FD in zip(ListAirLineCodeIATA, ListAirCraft, ListAirPortDeparture, ListAirPortArrival, ListFlightNumber, ListFlightDate):
         print(colorama.Fore.BLUE + "Авикомпания", str(AL), end=" ")
         CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
@@ -398,7 +385,7 @@ def LoadThread(Csv, Log):
         DistributionDensityAirFlights[CurrentMax_i] += 1
         completion += 1
         Execute = round(100 * completion / len(ListFlightNumber), 2)  # вычисляем и округляем процент выполнения до 2 цифр после запятой
-        # todo Сделать полосу выполнения все время внизу со всеми параметрами например с помощью tqdm
+        # todo Сделать полосу выполнения все время внизу со всеми параметрами например с помощью tqdm - Не работает в цикле
         print(colorama.Fore.CYAN + "Выполнение =", str(Execute), "%")
         #pbar.update()
         #myDialog.progressBar_completion.setValue(int(Execute))  # fixme выдает ошибку про рекурсивную отрисовку (см. снимок экрана)
@@ -643,6 +630,7 @@ def myApplication():
                 #  - режим работы в стиле ISO:
                 #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
                 #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
+
                 # Клиентские однопроходные , статические API-курсоры ODBC.
                 # Добавляем атрибуты seek...
                 S.seekAL = S.cnxnAL.cursor()
@@ -669,7 +657,7 @@ def myApplication():
                 pass
 
     def PushButtonDisconnect_AL():
-        # кнопка 'Отключиться от базы данных' нажата
+        # Обработчик кнопки 'Отключиться от базы данных'
         if S.Connected_AL:
             Disconnect_AL()
             S.Connected_AL = False
@@ -742,6 +730,7 @@ def myApplication():
                 #  - режим работы в стиле ISO:
                 #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
                 #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
+
                 # Клиентские однопроходные , статические API-курсоры ODBC.
                 # Добавляем атрибуты seek...
                 S.seekRT = S.cnxnRT.cursor()
@@ -768,7 +757,7 @@ def myApplication():
                 pass
 
     def PushButtonDisconnect_RT():
-        # кнопка 'Отключиться от базы данных' нажата
+        # Обработчик кнопки 'Отключиться от базы данных'
         if S.Connected_RT:
             Disconnect_RT()
             S.Connected_RT = False
@@ -855,6 +844,7 @@ def myApplication():
                 #  - режим работы в стиле ISO:
                 #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
                 #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
+
                 # Клиентские однопроходные , статические API-курсоры ODBC.
                 # Добавляем атрибуты seek...
                 S.seekAC = S.cnxnAC.cursor()
@@ -929,6 +919,7 @@ def myApplication():
                 #  - режим работы в стиле ISO:
                 #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
                 #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
+
                 # Клиентские однопроходные , статические API-курсоры ODBC.
                 # Добавляем атрибуты seek...
                 S.seekFN = S.cnxnFN.cursor()
@@ -961,7 +952,7 @@ def myApplication():
                 pass
 
     def PushButtonDisconnect_FN():
-        # кнопка 'Отключиться от базы данных' нажата
+        # Обработчик кнопки 'Отключиться от базы данных'
         if S.Connected_AC:
             Disconnect_AC()
             S.Connected_AC = False
