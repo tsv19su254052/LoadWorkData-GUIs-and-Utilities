@@ -488,6 +488,7 @@ def myApplication():
 
     def PushButtonUpdate():
         # Кнопка "Записать"
+        # todo вставить диалог выбора и проверки сертификата (ЭЦП) и условный переход с проверкой
         A.AirPortCodeICAO = myDialog.lineEdit_AirPortCodeICAO.text()
         A.AirPortName = myDialog.textEdit_AirPortName.toPlainText()
         A.AirPortCity = myDialog.textEdit_AirPortCity.toPlainText()
