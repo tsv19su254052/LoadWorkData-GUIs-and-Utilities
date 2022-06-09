@@ -116,7 +116,7 @@ def QueryAirCraft(Registration):
         seekSubs.execute(SQLQuery)  # где-то в памяти висит результат выборки по запросу
         print("\n  самолет ", str(seekSubs.fetchall()))
     seekSubs.execute(SQLQuery)
-    ResultSQL = seekSubs.fetchone()  # курсор забирает одну строку и сдвигается на строку вниз
+    ResultSQL = seekSubs.fetchone()  # курсор забирает одну строку и сдвигается на следующую строку
     # в SQL пустая ячейка в таблице -  NULL -> в Python-е - (None,) -> условия с None не работает, функция не возвращает None -> ошибка, скрипт слетает
     if ResultSQL:
         return ResultSQL
