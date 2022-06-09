@@ -608,6 +608,7 @@ def myApplication():
 
     def PushButtonUpdate():
         # Кнопка "Записать"
+        # todo Вставить диалог выбора и проверки сертификата (ЭЦП) и условный переход с проверкой
         A.AirLine_ID = myDialog.lineEdit_AirLineID.text()
         A.AirLineName = myDialog.textEdit_AirLineName.toPlainText()
         A.AirLineAlias = myDialog.lineEdit_AirLineAlias.text()
