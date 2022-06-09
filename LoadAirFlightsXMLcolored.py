@@ -485,7 +485,6 @@ def LoadThread(Csv, Log):
         print(colorama.Fore.LIGHTYELLOW_EX + "Ошибка дозаписи в " + str(S.filenameTXT))
     finally:
         LogFile.close()
-    # fixme не дописывает - исправил
     # Дописываем в журнал (с помощью менеджера контекста)
     # with open(Log, 'a') as LogFile:
     #     LogFile.write(OutputString)
