@@ -1,9 +1,4 @@
-USE AirFlightsDBNew62
-GO
-
--- в кавычках вставить содержимое схемы из файла *.xsd
-CREATE XML SCHEMA COLLECTION SchemaCollectionXsdFull AS '
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+п»ї<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xmlns:ns="https://www.w3schools.com"
 			xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -14,20 +9,20 @@ CREATE XML SCHEMA COLLECTION SchemaCollectionXsdFull AS '
 			xmlns:ms="urn:schemas-microsoft-com:mapping-schema"
 			xmlns:dt="urn:schemas-microsoft-com:datatypes"
 			xmlns:sql="urn:schemas-microsoft-com:xml-sql">
-	<!-- t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns - префиксы пространства имен (краткие псевдонимы вместо их URI) -->
+	<!-- t (РІРјРµСЃС‚Рµ СЃРѕ СЃРІРѕР№СЃС‚РІРѕРј СЃС…РµРјС‹ "targetNamespace"), xsd, xsi, ns - РїСЂРµС„РёРєСЃС‹ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІР° РёРјРµРЅ (РєСЂР°С‚РєРёРµ РїСЃРµРІРґРѕРЅРёРјС‹ РІРјРµСЃС‚Рѕ РёС… URI) -->
 	<xsd:annotation>
 		<xsd:documentation>
-			Моя схема XSD полная
+			РњРѕСЏ СЃС…РµРјР° XSD РїРѕР»РЅР°СЏ
 		</xsd:documentation>
 	</xsd:annotation>
 
 	<xsd:element name="AirCraftRegistrationXML">
 		<xsd:complexType>
-			<!-- больше одного тэга "AirCraftRegistrationXML"-->
+			<!-- Р±РѕР»СЊС€Рµ РѕРґРЅРѕРіРѕ С‚СЌРіР° "AirCraftRegistrationXML"-->
 			<xsd:sequence maxOccurs="unbounded">
 				<xsd:element name="step">
 					<xsd:complexType>
-						<!-- больше одного подтэга "step"-->
+						<!-- Р±РѕР»СЊС€Рµ РѕРґРЅРѕРіРѕ РїРѕРґС‚СЌРіР° "step"-->
 						<xsd:sequence maxOccurs="unbounded">
 							<xsd:element name="BeginDate" type="xsd:date" />
 						</xsd:sequence>
@@ -98,7 +93,4 @@ CREATE XML SCHEMA COLLECTION SchemaCollectionXsdFull AS '
 		</xsd:complexType>
 	</xsd:element>
 
-</xsd:schema>'
-
-PRINT 'Создана коллекция схем XSD - dbo.SchemaCollectionXsdFull'
-GO
+</xsd:schema>
