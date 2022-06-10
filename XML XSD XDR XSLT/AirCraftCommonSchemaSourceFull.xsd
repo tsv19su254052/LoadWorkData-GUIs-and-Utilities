@@ -16,6 +16,7 @@
 		</xsd:documentation>
 	</xsd:annotation>
 
+	<!-- Регистрационный номер (англ. Tail Number, далее по тексту "Регистрация") -->
 	<xsd:element name="AirCraftRegistrationXML">
 		<xsd:complexType>
 			<!-- больше одного тэга "AirCraftRegistrationXML"-->
@@ -33,6 +34,7 @@
 		</xsd:complexType>
 	</xsd:element>
 
+	<!-- Авиакомпания-оператор -->
 	<xsd:element name="AirLineOperatorXML">
 		<xsd:complexType>
 			<xsd:sequence maxOccurs="unbounded">
@@ -48,6 +50,7 @@
 		</xsd:complexType>
 	</xsd:element>
 
+	<!-- Авиакомпания-владелец (арендатор) -->
 	<xsd:element name="AirLineOwnerXML">
 		<xsd:complexType>
 			<xsd:sequence maxOccurs="unbounded">
@@ -63,6 +66,7 @@
 		</xsd:complexType>
 	</xsd:element>
 
+	<!-- Авиакомпания-арендодатель -->
 	<xsd:element name="AirLineLandLordXML">
 		<xsd:complexType>
 			<xsd:sequence maxOccurs="unbounded">
@@ -78,6 +82,7 @@
 		</xsd:complexType>
 	</xsd:element>
 
+	<!-- Авиакомпания-лизингодатель -->
 	<xsd:element name="AirLineLessorXML">
 		<xsd:complexType>
 			<xsd:sequence maxOccurs="unbounded">
