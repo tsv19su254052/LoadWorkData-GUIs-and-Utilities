@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<AirCraftRegistrationXML>
+	<step AirCraftRegistrationFK="N68160">
+		<BeginDate> 2001-10-30 </BeginDate>
+	</step>
+	<step AirCraftRegistrationFK="VP-BAL">
+		<BeginDate> 2014-07-21 </BeginDate>
+	</step>
+</AirCraftRegistrationXML>
+<!--MSN=30439-->
+<!--LN=851-->
+<!--Boeing 767-200  2001-10-11-->
+

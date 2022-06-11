@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" ?>
+<Schema xmlns="urn:schemas-microsoft-com:xml-data"
+        xmlns:dt="urn:schemas-microsoft-com:datatypes"
+        xmlns:sql="urn:schemas-microsoft-com:xml-sql">
+
+	<ElementType name="Order" sql:relation="Sales.SalesOrderHeader">
+		<AttributeType name="SalesOrderID" />
+		<AttributeType name="CustomerID"  />
+		<AttributeType name="OrderDate" dt:type="date" />
+		<AttributeType name="DueDate" />
+		<AttributeType name="ShipDate" dt:type="time" />
+
+		<attribute type="SalesOrderID" sql:field="OrderID" />
+		<attribute type="CustomerID" sql:field="CustomerID" />
+		<attribute type="OrderDate" sql:field="OrderDate" />
+		<attribute type="DueDate" sql:field="DueDate" />
+		<attribute type="ShipDate" sql:field="ShipDate" />
+	</ElementType>
+</Schema>

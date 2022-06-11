@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<AirCraftRegistrationXML>
+	<step AirCraftRegistrationFK="N67158">
+		<BeginDate> 2001-05-30 </BeginDate>
+	</step>
+	<step AirCraftRegistrationFK="VP-BAI">
+		<BeginDate> 2012-09-02 </BeginDate>
+	</step>
+</AirCraftRegistrationXML>
+<!--MSN=30437-->
+<!--LN=839-->
+<!--Boeing 767-200  2001-05-18-->
+<!-- Самолет может поменять компанию-владельца и поменять регистрацию -->
+<!-- Дата изменения регистрации может совпадать с датой изменения компании-владельца, но не должна
+		Поэтому ветка регистрации и ветка компании-владельца отделены и хранятся в столбцах типа xml-->
+

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<AirLineOwnerXML>
+	<!-- JeTran Air -->
+	<step AirLineOwnerFK="103">
+		<BeginDate> 2016-10-31 </BeginDate>
+	</step>
+	<!-- Euro Atlantic Airways -->
+	<step AirLineOwnerFK="108">
+		<BeginDate> 2009-10-15 </BeginDate>
+		<BeginDate> 2003-07-02 </BeginDate>
+	</step>
+	<!-- STP AirLines -->
+	<step AirLineOwnerFK="109">
+		<BeginDate> 2009-09-06 </BeginDate>
+	</step>
+	<!-- GECAS (leasing company)-->
+	<step AirLineOwnerFK="0">
+		<BeginDate> 2014-08-06 </BeginDate>
+		<BeginDate> 2012-09-11 </BeginDate>
+		<BeginDate> 2003-07-01 </BeginDate>
+	</step>
+	<!-- American AirLines -->
+	<step AirLineOwnerFK="31">
+		<BeginDate> 2001-12-02 </BeginDate>
+	</step>
+	<!-- TWA -->
+	<step AirLineOwnerFK="23">
+		<BeginDate> 2000-05-15 </BeginDate>
+	</step>
+	<!-- GPA (Sales and Leasing Company) -->
+	<step AirLineOwnerFK="0">
+		<BeginDate> 1999-06-07 </BeginDate>
+	</step>
+	<!-- AeroMexico -->
+	<step AirLineOwnerFK="37">
+		<BeginDate> 1997-11-19 </BeginDate>
+	</step>
+	<!-- SAS Scandinavian AirLines -->
+	<step AirLineOwnerFK="0">
+		<BeginDate> 1996-04-25 </BeginDate>
+	</step>
+	<!-- Air Europe Italy -->
+	<step AirLineOwnerFK="0">
+		<BeginDate> 1995-05-01 </BeginDate>
+	</step>
+	<!-- TAESA -->
+	<step AirLineOwnerFK="0">
+		<BeginDate> 1992-06-02 </BeginDate>
+	</step>
+	<!-- TransBrasil -->
+	<step AirLineOwnerFK="0">
+		<BeginDate> 1992-01-16 </BeginDate>
+	</step>
+</AirLineOwnerXML>
+

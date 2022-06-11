@@ -1,0 +1,7 @@
+<!DOCTYPE CustOp [
+		<!ELEMENT CustOp (step)*>
+		<!ELEMENT step (BeginDate)*>
+		<!ATTLIST step
+				CraftOperatorFK CDATA #REQUIRED>
+		<!ELEMENT BeginDate (#PCDATA)>
+		]>

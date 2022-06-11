@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<AirLineOperatorXML>
+	<!-- Continental AirLines -->
+	<step AirLineOperatorFK="2320">
+		<BeginDate> 2001-10-30 </BeginDate>
+	</step>
+	<!-- United AirLines -->
+	<step AirLineOperatorFK="6543">
+		<BeginDate> 2011-12-01 </BeginDate>
+	</step>
+	<!-- UTair Aviation -->
+	<step AirLineOperatorFK="6609">
+		<BeginDate> 2014-07-21 </BeginDate>
+	</step>
+</AirLineOperatorXML>
+

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<AirLineOperatorXML>
+	<!-- Trans World Airlines (TWA) -->
+	<step AirLineOperatorFK="23">
+		<BeginDate> 1998-04-08 </BeginDate>
+	</step>
+	<!-- American Airlines -->
+	<step AirLineOperatorFK="31">
+		<BeginDate> 2001-12-02 </BeginDate>
+	</step>
+	<!-- Shanghai Airlines -->
+	<step AirLineOperatorFK="47">
+		<BeginDate> 2003-07-08 </BeginDate>
+	</step>
+	<!-- Ikar (Ikaros DK) -->
+	<step AirLineOperatorFK="43">
+		<BeginDate> 2014-10-20 </BeginDate>
+	</step>
+</AirLineOperatorXML>
+
