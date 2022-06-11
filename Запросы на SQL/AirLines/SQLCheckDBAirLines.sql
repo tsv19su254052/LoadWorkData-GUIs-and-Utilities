@@ -1,6 +1,0 @@
-USE AirLinesDBNew62
-GO
-
-DBCC CHECKDB
-GO
-
