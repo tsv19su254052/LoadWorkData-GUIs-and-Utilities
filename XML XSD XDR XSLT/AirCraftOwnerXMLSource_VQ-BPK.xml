@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<CustOwn>
-	<!-- Aeroflot -->
-	<step CraftOwnerFK="280">
-		<BeginDate> 2012-09-24 </BeginDate>
-	</step>
-</CustOwn>
-

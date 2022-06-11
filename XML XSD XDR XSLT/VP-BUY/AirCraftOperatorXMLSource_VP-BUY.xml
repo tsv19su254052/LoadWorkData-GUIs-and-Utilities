@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<CustOp>
+<AirLineOperatorXML>
 	<!-- Azur Air -->
-	<step CraftOperatorFK="30">
+	<step AirLineOperatorFK="30">
 		<BeginDate> 2016-10-31 </BeginDate>
 	</step>
 	<!-- Euro Atlantic Airways -->
-	<step CraftOperatorFK="108">
+	<step AirLineOperatorFK="108">
 		<BeginDate> 2014-08-06 </BeginDate>
 		<BeginDate> 2013-05-01 </BeginDate>
 		<BeginDate> 2012-09-11 </BeginDate>
@@ -15,57 +15,57 @@
 		<BeginDate> 2003-07-01 </BeginDate>
 	</step>
 	<!-- Air Canada -->
-	<step CraftOperatorFK="114">
+	<step AirLineOperatorFK="114">
 		<BeginDate> 2014-07-01 </BeginDate>
 	</step>
 	<!-- Cubana -->
-	<step CraftOperatorFK="115">
+	<step AirLineOperatorFK="115">
 		<BeginDate> 2013-01-20 </BeginDate>
 	</step>
 	<!-- SunWing AirLines -->
-	<step CraftOperatorFK="116">
+	<step AirLineOperatorFK="116">
 		<BeginDate> 2012-06-13 </BeginDate>
 		<BeginDate> 2011-06-14 </BeginDate>
 	</step>
 	<!-- STP AirLines -->
-	<step CraftOperatorFK="109">
+	<step AirLineOperatorFK="109">
 		<BeginDate> 2009-09-06 </BeginDate>
 	</step>
 	<!-- Varig -->
-	<step CraftOperatorFK="117">
+	<step AirLineOperatorFK="117">
 		<BeginDate> 2003-07-02 </BeginDate>
 	</step>
 	<!-- American AirLines -->
-	<step CraftOperatorFK="31">
+	<step AirLineOperatorFK="31">
 		<BeginDate> 2001-12-02 </BeginDate>
 	</step>
 	<!-- TWA -->
-	<step CraftOperatorFK="23">
+	<step AirLineOperatorFK="23">
 		<BeginDate> 2000-05-15 </BeginDate>
 	</step>
 	<!-- GPA (Sales and Leasing Company)-->
-	<step CraftOperatorFK="0">
+	<step AirLineOperatorFK="0">
 		<BeginDate> 1999-06-07 </BeginDate>
 	</step>
 	<!-- AeroMexico -->
-	<step CraftOperatorFK="37">
+	<step AirLineOperatorFK="37">
 		<BeginDate> 1997-11-19 </BeginDate>
 	</step>
 	<!-- SAS Scandinavian AirLines -->
-	<step CraftOperatorFK="110">
+	<step AirLineOperatorFK="110">
 		<BeginDate> 1996-04-25 </BeginDate>
 	</step>
 	<!-- Air Europe Italy -->
-	<step CraftOperatorFK="111">
+	<step AirLineOperatorFK="111">
 		<BeginDate> 1995-05-01 </BeginDate>
 	</step>
 	<!-- TAESA -->
-	<step CraftOperatorFK="112">
+	<step AirLineOperatorFK="112">
 		<BeginDate> 1992-06-02 </BeginDate>
 	</step>
 	<!-- TransBrasil -->
-	<step CraftOperatorFK="113">
+	<step AirLineOperatorFK="113">
 		<BeginDate> 1992-01-16 </BeginDate>
 	</step>
-</CustOp>
+</AirLineOperatorXML>
 
