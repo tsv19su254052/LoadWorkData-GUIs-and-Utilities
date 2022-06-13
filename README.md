@@ -132,7 +132,7 @@ _Поправка по терминологии:
 Элементы со своими именами.
 К базе данных может быть привязано несколько XSD-схем.
 Пространства имен для всех элементов объявляются в начале скрипта создания XSD-схемы (см. https://www.w3schools.com/xml/schema_simple.asp и https://www.w3.org/TR/xmlschema11-1/).
-Типы данных, применяемые в XML-ных полях, соответствуют объявленным пространствам имен (см. XSD-схему `SQLCreateSchemaCollectionXSD.xsd` по пути `..\SQL & XML (XPath & XQuery XSD XDR XSLT)`).
+Типы данных, применяемые в XML-ных полях, соответствуют объявленным пространствам имен (см. XSD-схему  https://github.com/tsv19su254052/LoadWorkDataAirFlightsDBNew/blob/master/SQL%20%26%20XML%20(XPath%20%26%20XQuery%20XSD%20XDR%20XSLT)/AirCraftCommonSchemaSourceFull.xsd ).
 Для создания XSD-схемы открыть и запустить собранный скрипт.
 
 ###### Создание схемы из пространств имен и элементов
