@@ -88,7 +88,7 @@ import Classes
 # Есть Oracle локально или на облаке :) С бесплатным начальным периодом :) Никто ничего на них не гарантирует :)
 # А Microsoft SQL Server всегда по рукой и все серьезные SoftWare-ные компании выдают ПО, которое успешно работает с ним в том числе :)
 
-__myOwnDevelopingVersion__ = 7.90  # Версия обработки с цветным выводом
+__myOwnDevelopingVersion__ = 7.91  # Версия обработки с цветным выводом
 colorama.init(autoreset=False)  # используем Colorama, чтобы сделать работу Termcolor на Windows, оставляем цветовое оформление до следующего явного указания
 print(termcolor.colored("Обработка v" + str(__myOwnDevelopingVersion__) + " загрузки рабочих данных в БД SQL Server-а", 'blue', 'on_yellow'))
 print("Разработал Тарасов Сергей tsv19su@yandex.ru")
