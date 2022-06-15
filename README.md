@@ -190,7 +190,8 @@
 
 Далее в XSD-схеме определяются элементы, каждый под своим именем (см. https://www.w3schools.com/xml/schema_simple.asp).
 
-Элемент генерируется из XML-ного файла внутри Management Studio или с помощью XSLT-преобразования из файла `*.xslt` (см. https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-execute-an-xslt-transformation-from-the-xml-editor?view=vs-2022) 
+Элемент генерируется из XML-ного файла внутри Management Studio или с помощью XSLT-преобразования из файла `*.xslt`
+(см. https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-execute-an-xslt-transformation-from-the-xml-editor?view=vs-2022) 
 и вставляется в соответствии с порядком просмотра XML-ных полей. Имя корневого тэга XML-ного поля соответствует имени элемента XSD-схемы.
 Исходный текст XSD-схемы вставляется в SQL-ный скрипт ее привязки к базе данных
 (надо найти способ добавить удобства и не вставлять исходник схемы через буфер обмена, а выбирать ее в диалоге открытия файла,
@@ -205,7 +206,9 @@
 #### Поправки по терминологии:
  - **Коллекцию схем XML** в Management Studio точнее называть XSD-схемой.
  - **Созданием схемы** в SQL-ном скрипте правильнее называть привязкой XSD-схемы, потому что она уже собрана и сохранена файлом типа `*.xsd`.
- - **DTD-схемы** и **XDR-схемы** описаны в `msdn.com` (см. https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-create-an-xml-schema-from-an-xml-document?view=vs-2022), но уже не применяются.
+ - **DTD-схемы** и **XDR-схемы** кратко упомянуты в `msdn.com`
+   (см. https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-create-an-xml-schema-from-an-xml-document?view=vs-2022),
+   но уже не применяются.
 
 XML-ные поля пропускаются через XSD-схему:
  - программно на входе хранимой процедуры,
