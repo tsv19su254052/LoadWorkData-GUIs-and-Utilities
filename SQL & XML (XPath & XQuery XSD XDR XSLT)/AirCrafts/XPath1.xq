@@ -1,1 +1,1 @@
-﻿'/CustReg/step[@CraftRegFK=sql:variable("@registration")] '
+﻿'/AirCraftRegistrationXML/step[@AirCraftRegistrationFK=sql:variable("@registration")] '
