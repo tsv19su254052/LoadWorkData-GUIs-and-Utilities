@@ -219,7 +219,7 @@
 
 ###### Привязываем XSD-схему к базе данных
 
-![XSD-схема Сборка из элементов и пространств имен](https://user-images.githubusercontent.com/37275122/171510416-e57ed19e-71b3-45e5-a6d7-257017b9b786.png)
+![SSMS Сборка XSD-схемы](https://user-images.githubusercontent.com/104857185/174197029-1815510f-f813-4244-8b73-d79f40e28064.png)
  
 #### Поправки по терминологии:
  - **Коллекцию схем XML** в Management Studio точнее называть XSD-схемой.
