@@ -114,7 +114,7 @@
    https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/monitor-database-deadlocks),
    ищем решение как разнести сложность, пробуем разные серверные курсоры
    (см. https://docs.microsoft.com/ru-ru/sql/relational-databases/native-client-odbc-cursors/implementation/odbc-cursor-library?view=sql-server-ver15,
-   https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/fetch-transact-sql?view=sql-server-ver15),
+   https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver15),
  - для экспериментов используем не тестовую базу, а только тестовые таблицы
    (бэкап в тестовую базу не раскатываем, а делаем трансфер двух таблиц соответственно в две тестовые таблицы,
    можно перенести отдельной файловой группой на отдельный HDD).
