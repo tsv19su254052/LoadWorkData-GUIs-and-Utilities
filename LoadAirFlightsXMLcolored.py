@@ -584,6 +584,7 @@ def myApplication():
         if not S.Connected_AL:
             # Подключаемся к базе данных авиакомпаний
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
+            # https://docs.microsoft.com/ru-ru/previous-versions/dotnet/framework/data/adonet/sql/ownership-and-user-schema-separation-in-sql-server
             # Добавляем атрибуты DataBase, DriverODBC
             S.DataBase_AL = myDialog.comboBox_DB_AL.currentText()
             S.DriverODBC_AL = myDialog.comboBox_Driver_AL.currentText()
