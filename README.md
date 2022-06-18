@@ -113,9 +113,10 @@
  - убрали отдельную базу данных по летательным аппаратам,
  - если в базе данных нет регистрации, использует функционал версии 7 для временного хранения недозагруженных данных (подробнее см. ниже по тексту), 
  - добавили отношения, индексы, XSD-схемы, каскадные правила на удаления и обновления,
- - подняли очередь и службу **Service Broker**-а, но функционала SQL-ных скриптов внутри хранимых процедур не хватает
+ - подняли очередь и службу **Service Broker**-а
    (см. https://docs.microsoft.com/ru-ru/sql/database-engine/configure-windows/sql-server-service-broker?view=sql-server-ver15 ,
    https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/monitor-database-deadlocks),
+   но функционала SQL-ных скриптов внутри хранимых процедур не хватает,
    ищем решение как разнести сложность, пробуем разные серверные курсоры
    (см. https://docs.microsoft.com/ru-ru/sql/relational-databases/native-client-odbc-cursors/implementation/odbc-cursor-library?view=sql-server-ver15,
    https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver15),
