@@ -154,9 +154,7 @@
 
 Загрузка данных:
  - обновляет XML-ные поля авиакомпаний **XML(CONTENT dbo.XSD-схема)** в таблице летательных аппаратов,
-   которые подаются на вход хранимой процедуры через XSD-схему и парсятся как **SAX**
-   (см. https://stackoverflow.com/questions/1890923/xpath-to-fetch-sql-xml-value ,
-   https://stackoverflow.com/questions/43848456/t-sql-xquery-value-of-attribute-y-where-attribute-x-is-known),
+   которые подаются на вход хранимой процедуры через XSD-схему и парсятся как **SAX**,
    используя комплектный функционал **XPath & XQuery** (см. http://xmlhack.ru/texts/03/xquery/what.is.xquery.html) и спецификацию **SQL/XML**,
  - вставляет строки в таблице объектов,
  - вставляет строки в таблице маршрутов,
@@ -190,8 +188,10 @@
  - вызываем вставки в запросах программно по URL,
  - вызываем вручную из диалога открытия файла,
  - пробуем хранимые процедуры с программными вызовами вставки,
- - вставляем старую XML-ную базу летательного аппарата в XML-ное поле **XML(CONTENT dbo.XSD-схема)** его строки
-   и парсим его как **DOM** (см. https://stackoverflow.com/questions/192907/xml-parsing-elementtree-vs-sax-and-dom) внутри скрипта на Python-е **Saxon**-ом
+ - вставляем старую XML-ную базу летательного аппарата в XML-ное поле **XML(CONTENT dbo.XSD-схема)** его строки и парсим его как **DOM**
+   (см. https://stackoverflow.com/questions/192907/xml-parsing-elementtree-vs-sax-and-dom,
+   https://stackoverflow.com/questions/1890923/xpath-to-fetch-sql-xml-value ,
+   https://stackoverflow.com/questions/43848456/t-sql-xquery-value-of-attribute-y-where-attribute-x-is-known) внутри скрипта на Python-е **Saxon**-ом
    (см. https://www.saxonica.com/technology/xslt-and-xquery.xml библиотеки `libxml2`, `libxslt`).
 
 Недостаток хранимой процедуры - не возвращает в скрипты на Python-е результат своей работы
