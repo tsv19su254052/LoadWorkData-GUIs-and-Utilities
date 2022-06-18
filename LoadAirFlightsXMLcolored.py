@@ -22,7 +22,7 @@ import termcolor
 import Classes
 
 
-__myOwnDevelopingVersion__ = 7.91  # Версия обработки с цветным выводом
+__myOwnDevelopingVersion__ = 7.92  # Версия обработки с цветным выводом
 
 # Библиотеки Python для ввода-вывода в файл:
 # - Pandas (анализ данных, лучше чем NumPy),

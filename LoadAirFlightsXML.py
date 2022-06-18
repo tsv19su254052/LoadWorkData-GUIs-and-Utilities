@@ -19,7 +19,7 @@ import pathlib
 import Classes
 
 
-__myOwnDevelopingVersion__ = 7.81  # Версия обработки
+__myOwnDevelopingVersion__ = 7.82  # Версия обработки
 
 # Библиотеки Python для ввода-вывода в файл:
 # - Pandas (анализ данных, лучше чем NumPy),
