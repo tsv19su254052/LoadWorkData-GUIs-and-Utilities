@@ -118,7 +118,7 @@
    https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/monitor-database-deadlocks),
    но функционала SQL-ных скриптов внутри хранимых процедур не хватает,
    ищем решение как разнести сложность, пробуем разные серверные курсоры
-   (см. https://docs.microsoft.com/ru-ru/sql/relational-databases/native-client-odbc-cursors/implementation/odbc-cursor-library?view=sql-server-ver15,
+   (см. https://docs.microsoft.com/ru-ru/sql/relational-databases/native-client-odbc-cursors/implementation/odbc-cursor-library?view=sql-server-ver15 ,
    https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver15),
  - для экспериментов используем не тестовую базу, а только тестовые таблицы
    (бэкап в тестовую базу не раскатываем, а делаем трансфер двух таблиц соответственно в две тестовые таблицы,
@@ -188,7 +188,7 @@
  - вызываем вручную из диалога открытия файла,
  - пробуем хранимые процедуры с программными вызовами вставки,
  - вставляем старую XML-ную базу летательного аппарата в XML-ное поле **XML(CONTENT dbo.XSD-схема)** его строки и парсим его как **DOM**
-   (см. https://stackoverflow.com/questions/192907/xml-parsing-elementtree-vs-sax-and-dom,
+   (см. https://stackoverflow.com/questions/192907/xml-parsing-elementtree-vs-sax-and-dom ,
    https://stackoverflow.com/questions/1890923/xpath-to-fetch-sql-xml-value ,
    https://stackoverflow.com/questions/43848456/t-sql-xquery-value-of-attribute-y-where-attribute-x-is-known) внутри скрипта на Python-е **Saxon**-ом
    (см. https://www.saxonica.com/technology/xslt-and-xquery.xml библиотеки `libxml2`, `libxslt`).
