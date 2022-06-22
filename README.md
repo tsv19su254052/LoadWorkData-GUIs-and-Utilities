@@ -189,14 +189,15 @@
  - вызываем вставки в запросах программно по URL,
  - вызываем вручную из диалога открытия файла,
  - пробуем хранимые процедуры с программными вызовами вставки,
- - вставляем старую XML-ную базу летательного аппарата в XML-ное поле **XML(CONTENT dbo.XSD-схема)** его строки и парсим его как **DOM**
+ - вставляем старую XML-ную базу летательного аппарата (не более 2 Гбайт каждая согласно документации `msdn.com`)
+   в XML-ное поле **XML(CONTENT dbo.XSD-схема)** его строки и парсим его как **DOM**
    (см. https://stackoverflow.com/questions/192907/xml-parsing-elementtree-vs-sax-and-dom ,
    https://stackoverflow.com/questions/1890923/xpath-to-fetch-sql-xml-value ,
    https://stackoverflow.com/questions/43848456/t-sql-xquery-value-of-attribute-y-where-attribute-x-is-known) внутри скрипта на Python-е **Saxon**-ом
    (см. https://www.saxonica.com/technology/xslt-and-xquery.xml библиотеки `libxml2`, `libxslt`).
 
 Недостаток хранимой процедуры - не возвращает в скрипты на Python-е достоверный результат своей работы: получилось, не получилось с указанием причины
-(см. "Возврат данных с помощью кода возврата" https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver15).
+(см. раздел "Возврат данных с помощью кода возврата" на https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver15).
 Недостаток XSD-схемы - тот же и тот, что она пропускает все или не пропускает ничего.
 
 ###### Собираем **XML**-ные поля, определяемся с их структурой
