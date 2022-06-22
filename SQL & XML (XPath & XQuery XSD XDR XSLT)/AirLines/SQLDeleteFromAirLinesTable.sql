@@ -3,8 +3,8 @@ GO
 
 SET Transaction Isolation Level Serializable
 DECLARE @iata NVARCHAR(50), @icao NVARCHAR(50)
-SET @iata = 'B6'
-SET @icao = 'JBU'
+SET @iata = 'ZW'
+SET @icao = 'AWI'
 IF @iata IS NULL
 	BEGIN
 		SELECT * 
@@ -27,5 +27,5 @@ ELSE
 			END
 	END
 
-DELETE FROM dbo.AirLinesTable WHERE AirLineUniqueNumber = 33281
+DELETE FROM dbo.AirLinesTable WHERE AirLineUniqueNumber = 30608
 GO
