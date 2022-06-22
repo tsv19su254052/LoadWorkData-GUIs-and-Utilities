@@ -104,11 +104,11 @@ __myOwnDevelopVersion__ = 4.92  # Версия обработки
 
 
 def QueryAirCraft(Registration):
-    """Возвращает данные самолета по его коду регистрации
-    Считаем, что у одного самолета любой модели, в том числе неизвестной один код регистрации
-    Но дубликаты могут быть, так как при переходе самолета от одной компании-владельца к другой код регистрации как правило меняется
-    и однозначно определить самолет можно по сочетанию его MSN (SN) и коду регистрации
-    Код регистрации через несколько лет может передаваться от утилизированного самолета к новому без привязки к изготовителю и модели
+    """Возвращает данные самолета по его регистрации
+    Считаем, что у одного самолета любой модели, в том числе неизвестной одна регистрация - неверно
+    Но дубликаты могут быть, так как при переходе самолета от одной компании-владельца к другой регистрация как правило меняется
+    и однозначно определить самолет можно по сочетанию его заводских номеров
+    Регистрация через несколько лет может передаваться от утилизированного самолета к новому без привязки к изготовителю и модели
     Выводим первую найденную строку
     """
     SQLQuery = "SELECT * FROM dbo.AirCraftsTable WHERE AirCraftRegistration = '" + str(Registration) + "' ORDER BY AirCraftAirLine, AirCraftRegistration"
@@ -491,7 +491,7 @@ __StartTime__ = datetime.datetime.now()
 # Один внешний цикл и три вложенных цикла
 # Между вложенными циклами результаты запросов не переходят, все перезапрашиваем снова
 for AC, AL, FN, Dep, Arr in zip(ListAirCraft, ListAirLineCodeIATA, ListFlightNumber, ListAirPortDeparture, ListAirPortArrival):
-    # Если есть код регистрации самолета, в том числе UNKNOWN и nan
+    # Если есть регистрация самолета, в том числе UNKNOWN и nan
     if AC and AL:
         if __DebugOutPut__:
             print("\n\n")
@@ -632,7 +632,7 @@ for AC, AL, FN, Dep, Arr in zip(ListAirCraft, ListAirLineCodeIATA, ListFlightNum
     # fixme в этом месте загрузки велись неправильно (читались коды IATA, сравнивали по коду ICAO)
     # fixme - версии 4 и 5 с ошибками загрузки - уже не актуально, исправил 6-ой версии базы данных
     # Новая версия - все действия внутри обработки исключения
-    # Если есть регистрационный номер самолета, код IATA авиакомпании и номер авиарейса
+    # Если есть регистрация самолета, код IATA авиакомпании и номер авиарейса
     if AC and AL and FN:
         print(" Авиарейс", str(AL) + str(FN), end=" ")
         CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
@@ -821,12 +821,10 @@ seekFN.close()
 cnxn.close()
 
 # Собираем три списка в DataFrame
-DataFrameDistributionDensity = pandas.DataFrame(
-    [DistributionDensityAirCrafts,
-     DistributionDensityAirRoutes,
-     DistributionDensityAirFlights],
-    index=["AirCrafts", "AirRoutes", "AirFlights"]
-)
+DataFrameDistributionDensity = pandas.DataFrame([DistributionDensityAirCrafts,
+                                                 DistributionDensityAirRoutes,
+                                                 DistributionDensityAirFlights],
+                                                index=["AirCrafts", "AirRoutes", "AirFlights"])
 DataFrameDistributionDensity.index.name = "Categories"
 
 # Формируем итоги

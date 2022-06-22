@@ -312,7 +312,7 @@ def LoadThread(Csv, Log):
                         time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
                 elif DBAirPortArr is None:
                     ListAirPortsNotFounded.append(Arr)
-                    # Вставляем аэропорт
+                    # Вставляем аэропорт только с кодом IATA
                     if S.InsertAirPortByIATA(Arr):
                         print(colorama.Fore.GREEN + "добавили аэропорт", str(Arr), end=" ")
                     else:
@@ -323,7 +323,7 @@ def LoadThread(Csv, Log):
                     time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
             elif DBAirPortDep is None:
                 ListAirPortsNotFounded.append(Dep)
-                # Вставляем аэропорт
+                # Вставляем аэропорт только с кодом IATA
                 if S.InsertAirPortByIATA(Dep):
                     print(colorama.Fore.GREEN + "добавили аэропорт", str(Dep), end=" ")
                 else:

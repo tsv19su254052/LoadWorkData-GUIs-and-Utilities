@@ -70,7 +70,7 @@ for CN, LN, AC, Owner, DD, Type, St, Remarks in zip(ListCN, ListLN, ListRegistra
                 print(", модель обновили", end=" ")
             except:
                 print(", модель не обновили", end=" ")
-        if ResultSQL.AirCraftModel == Model:  # чтобы не затереть другой самолет, например, другой модели с возможно таким же кодом регистрации
+        if ResultSQL.AirCraftModel == Model:  # чтобы не затереть другой самолет, например, другой модели с возможно такой же регистрацией
             if not ResultSQL.SourceCSVFile:
                 myUpdate = "UPDATE dbo.AirCraftsTable SET SourceCSVFile = '" + str(myCSVFile) + "' WHERE AirCraftRegistration = '" + str(AC) + "' "
                 try:

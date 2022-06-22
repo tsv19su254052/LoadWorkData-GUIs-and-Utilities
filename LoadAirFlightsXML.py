@@ -301,7 +301,7 @@ def LoadThread(Csv, Log):
                         time.sleep(i)  # пытаемся уйти от взаимоблокировки
                 elif DBAirPortArr is None:
                     ListAirPortsNotFounded.append(Arr)
-                    # Вставляем аэропорт
+                    # Вставляем аэропорт только с кодом IATA
                     if S.InsertAirPortByIATA(Arr):
                         print("добавили аэропорт", str(Arr), end=" ")
                     else:
@@ -312,7 +312,7 @@ def LoadThread(Csv, Log):
                     time.sleep(i)  # пытаемся уйти от взаимоблокировки
             elif DBAirPortDep is None:
                 ListAirPortsNotFounded.append(Dep)
-                # Вставляем аэропорт
+                # Вставляем аэропорт только с кодом IATA
                 if S.InsertAirPortByIATA(Dep):
                     print("добавили аэропорт", str(Dep), end=" ")
                 else:
@@ -391,7 +391,8 @@ def LoadThread(Csv, Log):
     # Собираем списки в DataFrame
     DataFrameDistributionDensity = pandas.DataFrame([DistributionDensityAirLines,
                                                      DistributionDensityAirCrafts,
-                                                     DistributionDensityAirRoutes, DistributionDensityAirFlights],
+                                                     DistributionDensityAirRoutes,
+                                                     DistributionDensityAirFlights],
                                                     index=[" - авиакомпании", " - самолеты", " - маршруты", " - авиарейсы"])
     DataFrameDistributionDensity.index.name = "Базы данных:"
     OutputString = "\n\n"
