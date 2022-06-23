@@ -305,7 +305,9 @@ XML-ные поля пропускаются через XSD-схему:
  - ссылку по объекту на статью из `WikiPedia.org`,
  - виждеты выбора страны, области (графства, штата, региона), города, района города из надежной онлайн базы на ее API-шках в формате XML
    (как простой пример см. https://htmlweb.ru/geo/api_get_data.php ,
-   надо зарегистрироваться, купить и оплачивать API-ключ согласно тарифа https://htmlweb.ru/user/tariffs.php для каждого клиента),
+   надо зарегистрироваться, купить и оплачивать API-ключ согласно тарифа https://htmlweb.ru/user/tariffs.php для каждого клиента,
+   а также см. https://www.maxmind.com/en/worldcities, http://www.geonames.org/, http://netload.biz/2011/01/24/geoip3/,
+   https://pear.php.net/manual/en/package.webservices.services-geonames.examples.php и аналогичные),
    значение подтэга `wiki` вынести отдельно гиперссылкой, чтобы открывать статью из `WikiPedia.org`,
  - виджеты и ссылки для просмотра свойств вышеперечисленных географических объектов.
 
