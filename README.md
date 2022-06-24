@@ -83,7 +83,7 @@
 
 ![СУБД Полная - Простая - Сжатие - Полная 001 004](https://user-images.githubusercontent.com/37275122/168450362-8de3b141-e670-4067-a28e-544cd9cff239.png)
 
-![СУБД Полная - Простая - Сжатие - Полная 001 005](https://user-images.githubusercontent.com/37275122/168890832-25179657-69dd-47e9-8bac-63e5ac56715e.png)
+![SSMS СУБД Полная - Простая - Сжатие - Полная 001 008](https://user-images.githubusercontent.com/104857185/175547592-7a6f3ec4-11e5-4601-be80-2ab19cc456c3.png)
 
 #### История изменений и улучшений в проекте
 
