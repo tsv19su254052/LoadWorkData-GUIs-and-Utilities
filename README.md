@@ -121,7 +121,7 @@
  - подняли очередь и службу **Service Broker**
    (см. https://docs.microsoft.com/ru-ru/sql/database-engine/configure-windows/sql-server-service-broker?view=sql-server-ver15 ,
    https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/monitor-database-deadlocks),
-   но функционала SQL-ных скриптов внутри хранимых процедур не хватает,
+   чтобы не пользоваться временными задержками для ухода от взаимоблокировок, но функционала SQL-ных скриптов внутри хранимых процедур не хватает,
    ищем решение как разнести сложность, пробуем разные серверные курсоры
    (см. https://docs.microsoft.com/ru-ru/sql/relational-databases/native-client-odbc-cursors/implementation/odbc-cursor-library?view=sql-server-ver15 ,
    https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver15),
@@ -281,12 +281,10 @@ XML-ные поля пропускаются через XSD-схему:
 
 Контроль подключения и его восстановление при разрыве (например, при плохом контакте на коннекторах, через Wi-Fi или через мобильный Интернет) не предусматривается.
 
-#### Объемы доработок
+#### Объемы доработок на клиентах
 
 Выборочно поставить клиентам для аналитики `ORACLE SQL Developer` и его плагин под `MS SQL Server`
 (дистрибутив см. на сервере в папке `Q:\Oracle\Oracle SQL Developer\Oracle SQL Developer 21.4.3\sqldeveloper-21.4.3.063.0100-x64`, ключи и лицензии не требуются).
-
-Поднять на сервере СУБД `Service Broker`, чтобы отказаться от временных задержек на обходах взаимоблокировок и загрузить его максимально.
 
 Сделать графическую формочку для правки свойств альянсов (или делать это внутри `Management Studio`). Добавить ссылку на каждый из `WikiPedia.org`.
 
