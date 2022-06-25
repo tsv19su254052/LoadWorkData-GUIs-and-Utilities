@@ -143,7 +143,7 @@
 В данных используется:
  - регистрация,
  - дата авиарейса,
- - строка авиарейса,
+ - обозначение авиарейса,
  - код `IATA` объекта вылета,
  - код `IATA` объекта прилета,
  - число ходок с этим авиарейсом
@@ -204,7 +204,8 @@
    (см. https://www.saxonica.com/technology/xslt-and-xquery.xml библиотеки `libxml2`, `libxslt`).
 
 Недостаток хранимой процедуры - не возвращает в скрипты на Python-е достоверный результат своей работы: получилось, не получилось с указанием причины
-(см. раздел "Возврат данных с помощью кода возврата" на https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver15).
+(см. раздел "Возврат данных с помощью кода возврата" на
+https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver15).
 Недостаток XSD-схемы - тот же и тот, что она пропускает все или не пропускает ничего.
 
 ###### Собираем **XML**-ные поля, определяемся с их структурой
