@@ -287,7 +287,7 @@ XML-ные поля пропускаются через XSD-схему:
 #### Объемы доработок на клиентах
 
 Выборочно поставить клиентам для аналитики `ORACLE SQL Developer` и его плагин под `MS SQL Server`
-(дистрибутив см. на сервере в папке `Q:\Oracle\Oracle SQL Developer\Oracle SQL Developer 21.4.3\sqldeveloper-21.4.3.063.0100-x64`, ключи и лицензии не требуются).
+(см. на сервере в папке `Q:\Oracle\Oracle SQL Developer\Oracle SQL Developer 21.4.3\sqldeveloper-21.4.3.063.0100-x64`, ключи и лицензии не требуются).
 
 Сделать графическую формочку для правки свойств альянсов (или делать это внутри `Management Studio`). Добавить ссылку на каждый из `WikiPedia.org`.
 
