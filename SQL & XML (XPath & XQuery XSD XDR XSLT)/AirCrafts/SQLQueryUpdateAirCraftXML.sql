@@ -3,7 +3,7 @@ GO
 
 -- Связать эту схему со столбцом типа типизированный xml для проверки его подлинности - СДЕЛАЛ
 -- todo читать содержимое исходных файлов *.xml
-SET Transaction Isolation Level REPEATABLE READ
+SET Transaction Isolation Level SERIALIZABLE
 UPDATE dbo.AirCraftsTableNew2Xsd SET AirCraftRegistration =
 '<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!-- standalone - Автономный документ -->
@@ -58,4 +58,3 @@ UPDATE dbo.AirCraftsTableNew2Xsd SET AirCraftRegistration =
 					AirCraftLineNumber_LN = '851',
 					AirCraftLineNumber_MSN = '30439'
 	WHERE AirCraftUniqueNumber = 3
-SET Transaction Isolation Level READ COMMITTED
