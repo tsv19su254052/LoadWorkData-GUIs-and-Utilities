@@ -252,6 +252,8 @@ https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/retu
    (см. https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-create-an-xml-schema-from-an-xml-document?view=vs-2022),
    но уже не применяются.
 
+###### Прочие наработки
+
 XML-ные поля пропускаются через XSD-схему:
  - программно на входе хранимой процедуры,
  - программно при вставке или при обновлении строки,
@@ -287,8 +289,11 @@ XML-ные поля пропускаются через XSD-схему:
 
 #### Объемы доработок на клиентах
 
-Выборочно поставить клиентам для аналитики `ORACLE SQL Developer` и его плагин под `MS SQL Server`
-(см. на сервере в папке `Q:\Oracle\Oracle SQL Developer\Oracle SQL Developer 21.4.3\sqldeveloper-21.4.3.063.0100-x64`, ключи и лицензии не требуются).
+Выборочно поставить клиентам для аналитики:
+ - `ORACLE SQL Developer` (запускаемый файл `sqldeveloper` см. на сервере в папке `Q:\Oracle\Oracle SQL Developer\Oracle SQL Developer 21.4.3\sqldeveloper-21.4.3.063.0100-x64`, ключи и лицензии не требуются)
+   и его плагин под `MS SQL Server` (см. на сервере в папке `Q:\Oracle\Oracle SQL Developer\Plug-ins`),
+ - `PL SQL Developer` (дистрибутив см. на сервере в папке `Q:\M$_Windows\PL SQL Developer\PL SQL DEVELOPER 14.0.6.1988 x86 x64 2020`),
+ - `Management Studio` (дистрибутив см. на сервере в папке `Q:\M$_Windows\SQL_Server\SQL Server Management Studio`).
 
 Сделать графическую формочку для правки свойств альянсов (или делать это внутри `Management Studio`). Добавить ссылку на каждый из `WikiPedia.org`.
 
