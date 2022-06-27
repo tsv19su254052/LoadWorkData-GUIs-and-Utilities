@@ -85,7 +85,7 @@ DECLARE @reg NVARCHAR(50)
 SET @reg = 'N635TW'
 SELECT	AirCraftRegistration.query('/CustReg/step/BeginDate') AS REGS,
 		AirLineOperator.query('/CustOp/step/BeginDate') AS OPERATOR
-  -- SELECT XMLELEMENT  -- SQL/XML не установлен
+  -- SELECT XMLELEMENT  -- SQL/XML установлен
   FROM dbo.AirCraftsTableNew2Xsd
   WHERE AirCraftRegistration.value('(/CustReg/step/@CraftRegFK)[1]', 'VARCHAR(50)') = @reg
 
