@@ -121,11 +121,11 @@
  - добавили отношения, индексы, XSD-схемы, каскадные правила на удаления и обновления,
  - подняли очередь и службу **Service Broker**
    (см. https://docs.microsoft.com/ru-ru/sql/database-engine/configure-windows/sql-server-service-broker?view=sql-server-ver15 ,
-   https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/monitor-database-deadlocks),
+   https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/monitor-database-deadlocks ),
    чтобы не пользоваться временными задержками для ухода от взаимоблокировок, но функционала SQL-ных скриптов внутри хранимых процедур не хватает,
    ищем решение как разнести сложность, пробуем разные серверные курсоры
    (см. https://docs.microsoft.com/ru-ru/sql/relational-databases/native-client-odbc-cursors/implementation/odbc-cursor-library?view=sql-server-ver15 ,
-   https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver15),
+   https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver15 ),
  - для экспериментов используем не тестовую базу, а только тестовые таблицы
    (бэкап в тестовую базу не раскатываем, а делаем трансфер двух таблиц соответственно в две тестовые таблицы,
    можно перенести отдельной файловой группой на отдельный HDD).
@@ -163,7 +163,7 @@
 ###### Загрузка данных:
  - обновляет XML-ные поля авиакомпаний **XML(CONTENT dbo.XSD-схема)** в таблице летательных аппаратов,
    которые подаются на вход хранимой процедуры через XSD-схему и парсятся как **SAX**,
-   используя комплектный функционал **XPath & XQuery** (см. http://xmlhack.ru/texts/03/xquery/what.is.xquery.html) и спецификацию **SQL/XML**,
+   используя комплектный функционал **XPath & XQuery** (см. http://xmlhack.ru/texts/03/xquery/what.is.xquery.html ) и спецификацию **SQL/XML**,
  - вставляет строки в таблице объектов,
  - вставляет строки в таблице маршрутов,
  - вставляет или обновляет строки в таблице авиарейсов
@@ -188,7 +188,7 @@
 
 Группировка подтэгов с датами авиарейсов (пока в разработке):
  - группируем подтэги программно при изменении,
- - часть API-шек пишем на **SQLAlchemy** под `MS SQL Server` (см. https://docs.sqlalchemy.org/en/14/dialects/mssql.html),
+ - часть API-шек пишем на **SQLAlchemy** под `MS SQL Server` (см. https://docs.sqlalchemy.org/en/14/dialects/mssql.html ),
  - во всех его строках переставляем подтэги по хронологии и отбрасываем промежуточные подтэги,
  - пробуем вручную SQL-ные запросы со вставками на `XPath & XQuery`,
  - сохраняем вставки на `XPath & XQuery` файлами запросов `*.xq`,
@@ -199,12 +199,12 @@
    в XML-ное поле **XML(CONTENT dbo.XSD-схема)** его строки и парсим его как **DOM**
    (см. https://stackoverflow.com/questions/192907/xml-parsing-elementtree-vs-sax-and-dom ,
    https://stackoverflow.com/questions/1890923/xpath-to-fetch-sql-xml-value ,
-   https://stackoverflow.com/questions/43848456/t-sql-xquery-value-of-attribute-y-where-attribute-x-is-known) внутри скрипта на Python-е **Saxon**-ом
+   https://stackoverflow.com/questions/43848456/t-sql-xquery-value-of-attribute-y-where-attribute-x-is-known ) внутри скрипта на Python-е **Saxon**-ом
    (см. https://www.saxonica.com/technology/xslt-and-xquery.xml библиотеки `libxml2`, `libxslt`).
 
 Недостаток хранимой процедуры - не возвращает в скрипты на Python-е достоверный результат своей работы: получилось, не получилось с указанием причины
 (см. раздел "Возврат данных с помощью кода возврата" на
-https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver15).
+https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver15 ).
 Недостаток XSD-схемы - тот же и тот, что она пропускает все или не пропускает ничего.
 
 ###### Собираем **XML**-ные поля, определяемся с их структурой
@@ -225,14 +225,14 @@ https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/retu
 
 В начале XSD-схемы объявляются:
  - типовые и ссылочные схемы,
- - типовые, ссылочные и пользовательские пространства имен (см. https://www.w3.org/TR/xmlschema11-1/),
+ - типовые, ссылочные и пользовательские пространства имен (см. https://www.w3.org/TR/xmlschema11-1 ),
  - типовые, ссылочные и пользовательские типы данных `XPath & XQuery`.
 
-Далее в XSD-схеме определяются элементы, каждый под своим именем (см. https://www.w3schools.com/xml/schema_simple.asp).
+Далее в XSD-схеме определяются элементы, каждый под своим именем (см. https://www.w3schools.com/xml/schema_simple.asp ).
 
 Элемент генерируется из XML-ного файла внутри `Management Studio` или с помощью XSLT-преобразования
-(см. https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-execute-an-xslt-transformation-from-the-xml-editor?view=vs-2022) 
-и вставляется в соответствии с порядком просмотра XML-ных полей. В сложных случаях можно пользоваться **Schematron**-ом (см. https://www.schematron.com/). 
+(см. https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-execute-an-xslt-transformation-from-the-xml-editor?view=vs-2022 ) 
+и вставляется в соответствии с порядком просмотра XML-ных полей. В сложных случаях можно пользоваться **Schematron**-ом (см. https://www.schematron.com ). 
 Имя корневого тэга XML-ного поля соответствует имени элемента XSD-схемы.
 Исходный текст XSD-схемы вставляется в SQL-ный скрипт ее привязки к базе данных
 (надо найти способ не вставлять исходник схемы через буфер обмена, а выбирать ее в диалоге открытия файла или дать URL до нее `file:///P:/...`).
@@ -247,7 +247,7 @@ https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/retu
  - **Коллекцию схем XML** в `Management Studio` точнее называть XSD-схемой.
  - **Созданием схемы** в SQL-ном скрипте правильнее называть привязкой XSD-схемы, потому что она уже собрана и сохранена файлом типа `*.xsd`.
  - **DTD-схемы** и **XDR-схемы** кратко упомянуты в `msdn.com`
-   (см. https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-create-an-xml-schema-from-an-xml-document?view=vs-2022),
+   (см. https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-create-an-xml-schema-from-an-xml-document?view=vs-2022 ),
    но уже не применяются.
 
 ###### Прочие наработки
@@ -309,7 +309,7 @@ XML-ные поля пропускаются через XSD-схему:
  - виждеты выбора страны, области (графства, штата, региона), города, района города из надежной онлайн базы на ее API-шках в формате XML
    (как простой пример см. https://htmlweb.ru/geo/api_get_data.php ,
    надо зарегистрироваться, купить и оплачивать API-ключ согласно тарифа https://htmlweb.ru/user/tariffs.php для каждого клиента,
-   а также см. https://www.maxmind.com/en/worldcities, http://www.geonames.org/, http://netload.biz/2011/01/24/geoip3/,
+   а также см. https://www.maxmind.com/en/worldcities , http://www.geonames.org , http://netload.biz/2011/01/24/geoip3 ,
    https://pear.php.net/manual/en/package.webservices.services-geonames.examples.php и аналогичные),
    значение подтэга `wiki` вынести отдельно гиперссылкой, чтобы открывать статью из `WikiPedia.org`,
  - виджеты и ссылки для просмотра свойств вышеперечисленных географических объектов.
