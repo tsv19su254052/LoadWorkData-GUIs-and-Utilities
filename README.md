@@ -25,10 +25,10 @@
 использовались из источников:
  - http://apinfo.ru 
  - http://openflights.org
- - http://www1.ourairport.com/
+ - http://www1.ourairport.com
  - http://planelist.net
  - http://www.flightradar24.com
- - https://www.jetphotos.com/
+ - https://www.jetphotos.com
 
 ###### Рабочие данные
 загружаются с https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr
@@ -68,7 +68,7 @@
 
 Поправки:
  - С **tk**, **ttk** переделали на **pyQt**,
- - **Gtk** применялся в `Linux`-е (библиотека **pyGTK** на `Windows` сейчас не ставится),
+ - **Gtk** применялся в `Linux`-е (библиотека **pyGTK** на `Windows` сейчас пока не ставится),
  - `Linux` может использоваться на клиентах для правки справочников,
  - (*) Сайт на **WEB-сервере** разрабатывается отдельно и в объем данного проекта не входит.
 
