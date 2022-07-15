@@ -31,7 +31,7 @@
  - https://www.jetphotos.com
 
 ###### Рабочие данные
-загружаются с https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr
+загружаются с https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr 
 
 ###### Оперативные данные
 загружаются асинхронно:
