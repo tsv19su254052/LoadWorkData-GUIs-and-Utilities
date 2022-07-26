@@ -123,7 +123,7 @@
    (см. https://docs.microsoft.com/ru-ru/sql/database-engine/configure-windows/sql-server-service-broker?view=sql-server-ver15 ,
    https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/monitor-database-deadlocks ),
    чтобы не пользоваться временными задержками для ухода от взаимоблокировок, но функционала SQL-ных скриптов внутри хранимых процедур не хватает,
-   ищем решение как разнести сложность, пробуем разные серверные курсоры
+   ищем решение как разнести сложность, пробуем разные серверные курсоры внутри хранимых процедур
    (см. https://docs.microsoft.com/ru-ru/sql/relational-databases/native-client-odbc-cursors/implementation/odbc-cursor-library?view=sql-server-ver15 ,
    https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver15 ),
  - для экспериментов используем не тестовую базу, а только тестовые таблицы
