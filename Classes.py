@@ -9,7 +9,7 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 
 # Пользовательская библиотека с классами
 # Компилируется и кладется в папку __pycache__
-# Идея выноса классов в этот отдельный файл -> Удобство просмотра типов данных
+# Идея выноса каждого класса в этот отдельный файл, как на Java -> Удобство просмотра типов данных, Не особо практично
 # Qt Designer (см. https://build-system.fman.io/qt-designer-download)
 # Запуск Qt Designer из пакета pyQt5_tools в терминале командой
 # > pyqt5-tools designer
