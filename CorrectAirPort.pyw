@@ -19,8 +19,8 @@ def myApplication():
     # todo Делаем сопряжение экземпляров классов с SQL-ными базами данных - семантическими противоположностями ООП, примеров мало
     # todo Сделать скрипт, который копирует данные таблицы по коду IATA строку за строкой из одной базы в другую
     myApp = QtWidgets.QApplication(sys.argv)
-    # fixme Правильно делать экземпляр с композицией
     # Делаем экземпляры
+    # fixme Правильно сделать экземпляр с композицией
     myDialog = Classes.Ui_DialogCorrectAirPorts()
     myDialog.setupUi(Dialog=myDialog)  # надо вызывать явно
     myDialog.setFixedSize(740, 810)
