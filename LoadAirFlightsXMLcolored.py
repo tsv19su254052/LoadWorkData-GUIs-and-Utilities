@@ -146,8 +146,8 @@ def Disconnect_FN():
 
 
 def LoadThread(Csv, Log):
-    # Читаем входной файл и перепаковываем его в DataFrame (кодировка UTF-8, шапка таблицы на столбцы, разделитель - ,)
     """
+    Читаем входной файл и перепаковываем его в DataFrame (кодировка UTF-8, шапка таблицы на столбцы, разделитель - ,)
     Источник BTSgov (убал из файла все косые, запятые и кавычки)
     https://www.transtats.bts.gov/DL_SelectFields.asp - не работает
     https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr - работает
