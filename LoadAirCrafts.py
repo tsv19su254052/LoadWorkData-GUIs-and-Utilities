@@ -136,7 +136,7 @@ for CN, LN, AC, Owner, DD, Type, St, Remarks in zip(ListCN, ListLN, ListRegistra
             seek.execute(myInsert)
             CountAirCraftsAdded += 1
             print(" готово")
-        except:
+        except Exception:
             CountAirCraftsFailed += 1
             ListAirCraftsFailed.append(AC)
             print(" не добавился .....")
@@ -147,6 +147,7 @@ seek.close()
 
 # Заканчиваем висящие транзакции
 cnxn.commit()
+
 # Закрываем соединение
 cnxn.close()
 
