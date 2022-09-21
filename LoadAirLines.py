@@ -23,7 +23,6 @@ cnxn = pyodbc.connect(driver=myDriver, server=myServer, database=myDataBase)
 seek = cnxn.cursor()
 
 # Читаем справочный файл типа *.csv (разделитель - |, шапка таблицы) и перепаковываем его в DataFrame
-
 # Источник OpenFlights
 DataFrameFromCSV = pandas.read_csv("++AirLines.csv", sep="|")
 # Столбцы из справочного файла
@@ -79,6 +78,7 @@ seek.close()
 
 # Заканчиваем висящие транзакции
 cnxn.commit()
+
 # Закрываем соединение
 cnxn.close()
 
