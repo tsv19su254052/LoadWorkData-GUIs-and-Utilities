@@ -410,7 +410,7 @@ def LoadThread(Csv, Log):
                                                      DistributionDensityAirFlights],
                                                     index=[" - авиакомпании", " - самолеты", " - маршруты", " - авиарейсы"])
     DataFrameDistributionDensity.index.name = "Базы данных:"
-    OutputString = "\n\n"
+    OutputString = " \n \n"
     OutputString += "Загрузка рабочих данных (версия обработки - " + str(__myOwnDevelopingVersion__) + ") начата " + str(DateTime) + " \n"
     OutputString += " Загрузка проведена с " + str(socket.gethostname()) + " \n"
     OutputString += " Источник входных данных = " + str(S.filenameCSV) + " \n"
@@ -418,7 +418,7 @@ def LoadThread(Csv, Log):
     if S.SetInputDate:
         OutputString += " Дата авиарейса проставлена из входного файла\n"
     else:
-        OutputString += " Дата авиарейса проставлена как 1-ое число указанного месяца\n"
+        OutputString += " Дата авиарейса проставлена как 1-ое число указанного месяца \n"
     OutputString += " Сервер СУБД = " + str(S.cnxnFN.getinfo(pyodbc.SQL_SERVER_NAME)) + " \n"
     OutputString += " Драйвер = " + str(S.cnxnFN.getinfo(pyodbc.SQL_DRIVER_NAME)) + " \n"
     OutputString += " Версия ODBC = " + str(S.cnxnFN.getinfo(pyodbc.SQL_ODBC_VER)) + " \n"
@@ -426,49 +426,49 @@ def LoadThread(Csv, Log):
     OutputString += " Схема = " + str(S.cnxnFN.getinfo(pyodbc.SQL_USER_NAME)) + " \n"
     OutputString += " Длительность загрузки = " + str(__EndTime__ - __StartTime__) + " \n"
     OutputString += " Пользователь = " + str(os.getlogin()) + " \n"
-    OutputString += " Итоги:\n"
+    OutputString += " Итоги: \n"
     # Формируем итоги
     # todo Сделать итоги в виде XML и писать его полем XML.Document в базу данных
     if ListAirLinesAdded:
-        OutputString += " - добавлены авиакомпании:\n  "
+        OutputString += " - добавлены авиакомпании: \n  "
         OutputString += str(set(ListAirLinesAdded))  # fixme с регистрациями NaN надолго зависает, не убирает повторы и не группирует
         OutputString += " \n"
     if ListAirLinesFailed:
-        OutputString += " - не добавлены данные по авиакомпаниям:\n  "
+        OutputString += " - не добавлены данные по авиакомпаниям: \n  "
         OutputString += str(set(ListAirLinesFailed))
         OutputString += " \n"
     if ListAirCraftsAdded:
-        OutputString += " - добавлены самолеты:\n  "
+        OutputString += " - добавлены самолеты: \n  "
         OutputString += str(set(ListAirCraftsAdded))
         OutputString += " \n"
     if ListAirCraftsUpdated:
-        OutputString += " - добавлены данные по самолетам:\n  "
+        OutputString += " - добавлены данные по самолетам: \n  "
         OutputString += str(set(ListAirCraftsUpdated))
         # Убираем только повторы, идущие подряд, но с сохранением исходного порядка fixme не работает
         OutPutNew = [el for el, _ in itertools.groupby(ListAirCraftsUpdated)]
         OutputString += " \n"
     if ListAirCraftsFailed:
-        OutputString += " - не добавлены данные по самолетам:\n  "
+        OutputString += " - не добавлены данные по самолетам: \n  "
         OutputString += str(set(ListAirCraftsFailed))
         OutputString += " \n"
     if CountRoutesAdded:
-        OutputString += " - добавлено " + str(CountRoutesAdded) + " маршрутов\n"
+        OutputString += " - добавлено " + str(CountRoutesAdded) + " маршрутов \n"
     if CountRoutesFailed:
-        OutputString += " - не добавлено " + str(CountRoutesFailed) + " маршрутов\n"
+        OutputString += " - не добавлено " + str(CountRoutesFailed) + " маршрутов \n"
         OutputString += " \n"
     if ListAirPortsNotFounded:
-        OutputString += " - не найдены аэропорты:\n  "
+        OutputString += " - не найдены аэропорты: \n  "
         OutputString += str(set(ListAirPortsNotFounded))
         OutputString += " \n"
     if CountFlightsAdded:
-        OutputString += " - добавлено " + str(CountFlightsAdded) + " авиарейсов\n"
+        OutputString += " - добавлено " + str(CountFlightsAdded) + " авиарейсов \n"
     if CountFlightsFailed:
-        OutputString += " - не добавлено " + str(CountFlightsFailed) + " авиарейсов\n"
+        OutputString += " - не добавлено " + str(CountFlightsFailed) + " авиарейсов \n"
     if CountFlightsPadded:
-        OutputString += " - сплюсовано " + str(CountFlightsPadded) + " авиарейсов\n"
+        OutputString += " - сплюсовано " + str(CountFlightsPadded) + " авиарейсов \n"
     if CountProgressBarFailed:
-        OutputString += " - отказов полосы выполнения =" + str(CountProgressBarFailed) + "\n"
-    OutputString += " - перезапросы сервера:\n" + str(DataFrameDistributionDensity) + "\n"
+        OutputString += " - отказов полосы выполнения =" + str(CountProgressBarFailed) + " \n"
+    OutputString += " - перезапросы сервера: \n" + str(DataFrameDistributionDensity) + " \n"
     # Дописываем в журнал (обычным способом)
     # fixme Большая строка не дописывается, скрипт долго висит
     try:
@@ -478,7 +478,7 @@ def LoadThread(Csv, Log):
     except IOError:
         try:
             LogError = open(S.ErrorFileTXT, 'a')
-            LogError.write("Ошибка дозаписи результатов по " + str(S.filenameCSV) + " в " + str(S.filenameTXT) + "\n")
+            LogError.write("Ошибка дозаписи результатов по " + str(S.filenameCSV) + " в " + str(S.filenameTXT) + " \n")
         except IOError:
             print("Ошибка дозаписи в файл журнала")
         finally:
@@ -526,7 +526,7 @@ def myApplication():
     myDialog.progressBar_completion.setEnabled(False)
     myDialog.progressBar_completion.setToolTip("Выполнение загрузки рабочих данных, проценты")
     myDialog.pushButton_GetStarted.setEnabled(False)
-    myDialog.pushButton_GetStarted.setToolTip("Запуск загрузки входных данных по авиарейсам в базу данных на сервере\nВнимательно проверьте параметры загрузки")
+    myDialog.pushButton_GetStarted.setToolTip("Запуск загрузки входных данных по авиарейсам в базу данных на сервере \nВнимательно проверьте параметры загрузки")
     # параметры соединения с сервером
     myDialog.lineEdit_Server.setEnabled(False)
     myDialog.lineEdit_Driver_AL.setEnabled(False)

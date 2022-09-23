@@ -32,7 +32,7 @@ def myApplication():
     #myDialogInput.checkBox_Status_ICAO.isChecked(False)
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
-    myDialog.comboBox_Driver.setToolTip("предпочтительно - драйвер ODBC для SDK SQL Server-а\n(работает во всех режимах, полностью функционален, расходует больше ресурсов сервера)\nдля просмотра и внесения исправлений компл. драйвер SQL Server-а\n (не отрабатывает вложенные обработки исключений)")
+    myDialog.comboBox_Driver.setToolTip("предпочтительно - драйвер ODBC для SDK SQL Server-а \n(работает во всех режимах, полностью функционален, расходует больше ресурсов сервера) \nдля просмотра и внесения исправлений компл. драйвер SQL Server-а \n (не отрабатывает вложенные обработки исключений)")
     myDialog.pushButton_SelectDB.setToolTip("После подключения нажмите кнопку Начало. Далее - через Поиск")
     myDialog.pushButton_Disconnect.setToolTip("Перед закрытием диалога отключиться от базы данных")
     myDialog.pushButton_Disconnect.setEnabled(False)
@@ -51,7 +51,7 @@ def myApplication():
     myDialog.pushButton_SearchByIATA.setEnabled(False)
     myDialog.pushButton_SearchByICAO.setToolTip("Поиск по коду ICAO (дубликаты не предусматриваются)")
     myDialog.pushButton_SearchByICAO.setEnabled(False)
-    myDialog.pushButton_Insert.setToolTip("Поиск и вставка по кодам IATA и ICAO,\n которые вводятся один раз и далее не изменяются.\nАвиакомпания однозначно определяется по их сочетанию")
+    myDialog.pushButton_Insert.setToolTip("Поиск и вставка по кодам IATA и ICAO, \n которые вводятся один раз и далее не изменяются. \nАвиакомпания однозначно определяется по их сочетанию")
     myDialog.pushButton_Insert.setEnabled(False)
     myDialog.checkBox_Status.setToolTip("Действующая авиакомпания")
     myDialog.checkBox_Status.setEnabled(False)

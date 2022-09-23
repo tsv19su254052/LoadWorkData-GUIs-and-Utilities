@@ -27,7 +27,7 @@ def myApplication():
     myDialog.setWindowTitle('АэроПорты')
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
-    myDialog.comboBox_Driver.setToolTip("предпочтительно - драйвер ODBC для SDK SQL Server-а\n(работает во всех режимах, полностью функционален, расходует больше ресурсов сервера)\nдля просмотра и внесения исправлений компл. драйвер SQL Server-а\n (не отрабатывает вложенные обработки исключений)")
+    myDialog.comboBox_Driver.setToolTip("предпочтительно - драйвер ODBC для SDK SQL Server-а \n(работает во всех режимах, полностью функционален, расходует больше ресурсов сервера) \nдля просмотра и внесения исправлений компл. драйвер SQL Server-а \n (не отрабатывает вложенные обработки исключений)")
     myDialog.pushButton_SelectDB.setToolTip("После подключения нажмите кнопку Начало. Далее - через Поиск")
     myDialog.pushButton_Disconnect.setToolTip("Перед закрытием диалога отключиться от базы данных")
     myDialog.pushButton_Disconnect.setEnabled(False)
@@ -75,7 +75,7 @@ def myApplication():
     myDialog.pushButton_Previous.setEnabled(False)
     myDialog.pushButton_Next.setToolTip("Возможны разрывы в нумерации записей в базе данных, нумерация не по порядку. Использовать Поиск")
     myDialog.pushButton_Next.setEnabled(False)
-    myDialog.pushButton_Update.setToolTip("Запись внесенных изменений\n Перед нажатием правильно заполнить и проверить введенные данные")
+    myDialog.pushButton_Update.setToolTip("Запись внесенных изменений \n Перед нажатием правильно заполнить и проверить введенные данные")
     myDialog.pushButton_Update.setEnabled(False)
     # Добавляем атрибут ввода
     myDialog.lineEditCodeIATA = QtWidgets.QLineEdit()
