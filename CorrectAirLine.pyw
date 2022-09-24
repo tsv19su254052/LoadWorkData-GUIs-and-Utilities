@@ -209,7 +209,7 @@ def myApplication():
                 pass
 
     def PushButtonDisconnect():
-        # кнопка 'Отключиться от базы данных' нажата
+        # кнопка "Отключиться от базы данных"
         if S.Connected_AL:
             # Снимаем курсоры
             S.seekAL.close()
@@ -311,7 +311,7 @@ def myApplication():
         print("Fields is set up")
 
     def PushButtonSearchByIATA():
-        # Кнопка "Поиск" нажата
+        # Кнопка "Поиск"
         LineCodeIATA, ok = QtWidgets.QInputDialog.getText(myDialog, "Код IATA", "Введите код IATA")
         if ok:
             myDialog.lineEditCodeIATA.setText(str(LineCodeIATA))
@@ -353,7 +353,7 @@ def myApplication():
             SetFields()
 
     def PushButtonSearchByICAO():
-        # Кнопка "Поиск" нажата
+        # Кнопка "Поиск"
         LineCodeICAO, ok = QtWidgets.QInputDialog.getText(myDialog, "Код ICAO", "Введите код ICAO")
         if ok:
             myDialog.lineEditCodeICAO.setText(str(LineCodeICAO))
@@ -393,7 +393,7 @@ def myApplication():
             SetFields()
 
     def PushButtonSearchByIATAandICAO():
-        # кнопка 'Поиск и Вставка' нажата
+        # кнопка "Поиск и Вставка"
         # Отрисовка диалога ввода
         myDialogInput.setWindowTitle("Диалог ввода")
         myDialogInput.setWindowModality(QtCore.Qt.ApplicationModal)
@@ -516,7 +516,7 @@ def myApplication():
             return False
 
     def PushButtonBegin():
-        # кнопка 'Начало' нажата
+        # кнопка "Начало"
         #A.Position = 10
         myDialog.pushButton_Previous.setEnabled(False)
         #Result = CommonPart()
@@ -592,7 +592,7 @@ def myApplication():
             # Таблица с данными на шестой вкладке Свойств
 
     def PushButtonPrevious():
-        # кнопка 'Предыдущий' нажата
+        # кнопка "Предыдущий"
         A.Position -= 1
         CommonPart()
         if A.Position == 1:
@@ -600,7 +600,7 @@ def myApplication():
             myDialog.pushButton_Previous.setEnabled(False)
 
     def PushButtonNext():
-        # кнопка 'Следующий' нажата
+        # кнопка "Следующий"
         A.Position += 1
         CommonPart()
         myDialog.pushButton_Begin.setEnabled(True)
