@@ -78,9 +78,9 @@ def myApplication():
     myDialog.tab_3_treeWidget_Hubs.setEnabled(False)
     myDialog.tab_4_listWidget_1.setEnabled(False)
     lb = QtWidgets.QLabel()
-    myDialog.tab_5_toolBox_1.addItem(lb, "Point 01")
+    myDialog.tab_5_toolBox_1.addItem(lb, "Указатель 01")
     lb = QtWidgets.QLabel()
-    myDialog.tab_5_toolBox_1.addItem(lb, "Point 02")
+    myDialog.tab_5_toolBox_1.addItem(lb, "Указатель 02")
     myDialog.tab_5_toolBox_1.setEnabled(False)
     myDialog.tab_5_treeView_1.setEnabled(False)
     myDialog.tab_6_tableView_1.setEnabled(False)
@@ -141,7 +141,7 @@ def myApplication():
                 S.cnxnAC = pyodbc.connect(driver=S.DriverODBC, server=S.ServerName, database=S.DataBase)
                 S.cnxnRT = pyodbc.connect(driver=S.DriverODBC, server=S.ServerName, database=S.DataBase)
                 S.cnxnFN = pyodbc.connect(driver=S.DriverODBC, server=S.ServerName, database=S.DataBase)
-                print("  БД = ", S.DataBase, "подключена")
+                print("  База данных ", S.DataBase, " подключена")
                 S.Connected_AL = True
                 S.Connected_AC = True
                 S.Connected_RT = True
