@@ -33,7 +33,7 @@ def myApplication():
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
     myDialog.comboBox_Driver.setToolTip("предпочтительно - драйвер ODBC для SDK SQL Server-а \n(работает во всех режимах, полностью функционален, расходует больше ресурсов сервера) \nдля просмотра и внесения исправлений компл. драйвер SQL Server-а \n (не отрабатывает вложенные обработки исключений)")
-    myDialog.pushButton_SelectDB.setToolTip("После подключения нажмите кнопку Начало. Далее - через Поиск")
+    myDialog.pushButton_SelectDB.setToolTip("После подключения нажмите кнопку Начало, далее - Поиск")
     myDialog.pushButton_Disconnect.setToolTip("Перед закрытием диалога отключиться от базы данных")
     myDialog.pushButton_Disconnect.setEnabled(False)
     # Параметры соединения с сервером
