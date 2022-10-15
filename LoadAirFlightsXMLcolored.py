@@ -496,6 +496,7 @@ def LoadThread(Csv, Log):
     Disconnect_FN()
 
 
+# Основная функция
 def myApplication():
     # Одно прикладное приложение
     myApp = QtWidgets.QApplication(sys.argv)
@@ -1017,6 +1018,6 @@ def myApplication():
     sys.exit(myApp.exec_())
 
 
-# Выполняем, если этот файл не импортированный
+# Выполняем, если этот файл не импортированный - точка входа (необязательно)
 if __name__ == "__main__":
     myApplication()
