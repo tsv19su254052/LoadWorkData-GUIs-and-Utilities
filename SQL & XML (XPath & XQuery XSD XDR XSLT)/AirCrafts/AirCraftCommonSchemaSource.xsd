@@ -1,4 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--	todo Конфигурация с URI
+		todo Прокинуть пачку vlan-ов через провайдеров
+		Префиксы пространства имен (краткие псевдонимы вместо их URI) -->
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xmlns:ns="https://www.w3schools.com"
@@ -10,7 +13,7 @@
 			xmlns:ms="urn:schemas-microsoft-com:mapping-schema"
 			xmlns:dt="urn:schemas-microsoft-com:datatypes"
 			xmlns:sql="urn:schemas-microsoft-com:xml-sql">
-	<!-- t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns - префиксы пространства имен (краткие псевдонимы вместо их URI) -->
+	<!--	t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns -->
 	<xsd:annotation>
 		<xsd:documentation>
 			Моя схема
@@ -20,11 +23,11 @@
 	<xsd:element name="CustReg">
 		<xsd:complexType>
 			<xsd:sequence maxOccurs="unbounded">
-				<!--fixme схема пропускает больше одного элемента "step" - Сделал-->
+				<!--fixme схема пропускает больше одного элемента "step" - Сделал -->
 				<xsd:element name="step">
 					<xsd:complexType>
 						<xsd:sequence maxOccurs="unbounded">
-							<!--fixme схема пропускает больше одного элемента "BeginDate" - Сделал-->
+							<!--fixme схема пропускает больше одного элемента "BeginDate" - Сделал -->
 							<xsd:element name="BeginDate" type="xsd:date" />
 						</xsd:sequence>
 						<xsd:attribute name="CraftRegFK" type="xsd:string" />
