@@ -3,7 +3,6 @@
 
 from PyQt5 import QtWidgets, QtCore, QtGui
 # todo ветка библиотек Qt - QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
-# todo Какие еще есть виджеты (ссылки, изображение, видео, координаты навигации и т. д.) у этого фрэймворка?
 # Руководство по установке см. https://packaging.python.org/tutorials/installing-packages/
 
 

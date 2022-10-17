@@ -20,11 +20,11 @@
 	<xsd:element name="CustReg">
 		<xsd:complexType>
 			<xsd:sequence maxOccurs="unbounded">
-				<!--fixme схема пропускает больше одного элемента "step"-->
+				<!--fixme схема пропускает больше одного элемента "step" - Сделал-->
 				<xsd:element name="step">
 					<xsd:complexType>
 						<xsd:sequence maxOccurs="unbounded">
-							<!--fixme схема пропускает больше одного элемента "BeginDate"-->
+							<!--fixme схема пропускает больше одного элемента "BeginDate" - Сделал-->
 							<xsd:element name="BeginDate" type="xsd:date" />
 						</xsd:sequence>
 						<xsd:attribute name="CraftRegFK" type="xsd:string" />
