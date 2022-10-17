@@ -18,6 +18,8 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 # Делаем предка
 class AirLine:
     # fixme правильно писать конструктор
+    # todo Объявления внутри класса с конструктором и без
+    # todo Пакет библиотек с __init.py__ и без
     def __init__(self):
         self.AirLine_ID = 1
         self.AirLineName = " "
