@@ -12,7 +12,8 @@
 			xmlns:soap="https://schemas.microsoft.com/sqlserver/2004/SOAP"
 			xmlns:ms="urn:schemas-microsoft-com:mapping-schema"
 			xmlns:dt="urn:schemas-microsoft-com:datatypes"
-			xmlns:sql="urn:schemas-microsoft-com:xml-sql">
+			xmlns:sql="urn:schemas-microsoft-com:xml-sql"
+			targetNamespace="">
 	<!--	t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns -->
 	<xsd:annotation>
 		<xsd:documentation>
