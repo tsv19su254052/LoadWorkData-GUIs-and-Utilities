@@ -13,7 +13,8 @@
 			xmlns:ms="urn:schemas-microsoft-com:mapping-schema"
 			xmlns:dt="urn:schemas-microsoft-com:datatypes"
 			xmlns:sql="urn:schemas-microsoft-com:xml-sql"
-			targetNamespace="">
+			targetNamespace=""
+			xmlns:t="">
 	<!--	t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns -->
 	<xsd:annotation>
 		<xsd:documentation>
