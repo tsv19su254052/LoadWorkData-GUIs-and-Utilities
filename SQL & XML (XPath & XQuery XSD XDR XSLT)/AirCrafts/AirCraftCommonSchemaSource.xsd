@@ -16,8 +16,8 @@
 
 			xmlns:xsv="http://www.w3.org/2007/XMLSchema-versioning"
 			xmlns:soapex="http://schemas.xmlsoap.org/soap/envelope/"
-			xmlns:schemalocation="http://api.nsgreg.nga.mil/schema/cphd/1.0.1"
 			targetNamespace=""
+			xsi:schemalocation="http://api.nsgreg.nga.mil/schema/cphd/1.0.1"
 			xsi:noNamespaceSchemaLocation="">
 	<!--	t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns -->
 	<xsd:annotation>
