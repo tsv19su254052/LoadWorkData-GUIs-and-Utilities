@@ -17,6 +17,7 @@
 
 			xmlns:xsv="http://www.w3.org/2007/XMLSchema-versioning"
 			xmlns:soapex="http://schemas.xmlsoap.org/soap/envelope/"
+			xmlns:p="www.w3.org/ns/xproc"
 			targetNamespace=""
 			xsi:schemalocation="http://api.nsgreg.nga.mil/schema/cphd/1.0.1"
 			xsi:noNamespaceSchemaLocation="">
@@ -35,9 +36,9 @@
 					<xsd:complexType>
 						<xsd:sequence maxOccurs="unbounded">
 							<!--fixme схема пропускает больше одного элемента "BeginDate" - Сделал -->
-							<xsd:element name="BeginDate" type="xsd:date" />
+							<xsd:element name="BeginDate" type="xsd:date"/>
 						</xsd:sequence>
-						<xsd:attribute name="CraftRegFK" type="xsd:string" />
+						<xsd:attribute name="CraftRegFK" type="xsd:string"/>
 					</xsd:complexType>
 				</xsd:element>
 			</xsd:sequence>
@@ -50,9 +51,9 @@
 				<xsd:element name="step">
 					<xsd:complexType>
 						<xsd:sequence maxOccurs="unbounded">
-							<xsd:element name="BeginDate" type="xsd:date" />
+							<xsd:element name="BeginDate" type="xsd:date"/>
 						</xsd:sequence>
-						<xsd:attribute name="CraftOwnerFK" type="xsd:unsignedLong" />
+						<xsd:attribute name="CraftOwnerFK" type="xsd:unsignedLong"/>
 					</xsd:complexType>
 				</xsd:element>
 			</xsd:sequence>
@@ -65,9 +66,9 @@
 				<xsd:element name="step">
 					<xsd:complexType>
 						<xsd:sequence maxOccurs="unbounded">
-							<xsd:element name="BeginDate" type="xsd:date" />
+							<xsd:element name="BeginDate" type="xsd:date"/>
 						</xsd:sequence>
-						<xsd:attribute name="CraftOperatorFK" type="xsd:unsignedLong" />
+						<xsd:attribute name="CraftOperatorFK" type="xsd:unsignedLong"/>
 					</xsd:complexType>
 				</xsd:element>
 			</xsd:sequence>
