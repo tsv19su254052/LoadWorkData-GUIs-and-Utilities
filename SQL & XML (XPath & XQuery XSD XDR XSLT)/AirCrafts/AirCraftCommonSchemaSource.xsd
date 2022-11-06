@@ -2,6 +2,7 @@
 <!--	todo Конфигурация с URI
 		todo Прокинуть пачку vlan-ов через провайдеров
 		Префиксы пространства имен (краткие псевдонимы вместо их URI) -->
+
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xmlns:ns="https://www.w3schools.com"
