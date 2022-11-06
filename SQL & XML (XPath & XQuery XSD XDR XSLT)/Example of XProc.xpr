@@ -6,21 +6,21 @@
             <serialized version="17.1" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
-                        <String>catalog.verbose.level</String>
-                        <Integer>2</Integer>
+                        <String> catalog.verbose.level </String>
+                        <Integer> 2 </Integer>
                     </entry>
                     <entry>
-                        <String>catalogs.v5</String>
+                        <String> catalogs.v5 </String>
                         <String-array>
-                            <String>${pdu}/catalog.xml</String>
+                            <String> ${pdu}/catalog.xml </String>
                         </String-array>
                     </entry>
                     <entry>
-                        <String>key.xml.catalog.option.pane</String>
-                        <Boolean>true</Boolean>
+                        <String> key.xml.catalog.option.pane </String>
+                        <Boolean> true </Boolean>
                     </entry>
                     <entry>
-                        <String>scenarios</String>
+                        <String> scenarios </String>
                         <scenario-array>
                             <scenario>
                                 <field name="advancedOptionsMap">
@@ -45,10 +45,10 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>${frameworks}/docbook/xsl/fo/docbook_custom.xsl</String>
+                                    <String> ${frameworks}/docbook/xsl/fo/docbook_custom.xsl </String>
                                 </field>
                                 <field name="inputXMLURL">
-                                    <String>${currentFileURL}</String>
+                                    <String> ${currentFileURL} </String>
                                 </field>
                                 <field name="defaultScenario">
                                     <Boolean>false</Boolean>
@@ -57,43 +57,43 @@
                                     <Boolean>true</Boolean>
                                 </field>
                                 <field name="type">
-                                    <String>XSL</String>
+                                    <String> XSL </String>
                                 </field>
                                 <field name="saveAs">
-                                    <Boolean>true</Boolean>
+                                    <Boolean> true </Boolean>
                                 </field>
                                 <field name="openInBrowser">
-                                    <Boolean>true</Boolean>
+                                    <Boolean> true </Boolean>
                                 </field>
                                 <field name="outputFile">
-                                    <File>${cfd}/out/pdf/${cfn}.pdf</File>
+                                    <File> ${cfd}/out/pdf/${cfn}.pdf </File>
                                 </field>
                                 <field name="outputResource">
-                                    <String>${cfd}/out/pdf/${cfn}.pdf</String>
+                                    <String> ${cfd}/out/pdf/${cfn}.pdf </String>
                                 </field>
                                 <field name="openOtherLocationInBrowser">
-                                    <Boolean>false</Boolean>
+                                    <Boolean> false </Boolean>
                                 </field>
                                 <field name="locationToOpenInBrowserURL">
                                     <null/>
                                 </field>
                                 <field name="openInEditor">
-                                    <Boolean>false</Boolean>
+                                    <Boolean> false </Boolean>
                                 </field>
                                 <field name="showInHTMLPane">
-                                    <Boolean>false</Boolean>
+                                    <Boolean> false </Boolean>
                                 </field>
                                 <field name="showInXMLPane">
-                                    <Boolean>false</Boolean>
+                                    <Boolean> false </Boolean>
                                 </field>
                                 <field name="showInSVGPane">
-                                    <Boolean>false</Boolean>
+                                    <Boolean> false </Boolean>
                                 </field>
                                 <field name="showInResultSetPane">
-                                    <Boolean>false</Boolean>
+                                    <Boolean> false </Boolean>
                                 </field>
                                 <field name="useXSLTInput">
-                                    <Boolean>true</Boolean>
+                                    <Boolean> true </Boolean>
                                 </field>
                                 <field name="xsltParams">
                                     <list>
@@ -101,7 +101,7 @@
                                             <field name="paramDescription">
                                                 <paramDescriptor>
                                                     <field name="localName">
-                                                        <String>admon.graphics</String>
+                                                        <String> admon.graphics </String>
                                                     </field>
                                                     <field name="prefix">
                                                         <null/>
@@ -112,7 +112,7 @@
                                                 </paramDescriptor>
                                             </field>
                                             <field name="value">
-                                                <String>1</String>
+                                                <String> 1 </String>
                                             </field>
                                             <field name="hasXPathValue">
                                                 <Boolean>false</Boolean>
@@ -122,7 +122,7 @@
                                             <field name="paramDescription">
                                                 <paramDescriptor>
                                                     <field name="localName">
-                                                        <String>admon.graphics.extension</String>
+                                                        <String> admon.graphics.extension </String>
                                                     </field>
                                                     <field name="prefix">
                                                         <null/>
@@ -133,7 +133,7 @@
                                                 </paramDescriptor>
                                             </field>
                                             <field name="value">
-                                                <String>.png</String>
+                                                <String> .png </String>
                                             </field>
                                             <field name="hasXPathValue">
                                                 <Boolean>false</Boolean>
