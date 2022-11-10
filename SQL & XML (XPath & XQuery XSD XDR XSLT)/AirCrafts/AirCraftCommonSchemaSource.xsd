@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--	todo Конфигурация с URI
+<!-- 	todo Конфигурация с URI
 		todo Прокинуть пачку vlan-ов через провайдеров
 		Префиксы пространства имен (краткие псевдонимы вместо их URI) -->
 
@@ -21,7 +21,7 @@
 			targetNamespace=""
 			xsi:schemalocation="http://api.nsgreg.nga.mil/schema/cphd/1.0.1"
 			xsi:noNamespaceSchemaLocation="">
-	<!--	t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns -->
+	<!-- t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns -->
 	<xsd:annotation>
 		<xsd:documentation>
 			Моя схема
