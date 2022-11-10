@@ -1,7 +1,7 @@
 /*  Маршруты аэропорта  */
 SET Transaction Isolation Level Repeatable Read
 DECLARE @AirPortIATA nchar(10)
-SET @AirPortIATA = 'DEN'  -- Код IATA исходного аэропорта - 300
+SET @AirPortIATA = 'XCR'  -- Код IATA исходного аэропорта - 300
 SELECT AirPortsAndRoutesDBNew62.dbo.AirPortsTable.AirPortName AS DEPARTURE,
 	   AirPortsAndRoutesDBNew62.dbo.AirPortsTable.AirPortCity AS DEPARTURE_CITY,
 	   AirPortsAndRoutesDBNew62.dbo.AirPortsTable.AirPortCountry AS DEPARTURE_COUNTRY,
