@@ -1,7 +1,7 @@
 #  Interpreter 3.7
 
 
-import pyodbc  # pymssql работает тяжелее, можно попробовать SQLAlchemy
+import pyodbc  # pymssql работает тяжелее, пробуем SQLAlchemy
 import pandas
 import itertools
 import datetime
@@ -11,7 +11,7 @@ import json
 import sys
 import socket
 import threading
-from PyQt5 import QtWidgets  # QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
+from PyQt5 import QtWidgets  # QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner - запускаем в командной строке, QtXml
 import pathlib
 #import stringcolor  # fixme в IDLE и в pyCharm раскраска не работает, в командной строке сразу слетает
 import colorama
