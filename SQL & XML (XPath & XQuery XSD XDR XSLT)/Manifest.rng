@@ -88,7 +88,7 @@
 
 	<define name="item">
 		<a:documentation>
-			<p xmlns="http://www.w3.org/1999/xhtml">item elements are file containers. Each element
+			<p xmlns="http://www.w3.org/1999/xhtml"> item elements are file containers. Each element
 				references a single external file to be used for some purpose. The xml:base attribute can be
 				used to override the base URI for this specific element allowing a manifest to contain
 				elements from multiple locations.
@@ -105,7 +105,7 @@
 
 	<define name="import">
 		<a:documentation>
-			<p xmlns="http://www.w3.org/1999/xhtml">import elements are also file containers. import
+			<p xmlns="http://www.w3.org/1999/xhtml"> import elements are also file containers. import
 				statements are resolved during processing. The element should refer to another manifest
 				file. All the children of the referenced manifest are inserted to replace the import
 				statement itself. The root of loaded manifest must be a <code> group </code> or
@@ -120,7 +120,7 @@
 
 	<define name="group">
 		<a:documentationd>
-			<p xmlns="http://www.w3.org/1999/xhtml">The group element contains steps and metadata. The
+			<p xmlns="http://www.w3.org/1999/xhtml"> The group element contains steps and metadata. The
 				metadata is applied to all documents loaded from the group. Grouping is only intended to be
 				meaningful in the manifest and the loader does not retain groups.
 			</p>
@@ -138,7 +138,7 @@
 
 	<define name="metadata">
 		<a:documentation>
-			<p xmlns="http://www.w3.org/1999/xhtml">meta elements are used to associate key-value pairs
+			<p xmlns="http://www.w3.org/1999/xhtml"> meta elements are used to associate key-value pairs
 				with documents. They are inserted into the document by the loader as namespaced
 				(http://www.corbas.co.uk/ns/transforms/data) attributes on the <em> root element </em>
 				with the name and value performing as would be expected.
