@@ -9,9 +9,9 @@
         xmlns:xml2idml="http://transpect.io/xml2idml"
         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
         ns="http://transpect.io/xml2idml">
-  <s:ns prefix="css" uri="http://www.w3.org/1996/css"/>
-  <s:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
-  <s:ns prefix="xml2idml" uri="http://transpect.io/xml2idml"/>
+  <s:ns prefix="css" uri="http://www.w3.org/1996/css" />
+  <s:ns prefix="xlink" uri="http://www.w3.org/1999/xlink" />
+  <s:ns prefix="xml2idml" uri="http://transpect.io/xml2idml" />
 
   <html:h1> Mapping schema for the le-tex XML to IDML converter </html:h1>
 
@@ -81,7 +81,7 @@
       <zeroOrMore>
         <choice>
           <text/>
-          <ref name="mapping.anything"/>
+          <ref name="mapping.anything" />
         </choice>
       </zeroOrMore>
     </element>
@@ -110,8 +110,8 @@
       <optional>
         <attribute name="identity">
           <choice>
-            <value>true</value>
-            <value>false</value>
+            <value> true </value>
+            <value> false </value>
           </choice>
         </attribute>
       </optional>
@@ -141,7 +141,7 @@
   <define name="mapping.discard">
     <element name="Discard">
       <zeroOrMore>
-        <ref name="mapping.discard-instruction"/>
+        <ref name="mapping.discard-instruction" />
       </zeroOrMore>
     </element>
   </define>
@@ -154,7 +154,7 @@
       This is helpful during the creation phase of a new xml2idml mapping. </a:documentation>
     <element name="Dissolve">
       <zeroOrMore>
-        <ref name="mapping.dissolve-instruction"/>
+        <ref name="mapping.dissolve-instruction" />
       </zeroOrMore>
     </element>
   </define>
@@ -162,7 +162,7 @@
   <define name="mapping.pages">
     <element name="Pages">
       <oneOrMore>
-        <ref name="mapping.pages.spread"/>
+        <ref name="mapping.pages.spread" />
       </oneOrMore>
     </element>
   </define>
@@ -176,16 +176,16 @@
             <param name="minLength"> 3 </param>
           </data>
         </attribute>
-        <ref name="mapping.pages.spread.atts.properties"/>
+        <ref name="mapping.pages.spread.atts.properties" />
       </interleave>
       <choice>
-        <ref name="mapping.pages.atts.mainstory"/>
+        <ref name="mapping.pages.atts.mainstory" />
         <group>
           <optional>
-            <ref name="mapping.pages.atts.mainstory"/>
+            <ref name="mapping.pages.atts.mainstory" />
           </optional>
           <oneOrMore>
-            <ref name="mapping.stories"/>
+            <ref name="mapping.stories" />
           </oneOrMore>
         </group>
       </choice>
@@ -197,13 +197,13 @@
       <attribute name="Repeat">
         <!-- Param to define how often a Spread with the current config should be inserted into the document.
              Default value: 1 -->
-        <data type="integer"/>
+        <data type="integer" />
       </attribute>
     </optional>
     <optional>
       <attribute name="PageCount">
         <!-- default value: number of pages at the given master page (@MasterPageName) -->
-        <data type="integer"/>
+        <data type="integer" />
       </attribute>
     </optional>
     <optional>
@@ -214,7 +214,7 @@
         all pages with an index greater, right pages. Both the BindingLocation and page index are zero-based.
         
         default value: value of @BindingLocation of the given master page -->
-        <data type="integer"/>
+        <data type="integer" />
       </attribute>
     </optional>
     <optional>
@@ -279,10 +279,10 @@
     <element name="Stories">
       <interleave>
         <zeroOrMore>
-          <ref name="keep.story"/>
+          <ref name="keep.story" />
         </zeroOrMore>
         <zeroOrMore>
-          <ref name="mapping.story"/>
+          <ref name="mapping.story" />
         </zeroOrMore>
       </interleave>
     </element>
@@ -291,7 +291,7 @@
   <define name="mapping.styles.para">
     <element name="ParaStyles">
       <zeroOrMore>
-        <ref name="mapping.para"/>
+        <ref name="mapping.para" />
       </zeroOrMore>
     </element>
   </define>
@@ -299,7 +299,7 @@
   <define name="mapping.styles.inline">
     <element name="InlineStyles">
       <zeroOrMore>
-        <ref name="mapping.inline"/>
+        <ref name="mapping.inline" />
       </zeroOrMore>
     </element>
   </define>
@@ -307,7 +307,7 @@
   <define name="mapping.styles.table">
     <element name="TableStyles">
       <zeroOrMore>
-        <ref name="mapping.table"/>
+        <ref name="mapping.table" />
       </zeroOrMore>
     </element>
   </define>
@@ -315,7 +315,7 @@
   <define name="mapping.styles.cell">
     <element name="CellStyles">
       <zeroOrMore>
-        <ref name="mapping.cell"/>
+        <ref name="mapping.cell" />
       </zeroOrMore>
     </element>
   </define>
@@ -323,28 +323,28 @@
   <define name="mapping.styles.object">
     <element name="ObjectStyles">
       <zeroOrMore>
-        <ref name="mapping.object"/>
+        <ref name="mapping.object" />
       </zeroOrMore>
     </element>
   </define>
 
   <define name="mapping.model.simple">
     <interleave>
-      <ref name="mapping.path"/>
+      <ref name="mapping.path" />
       <choice>
-        <ref name="mapping.format"/>
-        <ref name="mapping.xpath"/>
+        <ref name="mapping.format" />
+        <ref name="mapping.xpath" />
       </choice>
       <optional>
-        <ref name="mapping.condition"/>
+        <ref name="mapping.condition" />
       </optional>
     </interleave>
   </define>
 
   <define name="mapping.model.nesting">
     <choice>
-      <ref name="mapping.nest"/>
-      <ref name="mapping.wrap"/>
+      <ref name="mapping.nest" />
+      <ref name="mapping.wrap" />
     </choice>
   </define>
 
@@ -413,7 +413,7 @@
 
   <define name="mapping.model.insert-content">
     <element name="insert-content">
-      <ref name="mapping.att.method"/>
+      <ref name="mapping.att.method" />
       <optional>
         <attribute name="format">
           <data type="string">
@@ -422,7 +422,7 @@
         </attribute>
       </optional>
       <attribute name="content">
-        <data type="string"/>
+        <data type="string" />
       </attribute>
       <empty/>
       <s:pattern>
@@ -454,7 +454,7 @@
           <value> indent-to-here </value>
         </choice>
       </attribute>
-      <ref name="mapping.att.method"/>
+      <ref name="mapping.att.method" />
       <optional>
         <attribute name="format">
           <data type="string">
@@ -472,7 +472,7 @@
           <param name="pattern"> .*\S.* </param>
         </data>
       </attribute>
-      <ref name="mapping.att.method"/>
+      <ref name="mapping.att.method" />
       <optional>
         <attribute name="format">
           <data type="string">
@@ -505,13 +505,13 @@
 
   <define name="mapping.discard-instruction">
     <element name="mapping-instruction">
-      <ref name="mapping.path"/>
+      <ref name="mapping.path" />
     </element>
   </define>
 
   <define name="mapping.dissolve-instruction">
     <element name="mapping-instruction">
-      <ref name="mapping.path"/>
+      <ref name="mapping.path" />
     </element>
   </define>
 
@@ -525,25 +525,25 @@
           </choice>
         </attribute>
       </optional>
-      <ref name="mapping.name"/>
+      <ref name="mapping.name" />
     </element>
   </define>
 
   <define name="mapping.story">
     <element name="mapping-instruction">
       <optional>
-        <ref name="mapping.att.keep-xml-space-preserve"/>
+        <ref name="mapping.att.keep-xml-space-preserve" />
       </optional>
       <!--  attribute StoryContinued:
               For use in context /mapping-instructions/Pages/Spread/Stories/mapping-instruction.
               Unnecessary in context /mapping-instructions/Stories/mapping-instruction. 
       -->
       <optional>
-        <ref name="mapping.att.storycontinued"/>
+        <ref name="mapping.att.storycontinued" />
       </optional>
       <interleave>
-        <ref name="mapping.path"/>
-        <ref name="mapping.name"/>
+        <ref name="mapping.path" />
+        <ref name="mapping.name" />
       </interleave>
     </element>
   </define>
@@ -552,12 +552,12 @@
     <element name="mapping-instruction">
       <interleave>
         <ref name="mapping.model.simple" />
-        <ref name="mapping.att.is-image"/>
+        <ref name="mapping.att.is-image" />
         <optional>
           <ref name="mapping.model.nesting" />
         </optional>
         <optional>
-          <ref name="mapping.att.keep-xml-space-preserve"/>
+          <ref name="mapping.att.keep-xml-space-preserve" />
         </optional>
       </interleave>
     </element>
@@ -567,37 +567,37 @@
     <element name="mapping-instruction">
       <choice>
         <group>
-          <ref name="mapping.model.simple"/>
-          <ref name="mapping.att.is-indexterm"/>
+          <ref name="mapping.model.simple" />
+          <ref name="mapping.att.is-indexterm" />
         </group>
         <group>
           <optional>
             <choice>
-              <ref name="mapping.att.is-footnote"/>
-              <ref name="mapping.att.is-image"/>
-              <ref name="mapping.att.is-hyperlink-source"/>
-              <ref name="mapping.att.is-hyperlink-dest"/>
+              <ref name="mapping.att.is-footnote" />
+              <ref name="mapping.att.is-image" />
+              <ref name="mapping.att.is-hyperlink-source" />
+              <ref name="mapping.att.is-hyperlink-dest" />
             </choice>
           </optional>
           <interleave>            
-            <ref name="mapping.path"/>
+            <ref name="mapping.path" />
             <optional>
-              <ref name="mapping.format"/>
+              <ref name="mapping.format" />
             </optional>
             <optional>
-              <ref name="mapping.xpath"/>
+              <ref name="mapping.xpath" />
             </optional>
             <optional>
-              <ref name="mapping.condition"/>
+              <ref name="mapping.condition" />
             </optional>            
             <zeroOrMore>
-              <ref name="mapping.model.insert-content"/>
+              <ref name="mapping.model.insert-content" />
             </zeroOrMore>
             <optional>
-              <ref name="mapping.model.insert-textvariable-instance"/>
+              <ref name="mapping.model.insert-textvariable-instance" />
             </optional>
             <optional>
-              <ref name="mapping.model.insert-special-char"/>
+              <ref name="mapping.model.insert-special-char" />
             </optional>
             <s:pattern>
               <s:rule context="xml2idml:insert-content">
@@ -628,18 +628,18 @@
   <define name="mapping.cell">
     <element name="mapping-instruction">
       <interleave>
-        <ref name="mapping.path"/>
+        <ref name="mapping.path" />
         <optional>
           <choice>
-            <ref name="mapping.format.cell"/>
-            <ref name="mapping.xpath"/>
+            <ref name="mapping.format.cell" />
+            <ref name="mapping.xpath" />
           </choice>          
         </optional>
         <optional>
           <ref name="mapping.width" />
         </optional>
         <optional>
-          <ref name="mapping.condition"/>
+          <ref name="mapping.condition" />
         </optional>
       </interleave>
     </element>
@@ -674,14 +674,14 @@
 
   <define name="mapping.model.dimension">
     <optional>
-      <ref name="mapping.att.select"/>
+      <ref name="mapping.att.select" />
     </optional>
-    <ref name="mapping.att.type"/>
+    <ref name="mapping.att.type" />
   </define>
   
   <define name="mapping.att.is-footnote">
     <attribute name="is-footnote">
-      <data type="string"/>
+      <data type="string" />
     </attribute>
   </define>
   
@@ -747,7 +747,7 @@
 
   <define name="mapping.att.select">
     <attribute name="select">
-      <data type="string"/>
+      <data type="string" />
     </attribute>
   </define>
 
@@ -772,7 +772,7 @@
     <zeroOrMore>
       <element name="param">
         <choice>
-          <attribute name="select"/>
+          <attribute name="select" />
           <data type="string" />
         </choice>
       </element>
@@ -782,9 +782,9 @@
   <define name="mapping.model.params.named">
     <zeroOrMore>
       <element name="param">
-        <attribute name="name"/>
+        <attribute name="name" />
         <choice>
-          <attribute name="select"/>
+          <attribute name="select" />
           <data type="string" />
         </choice>
       </element>

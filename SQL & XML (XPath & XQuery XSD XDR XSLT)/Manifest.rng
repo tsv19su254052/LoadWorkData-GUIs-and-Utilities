@@ -50,15 +50,15 @@
 			</zeroOrMore>
 			<oneOrMore>
 				<choice>
-					<ref name="item"/>
-					<ref name="processed-item"/>
-					<ref name="import"/>
-					<ref name="group"/>					
+					<ref name="item" />
+					<ref name="processed-item" />
+					<ref name="import" />
+					<ref name="group" />
 				</choice>
 			</oneOrMore>
-			<ref name="common-attributes"/>
+			<ref name="common-attributes" />
 			<optional>
-				<ref name="version"/>
+				<ref name="version" />
 			</optional>
 		</element>
 	</define>
@@ -74,16 +74,16 @@
 		<element name="processed-item">
 			<interleave>
 				<oneOrMore>
-					<ref name="item"/>
+					<ref name="item" />
 				</oneOrMore>
 				<zeroOrMore>
-					<ref name="metadata"/>
+					<ref name="metadata" />
 				</zeroOrMore>
 			</interleave>
 			<attribute name="stylesheet">
-				<data type="anyURI"/>
+				<data type="anyURI" />
 			</attribute>
-			<ref name="content-attributes"/>
+			<ref name="content-attributes" />
 		</element>
 	</define>
 
@@ -96,11 +96,11 @@
 			</p>
 		</a:documentation>
 		<element name="item">
-			<ref name="href"/>
+			<ref name="href" />
 			<zeroOrMore>
-				<ref name="metadata"/>
+				<ref name="metadata" />
 			</zeroOrMore>
-			<ref name="content-attributes"/>
+			<ref name="content-attributes" />
 		</element>
 	</define>
 
@@ -114,8 +114,8 @@
 			</p>
 		</a:documentation>
 		<element name="import">
-			<ref name="href"/>
-			<ref name="content-attributes"/>
+			<ref name="href" />
+			<ref name="content-attributes" />
 		</element>
 	</define>
 
@@ -128,12 +128,12 @@
 		</a:documentationd>
 		<element name="group">
 			<interleave>
-				<ref name="group-content"/>
+				<ref name="group-content" />
 				<zeroOrMore>
-					<ref name="metadata"/>
+					<ref name="metadata" />
 				</zeroOrMore>
 			</interleave>
-			<ref name="content-attributes"/>
+			<ref name="content-attributes" />
 		</element>
 	</define>
 
