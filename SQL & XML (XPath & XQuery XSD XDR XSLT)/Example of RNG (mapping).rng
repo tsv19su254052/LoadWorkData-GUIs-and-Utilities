@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar
+        xmlns="http://relaxng.org/ns/structure/1.0"
+        xmlns:css="http://www.w3.org/1996/css"
+        xmlns:s="http://purl.oclc.org/dsdl/schematron"
+        xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+        xmlns:xml2idml="http://transpect.io/xml2idml"
+        datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+        ns="http://transpect.io/xml2idml">
+  <s:ns prefix="css" uri="http://www.w3.org/1996/css"/>
+  <s:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
+  <s:ns prefix="xml2idml" uri="http://transpect.io/xml2idml"/>
+
+  <html:h1> Mapping schema for the le-tex XML to IDML converter </html:h1>
+
+  <start>
+    <ref name="mapping.instructions"/>
+  </start>
+
+  <define name="mapping.instructions">
+    <a:documentation> The element mapping-instructions is the root element. </a:documentation>
+    <element name="mapping-instructions">
+      <ref name="mapping.att.xpath-default-namespace"/>
+      <ref name="mapping.att.retain-tagging"/>
+      <optional>
+        <ref name="mapping.include-mapping" />
+      </optional>
+      <zeroOrMore>
+        <ref name="mapping.import" />
+      </zeroOrMore>
+      <optional>
+        <ref name="mapping.inline-xsl" />
+      </optional>
+      <optional>
+        <ref name="mapping.xslt-pipeline" />
+      </optional>
+      <interleave>
+        <optional> <ref name="mapping.discard" /> </optional>
+        <optional> <ref name="mapping.dissolve" /> </optional>
+        <choice>
+          <optional> <ref name="mapping.pages" /> </optional>
+          <optional> <ref name="mapping.stories" /> </optional>
+        </choice>
+        <optional> <ref name="mapping.templatedefaultoverrides" /> </optional>
+        <optional> <ref name="mapping.styles.para" /> </optional>
+        <optional> <ref name="mapping.styles.inline" /> </optional>
+        <optional> <ref name="mapping.styles.table" /> </optional>
+        <optional> <ref name="mapping.styles.cell" /> </optional>
+        <optional> <ref name="mapping.styles.object" /> </optional>
+      </interleave>
+    </element>
+  </define>
+
+  <define name="mapping.import">
+    <element name="import">
+      <attribute name="href">
+        <data type="anyURI" />
+      </attribute>
+    </element>
+  </define>
+
+  <!-- mechanism to include another mapping file(s) -->
+  <define name="mapping.include-mapping">
+    <element name="include-mapping">
+      <attribute name="href">
+        <data type="anyURI" />
+      </attribute>
+    </element>
+  </define>
+
+  <define name="mapping.anything">
+    <element>
+      <anyName/>
+      <zeroOrMore>
+        <attribute>
+          <anyName/>
+        </attribute>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="mapping.anything"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="mapping.inline-xsl">
+    <element name="inline">
+      <zeroOrMore>
+        <ref name="mapping.anything" />
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="mapping.xslt-pipeline">
+    <element name="xslt-pipeline">
+      <zeroOrMore>
+        <ref name="mapping.xslt-step" />
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="mapping.xslt-step">
+    <element name="step">
+      <attribute name="mode">
+        <data type="QName" />
+      </attribute>
+      <optional>
+        <attribute name="identity">
+          <choice>
+            <value>true</value>
+            <value>false</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="before">
+          <choice>
+            <value> xml2idml:Discard </value>
+            <value> xml2idml:Stories </value>
+            <value> xml2idml:TemplateDefaultOverrides </value>
+            <value> xml2idml:ParaStyles </value>
+            <value> xml2idml:InlineStyles </value>
+            <value> xml2idml:TableStyles </value>
+            <value> xml2idml:CellStyles </value>
+            <value> xml2idml:ObjectStyles </value>
+          </choice>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+
+  <define name="mapping.templatedefaultoverrides">
+    <element name="TemplateDefaultOverrides">
+      <ref name="mapping.anything"/>
+    </element>
+  </define>
+
+  <define name="mapping.discard">
+    <element name="Discard">
+      <zeroOrMore>
+        <ref name="mapping.discard-instruction"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="mapping.dissolve">
+    <a:documentation> While element Discard is for deletion, the element Dissolve can be used
+      to liquidate the element start- and end-tag itself (the children nodes will be processed).
+      When there is an Dissolve element in the mapping config, a special message 
+      will be printed on the standard-out for each unmapped element.
+      This is helpful during the creation phase of a new xml2idml mapping. </a:documentation>
+    <element name="Dissolve">
+      <zeroOrMore>
+        <ref name="mapping.dissolve-instruction"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="mapping.pages">
+    <element name="Pages">
+      <oneOrMore>
+        <ref name="mapping.pages.spread"/>
+      </oneOrMore>
+    </element>
+  </define>
+
+  <define name="mapping.pages.spread">
+    <element name="Spread">
+      <interleave>
+        <attribute name="MasterPageName">
+          <!-- Prefix plus '-' (&#x2d;) plus Name, example: T-Text -->
+          <data type="string">
+            <param name="minLength"> 3 </param>
+          </data>
+        </attribute>
+        <ref name="mapping.pages.spread.atts.properties"/>
+      </interleave>
+      <choice>
+        <ref name="mapping.pages.atts.mainstory"/>
+        <group>
+          <optional>
+            <ref name="mapping.pages.atts.mainstory"/>
+          </optional>
+          <oneOrMore>
+            <ref name="mapping.stories"/>
+          </oneOrMore>
+        </group>
+      </choice>
+    </element>
+  </define>
+
+  <define name="mapping.pages.spread.atts.properties">
+    <optional>
+      <attribute name="Repeat">
+        <!-- Param to define how often a Spread with the current config should be inserted into the document.
+             Default value: 1 -->
+        <data type="integer"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="PageCount">
+        <!-- default value: number of pages at the given master page (@MasterPageName) -->
+        <data type="integer"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="BindingLocation">
+        <!-- From IDML Cookbook: 
+        The page-binding location is controlled by the BindingLocation attribute on the Spread element. 
+        All pages with an index less than the BindingLocation are left pages; 
+        all pages with an index greater, right pages. Both the BindingLocation and page index are zero-based.
+        
+        default value: value of @BindingLocation of the given master page -->
+        <data type="integer"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="ShowMasterItems">
+        <!-- default value: value of @ShowMasterItems (true) of the given master page -->
+        <choice>
+          <value> true </value>
+          <value> false </value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+
+  <define name="mapping.pages.spread.atts.mainstory">
+    <interleave>
+      <attribute name="MainStoryName">
+        <data type="string">
+          <param name="minLength"> 1 </param>
+        </data>
+      </attribute>
+      <attribute name="MainStoryXPath">
+        <data type="string">
+          <param name="minLength"> 1 </param>
+        </data>
+      </attribute>
+      <optional>
+        <attribute name="MainStoryContinued">
+          <choice>
+            <value> true </value>
+            <value> false </value>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+
+  <define name="mapping.pages.atts.mainstory">
+    <interleave>
+      <attribute name="MainStoryName">
+        <data type="string">
+          <param name="minLength"> 1 </param>
+        </data>
+      </attribute>
+      <attribute name="MainStoryXPath">
+        <data type="string">
+          <param name="minLength"> 1 </param>
+        </data>
+      </attribute>
+      <optional>
+        <attribute name="MainStoryContinued">
+          <!-- default value: true -->
+          <choice>
+            <value> true </value>
+            <value> false </value>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+
+  <define name="mapping.stories">
+    <element name="Stories">
+      <interleave>
+        <zeroOrMore>
+          <ref name="keep.story"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <ref name="mapping.story"/>
+        </zeroOrMore>
+      </interleave>
+    </element>
+  </define>
+
+  <define name="mapping.styles.para">
+    <element name="ParaStyles">
+      <zeroOrMore>
+        <ref name="mapping.para"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="mapping.styles.inline">
+    <element name="InlineStyles">
+      <zeroOrMore>
+        <ref name="mapping.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="mapping.styles.table">
+    <element name="TableStyles">
+      <zeroOrMore>
+        <ref name="mapping.table"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="mapping.styles.cell">
+    <element name="CellStyles">
+      <zeroOrMore>
+        <ref name="mapping.cell"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="mapping.styles.object">
+    <element name="ObjectStyles">
+      <zeroOrMore>
+        <ref name="mapping.object"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="mapping.model.simple">
+    <interleave>
+      <ref name="mapping.path"/>
+      <choice>
+        <ref name="mapping.format"/>
+        <ref name="mapping.xpath"/>
+      </choice>
+      <optional>
+        <ref name="mapping.condition"/>
+      </optional>
+    </interleave>
+  </define>
+
+  <define name="mapping.model.nesting">
+    <choice>
+      <ref name="mapping.nest"/>
+      <ref name="mapping.wrap"/>
+    </choice>
+  </define>
+
+  <define name="mapping.path">
+    <element name="path">
+      <optional>
+        <attribute name="priority">
+          <data type="double" />
+        </attribute>
+      </optional>
+      <data type="string">
+        <param name="pattern"> .*[\S\s]+.* </param>
+      </data>
+    </element>
+  </define>
+
+  <define name="mapping.format">
+    <element name="format">
+      <data type="string">
+        <param name="pattern"> .*\S.* </param>
+      </data>
+    </element>
+  </define>
+  
+  <define name="mapping.xpath">
+    <element name="xpath">
+      <data type="string">
+        <param name="pattern"> .*\S.* </param>
+      </data>
+    </element>
+  </define>
+
+  <define name="mapping.format.cell">
+    <element name="format">
+      <optional>
+        <attribute name="priority">
+          <choice>
+            <value> higher </value>
+            <value> lower </value>
+            <value> highest </value>
+            <value> lowest </value>
+          </choice>
+        </attribute>
+      </optional>
+      <data type="string">
+        <param name="pattern"> .*\S.* </param>
+      </data>
+    </element>
+  </define>
+
+  <define name="mapping.condition">
+    <element name="condition">
+      <optional>
+        <attribute name="hidden">
+          <choice>
+            <value> true </value>
+            <value> false </value>
+          </choice>
+        </attribute>
+      </optional>
+      <data type="string">
+        <param name="pattern"> .*\S.* </param>
+      </data>
+    </element>
+  </define>
+
+  <define name="mapping.model.insert-content">
+    <element name="insert-content">
+      <ref name="mapping.att.method"/>
+      <optional>
+        <attribute name="format">
+          <data type="string">
+            <param name="pattern"> .*\S.* </param>
+          </data>
+        </attribute>
+      </optional>
+      <attribute name="content">
+        <data type="string"/>
+      </attribute>
+      <empty/>
+      <s:pattern>
+        <s:rule context="xml2idml:insert-content[@method]">
+          <s:report test="preceding-sibling::xml2idml:insert-content/@method eq current()/@method" role="error">
+            There is already an insert-content element with method=<xsl:value-of select="@method"/> ! </s:report>
+        </s:rule>
+      </s:pattern>
+    </element>
+  </define>
+
+  <define name="mapping.model.insert-special-char">
+    <element name="insert-special-char">
+      <attribute name="name">
+        <choice>
+          <value> tabulator </value>
+          <value> line-break </value>
+          <value> page-break </value>
+          <value> page-odd-break </value>
+          <value> page-even-break </value>
+          <value> column-break </value>
+          <value> frame-break </value>
+          <value> end-nested-style </value> <!-- ACE 3 -->
+          <value> footnote-symbol </value>
+              <value> right-indent-tab </value>
+<!--          <value>page-number-next</value>--><!-- ACE 18 and ../@PageNumberType = 'NextPageNumber' -->
+<!--          <value>page-number-previous</value>--><!-- ACE 18 and ../@PageNumberType = 'PreviousPageNumber' -->
+              <value> section-marker </value>
+          <value> indent-to-here </value>
+        </choice>
+      </attribute>
+      <ref name="mapping.att.method"/>
+      <optional>
+        <attribute name="format">
+          <data type="string">
+            <param name="pattern"> .*\S.* </param>
+          </data>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  
+  <define name="mapping.model.insert-textvariable-instance">
+    <element name="insert-textvariable-instance">
+      <attribute name="name">
+        <data type="string">
+          <param name="pattern"> .*\S.* </param>
+        </data>
+      </attribute>
+      <ref name="mapping.att.method"/>
+      <optional>
+        <attribute name="format">
+          <data type="string">
+            <param name="pattern"> .*\S.* </param>
+          </data>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+
+  <define name="mapping.name">
+    <element name="name">
+      <data type="string">
+        <param name="pattern"> .*\S.* </param>
+      </data>
+    </element>
+  </define>
+
+  <define name="mapping.nest">
+    <element name="nest">
+      <empty/>
+    </element>
+  </define>
+
+  <define name="mapping.wrap">
+    <element name="wrap">
+      <empty/>
+    </element>
+  </define>
+
+  <define name="mapping.discard-instruction">
+    <element name="mapping-instruction">
+      <ref name="mapping.path"/>
+    </element>
+  </define>
+
+  <define name="mapping.dissolve-instruction">
+    <element name="mapping-instruction">
+      <ref name="mapping.path"/>
+    </element>
+  </define>
+
+  <define name="keep.story">
+    <element name="keep">
+      <optional>
+        <attribute name="debug-only">
+          <choice>
+            <value> true </value>
+            <value> false </value>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="mapping.name"/>
+    </element>
+  </define>
+
+  <define name="mapping.story">
+    <element name="mapping-instruction">
+      <optional>
+        <ref name="mapping.att.keep-xml-space-preserve"/>
+      </optional>
+      <!--  attribute StoryContinued:
+              For use in context /mapping-instructions/Pages/Spread/Stories/mapping-instruction.
+              Unnecessary in context /mapping-instructions/Stories/mapping-instruction. 
+      -->
+      <optional>
+        <ref name="mapping.att.storycontinued"/>
+      </optional>
+      <interleave>
+        <ref name="mapping.path"/>
+        <ref name="mapping.name"/>
+      </interleave>
+    </element>
+  </define>
+
+  <define name="mapping.para">
+    <element name="mapping-instruction">
+      <interleave>
+        <ref name="mapping.model.simple" />
+        <ref name="mapping.att.is-image"/>
+        <optional>
+          <ref name="mapping.model.nesting" />
+        </optional>
+        <optional>
+          <ref name="mapping.att.keep-xml-space-preserve"/>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+
+  <define name="mapping.inline">
+    <element name="mapping-instruction">
+      <choice>
+        <group>
+          <ref name="mapping.model.simple"/>
+          <ref name="mapping.att.is-indexterm"/>
+        </group>
+        <group>
+          <optional>
+            <choice>
+              <ref name="mapping.att.is-footnote"/>
+              <ref name="mapping.att.is-image"/>
+              <ref name="mapping.att.is-hyperlink-source"/>
+              <ref name="mapping.att.is-hyperlink-dest"/>
+            </choice>
+          </optional>
+          <interleave>            
+            <ref name="mapping.path"/>
+            <optional>
+              <ref name="mapping.format"/>
+            </optional>
+            <optional>
+              <ref name="mapping.xpath"/>
+            </optional>
+            <optional>
+              <ref name="mapping.condition"/>
+            </optional>            
+            <zeroOrMore>
+              <ref name="mapping.model.insert-content"/>
+            </zeroOrMore>
+            <optional>
+              <ref name="mapping.model.insert-textvariable-instance"/>
+            </optional>
+            <optional>
+              <ref name="mapping.model.insert-special-char"/>
+            </optional>
+            <s:pattern>
+              <s:rule context="xml2idml:insert-content">
+                <s:report test="@method eq ../xml2idml:insert-special-char/@method" role="Info">
+                  If both elements insert-content and insert-special-char are using 
+                  the same method (=<xsl:value-of select="@method"/>), the special-char 
+                  will be output first and the new content of insert-content second. 
+                  textvariable-instance is always the last content to be created. </s:report>
+              </s:rule>
+            </s:pattern>
+          </interleave>
+        </group>
+      </choice>
+    </element>
+  </define>
+
+  <define name="mapping.table">
+    <element name="mapping-instruction">
+      <interleave>
+        <ref name="mapping.model.simple" />
+        <optional>
+          <ref name="mapping.width" />
+        </optional>
+      </interleave>
+    </element>
+  </define>
+
+  <define name="mapping.cell">
+    <element name="mapping-instruction">
+      <interleave>
+        <ref name="mapping.path"/>
+        <optional>
+          <choice>
+            <ref name="mapping.format.cell"/>
+            <ref name="mapping.xpath"/>
+          </choice>          
+        </optional>
+        <optional>
+          <ref name="mapping.width" />
+        </optional>
+        <optional>
+          <ref name="mapping.condition"/>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+
+  <define name="mapping.object">
+    <element name="mapping-instruction">
+      <interleave>
+        <ref name="mapping.model.simple" />
+        <optional>
+          <ref name="mapping.width" />
+        </optional>
+        <optional>
+          <ref name="mapping.height" />
+        </optional>
+        <ref name="mapping.anchoring" />
+      </interleave>
+    </element>
+  </define>
+
+  <define name="mapping.width">
+    <element name="width">
+      <ref name="mapping.model.dimension" />
+    </element>
+  </define>  
+
+  <define name="mapping.height">
+    <element name="height">
+      <ref name="mapping.model.dimension" />
+    </element>
+  </define>  
+
+  <define name="mapping.model.dimension">
+    <optional>
+      <ref name="mapping.att.select"/>
+    </optional>
+    <ref name="mapping.att.type"/>
+  </define>
+  
+  <define name="mapping.att.is-footnote">
+    <attribute name="is-footnote">
+      <data type="string"/>
+    </attribute>
+  </define>
+  
+  <define name="mapping.att.is-hyperlink-source">
+    <attribute name="hyperlink-dest">
+      <data type="string" />
+    </attribute>
+  </define>
+  
+  <define name="mapping.att.is-hyperlink-dest">
+    <attribute name="hyperlink-source">
+      <data type="string" />
+    </attribute>
+  </define>
+  
+  <!-- define mapping.att.is-indexterm:
+       We assume a nested and flat input structure for index entries.
+       Example: <indexterm><primary>face</primary><secondary>noise</secondary></indexterm> -->
+  <define name="mapping.att.is-indexterm">
+    <attribute name="is-indexterm-level">
+      <data type="int"/>
+    </attribute>
+    <optional>
+      <attribute name="sortkey">
+        <data type="string" />
+      </attribute>
+    </optional>
+    <optional>
+      <group>
+        <attribute name="is-indexterm-crossref">
+          <choice>
+            <value> true </value>
+            <value> false </value>
+          </choice>
+        </attribute>
+        <attribute name="crossref-type">
+          <choice>
+            <value> see </value>
+            <value> seealso </value>
+          </choice>
+        </attribute>
+      </group>
+    </optional>
+  </define>
+  
+  <!-- define mapping.att.is-image:
+       Image build mechanism -->
+  <define name="mapping.att.is-image">
+    <optional>
+      <group>
+        <attribute name="is-image">
+          <choice>
+            <value> true </value>
+            <value> false </value>
+          </choice>
+        </attribute>
+        <attribute name="path-to-image-uri">
+          <data type="string" />
+        </attribute>
+      </group>
+    </optional>
+  </define>
+
+  <define name="mapping.att.select">
+    <attribute name="select">
+      <data type="string"/>
+    </attribute>
+  </define>
+
+  <define name="mapping.att.type">
+    <attribute name="type">
+      <data type="QName" />
+    </attribute>
+    <ref name="mapping.model.params.named" />
+  </define>
+
+  <define name="mapping.att.method">
+    <attribute name="method">
+      <choice>
+        <value> after </value>
+        <value> before </value>
+        <value> replace </value>
+      </choice>
+    </attribute>
+  </define>
+
+  <define name="mapping.model.params">
+    <zeroOrMore>
+      <element name="param">
+        <choice>
+          <attribute name="select"/>
+          <data type="string" />
+        </choice>
+      </element>
+    </zeroOrMore>
+  </define>
+
+  <define name="mapping.model.params.named">
+    <zeroOrMore>
+      <element name="param">
+        <attribute name="name"/>
+        <choice>
+          <attribute name="select"/>
+          <data type="string" />
+        </choice>
+      </element>
+    </zeroOrMore>
+  </define>
+
+  <define name="mapping.anchoring">
+    <element name="anchoring">
+      <attribute name="type">
+        <choice>
+          <value> inline </value>
+          <value> empty-para </value>
+        </choice>
+      </attribute>
+    </element>
+  </define>  
+
+  <define name="mapping.att.xpath-default-namespace">
+    <optional>
+      <attribute name="xpath-default-namespace">
+        <data type="anyURI" />
+      </attribute>
+    </optional>
+  </define>
+
+  <define name="mapping.att.retain-tagging">
+    <optional>
+      <attribute name="retain-tagging">
+        <choice>
+          <value> true </value>
+          <value> false </value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+
+  <define name="mapping.att.storycontinued">
+    <attribute name="StoryContinued">
+      <choice>
+        <value> true </value>
+        <value> false </value>
+      </choice>
+    </attribute>
+  </define>
+
+  <define name="mapping.att.keep-xml-space-preserve">
+    <attribute name="keep-xml-space-preserve">
+      <choice>
+        <value> true </value>
+        <value> false </value>
+      </choice>
+    </attribute>
+  </define>
+
+</grammar>
