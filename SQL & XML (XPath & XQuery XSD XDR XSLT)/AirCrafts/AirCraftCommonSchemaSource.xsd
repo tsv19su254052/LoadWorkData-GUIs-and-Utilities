@@ -63,6 +63,7 @@
 		<p:with-option name="status-dir-uri" select="$status-dir-uri" />
 	</tr:simple-progress-msg>
 
+	<!-- Основная часть (несколько элементов) -->
 	<xsd:element name="CustReg">
 		<xsd:complexType>
 			<!-- fixme схема пропускает больше одного элемента "step" - Сделал -->
