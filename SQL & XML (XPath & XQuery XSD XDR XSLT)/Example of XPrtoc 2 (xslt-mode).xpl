@@ -1,55 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<p:declare-step xmlns:p="http://www.w3.org/ns/xproc" 
-  xmlns:c="http://www.w3.org/ns/xproc-step"  
-  xmlns:cx="http://xmlcalabash.com/ns/extensions"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-  xmlns:s="http://purl.oclc.org/dsdl/schematron"
-  xmlns:idml2xml="http://transpect.io/idml2xml"
-  xmlns:docx2hub="http://transpect.io/docx2hub"
-  xmlns:hub2tei="http://transpect.io/hub2tei"
-  xmlns:tei2hub="http://transpect.io/tei2hub"
-  xmlns:html2hub="http://transpect.io/html2hub"
-  xmlns:ttt="http://transpect.io/tokenized-to-tree"
-  xmlns:hub="http://transpect.io/hub"
-  xmlns:hub2app="http://transpect.io/hub2app"
-  xmlns:hub2htm="http://transpect.io/hub2htm"
-  xmlns:tr3k2html="http://www.le-tex.de/namespace/tr3k2html"  
-  xmlns:tr="http://transpect.io"
-  version="1.0"
-  name="xslt-mode"
-  type="tr:xslt-mode">
-    
-  <p:option name="mode" required="true">
-    <p:documentation>Please be aware that, as per the spec, the initial mode option of
-    p:xslt must be a QName. You cannot invoke the #default mode here.
-    And if you�re using namespace-prefixed modes, you�ll have to declare the namespaces
-    here in this .xpl file. This is admittedly unfortunate.</p:documentation>
-  </p:option>
-  <p:option name="prefix" required="false" select="'default'"/>
-  <p:option name="msg" required="false" select="'no'"/>
-  <p:option name="debug" required="false" select="'no'"/>
-  <p:option name="indent" required="false" select="'true'"/>
-  <p:option name="debug-dir-uri" required="true"/>
-  <p:option name="debug-indent" required="false" select="'true'"/>
-  <p:option name="status-dir-uri" select="concat(replace($debug-dir-uri, '^(.+)\?.*$', '$1'), '/status')"/>
-  <p:option name="fail-on-error" select="'no'"/>
-  <p:option name="store-secondary" select="'yes'"/>
-  <p:option name="adjust-doc-base-uri" select="'yes'">
-    <p:documentation>Whether to set the output base uri to what�s set as base-uri(/*) via @xml:base attribute.
-    Otherwise, the output base uri will be taken from the input. This was the defaul behavior before
-    this change that was introduced on 2016-08-24. Reason for this option: If people add /*/@xml:base attributes,
-    they most likely want their output document URI to reflect this change.</p:documentation>
-  </p:option>
-  <p:option name="hub-version" required="false" select="''"/>
-  
-  <p:input port="source" primary="true" sequence="true"/>
-  
-  <p:input port="stylesheet"/>
-  
-  <p:input port="models" sequence="true">
+<p:declare-step
+    xmlns:p="http://www.w3.org/ns/xproc"
+    xmlns:c="http://www.w3.org/ns/xproc-step"
+    xmlns:cx="http://xmlcalabash.com/ns/extensions"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:s="http://purl.oclc.org/dsdl/schematron"
+    xmlns:idml2xml="http://transpect.io/idml2xml"
+    xmlns:docx2hub="http://transpect.io/docx2hub"
+    xmlns:hub2tei="http://transpect.io/hub2tei"
+    xmlns:tei2hub="http://transpect.io/tei2hub"
+    xmlns:html2hub="http://transpect.io/html2hub"
+    xmlns:ttt="http://transpect.io/tokenized-to-tree"
+    xmlns:hub="http://transpect.io/hub"
+    xmlns:hub2app="http://transpect.io/hub2app"
+    xmlns:hub2htm="http://transpect.io/hub2htm"
+    xmlns:tr3k2html="http://www.le-tex.de/namespace/tr3k2html"
+    xmlns:tr="http://transpect.io"
+    version="1.0"
+    name="xslt-mode"
+    type="tr:xslt-mode">
+
+    <p:option name="mode" required="true">
+        <p:documentation> Please be aware that, as per the spec, the initial mode option of
+        p:xslt must be a QName. You cannot invoke the #default mode here.
+        And if you�re using namespace-prefixed modes, you�ll have to declare the namespaces
+        here in this .xpl file. This is admittedly unfortunate. </p:documentation>
+    </p:option>
+    <p:option name="prefix" required="false" select="'default'"/>
+    <p:option name="msg" required="false" select="'no'"/>
+    <p:option name="debug" required="false" select="'no'"/>
+    <p:option name="indent" required="false" select="'true'"/>
+    <p:option name="debug-dir-uri" required="true"/>
+    <p:option name="debug-indent" required="false" select="'true'"/>
+    <p:option name="status-dir-uri" select="concat(replace($debug-dir-uri, '^(.+)\?.*$', '$1'), '/status')"/>
+    <p:option name="fail-on-error" select="'no'"/>
+    <p:option name="store-secondary" select="'yes'"/>
+    <p:option name="adjust-doc-base-uri" select="'yes'">
+        <p:documentation>
+            Whether to set the output base uri to what�s set as base-uri(/*) via @xml:base attribute.
+            Otherwise, the output base uri will be taken from the input. This was the defaul behavior before
+            this change that was introduced on 2016-08-24. Reason for this option: If people add /*/@xml:base attributes,
+            they most likely want their output document URI to reflect this change.
+        </p:documentation>
+    </p:option>
+    <p:option name="hub-version" required="false" select="''"/>
+    <p:input port="source" primary="true" sequence="true"/>
+    <p:input port="stylesheet"/>
+    <p:input port="models" sequence="true">
     <p:empty/>
-    <p:documentation>see prepend-xml-model.xpl</p:documentation>
-  </p:input>
+        <p:documentation>see prepend-xml-model.xpl</p:documentation>
+    </p:input>
+    <!-- t Моя правка -->
+
   
   <p:input port="parameters" kind="parameter" primary="true" sequence="true"/>
   
