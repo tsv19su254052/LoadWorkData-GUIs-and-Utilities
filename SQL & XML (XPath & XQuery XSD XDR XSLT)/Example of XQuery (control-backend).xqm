@@ -31,6 +31,7 @@ function control-backend:ftindex-jats($doc as document-node(element(*)))
     }
 };:)
 
+
 declare
   %rest:POST("{$log}")
   %rest:path("/control-backend/{$customization}/parse-commit-log")
@@ -58,6 +59,7 @@ function control-backend:parse-commit-log($log as xs:string, $customization as x
     )
   }</commit>
 };
+
 
 declare
   %rest:POST("{$log}")
@@ -112,6 +114,7 @@ function control-backend:process-commit-log($log as xs:string, $customization as
       return control-backend:writeindextofileupdate($updated-index))
 };
 
+
 declare function control-backend:remove-path-index-at-svnurl($index, $svnurl as xs:string){
   let $updated-index :=  
        copy $ind := $index
@@ -121,6 +124,7 @@ declare function control-backend:remove-path-index-at-svnurl($index, $svnurl as 
        return $ind
   return $updated-index
 };
+
 
 declare function control-backend:parse-prop-update($svnurl as xs:string, $revision as xs:string) as element(*){
   let $pre-rev := xs:string(xs:int($revision) - 1),
@@ -133,16 +137,17 @@ return
     {for $a in $added
      let $name   := control-util:strip-whitespace(tokenize($a,' ')[last()]),
          $svnurl := control-util:get-external-url(control-util:strip-whitespace(tokenize($a,' ')[1]))
-     return <added name="{$name}" svnurl="{$svnurl}"></added>,
+     return <added name="{$name}" svnurl="{$svnurl}"> </added>,
      for $ r in $removed
      let $name   := control-util:strip-whitespace(tokenize($r,' ')[last()]),
          $svnurl := control-util:get-external-url(control-util:strip-whitespace(tokenize($r,' ')[1]))
-     return <removed name="{$name}" svnurl="{$svnurl}"></removed>
+     return <removed name="{$name}" svnurl="{$svnurl}"> </removed>
     }
   </propdiff>
 };
 
-declare 
+
+declare
   %updating
 function control-backend:writeindextofileupdate($index) {
   file:write('basex/webapp/control/'||$control:indexfile,$index),
@@ -157,7 +162,8 @@ declare function control-backend:get-commit-file($path-to-repo, $path-in-repo, $
   )
 };
 
-declare 
+
+declare
 %updating
 function control-backend:remove-xml-by-path($path, $customization) {
   let $dbname := string($control:config/control:db)
@@ -189,6 +195,7 @@ function control-backend:initialize($customization as xs:string) {
         else db:create('INDEX', <root name='root' svnurl='{$hierdir}' virtual-path='{$hierdir}'/>, 'index.xml')
   )
 };
+
 
 declare
   %rest:GET
@@ -224,6 +231,7 @@ function control-backend:add-xml-by-path($fspath as xs:string, $dbpath as xs:str
   )
 };
 
+
 declare
   %rest:GET
   %rest:path("/control-backend/{$customization}/add-xml-by-svn-info")
@@ -249,6 +257,7 @@ function control-backend:add-xml-by-svn-info($svn-info-filename as xs:string, $c
     }</doc>:)
 };
 
+
 declare function control-backend:apply-ft-xslt($doc as document-node(element(*))) {
   let $ns-uri := namespace-uri-from-QName(node-name($doc/*)),
       $name := local-name($doc/*),
@@ -263,9 +272,11 @@ declare function control-backend:apply-ft-xslt($doc as document-node(element(*))
      return if ($stylesheet) then xslt:transform($doc, $stylesheet) else $doc
 };
 
+
 declare function control-backend:determine-lang($doc as node()?) as xs:string? {
   ($doc/*/@xml:lang => tokenize('-'))[1]
 };
+
 
 declare
   %rest:GET
@@ -289,6 +300,7 @@ function control-backend:fill-content-index-dbs($customization as xs:string, $wc
       return control-backend:add-xml-by-path($wcp, $dbp, $customization)
   else web:error(401, 'You are not permitted to fill the content index DBs')
 };
+
 
 declare
   %rest:GET
