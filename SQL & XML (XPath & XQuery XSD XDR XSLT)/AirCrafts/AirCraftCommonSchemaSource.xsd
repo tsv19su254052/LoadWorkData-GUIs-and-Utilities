@@ -14,6 +14,8 @@
 			xmlns:ms="urn:schemas-microsoft-com:mapping-schema"
 			xmlns:dt="urn:schemas-microsoft-com:datatypes"
 			xmlns:sql="urn:schemas-microsoft-com:xml-sql"
+			xmlns:css="http://www.w3.org/1996/css"
+			xmlns:set="http://transpect.io/xml2tex"
 
 			xmlns:xsv="http://www.w3.org/2007/XMLSchema-versioning"
 			xmlns:soapex="http://schemas.xmlsoap.org/soap/envelope/"
