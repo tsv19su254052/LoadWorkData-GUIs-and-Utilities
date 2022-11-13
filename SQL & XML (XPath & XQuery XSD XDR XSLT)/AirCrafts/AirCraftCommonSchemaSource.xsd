@@ -16,6 +16,8 @@
 			xmlns:sql="urn:schemas-microsoft-com:xml-sql"
 			xmlns:css="http://www.w3.org/1996/css"
 			xmlns:set="http://transpect.io/xml2tex"
+			xmlns:saxon="http://saxon.sf.net/"
+			xmlns:collation="http://www.w3.org/2013/collation/UCA?strength=secondary"
 
 			xmlns:xsv="http://www.w3.org/2007/XMLSchema-versioning"
 			xmlns:soapex="http://schemas.xmlsoap.org/soap/envelope/"

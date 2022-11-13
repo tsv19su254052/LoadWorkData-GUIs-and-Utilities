@@ -141,7 +141,7 @@
 		<a:documentation>
 			<p xmlns="http://www.w3.org/1999/xhtml"> meta elements are used to associate key-value pairs
 				with documents. They are inserted into the document by the loader as namespaced
-				(http://www.corbas.co.uk/ns/transforms/data) attributes on the <em> root element </em>
+				( http://www.corbas.co.uk/ns/transforms/data ) attributes on the <em> root element </em>
 				with the name and value performing as would be expected.
 			</p>
 		</a:documentation>
