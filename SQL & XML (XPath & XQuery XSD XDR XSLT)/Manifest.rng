@@ -23,8 +23,9 @@
 	<a:documentation xmlns="http://www.w3.org/1999/xhtml">
 		<h2> Manifest Documents </h2>
 		<p> Manifest documents represent lists of files to be used by a process within the XSLT pipeline.
-			For an example of this usage, look at <code> load-sequence-from-file.xpl </code> where a
-			manifest is used to load a sequence of XML files as an XProc step.
+			For an example of this usage, look at
+				<code> load-sequence-from-file.xpl </code>
+			where a manifest is used to load a sequence of XML files as an XProc step.
 		</p>
 	</a:documentation>
 
