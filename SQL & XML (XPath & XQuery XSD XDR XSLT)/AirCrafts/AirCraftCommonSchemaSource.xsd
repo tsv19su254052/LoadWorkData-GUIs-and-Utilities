@@ -26,27 +26,23 @@
 			xmlns:pxf="http://exproc.org/proposed/steps/file"
 			xmlns:xhtml="http://www.w3.org/1999/xhtml"
 			xmlns:tr="http://transpect.io"
+			xmlns:rng="http://relaxng.org/ns/structure/1.0"
 			targetNamespace=""
 			xsi:schemalocation="http://api.nsgreg.nga.mil/schema/cphd/1.0.1"
 			xsi:noNamespaceSchemaLocation="">
 	<!-- t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns -->
-	<xsd:annotation>
-		<xsd:documentation pxmlnsOP="http://www.w3.org/1999/xhtml" xmlnsHREF="http://xmlcalabash.com/extension/steps/library-1.0.xpl">
-			Моя схема
-		</xsd:documentation>
-	</xsd:annotation>
 
 	<p:annotation>
 		<p:documentation p="http://www.w3.org/1999/xhtml">
-			Импорт другого файла
+			==== Импорт другого файла ====
 			<p:import href="epubcheck-command-line.xpl"/>
-			Импорт внешних файлов
+			==== Импорт внешних файлов ====
 			<p:import href="http://xmlcalabash.com/extension/steps/library-1.0.xpl" />
 			<p:import href="http://transpect.io/calabash-extensions/epubcheck-extension/epubcheck-declaration.xpl" />
 			<p:import href="http://transpect.io/xproc-util/file-uri/xpl/file-uri.xpl" />
 			<p:import href="http://transpect.io/xproc-util/store-debug/xpl/store-debug.xpl" />
 			<p:import href="http://transpect.io/xproc-util/simple-progress-msg/xpl/simple-progress-msg.xpl" />
-			Внешний документ
+			==== Внешний документ ====
 			<p:document href="http://this.transpect.io/xmlcatalog/catalog.xml" />
 		</p:documentation>
 	</p:annotation>
@@ -64,6 +60,12 @@
 	</tr:simple-progress-msg>
 
 	<!-- Основная часть (несколько элементов) -->
+	<xsd:annotation>
+		<xsd:documentation>
+			==== Моя схема ====
+		</xsd:documentation>
+	</xsd:annotation>
+
 	<xsd:element name="CustReg">
 		<xsd:complexType>
 			<!-- fixme схема пропускает больше одного элемента "step" - Сделал -->
