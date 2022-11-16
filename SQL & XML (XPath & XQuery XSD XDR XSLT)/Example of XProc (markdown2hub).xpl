@@ -32,10 +32,12 @@
   <p:import href="http://transpect.io/xproc-util/file-uri/xpl/file-uri.xpl" />
   <p:import href="http://transpect.io/xproc-util/store-debug/xpl/store-debug.xpl" />
   
+
   <tr:file-uri name="get-markdown-file-uri">
     <p:with-option name="filename" select="$href" />
   </tr:file-uri>
   
+
   <p:xslt name="markdown2hub-transform" template-name="main">
     <p:input port="stylesheet">
       <p:document href="../xsl/markdown2hub.xsl"/>
@@ -46,6 +48,7 @@
     <p:with-param name="href" select="/c:result/@href"/>
   </p:xslt>
   
+
   <tr:store-debug name="markdown2hub-debug" pipeline-step="markdown2hub/markdown2hub">
     <p:with-option name="active" select="$debug"/>
     <p:with-option name="base-uri" select="$debug-dir-uri"/>

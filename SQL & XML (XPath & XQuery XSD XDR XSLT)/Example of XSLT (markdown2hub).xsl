@@ -158,17 +158,7 @@
       <info>
         <title><xsl:value-of select="replace($href, '^(.+/)(.+)?$', '$2')"/></title>
       </info>
-      <xsl:apply-templates select="md:sectionize(
-                                       md:create-lists(
-                                           md:create-quotes(
-                                               md:create-tables(
-                                                   md:create-blocks(
-                                                       md:split-lines($markdown)
-                                                   )
-                                               )
-                                           ), 0
-                                       ), 0
-                                   )" 
+      <xsl:apply-templates select="md:sectionize(md:create-lists(md:create-quotes(md:create-tables(md:create-blocks(md:split-lines($markdown)))), 0), 0)"
                            mode="md:transform"/>
     </hub>
   </xsl:function>
@@ -291,15 +281,12 @@
   <xsl:function name="md:create-tables" as="element()*">
     <xsl:param name="blocks" as="element()*"/>
     <xsl:for-each-group select="$blocks" 
-                        group-adjacent="(    self::*[1][matches(., $md:table-horizontal-sep-regex)]
-                                         and following-sibling::*[1][matches(., $md:table-vertical-sep-regex)]
-                                         )
+                        group-adjacent="(self::*[1][matches(., $md:table-horizontal-sep-regex)]
+                                         and following-sibling::*[1][matches(., $md:table-vertical-sep-regex)])
                                         or 
-                                        (    self::*[1][matches(., $md:table-vertical-sep-regex)]
-                                         and (   preceding-sibling::*[matches(., $md:table-horizontal-sep-regex)]
-                                              or following-sibling::*[1][matches(., $md:table-horizontal-sep-regex)]
-                                              )
-                                         )">
+                                        (self::*[1][matches(., $md:table-vertical-sep-regex)]
+                                         and (preceding-sibling::*[matches(., $md:table-horizontal-sep-regex)]
+                                              or following-sibling::*[1][matches(., $md:table-horizontal-sep-regex)]))">
       <xsl:choose>
         <xsl:when test="current-grouping-key() eq true()">
           <table>

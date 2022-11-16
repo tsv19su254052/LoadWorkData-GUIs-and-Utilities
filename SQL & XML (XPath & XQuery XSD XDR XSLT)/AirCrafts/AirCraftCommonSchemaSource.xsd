@@ -4,6 +4,7 @@
 		Префиксы пространства имен (краткие псевдонимы вместо их URI) -->
 
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xmlns:ns="https://www.w3schools.com"
 			xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -18,14 +19,11 @@
 			xmlns:set="http://transpect.io/xml2tex"
 			xmlns:saxon="http://saxon.sf.net/"
 			xmlns:collation="http://www.w3.org/2013/collation/UCA?strength=secondary"
-
 			xmlns:xsv="http://www.w3.org/2007/XMLSchema-versioning"
 			xmlns:soapex="http://schemas.xmlsoap.org/soap/envelope/"
-
 			xmlns:p="http://www.w3.org/ns/xproc"
 			xmlns:c="http://www.w3.org/ns/xproc-step"
 			xmlns:err="http://www.w3.org/ns/xproc-error"
-
 			xmlns:pxf="http://exproc.org/proposed/steps/file"
 			xmlns:xhtml="http://www.w3.org/1999/xhtml"
 			xmlns:tr="http://transpect.io"
