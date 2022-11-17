@@ -120,9 +120,9 @@
  - у объекта описание сделано XML-ным полем (структура разделов и подразделов),
  - убрали отдельную базу данных по летательным аппаратам,
  - добавили отношения, индексы, XSD-схемы, каскадные правила на удаления и обновления,
- - подняли очередь и службу [**Service Broker**](https://docs.microsoft.com/ru-ru/sql/database-engine/configure-windows/sql-server-service-broker?view=sql-server-ver15), [см. здесь](https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/monitor-database-deadlocks),
+ - подняли очередь и службу [**Service Broker**](https://docs.microsoft.com/ru-ru/sql/database-engine/configure-windows/sql-server-service-broker?view=sql-server-ver15), см. [статью](https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/monitor-database-deadlocks),
    чтобы не пользоваться временными задержками для ухода от взаимоблокировок, но функционала SQL-ных скриптов внутри хранимых процедур не хватает,
-   ищем решение как разнести сложность, пробуем разные серверные курсоры внутри хранимых процедур [см. здесь](https://docs.microsoft.com/ru-ru/sql/relational-databases/native-client-odbc-cursors/implementation/odbc-cursor-library?view=sql-server-ver15), [а также здесь](https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver15),
+   ищем решение как разнести сложность, пробуем разные серверные курсоры внутри хранимых процедур см. [статью](https://docs.microsoft.com/ru-ru/sql/relational-databases/native-client-odbc-cursors/implementation/odbc-cursor-library?view=sql-server-ver15), а также [статью](https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver15),
  - для экспериментов используем не тестовую базу, а только тестовые таблицы
    (делаем трансфер двух таблиц соответственно в две тестовые таблицы, можно перенести отдельной файловой группой на отдельный HDD).
 
