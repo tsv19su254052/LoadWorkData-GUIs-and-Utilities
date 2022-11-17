@@ -23,19 +23,19 @@
   - летательные аппараты
 
 использовались из источников:
- - http://apinfo.ru 
- - http://openflights.org
- - http://www1.ourairport.com
- - http://planelist.net
- - http://www.flightradar24.com
- - https://www.jetphotos.com
+ - [apinfo.ru](http://apinfo.ru )
+ - [openflights.org](http://openflights.org)
+ - [ourairport.com](http://www1.ourairport.com)
+ - [planelist.net](http://planelist.net)
+ - [flightradar24.com](http://www.flightradar24.com)
+ - [jetphotos.com](https://www.jetphotos.com)
 
 ###### Рабочие данные
-загружаются с https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr 
+загружаются с [transtats.bts.gov](https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr )
 
 ###### Оперативные данные
 загружаются асинхронно:
- - с сайта http://www.flightradar24.com на API-шках и по ВЭБ-хукам (надо покупать и оплачивать токен),
+ - с [flightradar24.com](http://www.flightradar24.com) на API-шках и по ВЭБ-хукам (надо покупать и оплачивать токен),
  - с первичного оборудования.
 
 Рабочие и оперативные данные загружаются без учета хронологии.
@@ -120,13 +120,9 @@
  - у объекта описание сделано XML-ным полем (структура разделов и подразделов),
  - убрали отдельную базу данных по летательным аппаратам,
  - добавили отношения, индексы, XSD-схемы, каскадные правила на удаления и обновления,
- - подняли очередь и службу **Service Broker**
-   (см. https://docs.microsoft.com/ru-ru/sql/database-engine/configure-windows/sql-server-service-broker?view=sql-server-ver15 ,
-   https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/monitor-database-deadlocks ),
+ - подняли очередь и службу [**Service Broker**](https://docs.microsoft.com/ru-ru/sql/database-engine/configure-windows/sql-server-service-broker?view=sql-server-ver15), [1](https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/monitor-database-deadlocks),
    чтобы не пользоваться временными задержками для ухода от взаимоблокировок, но функционала SQL-ных скриптов внутри хранимых процедур не хватает,
-   ищем решение как разнести сложность, пробуем разные серверные курсоры внутри хранимых процедур
-   (см. https://docs.microsoft.com/ru-ru/sql/relational-databases/native-client-odbc-cursors/implementation/odbc-cursor-library?view=sql-server-ver15 ,
-   https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver15 ),
+   ищем решение как разнести сложность, пробуем разные серверные курсоры внутри хранимых процедур [2](https://docs.microsoft.com/ru-ru/sql/relational-databases/native-client-odbc-cursors/implementation/odbc-cursor-library?view=sql-server-ver15), [3](https://docs.microsoft.com/ru-ru/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver15),
  - для экспериментов используем не тестовую базу, а только тестовые таблицы
    (делаем трансфер двух таблиц соответственно в две тестовые таблицы, можно перенести отдельной файловой группой на отдельный HDD).
 
@@ -163,7 +159,7 @@
 ###### Загрузка данных:
  - обновляет XML-ные поля авиакомпаний **XML(CONTENT dbo.XSD-схема)** в таблице летательных аппаратов,
    которые подаются на вход хранимой процедуры через XSD-схему и парсятся как **SAX**,
-   используя комплектный функционал **XPath & XQuery** (см. http://xmlhack.ru/texts/03/xquery/what.is.xquery.html ) и спецификацию **SQL/XML**,
+   используя комплектный функционал [**XPath & XQuery**](http://xmlhack.ru/texts/03/xquery/what.is.xquery.html) и спецификацию **SQL/XML**,
  - вставляет строки в таблице объектов,
  - вставляет строки в таблице маршрутов,
  - вставляет или обновляет строки в таблице авиарейсов
@@ -188,7 +184,7 @@
 
 Группировка подтэгов с датами авиарейсов (пока в разработке):
  - группируем подтэги программно при изменении,
- - часть API-шек пишем на **SQLAlchemy** под `MS SQL Server` (см. https://docs.sqlalchemy.org/en/14/dialects/mssql.html ),
+ - часть API-шек пишем на [**SQLAlchemy** под `MS SQL Server`](https://docs.sqlalchemy.org/en/14/dialects/mssql.html),
  - во всех его строках переставляем подтэги по хронологии и отбрасываем промежуточные подтэги,
  - пробуем вручную SQL-ные запросы со вставками на `XPath & XQuery`,
  - сохраняем вставки на `XPath & XQuery` файлами запросов `*.xq`,
@@ -203,8 +199,7 @@
    (см. https://www.saxonica.com/technology/xslt-and-xquery.xml библиотеки `libxml2`, `libxslt`).
 
 Недостаток хранимой процедуры - не возвращает в скрипты на Python-е достоверный результат своей работы: получилось, не получилось с указанием причины
-(см. раздел "Возврат данных с помощью кода возврата" на
-https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver15 ).
+(см. раздел ["Возврат данных с помощью кода возврата"](https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver15).
 Недостаток XSD-схемы - тот же и тот, что она пропускает все или не пропускает ничего.
 
 ###### Собираем **XML**-ные поля, определяемся с их структурой
@@ -232,7 +227,7 @@ https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/retu
 
 Элемент генерируется из XML-ного файла внутри `Management Studio` или с помощью XSLT-преобразования
 (см. https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-execute-an-xslt-transformation-from-the-xml-editor?view=vs-2022 ) 
-и вставляется в соответствии с порядком просмотра XML-ных полей. В сложных случаях можно пользоваться **Schematron**-ом (см. https://www.schematron.com ). 
+и вставляется в соответствии с порядком просмотра XML-ных полей. В сложных случаях можно пользоваться [**Schematron**-ом](https://www.schematron.com ). 
 Имя корневого тэга XML-ного поля соответствует имени элемента XSD-схемы.
 Исходный текст XSD-схемы вставляется в SQL-ный скрипт ее привязки к базе данных
 (надо найти способ не вставлять исходник схемы через буфер обмена, а выбирать ее в диалоге открытия файла или дать URL до нее `file:///P:/...`).
@@ -246,8 +241,7 @@ https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/retu
 ###### Поправки по терминологии:
  - **Коллекцию схем XML** в `Management Studio` точнее называть XSD-схемой.
  - **Созданием схемы** в SQL-ном скрипте правильнее называть привязкой XSD-схемы, потому что она уже собрана и сохранена файлом типа `*.xsd`.
- - **DTD-схемы** и **XDR-схемы** кратко упомянуты в `msdn.com`
-   (см. https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-create-an-xml-schema-from-an-xml-document?view=vs-2022 ),
+ - **DTD-схемы** и **XDR-схемы** кратко упомянуты в [`msdn.com`](https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-create-an-xml-schema-from-an-xml-document?view=vs-2022),
    но уже не применяются.
 
 ###### Прочие наработки
@@ -319,5 +313,5 @@ XML-ные поля пропускаются через XSD-схему:
 
 Остальные указания и замечания см.:
  - в исходниках по тэгам **todo** и **fixme**,
- - на https://github.com/tsv19su254052/LoadWorkDataAirFlightsDBNew/issues ,
+ - в [обсуждениях](https://github.com/tsv19su254052/LoadWorkDataAirFlightsDBNew/issues) ,
  - комментарии в исходниках.
