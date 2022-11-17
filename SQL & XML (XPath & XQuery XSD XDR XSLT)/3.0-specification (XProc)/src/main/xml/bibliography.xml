@@ -6,42 +6,42 @@
 <!-- This is the master bibliography -->
 
 <bibliomixed xml:id="use-cases"><abbrev>XProc V2.0 Requirements</abbrev>
-<citetitle xlink:href="https://www.w3.org/TR/xproc-v2-req/">XProc V2.0
-Requirements</citetitle>.
-Alex Milowski, James Fuller, and Norman Walsh editors.
-W3C Working Draft 5 November 2013.
+	<citetitle xlink:href="https://www.w3.org/TR/xproc-v2-req/">XProc V2.0
+	Requirements</citetitle>.
+	Alex Milowski, James Fuller, and Norman Walsh editors.
+	W3C Working Draft 5 November 2013.
 </bibliomixed>
 
 <bibliomixed xml:id="xproc20"><abbrev>XProc 2.0</abbrev>
-<citetitle xlink:href="https://www.w3.org/TR/xproc20/">XProc 2.0:
-An XML Pipeline Language</citetitle>.
-Norman Walsh, Alex Milowski, and Henry Thompson, editors.
-W3C Working Draft 15 December 2014.
+	<citetitle xlink:href="https://www.w3.org/TR/xproc20/">XProc 2.0:
+	An XML Pipeline Language</citetitle>.
+	Norman Walsh, Alex Milowski, and Henry Thompson, editors.
+	W3C Working Draft 15 December 2014.
 </bibliomixed>
 
 <bibliomixed xml:id="xproc30"><abbrev>XProc 3.0</abbrev>
-<citetitle xlink:href="https://spec.xproc.org/3.0/xproc/">XProc 3.0:
-An XML Pipeline Language</citetitle>.
-Norman Walsh, Achim Berndzen, Gerrit Imsieke and Erik Siegel, editors.
+	<citetitle xlink:href="https://spec.xproc.org/3.0/xproc/">XProc 3.0:
+	An XML Pipeline Language</citetitle>.
+	Norman Walsh, Achim Berndzen, Gerrit Imsieke and Erik Siegel, editors.
 </bibliomixed>
 
 <bibliomixed xml:id="steps30"><abbrev>Steps 3.0</abbrev>
-<citetitle xlink:href="https://spec.xproc.org/3.0/steps/">XProc 3.0: Standard
-Step Library</citetitle>.
-Norman Walsh, Achim Berndzen, Gerrit Imsieke and Erik Siegel, editors.
+	<citetitle xlink:href="https://spec.xproc.org/3.0/steps/">XProc 3.0: Standard
+	Step Library</citetitle>.
+	Norman Walsh, Achim Berndzen, Gerrit Imsieke and Erik Siegel, editors.
 </bibliomixed>
 
 <bibliomixed xml:id="xproc30-steps"><abbrev>XProc 3.0 Steps</abbrev>
-<citetitle xlink:href="https://spec.xproc.org/">XProc 3.0 Steps:
-An Introduction</citetitle>.
-Norman Walsh, Achim Berndzen, Gerrit Imsieke and Erik Siegel, editors.
+	<citetitle xlink:href="https://spec.xproc.org/">XProc 3.0 Steps:
+	An Introduction</citetitle>.
+	Norman Walsh, Achim Berndzen, Gerrit Imsieke and Erik Siegel, editors.
 </bibliomixed>
 
 <bibliomixed xml:id="std-components"><abbrev>XProc 2.0: Standard Step Library</abbrev>
-<citetitle xlink:href="https://www.w3.org/TR/xproc20-steps/">XProc 2.0:
-Standard Step Library</citetitle>.
-Alex Milowski, Henry Thompson, and Norman Walsh editors.
-W3C Working Group Note 21 July 2016.
+	<citetitle xlink:href="https://www.w3.org/TR/xproc20-steps/">XProc 2.0:
+	Standard Step Library</citetitle>.
+	Alex Milowski, Henry Thompson, and Norman Walsh editors.
+	W3C Working Group Note 21 July 2016.
 </bibliomixed>
 
 <bibliomixed xml:id="xpath31"><abbrev>XPath 3.1</abbrev>
@@ -59,9 +59,9 @@ Henry Zongaro, Andrew Coleman, and C. M. Sperberg-McQueen, editors.
 W3C Recommendation. 8 April 2014.</bibliomixed>
 
 <bibliomixed xml:id="xml-infoset-rec"><abbrev>Infoset</abbrev>
-<citetitle xlink:href="https://www.w3.org/TR/xml-infoset/">XML
-Information Set (Second Edition)</citetitle>. John Cowan,
-Richard Tobin, editors. W3C Working Group Note 04 February 2004.
+	<citetitle xlink:href="https://www.w3.org/TR/xml-infoset/">XML
+	Information Set (Second Edition)</citetitle>. John Cowan,
+	Richard Tobin, editors. W3C Working Group Note 04 February 2004.
 </bibliomixed>
 
 <bibliomixed xml:id="xml10"><abbrev>XML 1.0</abbrev>

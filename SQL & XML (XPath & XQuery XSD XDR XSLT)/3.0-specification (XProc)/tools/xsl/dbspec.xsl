@@ -23,7 +23,6 @@
 <xsl:include href="xprocns.xsl"/>
 
 <xsl:output method="xhtml" indent="no"/>
-
 <xsl:output name="library" method="xml" indent="yes"/>
 
 <xsl:param name="ci" select="''" as="xs:string"/>
@@ -69,7 +68,6 @@
 
 <xsl:template match="db:note[@role='editorial']/db:title" mode="m:titlepage-mode">
   <xsl:param name="context" as="element()?" select="()"/>
-
   <h3>Editorial Note</h3>
 </xsl:template>
 

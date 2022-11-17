@@ -23,6 +23,7 @@ db.info.elements |= w3c.shortname
    db:refname [ "w3c-shortname" ]
    db:refpurpose [ "Identifies the W3C short name" ]
 ]
+
 div {
 
    w3c.shortname.role.attribute = attribute role { text }
