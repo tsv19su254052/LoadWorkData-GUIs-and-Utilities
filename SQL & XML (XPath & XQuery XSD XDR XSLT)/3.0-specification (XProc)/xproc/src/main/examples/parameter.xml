@@ -1,0 +1,15 @@
+<p:declare-step xmlns:p="http://www.w3.org/ns/xproc"
+	        name="main" version="3.0">
+<p:input port="source"/>
+<p:output port="result"/>
+
+<p:xslt parameters="map { 'output-type': 'html' }">
+  <p:with-input port="source">
+    <p:pipe step="main" port="source"/>
+  </p:with-input>
+  <p:with-input port="stylesheet">
+    <p:document href="http://example.com/stylesheets/doc.xsl"/>
+  </p:with-input>
+</p:xslt>
+
+</p:declare-step>

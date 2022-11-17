@@ -1,0 +1,52 @@
+<t:test xmlns:t="http://xproc.org/ns/testsuite/3.0" expected="pass">
+   <t:info>
+      <t:title>p:replace-007 (AB)</t:title>
+      <t:revision-history>
+         <t:revision>
+            <t:date>2019-07-26</t:date>
+            <t:author>
+               <t:name>Achim Berndzen</t:name>
+            </t:author>
+            <t:description xmlns="http://www.w3.org/1999/xhtml">
+               <p>Matching / is not an error anymore.</p>
+            </t:description>
+         </t:revision>
+         <t:revision>
+            <t:date>2019-05-18</t:date>
+            <t:author>
+               <t:name>Achim Berndzen</t:name>
+            </t:author>
+            <t:description xmlns="http://www.w3.org/1999/xhtml">
+               <p>New tests for p:replace</p>
+            </t:description>
+         </t:revision>
+      </t:revision-history>
+   </t:info>
+   <t:description xmlns="http://www.w3.org/1999/xhtml">
+      <p>Tests p:replace matching /</p>
+   </t:description> 
+   <t:pipeline>
+      <p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="3.0">
+         <p:output port="result"/>
+            
+         <p:replace match="/">
+            <p:with-input port="source">
+               <doc/>
+            </p:with-input>
+            <p:with-input port="replacement">
+               <new-element><element /></new-element>
+            </p:with-input>
+         </p:replace>         
+      </p:declare-step>
+   </t:pipeline>
+   <t:schematron>
+      <s:schema xmlns:s="http://purl.oclc.org/dsdl/schematron" xmlns="http://www.w3.org/1999/xhtml">
+         <s:pattern>
+            <s:rule context="/">
+               <s:assert test="/new-element">Root element is not "new-element".</s:assert>
+               <s:assert test="/new-element/element">Element "new-element" should have a child "element".</s:assert>
+            </s:rule>
+         </s:pattern>
+      </s:schema>
+   </t:schematron>
+</t:test>

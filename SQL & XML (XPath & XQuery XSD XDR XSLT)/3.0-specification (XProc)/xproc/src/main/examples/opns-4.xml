@@ -1,0 +1,3 @@
+<ex:delete-in-div xmlns:p="http://www.w3.org/ns/xproc"
+                  xmlns:ex="http://example.org/ns/ex"
+    divchild="q{http://www.w3.org/1999/xhtml}p[@class='delete']"/>
