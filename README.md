@@ -299,7 +299,7 @@ XML-ные поля пропускаются через XSD-схему:
  - виждеты выбора страны, области (графства, штата, региона), города, района города из надежной онлайн базы на ее API-шках в формате XML
    (как простой пример см. https://htmlweb.ru/geo/api_get_data.php ),
    надо зарегистрироваться, купить и оплачивать API-ключ согласно [тарифа](https://htmlweb.ru/user/tariffs.php) для каждого клиента,
-   а также см. [здесь](https://www.maxmind.com/en/worldcities] , а также [здесь](http://www.geonames.org) , [здесь](http://netload.biz/2011/01/24/geoip3 и [здесь](https://pear.php.net/manual/en/package.webservices.services-geonames.examples.php) ,
+   а также см. [здесь](https://www.maxmind.com/en/worldcities) , а также [здесь](http://www.geonames.org) , [здесь](http://netload.biz/2011/01/24/geoip3) и [здесь](https://pear.php.net/manual/en/package.webservices.services-geonames.examples.php) ,
    значение подтэга `wiki` вынести отдельно гиперссылкой, чтобы открывать статью из `WikiPedia.org`,
  - виджеты и ссылки для просмотра свойств вышеперечисленных географических объектов.
 
