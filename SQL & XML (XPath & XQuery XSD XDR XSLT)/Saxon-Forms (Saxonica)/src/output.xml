@@ -4,17 +4,17 @@
     <xsl:variable name="refi" select="@data-ref"/>
     <xsl:variable name="refElement" select="@data-element"/>
     <!--<xsl:variable name="xforms-value-change"
-            select="ixsl:page()//head/script[@data-ntype = 'xforms-value-changed' and @data-action-context = $refi]"/>-->
+            select="ixsl:page()//head/script[@data-ntype = 'xforms-value-changed' and @data-action-context = $refi]"/> -->
     <xsl:variable name="xforms-actions"
         select="js:getAction(string(@data-action))" as="map(*)*"/>
     <xsl:message use-when="$debugMode">action map = <xsl:sequence select="serialize($xforms-actions)" /></xsl:message>
     <!-- MD 2018-06-29: handle multiple instances -->
     <xsl:variable name="instanceXML" as="element()" select="xforms:getInstance-JS($refi)"/>
     <xsl:variable name="updatedInstanceXML">
-        <!--            <xsl:variable name="instanceXML" select="js:getInstance()"/>-->
+        <!--            <xsl:variable name="instanceXML" select="js:getInstance()"/> -->
         <xsl:apply-templates select="$instanceXML" mode="form-check-initial"/>
     </xsl:variable>
-    <!--        <xsl:sequence select="js:setInstance($updatedInstanceXML)"/>-->
+    <!--        <xsl:sequence select="js:setInstance($updatedInstanceXML)"/> -->
     <xsl:sequence select="xforms:setInstance-JS($refi,$updatedInstanceXML)"/>
     <!--<xsl:variable name="updatedInstanceXML">
             <xsl:variable name="instanceXML" select="js:getInstance()"/>
@@ -29,7 +29,7 @@
     </xsl:message> 
     <xsl:for-each select="$xforms-actions">
         <xsl:variable name="action-map" select="."/>
-        <!--<xsl:message> xforms action = <xsl:sequence select="serialize(.)" /></xsl:message>-->
+        <!--<xsl:message> xforms action = <xsl:sequence select="serialize(.)" /></xsl:message> -->
         <xsl:variable name="ref" select="map:get($action-map, '@ref')"/>
         <xsl:message use-when="$debugMode"> select ref = <xsl:value-of select="$ref"/></xsl:message>
         <xsl:variable name="context" as="node()?">
@@ -139,7 +139,7 @@
                 <xsl:with-param name="pendingUpdates" as="map(xs:string,xs:string)?" select="js:getPendingUpdates()" />
             </xsl:apply-templates>
         </xsl:variable>
-        <xsl:sequence select="js:setInstance($updatedInstanceXML2)"/>-->
+        <xsl:sequence select="js:setInstance($updatedInstanceXML2)"/> -->
     <xsl:variable name="updatedInstanceXML2">
         <xsl:apply-templates select="$updatedInstanceXML" mode="form-check-initial">
             <xsl:with-param name="pendingUpdates" as="map(xs:string,xs:string)?" select="js:getPendingUpdates()" />

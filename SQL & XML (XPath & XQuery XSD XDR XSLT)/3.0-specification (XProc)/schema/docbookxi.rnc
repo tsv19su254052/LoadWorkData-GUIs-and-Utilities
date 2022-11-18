@@ -15,11 +15,8 @@ s:ns [
 ]
 s:ns [ prefix = "ctrl" uri = "http://nwalsh.com/xmlns/schema-control/" ]
 s:ns [ prefix = "db" uri = "http://docbook.org/ns/docbook" ]
-s:ns [
-  prefix = "dbx"
-  uri =
-    "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
-]
+s:ns    [prefix = "dbx"
+        uri = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"]
 s:ns [ prefix = "html" uri = "http://www.w3.org/1999/xhtml" ]
 s:ns [ prefix = "mml" uri = "http://www.w3.org/1998/Math/MathML" ]
 s:ns [ prefix = "rng" uri = "http://relaxng.org/ns/structure/1.0" ]
