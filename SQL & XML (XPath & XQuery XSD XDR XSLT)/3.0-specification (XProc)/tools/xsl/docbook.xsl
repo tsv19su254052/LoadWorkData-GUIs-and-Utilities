@@ -19,7 +19,7 @@
 
 <xsl:param name="w3c-doctype" select="/db:specification/@class"/>
 
-<xsl:param name="toc.section.depth">3</xsl:param>
+<xsl:param name="toc.section.depth"> 3 </xsl:param>
 
 <xsl:param name="publication.root.uri"
 	   select="if (/processing-instruction(publication-root))
@@ -66,7 +66,7 @@
     </xsl:if>
 
     <xsl:choose>
-      <xsl:when test="$w3c-doctype = 'fpwd'">WD</xsl:when>
+      <xsl:when test="$w3c-doctype = 'fpwd'"> WD </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="upper-case($w3c-doctype)"/>
       </xsl:otherwise>
@@ -89,17 +89,17 @@
                 and //db:error[starts-with(@code,'C')]
                 and not(//processing-instruction('step-error-list'))">
     <xsl:message terminate="yes">
-      <xsl:text>Step has errors but no error list glossary</xsl:text>
+      <xsl:text> Step has errors but no error list glossary </xsl:text>
     </xsl:message>
   </xsl:if>
 
   <xsl:if test="$revisionflags">
     <div class="augment">
-      <p>The presentation of this document has been augmented to
+      <p> The presentation of this document has been augmented to
       identify changes from a previous version. Three kinds of changes
-      are highlighted: <span class="revision-added">new, added text</span>,
-      <span class="revision-changed">changed text</span>, and
-      <span class="revision-deleted">deleted text</span>.</p>
+      are highlighted: <span class="revision-added"> new, added text </span>,
+      <span class="revision-changed"> changed text </span>, and
+      <span class="revision-deleted"> deleted text </span>.</p>
       <hr/>
     </div>
   </xsl:if>
@@ -131,10 +131,10 @@
     <h2>
       <xsl:choose>
         <xsl:when test="$w3c-doctype='ed'">
-          <xsl:text>Draft Community Group Report </xsl:text>
+          <xsl:text> Draft Community Group Report </xsl:text>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:text>Community Group Report </xsl:text>
+          <xsl:text> Community Group Report </xsl:text>
         </xsl:otherwise>
       </xsl:choose>
 
@@ -149,10 +149,10 @@
       <div class="editors-draft">
 	<xsl:choose>
 	  <xsl:when test="count(/*/db:info//db:editor) &gt; 1">
-	    <xsl:text>Editors' Draft </xsl:text>
+	    <xsl:text> Editors' Draft </xsl:text>
 	  </xsl:when>
 	  <xsl:otherwise>
-	    <xsl:text>Editor's Draft </xsl:text>
+	    <xsl:text> Editor's Draft </xsl:text>
 	  </xsl:otherwise>
 	</xsl:choose>
 
@@ -173,7 +173,7 @@
           <xsl:if test="$ci-build-number != ''">
             <xsl:text> (</xsl:text>
             <a href="https://github.com/{$ci-user}/{$ci-repo}/commit/{$ci-commit}">
-              <xsl:text>build </xsl:text>
+              <xsl:text> build </xsl:text>
               <xsl:value-of select="$ci-build-number"/>
             </a>
             <xsl:text>)</xsl:text>
@@ -185,7 +185,7 @@
     <dl>
       <xsl:choose>
         <xsl:when test="contains-token(@version, 'final')">
-          <dt>Specification:</dt>
+          <dt> Specification: </dt>
           <dd>
             <a href="{db:info/db:bibliomisc[@role='final-uri']}">
               <xsl:sequence select="string(db:info/db:bibliomisc[@role='final-uri'])"/>
@@ -193,7 +193,7 @@
           </dd>
         </xsl:when>
         <xsl:otherwise>
-          <dt>Latest editor’s draft:</dt>
+          <dt> Latest editor’s draft: </dt>
           <dd>
             <a href="https://spec.xproc.org/master/head/{$spec}">
               <xsl:value-of select="concat('https://spec.xproc.org/master/head/', $spec)" />
@@ -206,7 +206,7 @@
 	<xsl:variable name="vers"
                       select="db:info/db:bibliorelation[@type='replaces']"/>
 	<dt>
-	  <xsl:text>Previous version</xsl:text>
+	  <xsl:text> Previous version </xsl:text>
 	  <xsl:if test="count($vers) &gt; 1">s</xsl:if>
 	  <xsl:text>:</xsl:text>
 	</dt>
@@ -236,7 +236,7 @@
 			    |db:info/db:editor"/>
 
       <dt>
-	<xsl:text>Editor</xsl:text>
+	<xsl:text> Editor </xsl:text>
 	<xsl:if test="count($editors) &gt; 1">s</xsl:if>
 	<xsl:text>:</xsl:text>
       </dt>
@@ -258,43 +258,43 @@
       <xsl:variable name="repo"
                     select="db:info/db:bibliomisc[@role='github-repo']"/>
 
-      <dt>Participate:</dt>
+      <dt> Participate: </dt>
       <dd>
         <a href="http://github.com/{$repo}">
-          <xsl:text>GitHub </xsl:text>
+          <xsl:text> GitHub </xsl:text>
           <xsl:value-of select="$repo"/>
         </a>
       </dd>
       <dd>
         <a href="http://github.com/{$repo}/issues">
-          <xsl:text>Report an issue</xsl:text>
+          <xsl:text> Report an issue </xsl:text>
         </a>
       </dd>
 
       <xsl:if test="($ci-build-number != '' or $auto-diff)
                     and not(db:info/db:bibliomisc[@role='final-uri'])">
-        <dt>Changes:</dt>
+        <dt> Changes: </dt>
         <xsl:if test="/*/@xml:id = 'xproc'">
           <dd>
-            <a href="lcdiff.html">Diff against the 3.0 specification</a>
+            <a href="lcdiff.html"> Diff against the 3.0 specification </a>
           </dd>
         </xsl:if>
         <xsl:if test="$auto-diff">
           <dd>
-            <a href="diff.html">Diff against current “status quo” draft</a>
+            <a href="diff.html"> Diff against current “status quo” draft </a>
           </dd>
         </xsl:if>
         <xsl:if test="$ci-build-number != ''">
           <dd>
             <a href="http://github.com/{$ci-user}/{$ci-repo}/commits/{$ci-branch}">
-              <xsl:text>Commits for this specification</xsl:text>
+              <xsl:text> Commits for this specification </xsl:text>
             </a>
           </dd>
         </xsl:if>
       </xsl:if>
 
       <xsl:if test="contains-token(@version, 'final')">
-        <dt>Errata:</dt>
+        <dt> Errata: </dt>
         <dd>
           <a href="{db:info/db:bibliomisc[@role='final-uri']}errata.html">
             <xsl:sequence select="db:info/db:bibliomisc[@role='final-uri'] || 'errata.html'"/>
@@ -304,17 +304,15 @@
     </dl>
 
     <xsl:apply-templates
-        select="db:info/db:bibliorelation[@type='references'
-                                          and @role='errata']"/>
+        select="db:info/db:bibliorelation[@type='references' and @role='errata']" />
 
     <xsl:apply-templates
-        select="db:info/db:bibliorelation[@type='references'
-                                          and @role='translations']"/>
+        select="db:info/db:bibliorelation[@type='references' and @role='translations']" />
 
     <xsl:if test="db:info/db:bibliorelation[@type='isformatof']">
       <p>
-	<xsl:text>This document is also available in these </xsl:text>
-	<xsl:text>non-normative formats: </xsl:text>
+	<xsl:text> This document is also available in these </xsl:text>
+	<xsl:text> non-normative formats: </xsl:text>
 	<xsl:for-each select="db:info/db:bibliorelation[@type='isformatof']">
 	  <a href="{@xlink:href}">
 	    <xsl:value-of select="."/>
@@ -322,8 +320,7 @@
 	  <xsl:if test="position() &lt; last()">, </xsl:if>
 	</xsl:for-each>
 
-        <xsl:if test="$auto-diff
-                      and not(db:info/db:bibliomisc[@role='final-uri'])">
+        <xsl:if test="$auto-diff and not(db:info/db:bibliomisc[@role='final-uri'])">
           <xsl:text> and HTML with automatic change markup </xsl:text>
           <xsl:text> courtesy of </xsl:text>
           <a href="http://www.deltaxml.com/">DeltaXML</a>
@@ -338,7 +335,7 @@
         <xsl:apply-templates select="db:info/db:copyright"/>
       </xsl:when>
       <xsl:otherwise>
-        <p class="copyright">Copyright © 2018 FIXME: NO COPYRIGHT ELEMENT?</p>
+        <p class="copyright"> Copyright © 2018 FIXME: NO COPYRIGHT ELEMENT? </p>
       </xsl:otherwise>
     </xsl:choose>
 
@@ -365,8 +362,7 @@
 
 <xsl:template match="db:copyright">
   <p class="copyright">
-    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright"
-       >Copyright</a>
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright"> Copyright </a>
 
     <xsl:text>&#160;©&#160;</xsl:text>
 
@@ -374,8 +370,7 @@
       <xsl:call-template name="t:copyright-years">
         <xsl:with-param name="years" select="db:year"/>
         <xsl:with-param name="print.ranges" select="$make.year.ranges"/>
-        <xsl:with-param name="single.year.ranges"
-                        select="$make.single.year.ranges"/>
+        <xsl:with-param name="single.year.ranges" select="$make.single.year.ranges"/>
       </xsl:call-template>
     </span>
 
@@ -388,19 +383,17 @@
     <xsl:text> specification, published by the </xsl:text>
     <a href="{$cg/@xlink:href}">
       <xsl:value-of select="$cg"/>
-      <xsl:text> Community Group</xsl:text>
+      <xsl:text> Community Group </xsl:text>
     </a>
     <xsl:text> under the </xsl:text>
-    <a href="https://www.w3.org/community/about/agreements/cla/">W3C
-    Community Contributor License Agreement (CLA)</a>
+    <a href="https://www.w3.org/community/about/agreements/cla/"> W3C Community Contributor License Agreement (CLA) </a>
     <xsl:text>. A human-readable </xsl:text>
     <a href="https://www.w3.org/community/about/agreements/cla-deed/">summary</a>
     <xsl:text> is available.</xsl:text>
   </p>
 </xsl:template>
 
-<xsl:template match="db:bibliorelation[@type='references'
-                                       and @role='errata']">
+<xsl:template match="db:bibliorelation[@type='references' and @role='errata']">
   <p>
     <xsl:text>Please refer to the </xsl:text>
     <a href="{@xlink:href}">
@@ -411,9 +404,8 @@
   </p>
 </xsl:template>
 
-<xsl:template match="db:bibliorelation[@type='references'
-                                       and @role='translations']">
-  <p>See also <a href="{@xlink:href}"> <strong>translations</strong></a>.</p>
+<xsl:template match="db:bibliorelation[@type='references' and @role='translations']">
+  <p> See also <a href="{@xlink:href}"> <strong> translations </strong></a>.</p>
 </xsl:template>
 
 <xsl:template name="format-namespace">
@@ -425,8 +417,7 @@
       </a>
     </p>
 
-    <xsl:apply-templates select="db:info/db:title[1]"
-			 mode="m:titlepage-mode"/>
+    <xsl:apply-templates select="db:info/db:title[1]" mode="m:titlepage-mode"/>
   </div>
 
   <hr/>
@@ -449,7 +440,7 @@
 	      mode="m:titlepage-mode"
 	      priority="100">
   <section id="abstract" class="introductory">
-    <h2>Abstract</h2>
+    <h2> Abstract </h2>
     <xsl:apply-templates/>
   </section>
 </xsl:template>
@@ -458,21 +449,21 @@
 	      mode="m:titlepage-mode"
 	      priority="100">
   <section id="sotd" class="introductory">
-    <h2>Status of this Document</h2>
+    <h2> Status of this Document </h2>
 
     <xsl:if test="/db:specification/@class='ed'">
       <p>
 	<strong>
-	  <xsl:text>This document is an </xsl:text>
+	  <xsl:text> This document is an </xsl:text>
 	  <xsl:choose>
 	    <xsl:when test="count(/*/db:info//db:editor) &gt; 1">
-	      <xsl:text>editors' </xsl:text>
+	      <xsl:text> editors' </xsl:text>
 	    </xsl:when>
 	    <xsl:otherwise>
-	      <xsl:text>editor's </xsl:text>
+	      <xsl:text> editor's </xsl:text>
 	    </xsl:otherwise>
 	  </xsl:choose>
-	  <xsl:text> draft that has no official standing.</xsl:text>
+	  <xsl:text> draft that has no official standing. </xsl:text>
 	</strong>
       </p>
     </xsl:if>
@@ -512,8 +503,7 @@
 </xsl:param>
 
 <xsl:template match="db:specification" mode="m:toc">
-  <xsl:param name="toc.params"
-             select="f:find-toc-params(., $generate.toc)"/>
+  <xsl:param name="toc.params" select="f:find-toc-params(., $generate.toc)"/>
 
   <xsl:call-template name="t:make-lots">
     <xsl:with-param name="toc.params" select="$toc.params"/>
@@ -569,9 +559,7 @@
   <xsl:param name="toc-context" select="."/>
   <xsl:param name="depth" select="1"/>
   <xsl:param name="depth.from.context" select="8"/>
-
   <xsl:attribute name="class" select="'tocline'"/>
-
   <a class="tocxref" href="{f:href(/,.)}">
     <bdi class="secno">
       <xsl:apply-templates select="." mode="m:label-content"/>
@@ -651,7 +639,6 @@
 
 <xsl:function name="f:syntax-highlight-class" as="xs:string*">
   <xsl:param name="node"/>
-
   <xsl:variable name="numbered" select="f:syntax-highlight($node)"/>
 
   <!-- We do this irrespective of whether or not syntax highlighting is enabled.
@@ -659,14 +646,8 @@
        to do the highlighting. Also, output the language value untransformed. -->
 
   <xsl:variable name="language" select="$node/@language/string()"/>
-  <xsl:variable name="mapped-language"
-                select="($syntax.highlight.map[@key=$language]/@value/string(),
-                         $language)[1]"/>
-
-  <xsl:variable name="language" as="xs:string?"
-                select="if ($mapped-language)
-                        then concat('language-', $mapped-language)
-                        else 'language-none'"/>
+  <xsl:variable name="mapped-language" select="($syntax.highlight.map[@key=$language]/@value/string(), $language)[1]"/>
+  <xsl:variable name="language" as="xs:string?" select="if ($mapped-language) then concat('language-', $mapped-language) else 'language-none'"/>
 
   <!-- Prism numbers listings that have the 'line-numbers' class. -->
   <!-- Turn off line numbers. -->

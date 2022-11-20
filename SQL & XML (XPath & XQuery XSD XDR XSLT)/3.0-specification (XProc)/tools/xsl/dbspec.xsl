@@ -587,12 +587,12 @@
     <xsl:choose>
       <xsl:when test="$level = 'none'"/>
       <xsl:when test="empty($level)">
-        <h5>Step Errors</h5>
+        <h5> Step Errors </h5>
       </xsl:when>
       <xsl:otherwise>
         <xsl:element namespace="http://www.w3.org/1999/xhtml"
                      name="{QName('', $level)}">
-          <xsl:text>Step Errors</xsl:text>
+          <xsl:text> Step Errors </xsl:text>
         </xsl:element>
       </xsl:otherwise>
     </xsl:choose>
@@ -618,7 +618,7 @@
     <xsl:variable name="codes" select="distinct-values(current-group()/@code)"/>
     <dt id="err.{$codes[1]}">
       <code class="errqname">
-	<xsl:text>err:X</xsl:text>
+	<xsl:text> err:X </xsl:text>
 	<xsl:value-of select="$codes[1]"/>
       </code>
     </dt>
@@ -627,7 +627,7 @@
 	<xsl:value-of select="current-group()[1]"/>
       </p>
       <p>
-	<xsl:text>See: </xsl:text>
+	<xsl:text> See: </xsl:text>
 	<xsl:for-each select="current-group()">
 	  <xsl:variable name="code" select="@code"/>
 	  <xsl:variable name="num" select="count(preceding::db:error[@code=$code])"/>
@@ -652,7 +652,7 @@
 
 <xsl:template match="err:error"
               xmlns:err="http://www.w3.org/ns/xproc-error">
-  <dt><code>err:<xsl:value-of select="@code"/></code></dt>
+  <dt><code> err: <xsl:value-of select="@code"/></code></dt>
   <dd>
     <p>
       <xsl:apply-templates/>
@@ -776,7 +776,7 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:message>
-	<xsl:text>-- unexpected revision flag on </xsl:text>
+	<xsl:text> -- unexpected revision flag on </xsl:text>
 	<xsl:value-of select="name(.)"/>
 	<xsl:text> --</xsl:text>
       </xsl:message>
@@ -808,7 +808,7 @@
     <span class="funccomma">, </span>
   </xsl:if>
   <span class="paramname">
-    <xsl:text>$</xsl:text>
+    <xsl:text> $ </xsl:text>
     <xsl:value-of select="db:parameter"/>
   </span>
   <span class="typeas"> as </span>
@@ -830,7 +830,7 @@
 <xsl:template match="db:biblioref">
   <xsl:variable name="entry" select="key('id', @linkend)"/>
   <xsl:if test="@linkend and not($entry/self::db:bibliomixed)">
-    <span class="error">@@FIXME:MISSING </span>
+    <span class="error"> @@FIXME:MISSING </span>
   </xsl:if>
   <xsl:next-match/>
 </xsl:template>
@@ -863,12 +863,12 @@
           <xsl:choose>
             <xsl:when test="empty($entry)">
               <xsl:message>
-                <xsl:text>Error: no toc entry for </xsl:text>
+                <xsl:text> Error: no toc entry for </xsl:text>
                 <xsl:value-of select="@xref"/>
                 <xsl:text> in xspecref to </xsl:text>
                 <xsl:value-of select="@spec"/>
               </xsl:message>
-              <xsl:text>[XSPECREF ERROR: </xsl:text>
+              <xsl:text> [XSPECREF ERROR: </xsl:text>
               <xsl:value-of select="@spec"/>
               <xsl:text>/</xsl:text>
               <xsl:value-of select="@xref"/>
@@ -906,8 +906,8 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message>Error: no toc for xspecref to <xsl:value-of select="@spec"/></xsl:message>
-      <xsl:text>[XSPECREF ERROR: </xsl:text>
+      <xsl:message> Error: no toc for xspecref to <xsl:value-of select="@spec"/></xsl:message>
+      <xsl:text> [XSPECREF ERROR: </xsl:text>
       <xsl:value-of select="@spec"/>
       <xsl:text>]</xsl:text>
     </xsl:otherwise>
