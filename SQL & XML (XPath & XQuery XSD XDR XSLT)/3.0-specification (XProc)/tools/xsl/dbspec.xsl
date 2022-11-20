@@ -40,20 +40,51 @@
   <map key="html" value="markup"/>
 </xsl:param>
 
-<xsl:param name="resource.root"
-           select="''"/> <!-- http://cdn.docbook.org/release/2.0.20/resources/'"/> -->
+<xsl:param name="resource.root" select="''"/> <!-- see http://cdn.docbook.org/release/2.0.20/resources/'"/> -->
 
 <!-- Default macros -->
 <xsl:variable name="ml:defaultMacros" select="document($defaultMacros)"/>
 <ml:collection xml:id="macros">
-  <ml:macro name="pipeline"><db:phrase role="component">pipeline</db:phrase></ml:macro>
-  <ml:macro name="for-each"><db:phrase role="component">for-each</db:phrase></ml:macro>
-  <ml:macro name="viewport"><db:phrase role="component">viewport</db:phrase></ml:macro>
-  <ml:macro name="choose"><db:phrase role="component">choose</db:phrase></ml:macro>
-  <ml:macro name="try"><db:phrase role="component">try</db:phrase></ml:macro>
-  <ml:macro name="catch"><db:phrase role="component">catch</db:phrase></ml:macro>
-  <ml:macro name="group"><db:phrase role="component">group</db:phrase></ml:macro>
-  <ml:macro name="try/catch"><db:phrase role="component">try/catch</db:phrase></ml:macro>
+  <ml:macro name="pipeline">
+      <db:phrase role="component">
+          pipeline
+      </db:phrase>
+  </ml:macro>
+  <ml:macro name="for-each">
+      <db:phrase role="component">
+          for-each
+      </db:phrase>
+  </ml:macro>
+  <ml:macro name="viewport">
+      <db:phrase role="component">
+          viewport
+      </db:phrase>
+  </ml:macro>
+  <ml:macro name="choose">
+      <db:phrase role="component">
+          choose
+      </db:phrase>
+  </ml:macro>
+  <ml:macro name="try">
+      <db:phrase role="component">
+          try
+      </db:phrase>
+  </ml:macro>
+  <ml:macro name="catch">
+      <db:phrase role="component">
+          catch
+      </db:phrase>
+  </ml:macro>
+  <ml:macro name="group">
+      <db:phrase role="component">
+          group
+      </db:phrase>
+  </ml:macro>
+  <ml:macro name="try/catch">
+      <db:phrase role="component">
+          try/catch
+      </db:phrase>
+  </ml:macro>
 </ml:collection>
 
 <!-- ============================================================ -->
@@ -68,7 +99,7 @@
 
 <xsl:template match="db:note[@role='editorial']/db:title" mode="m:titlepage-mode">
   <xsl:param name="context" as="element()?" select="()"/>
-  <h3>Editorial Note</h3>
+  <h3> Editorial Note </h3>
 </xsl:template>
 
 <xsl:template match="db:termdef/db:firstterm">
@@ -79,7 +110,7 @@
 
 <xsl:template match="db:termdef">
   <xsl:if test="not(.//db:firstterm)">
-    <xsl:message>Error termdef (<xsl:value-of select="@xml:id"/>) does not contain firstterm.</xsl:message>
+    <xsl:message> Error termdef (<xsl:value-of select="@xml:id"/>) does not contain firstterm. </xsl:message>
   </xsl:if>
   <xsl:apply-imports/>
 </xsl:template>
@@ -114,7 +145,7 @@
 		     and not(@role='unwrapped')
 		     and not(ancestor::db:glossentry))">
     <xsl:message>
-      <xsl:text>Unwrapped </xsl:text>
+      <xsl:text> Unwrapped </xsl:text>
       <xsl:value-of select="$anchorterm"/>
       <xsl:text> (</xsl:text>
       <xsl:value-of select="name(parent::*)"/>
@@ -132,7 +163,7 @@
       </xsl:when>
       <xsl:otherwise>
 	<xsl:message>
-	  <xsl:text>No definition for glossterm: "</xsl:text>
+	  <xsl:text> No definition for glossterm: " </xsl:text>
 	  <xsl:value-of select="$anchor"/>
 	  <xsl:text>" (ID: </xsl:text>
           <xsl:value-of select="concat('dt-', $anchor)"/>
@@ -147,11 +178,11 @@
 		and ($anchorterm = 'static error'
                      or $anchorterm = 'dynamic error')">
     <xsl:variable name="code" select="ancestor::db:error[1]/@code"/>
-    <xsl:text>&#160;(</xsl:text>
+    <xsl:text> &#160;( </xsl:text>
     <a href="#err.{$code}">
       <code class="errqname">
-	<xsl:text>err:X</xsl:text>
-	<xsl:value-of select="ancestor::db:error[1]/@code"/>
+          <xsl:text> err:X </xsl:text>
+          <xsl:value-of select="ancestor::db:error[1]/@code"/>
       </code>
     </a>
     <xsl:text>)</xsl:text>
@@ -161,8 +192,8 @@
 <xsl:template match="db:phrase[@role='component']">
   <xsl:variable name="id">
     <xsl:choose>
-      <xsl:when test=". = 'catch'">p.try</xsl:when>
-      <xsl:when test=". = 'try/catch'">p.try</xsl:when>
+      <xsl:when test=". = 'catch'"> p.try </xsl:when>
+      <xsl:when test=". = 'try/catch'"> p.try </xsl:when>
       <xsl:otherwise>
 	<xsl:value-of select="concat('p.', .)"/>
       </xsl:otherwise>
@@ -182,7 +213,7 @@
       </xsl:when>
       <xsl:otherwise>
 	<xsl:message>
-	  <xsl:text>No definition for: "</xsl:text>
+	  <xsl:text> No definition for: " </xsl:text>
 	  <xsl:value-of select="if (@baseform) then @baseform else normalize-space(.)"/>
 	  <xsl:text>"</xsl:text>
 	</xsl:message>
@@ -314,7 +345,7 @@
 	  </xsl:when>
 	  <xsl:otherwise>
 	    <xsl:message>
-	      <xsl:text>Unexpected function: </xsl:text>
+	      <xsl:text> Unexpected function: </xsl:text>
 	      <xsl:value-of select="$name"/>
 	    </xsl:message>
 	    <xsl:value-of select="translate($name,':','.')"/>
@@ -331,7 +362,7 @@
 	  </a>
 	</xsl:when>
 	<xsl:otherwise>
-	  <xsl:message>Warning: No anchor for <xsl:value-of select="."/></xsl:message>
+	  <xsl:message> Warning: No anchor for <xsl:value-of select="."/></xsl:message>
 	  <xsl:apply-imports/>
 	</xsl:otherwise>
       </xsl:choose>
