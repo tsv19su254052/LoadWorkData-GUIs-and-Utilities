@@ -1,0 +1,8 @@
+<config xmlns="http://transpect.io/control">
+  <db>control</db>
+  <locale>de</locale>
+  <host>localhost</host>
+  <port>8984</port>
+  <path>control</path>
+  <datadir>/data/</datadir>
+</config>
