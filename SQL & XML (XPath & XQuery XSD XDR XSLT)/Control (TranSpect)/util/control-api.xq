@@ -10,6 +10,7 @@ import module namespace control         = 'http://transpect.io/control' at '../c
 import module namespace control-i18n    = 'http://transpect.io/control/util/control-i18n' at 'control-i18n.xq';
 import module namespace control-util    = 'http://transpect.io/control/util/control-util' at 'control-util.xq';
 import module namespace control-widgets = 'http://transpect.io/control/util/control-widgets' at 'control-widgets.xq';
+
 (:
  : control-api:list()
  :
@@ -33,6 +34,7 @@ function control-api:list( $svnurl as xs:string?, $svnusername as xs:string?, $s
                              else svn:checkout($svnurl, $svnusername, $svnpassword, $checkoutdir, $revision, $depth) 
   return svn:list( $checkoutdir, $svnusername, $svnpassword, false())
 };
+
 (:
  :  control-api:checkout()
  :    
@@ -52,9 +54,9 @@ function control-api:checkout( $svnurl as xs:string, $svnusername as xs:string, 
   let $depth := 'infinity'
   return svn:checkout($svnurl, $svnusername, $svnpassword, $checkoutdir, $revision, $depth)  
 };
+
 (:
  :  control-api:copy()
- :    
  :  copies a file or directory
 :)
 declare
@@ -76,9 +78,9 @@ function control-api:copy( $svnurl as xs:string, $svnusername as xs:string, $svn
                              else svn:checkout($svnurl, $svnusername, $svnpassword, $checkoutdir, $revision, $depth) 
   return svn:copy($checkoutdir, $svnusername, $svnpassword, $path, $target, ())/svn:commit($svnusername, $svnpassword, $checkoutdir, $commitmsg)
 };
+
 (:
  :  control-api:delete()
- :    
  :  delete a file or directory
 :)
 declare
@@ -100,9 +102,9 @@ function control-api:delete( $svnurl as xs:string, $svnusername as xs:string, $s
                              else svn:checkout($svnurl, $svnusername, $svnpassword, $checkoutdir, $revision, $depth) 
   return svn:delete($checkoutdir, $svnusername, $svnpassword, $path, $force, ())/svn:commit($svnusername, $svnpassword, $checkoutdir, $commitmsg)
 };
+
 (:
  :  control-api:move
- :    
  :  move or rename a file or directory
 :)
 declare
@@ -124,9 +126,9 @@ function control-api:move( $svnurl as xs:string, $svnusername as xs:string, $svn
                              else svn:checkout($svnurl, $svnusername, $svnpassword, $checkoutdir, $revision, $depth) 
   return svn:move($checkoutdir, $svnusername, $svnpassword, $path, $target, ())/svn:commit($svnusername, $svnpassword, $checkoutdir, $commitmsg)
 };
+
 (:
  :  control-api:mkdir
- :    
  :  create a directory
 :)
 declare
@@ -148,9 +150,9 @@ function control-api:mkdir( $svnurl as xs:string, $svnusername as xs:string, $sv
                              else svn:checkout($svnurl, $svnusername, $svnpassword, $checkoutdir, $revision, $depth) 
   return svn:mkdir($checkoutdir, $svnusername, $svnpassword, $dir, true(), $commitmsg)/svn:commit($svnusername, $svnpassword, $path, $commitmsg)
 };
+
 (:
  :  control-api:info
- :    
  :  shows information about an object
 :)
 declare
@@ -163,9 +165,9 @@ declare
 function control-api:info( $svnurl as xs:string, $svnusername as xs:string, $svnpassword as xs:string ) {
   svn:info($svnurl, $svnusername, $svnpassword)
 };
+
 (:
  :  control-api:propget
- :    
  :  shows information about the properties of an object
 :)
 declare
@@ -180,9 +182,9 @@ declare
 function control-api:propget( $svnurl as xs:string, $svnusername as xs:string, $svnpassword as xs:string, $property as xs:string, $revision as xs:string ) {
   svn:propget($svnurl, $svnusername, $svnpassword, $property, $revision)
 };
+
 (:
  :  control-api:propset
- :    
  :  sets properties for an object
 :)
 declare

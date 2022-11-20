@@ -5,7 +5,6 @@ import module namespace control-i18n = 'http://transpect.io/control/util/control
 
 declare namespace control-widgets = 'http://transpect.io/control/util/control-widgets';
 declare namespace control-custom = 'http://transpect.io/control/control-customization';
-
 declare namespace c = 'http://www.w3.org/ns/xproc-step';
 
 declare variable $control-util:namespace-map as map(xs:string, xs:string) 
@@ -40,13 +39,14 @@ declare function control-util:clark-to-prefix($xpath as xs:string, $nsmap as map
  : e.g. /home/parentdir/mydir/ => /home/parentdir/ 
  :)  
 declare function control-util:path-parent-dir( $path as xs:string ) as xs:string? {
-let $local-path := control-util:get-local-path($path),
-    $parent-path := ($control:index//*[@svnpath eq $local-path]
-          /parent::*/@svnpath)[1]
-return if ($parent-path)
-       then control-util:get-canonical-path($parent-path)
-       else ''
+  let $local-path := control-util:get-local-path($path),
+      $parent-path := ($control:index//*[@svnpath eq $local-path]
+            /parent::*/@svnpath)[1]
+  return if ($parent-path)
+         then control-util:get-canonical-path($parent-path)
+         else ''
 };
+
 (:
  : decode escaped characters within an URI 
  :)
@@ -57,6 +57,7 @@ declare function control-util:decode-uri( $uri as xs:string ) {
                      else $i, 
                      '')
 };
+
 (:
  : get icon url for an icon name
  :)
@@ -95,7 +96,7 @@ declare function control-util:create-path-index($svnurl as xs:string,
   if (svn:list($svnurl, $control:svnauth, false())[not(*:error)])
   then 
     element {$type} {
-(:      attribute raw {$svnurl || '--' || $name || '--' || $type || '--' || $virtual-path || '--' ||$mount-point},:)
+(:      attribute raw {$svnurl || '--' || $name || '--' || $type || '--' || $virtual-path || '--' ||$mount-point}, :)
       attribute name {$name},
       if ($type = 'directory') then prof:dump(string-join((convert:integer-to-dateTime(prof:current-ms()), $svnurl, control-util:get-local-path($svnurl)), ' ')) else (),
       attribute svnpath {control-util:get-local-path($svnurl)},
@@ -243,19 +244,19 @@ declare function control-util:create-download-link($svnurl as xs:string, $file a
 };
 
 declare function control-util:get-local-path($svnurl as xs:string?) as xs:string? {
-let $repo := control-util:get-repo-for-svnurl($svnurl),
-    $repourl := if ($repo/@parent-path) then $repo/@parent-path else $repo/@path,
-    $local-path := replace($repourl,'/$',''),
-    $canon-path := replace($repo/@canon-path,'/$','')
-return if ($repo)  then replace($svnurl,'^'||$canon-path, $local-path) else $svnurl
+  let $repo := control-util:get-repo-for-svnurl($svnurl),
+      $repourl := if ($repo/@parent-path) then $repo/@parent-path else $repo/@path,
+      $local-path := replace($repourl,'/$',''),
+      $canon-path := replace($repo/@canon-path,'/$','')
+  return if ($repo)  then replace($svnurl,'^'||$canon-path, $local-path) else $svnurl
 };
 
 declare function control-util:get-canonical-path($svnurl as xs:string) as xs:string{
-let $repo := control-util:get-repo-for-svnurl($svnurl),
-    $repourl := if ($repo/@parent-path) then $repo/@parent-path else $repo/@path,
-    $local-path := replace($repourl,'/$',''),
-    $canon-path := replace($repo/@canon-path,'/$','')
-return if ($repo) then replace($svnurl, '^'||$local-path, $canon-path) else $svnurl
+  let $repo := control-util:get-repo-for-svnurl($svnurl),
+      $repourl := if ($repo/@parent-path) then $repo/@parent-path else $repo/@path,
+      $local-path := replace($repourl,'/$',''),
+      $canon-path := replace($repo/@canon-path,'/$','')
+  return if ($repo) then replace($svnurl, '^'||$local-path, $canon-path) else $svnurl
 };
 
 declare function control-util:get-repo-for-svnurl($svnurl as xs:string?) as element(control:repo)?{
@@ -319,6 +320,7 @@ declare function control-util:get-message-url($msg as xs:string, $msgtype as xs:
       $messagetype := '&amp;msgtype=' || $msgtype
   return $message || encode-for-uri(if ($localize) then control-i18n:localize($msg, $control:locale) else $msg) || $messagetype
 };
+
 (:
  : get mimetype for file extension
  :)
@@ -328,6 +330,7 @@ else if ( $ext eq 'text')             then 'text-plain'
 else if ( $ext = ('Makefile', 'bat')) then 'text-x'
 else                                      'text-plain'
 };
+
 (:
  : is user admin
  :)
@@ -336,6 +339,7 @@ let $user := $control:access//*:users/*:user[*:name=$username],
     $grouprels := $control:access//*:rels/*:rel[*:user][*:user=$user/*:name]
  return "admin" = $grouprels/*:group
 };
+
 (:
  : get read/write for username and repo
  :)
@@ -429,7 +433,7 @@ declare function control-util:post-file-to-converter($svnurl as xs:string, $file
 (:
  : get running conversions
  :)
- declare function control-util:get-running-conversions($svnurl as xs:string, $file as xs:string, $type as xs:string) {
+declare function control-util:get-running-conversions($svnurl as xs:string, $file as xs:string, $type as xs:string) {
   let $conversions := $control:conversions//control:conversion[control:type = $type][control:file = $file][control:svnurl = $svnurl]
   return $conversions
 };
@@ -448,9 +452,7 @@ declare function control-util:get-converters-for-file($file as xs:string) as xs:
 };
 
 declare function control-util:add-conversion($conv as element(conversion)) {
-  let $file := $control:mgmtdoc,
-      $updated-conversions := $file update {insert node $conv into //control:conversions}
-      
+  let $file := $control:mgmtdoc, $updated-conversions := $file update {insert node $conv into //control:conversions}
   return file:write("basex/webapp/control/"||$control:mgmtfile, $updated-conversions)
 };
 
@@ -489,12 +491,12 @@ declare function control-util:get-converter-for-type($type as xs:string) as elem
 };
 
 declare function control-util:get-current-url() as xs:string {
-replace(request:uri(),'https?://[^/]+/control',$control:siteurl)
+  replace(request:uri(),'https?://[^/]+/control',$control:siteurl)
 };
 
 declare function control-util:get-query-without-msg() as xs:string{
-let $queries-to-remove := '^msg=,^msgtype=' 
-return string-join(tokenize(request:query(),'&amp;')[not(matches(.,string-join(tokenize($queries-to-remove,","),"|")))],'&amp;')
+  let $queries-to-remove := '^msg=,^msgtype=' 
+  return string-join(tokenize(request:query(),'&amp;')[not(matches(.,string-join(tokenize($queries-to-remove,","),"|")))],'&amp;')
 };
 
 declare function control-util:get-url-without-msg(){

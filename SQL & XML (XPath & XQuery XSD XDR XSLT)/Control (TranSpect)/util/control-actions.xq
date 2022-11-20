@@ -9,6 +9,7 @@ import module namespace control         = 'http://transpect.io/control' at '../c
 import module namespace control-i18n    = 'http://transpect.io/control/util/control-i18n' at 'control-i18n.xq';
 import module namespace control-util    = 'http://transpect.io/control/util/control-util' at 'control-util.xq';
 import module namespace control-widgets = 'http://transpect.io/control/util/control-widgets' at 'control-widgets.xq';
+
 (:
  : receive and commit file
  :)
@@ -40,6 +41,7 @@ function control-actions:upload($file, $svnurl) {
             else web:redirect('/control?svnurl=' || $svnurl || '?msg=' || encode-for-uri(control-i18n:localize('svn-checkout-error', $control:locale )) || '?msgtype=error' )
            )
 };
+
 (:
  : download as zip
  :)
@@ -117,6 +119,7 @@ function control-actions:download-result-file( $result_file as xs:string,$svnurl
           else web:redirect($control:siteurl || '?svnurl=' || $svnurl || '?msgtype=error' )
          )
 };
+
 (:
  : choose target path and copy file
  :)
@@ -152,6 +155,7 @@ function control-actions:copy( $svnurl as xs:string, $repopath as xs:string?, $f
   </body>
 </html>
 };
+
 (:
  : choose access control for selected file
  :)
@@ -161,18 +165,18 @@ declare
   %rest:query-param("file", "{$file}")
   %output:method('html')
 function control-actions:access( $svnurl as xs:string, $file as xs:string) {
-<html>
-  <head>
-    {control-widgets:get-html-head($svnurl)}
-  </head>
-  <body>
-    {control-widgets:get-page-header()}
-    <main>
-      {control-widgets:file-access( $svnurl, $file )}
-    </main>
-    {control-widgets:get-page-footer()}
-  </body>
-</html>
+  <html>
+    <head>
+      {control-widgets:get-html-head($svnurl)}
+    </head>
+    <body>
+      {control-widgets:get-page-header()}
+      <main>
+        {control-widgets:file-access( $svnurl, $file )}
+      </main>
+      {control-widgets:get-page-footer()}
+    </body>
+  </html>
 };
 
 (:
@@ -184,12 +188,12 @@ declare
   %rest:query-param("file", "{$file}")
   %output:method('html')
 function control-actions:delete( $svnurl as xs:string, $file as xs:string ) {
-let 
-    $auth := control-util:parse-authorization(request:header("Authorization")),
-    $resu := svn:delete(control-util:get-canonical-path($svnurl), $control:svnauth, $file, true(), 'deleted via control')
-return if ($resu[//*:param[@name = 'delete']])
-       then web:redirect($control:siteurl || '?svnurl=' || $svnurl)
-       else web:redirect($control:siteurl || '?svnurl=' || $svnurl || '?msg=' || encode-for-uri(control-i18n:localize('deletion-error', $control:locale )) || '?msgtype=error' )
+  let 
+      $auth := control-util:parse-authorization(request:header("Authorization")),
+      $resu := svn:delete(control-util:get-canonical-path($svnurl), $control:svnauth, $file, true(), 'deleted via control')
+  return if ($resu[//*:param[@name = 'delete']])
+         then web:redirect($control:siteurl || '?svnurl=' || $svnurl)
+         else web:redirect($control:siteurl || '?svnurl=' || $svnurl || '?msg=' || encode-for-uri(control-i18n:localize('deletion-error', $control:locale )) || '?msgtype=error' )
 };
 
 (:
@@ -203,9 +207,9 @@ declare
   %rest:form-param("target", "{$target}")
   %output:method('html')
 function control-actions:rename( $svnurl as xs:string, $file as xs:string, $target as xs:string ) {
-let $auth := control-util:parse-authorization(request:header("Authorization")),
-    $resu := svn:move(control-util:get-canonical-path($svnurl), $auth, $file, $target, 'renamed via control' )
-return web:redirect($control:siteurl || '?svnurl=' || $svnurl || '?msg=' || encode-for-uri($resu) || '?msgtype=info' )
+  let $auth := control-util:parse-authorization(request:header("Authorization")),
+      $resu := svn:move(control-util:get-canonical-path($svnurl), $auth, $file, $target, 'renamed via control' )
+  return web:redirect($control:siteurl || '?svnurl=' || $svnurl || '?msg=' || encode-for-uri($resu) || '?msgtype=info' )
 };
 
 
@@ -220,21 +224,21 @@ declare
   %rest:form-param("name", "{$name}")
   %output:method('html')
 function control-actions:change-mountpoint( $svnurl as xs:string, $url as xs:string, $name as xs:string ) {
-let $auth := control-util:parse-authorization(request:header("Authorization")),
-    $propget := svn:propget($svnurl, $control:svnauth, 'svn:externals', 'HEAD'),
-    $temp    := file:temp-dir() || file:dir-separator()  || random:uuid() || file:dir-separator(),
-    $checkoutdir := $temp || 'Propset',
-    $checkout := svn:checkout($svnurl, $control:svnauth, $checkoutdir, 'HEAD', '1'),
-    $parsed := element externals {control-util:parse-externals-property($propget)},
-    $updated-externals :=  
-       copy $e := $parsed
-       modify (
-         replace node $e/external[@url eq $url] with
-           element external {attribute url {$url}, attribute mount {$name}}
-       )
-       return $e,
-    $propvalue := control-util:parsed-external-to-string($updated-externals),
-    $res := svn:propset($checkoutdir, $control:svnauth, 'svn:externals', xs:string($propvalue)),
-    $resco := svn:commit($auth, $checkoutdir, 'updated externals prop') 
-return web:redirect($control:siteurl || '?svnurl=' || $svnurl || '?msg=' || encode-for-uri($resco) || '?msgtype=info' )
+  let $auth := control-util:parse-authorization(request:header("Authorization")),
+      $propget := svn:propget($svnurl, $control:svnauth, 'svn:externals', 'HEAD'),
+      $temp    := file:temp-dir() || file:dir-separator()  || random:uuid() || file:dir-separator(),
+      $checkoutdir := $temp || 'Propset',
+      $checkout := svn:checkout($svnurl, $control:svnauth, $checkoutdir, 'HEAD', '1'),
+      $parsed := element externals {control-util:parse-externals-property($propget)},
+      $updated-externals :=  
+         copy $e := $parsed
+         modify (
+           replace node $e/external[@url eq $url] with
+             element external {attribute url {$url}, attribute mount {$name}}
+         )
+         return $e,
+      $propvalue := control-util:parsed-external-to-string($updated-externals),
+      $res := svn:propset($checkoutdir, $control:svnauth, 'svn:externals', xs:string($propvalue)),
+      $resco := svn:commit($auth, $checkoutdir, 'updated externals prop') 
+  return web:redirect($control:siteurl || '?svnurl=' || $svnurl || '?msg=' || encode-for-uri($resco) || '?msgtype=info' )
 };

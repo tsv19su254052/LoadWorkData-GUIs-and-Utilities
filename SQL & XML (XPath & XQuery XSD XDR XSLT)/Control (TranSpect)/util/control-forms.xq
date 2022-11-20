@@ -9,6 +9,7 @@ import module namespace control         = 'http://transpect.io/control' at '../c
 import module namespace control-i18n    = 'http://transpect.io/control/util/control-i18n' at 'control-i18n.xq';
 import module namespace control-util    = 'http://transpect.io/control/util/control-util' at 'control-util.xq';
 import module namespace control-widgets = 'http://transpect.io/control/util/control-widgets' at 'control-widgets.xq';
+
 (:
  : projects
  :)
@@ -31,6 +32,7 @@ function control-forms:projects( $svnurl as xs:string ) {
     </body>
   </html>
 };
+
 (:
  : create dir
  :)
@@ -91,7 +93,7 @@ function control-forms:new-file( $svnurl as xs:string ) {
         </div>
       </main>
       {control-widgets:get-page-footer()}
-      <!--<script src="{$control:path || '/../static/js/control.js'}" type="text/javascript"></script>-->
+      <!-- <script src="{$control:path || '/../static/js/control.js'}" type="text/javascript"> </script> -->
         <script>
           Dropzone.options.dropzone = 
             {{ maxFilesize: {xs:string($control:max-upload-size)}, 

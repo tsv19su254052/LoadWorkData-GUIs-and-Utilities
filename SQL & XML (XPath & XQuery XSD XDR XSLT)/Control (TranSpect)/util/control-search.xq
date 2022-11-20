@@ -372,8 +372,6 @@ function control-search:cssa-search($svnurl as xs:string?, $cssa-term as xs:stri
   </html>
 };
 
-
-
 declare 
 %rest:path('/control/{$customization}/render-xml-source')
 %rest:query-param("svn-url", "{$svn-url}")

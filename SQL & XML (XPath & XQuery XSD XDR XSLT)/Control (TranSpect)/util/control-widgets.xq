@@ -14,11 +14,12 @@ declare function control-widgets:get-html-head($title-text as xs:string?) as ele
   <script src="{ $control:siteurl || '/static/js/control.js'}" type="text/javascript"></script>,
   <link rel="stylesheet" type="text/css" href="{ $control:siteurl || '/static/style.css'}"></link>
 };
+
 declare function control-widgets:get-page-footer( ) as element(footer) {
   <footer>
-    
   </footer>
 };
+
 (:
  :
  :)
@@ -75,45 +76,45 @@ declare function control-widgets:manage-conversions($svnurl as xs:string, $file 
     </div>
 };
 
-
 (:
  : get the fancy page head
  :)
 declare function control-widgets:get-page-header() as element(header) {
-let $credentials := request:header("Authorization")
+  let $credentials := request:header("Authorization")
                     => substring(6)
                     => xs:base64Binary()
                     => bin:decode-string()
                     => tokenize(':'),
     $username := $credentials[1]
-return
-  <header class="page-header">
-    <div class="header-wrapper">
-      <div id="logo">
-        <a href="{ $control:siteurl }">
-          <img src="{ $control:siteurl || '/static/icons/transpect.svg'}" alt="transpect logo"/>
-        </a>
+  return
+    <header class="page-header">
+      <div class="header-wrapper">
+        <div id="logo">
+          <a href="{ $control:siteurl }">
+            <img src="{ $control:siteurl || '/static/icons/transpect.svg'}" alt="transpect logo"/>
+          </a>
+        </div>
+        <h1><a href="{ $control:siteurl }"><span class="thin">transpect</span>control</a></h1>
       </div>
-      <h1><a href="{ $control:siteurl }"><span class="thin">transpect</span>control</a></h1>
-    </div>
-    <div class="nav-wrapper">
-      <nav class="nav">
-        <ol class="nav-ol">
-          <li class="nav-tab"><a href="{ $control:siteurl|| '?svnurl=' || $control:svnurlhierarchy }">{control-i18n:localize('files', $control:locale)}</a></li>
-          <li class="nav-tab">{
-            if (control-util:is-admin($username))
-            then 
-              <a href="{$control:siteurl ||  '/config?svnurl=' || $control:svnurl}">{control-i18n:localize('configuration', $control:locale)}</a>
-          }
-          </li>
-        </ol>
-        <ol class="username">
-          <li class="nav-tab"><a href="{$control:siteurl ||  '/user'}">{$username}</a></li>
-        </ol>
-      </nav>
-    </div>
-  </header>
+      <div class="nav-wrapper">
+        <nav class="nav">
+          <ol class="nav-ol">
+            <li class="nav-tab"><a href="{ $control:siteurl|| '?svnurl=' || $control:svnurlhierarchy }">{control-i18n:localize('files', $control:locale)}</a></li>
+            <li class="nav-tab">{
+              if (control-util:is-admin($username))
+              then 
+                <a href="{$control:siteurl ||  '/config?svnurl=' || $control:svnurl}">{control-i18n:localize('configuration', $control:locale)}</a>
+            }
+            </li>
+          </ol>
+          <ol class="username">
+            <li class="nav-tab"><a href="{$control:siteurl ||  '/user'}">{$username}</a></li>
+          </ol>
+        </nav>
+      </div>
+    </header>
 };
+
 declare function control-widgets:get-svnhome-button( $svnurl as xs:string, $control-dir as xs:string, $auth as map(*) ) as element(div){
   <div class="home">
     <a href="{(:concat($control-dir,
@@ -129,6 +130,7 @@ declare function control-widgets:get-svnhome-button( $svnurl as xs:string, $cont
     </a>
   </div>
 };
+
 declare function control-widgets:get-back-to-svndir-button( $svnurl as xs:string, $control-dir as xs:string ) as element(div){
   <div class="back">
     <a href="{$control:siteurl || '?svnurl=' || $svnurl}">
@@ -158,6 +160,7 @@ declare function control-widgets:create-btn($svnurl as xs:string, $text as xs:st
     </form>
   </div>
 };
+
 (:
  : get file action dropdown button
  :)
@@ -225,6 +228,7 @@ declare function control-widgets:get-file-action-dropdown( $svnurl as xs:string,
     </div>
   </details>
 };
+
 (:
  : use request parameter and perform file action.
  :)
@@ -237,6 +241,7 @@ declare function control-widgets:manage-actions( $svnurl as xs:string, $dest-svn
                      substring-after( $file, $svnurl ), substring-after( $dest-svnurl, $svnurl ), 'copy' )
     else () (: tbd :)
 };
+
 (:
  : display window
  :)
@@ -302,6 +307,7 @@ declare function control-widgets:choose-directory( $svnurl as xs:string, $dest-s
     </div>
   </div>
 };
+
 declare function control-widgets:get-choose-directory-button( $svnurl as xs:string, $action as xs:string, $file as xs:string, $dest-svnurl as xs:string) as element(div){
   <div class="home">
     <a href="{ $control:path || '/..?svnurl=' || $svnurl || '&amp;action=' || $action || '&amp;file=' || $file || '&amp;dest-svnurl=' || $dest-svnurl }">
@@ -312,6 +318,7 @@ declare function control-widgets:get-choose-directory-button( $svnurl as xs:stri
     </a>
   </div>
 };
+
 (:
  : returns a html directory listing
 :)
@@ -328,17 +335,16 @@ declare function control-widgets:get-dir-list( $svnurl as xs:string, $control-di
   </div>
 };
 
-
-declare function control-widgets:create-infobox()
-{
-<div id="infobox" class="infobox" style="visibility:hidden">
-  <div class="header">
-    <div class="heading"></div>
-    <div class="closebutton" onclick="closebox(); return false">X</div>
+declare function control-widgets:create-infobox(){
+  <div id="infobox" class="infobox" style="visibility:hidden">
+    <div class="header">
+      <div class="heading"></div>
+      <div class="closebutton" onclick="closebox(); return false">X</div>
+    </div>
+    <div class="content"></div>
   </div>
-  <div class="content"></div>
-</div>
 };
+
 (:
  : returns controls to modify access to directory
 :)
@@ -351,7 +357,6 @@ declare function control-widgets:file-access( $svnurl as xs:string, $file as xs:
                          ,svn:info(
                            $svnurl, $control:svnauth)/*:param[@name = 'root-url']/@value
                          ,'')
-      
   return
     <div class="access-widget">
       <div class="adminmgmt">
@@ -409,6 +414,7 @@ declare function control-widgets:file-access( $svnurl as xs:string, $file as xs:
       {control-widgets:create-btn($svnurl, 'back', true())}
     </div>
 };
+
 (:
  : get dir menu
  :)
@@ -426,6 +432,7 @@ declare function control-widgets:get-dir-menu( $svnurl as xs:string, $control-di
     </div>
   </div>
 };
+
 (:
  : get action buttons to add new files, create dirs etc.
  :)
@@ -451,6 +458,7 @@ declare function control-widgets:get-dir-actions( $svnurl as xs:string, $control
     </a>
   </div>
 };
+
 (:
  : provide directory listing
  :)
@@ -531,11 +539,7 @@ declare function control-widgets:get-dir-parent( $svnurl as xs:string, $control-
   let $new-svnurl := control-util:path-parent-dir($svnurl),
       $new-repopath := if ($repopath!= '') then replace($repopath,'/?[^/]+/?$','') else '',
       $virtual-path := $control:index//*[@svnpath = control-util:get-local-path($svnurl)],
-      $path := (request:parameter('from'),
-                svn:list(
-                  control-util:path-parent-dir( $svnurl ), 
-                  $control:svnauth, false()
-                )/self::c:files/@*:base)[1]
+      $path := (request:parameter('from'), svn:list(control-util:path-parent-dir( $svnurl ), $control:svnauth, false())/self::c:files/@*:base)[1]
   return 
     <div class="table-row directory-entry">
       <div class="icon table-cell"/>
@@ -556,6 +560,7 @@ declare function control-widgets:get-dir-parent( $svnurl as xs:string, $control-
       <div class="actions table-cell"/>
     </div>
 };
+
 declare function control-widgets:create-dir-form( $svnurl as xs:string, $control-dir as xs:string ) {
   <div id="create-dir-form-wrapper">
     <form id="create-dir-form" action="{$control:siteurl||'/create-dir?url='||$svnurl}" method="POST">
@@ -572,6 +577,7 @@ declare function control-widgets:create-dir-form( $svnurl as xs:string, $control
     </button>
   </div>
 };
+
 (:
  : return a form for creating a new user/overriding an existing one
  :)
@@ -598,6 +604,7 @@ declare function control-widgets:create-new-user($svnurl as xs:string) as elemen
     </form>
   </div>
 };
+
 (:
  : returns a form for changing the password
  :)
@@ -624,6 +631,7 @@ declare function control-widgets:get-pw-change() as element(div) {
     </form>
   </div>
 };
+
 (:
  : returns a form for setting the default svnurl
  :)
@@ -649,6 +657,7 @@ declare function control-widgets:get-default-svnurl() as element(div) {
     </form>
   </div>
 };
+
 (:
  : returns a form for creating groups
  :)
@@ -671,6 +680,7 @@ declare function control-widgets:create-new-group( $svnurl as xs:string ) as ele
     </form>
   </div>
 };
+
 (:
  : returns a form for customizing groups
  :)
@@ -695,6 +705,7 @@ declare function control-widgets:customize-groups( $svnurl as xs:string ) as ele
     </form>
   </div>
 };
+
 (:
  : returns a form for deleting groups
  :)
@@ -715,6 +726,7 @@ declare function control-widgets:remove-groups( $svnurl as xs:string ) as elemen
     </form>
   </div>
 };
+
 (:
  : returns a form for deleting users
  :)
@@ -735,6 +747,7 @@ declare function control-widgets:remove-users( $svnurl as xs:string ) as element
     </form>
   </div>
 };
+
 (:
  : returns the selection for users
  :)
@@ -761,6 +774,7 @@ declare function control-widgets:customize-users( $svnurl as xs:string ) as elem
     </form>
   </div>
 };
+
 (:
  : returns the selectionoptions for users
  :)
@@ -769,6 +783,7 @@ declare function control-widgets:get-users( $svnurl as xs:string ) as element(op
   return
     <option value="{$user/control:name}">{$user/control:name}</option>
 };
+
 (:
  : returns the selectionoptions for groups (not admin)
  :)
@@ -778,6 +793,7 @@ declare function control-widgets:get-groups( $svnurl as xs:string ) as element(o
   return
     <option value="{$group/control:name}">{$group/control:name}</option>
 };
+
 (:
  : returns the selectionoptions for groups
  :)
@@ -792,9 +808,7 @@ declare function control-widgets:get-groups-and-admin( $svnurl as xs:string ) as
   <function role="search-form-widget" name="my-customization:search-form" arity="5"/>
   To do: modularize the individual search forms so that they can be assembled differently.
 :)
-declare function control-widgets:search-input ( $svnurl as xs:string?, $control-dir as xs:string, 
-                                                $auth as map(xs:string, xs:string), $params as map(*)?,
-                                                $results as map(xs:string, item()*)? ) {
+declare function control-widgets:search-input ( $svnurl as xs:string?, $control-dir as xs:string, $auth as map(xs:string, xs:string), $params as map(*)?, $results as map(xs:string, item()*)? ) {
   <div class="form-wrapper">
     <details class="search-form">
       { if (normalize-space($params?term) or normalize-space($params?xpath))
@@ -814,7 +828,8 @@ declare function control-widgets:search-input ( $svnurl as xs:string?, $control-
                 <label for="lang_{$lang}">{string($lang)}</label>
               )
             }
-            <span>  </span><label for="xpath">XPath</label>
+            <span>    </span>
+            <label for="xpath"> XPath </label>
             <input id="xpathsearch" type="text" name="xpath" autocomplete="off" size="38" autocapitalize="none" 
               value="{$params?xpath}"/><span>   </span>
             {
@@ -834,9 +849,9 @@ declare function control-widgets:search-input ( $svnurl as xs:string?, $control-
         </div>
       </form>
       <details class="search-hints">
-        <summary>Search hints</summary>
-        <h4>Full text</h4>
-        <p>You may use regex-like wildcards, such as <code>.*</code> for zero or more characters, 
+        <summary> Search hints </summary>
+        <h4> Full text </h4>
+        <p> You may use regex-like wildcards, such as <code>.*</code> for zero or more characters, 
         as documented for the <a href="https://docs.basex.org/wiki/Full-Text#Match_Options">BaseX
         <code>wildcards</code> option</a>. Examples: <code class="ft-fillable">combin.*</code>
         (for “combine”, “combined”, “combining”, “combinatorial”, etc.), 
@@ -978,19 +993,25 @@ declare function control-widgets:search-input ( $svnurl as xs:string?, $control-
       <details class="search-hints">
         <summary>Search hints</summary>
         <h4>Caution</h4>
-        <p>Unspecified searches (that is, from the top of the content hierarchy or without “name contains” terms)
-        may take very long and may lead to a timeout. In this case please try to navigate to a content subtree first,
-        give at least some style name substrings or limit the search to a single style type.</p>
-        <h4>Name contains</h4>
-        <p>You can enter space-separated tokens such as <code>text split</code>. Then all styles
-        of the selected style type will be output whose name contains both <code>text</code> and
-        <code>split</code>. The search is case insensitive, so for the given search, <code>p_text~box2~SPLIT</code>
-        might be a result</p>
-        <h4>Group by</h4>
-        <p>Group by <code>style-hierarchy</code> groups all occurring styles by their InDesign
-        style path component. Tilde additions will be ignored for grouping purposes. 
-        When you arrive at the end of this style hierarchy, you can navigate the content
-        hierarchy of the works where the given style occurs.</p>
+        <p>
+          Unspecified searches (that is, from the top of the content hierarchy or without “name contains” terms)
+          may take very long and may lead to a timeout. In this case please try to navigate to a content subtree first,
+          give at least some style name substrings or limit the search to a single style type.
+        </p>
+        <h4> Name contains </h4>
+        <p>
+          You can enter space-separated tokens such as <code> text split </code>. Then all styles
+          of the selected style type will be output whose name contains both <code> text </code> and
+          <code> split </code>. The search is case insensitive, so for the given search, <code> p_text~box2~SPLIT </code>
+          might be a result
+        </p>
+        <h4> Group by </h4>
+        <p>
+          Group by <code> style-hierarchy </code> groups all occurring styles by their InDesign
+          style path component. Tilde additions will be ignored for grouping purposes. 
+          When you arrive at the end of this style hierarchy, you can navigate the content
+          hierarchy of the works where the given style occurs.
+        </p>
       </details>
     </details>
     { $results?cssa }
