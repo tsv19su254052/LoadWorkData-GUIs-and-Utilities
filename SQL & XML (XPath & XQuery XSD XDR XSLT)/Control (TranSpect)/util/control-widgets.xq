@@ -12,12 +12,11 @@ declare function control-widgets:get-html-head($title-text as xs:string?) as ele
   <meta charset="utf-8"></meta>,
   <title>{$title-text} – transpect control</title>,
   <script src="{ $control:siteurl || '/static/js/control.js'}" type="text/javascript"></script>,
-  <link rel="stylesheet" type="text/css" href="{ $control:siteurl || '/static/style.css'}"></link>
+  <link rel="stylesheet" type="text/css" href="{ $control:siteurl || '/static/style.css'}"> </link>
 };
 
 declare function control-widgets:get-page-footer( ) as element(footer) {
-  <footer>
-  </footer>
+  <footer> </footer>
 };
 
 (:
@@ -60,12 +59,11 @@ declare function control-widgets:manage-conversions($svnurl as xs:string, $file 
       <div class="adminmgmt">
         <h2>{control-i18n:localize('result_files', $control:locale )}</h2>
         <div>{for $f in $conversion/control:result_files/*
-              return element div {element a {attribute href {$control:siteurl||"/download-conversion-result?svnurl="||$svnurl||"&amp;file="||$file || "&amp;type="||$type||"&amp;result_file="||$f/@name},
-                                             text {$f/@name}}}}
+              return element div {element a {attribute href {$control:siteurl||"/download-conversion-result?svnurl="||$svnurl||"&amp;file="||$file || "&amp;type="||$type||"&amp;result_file="||$f/@name}, text {$f/@name}}}}
         </div>
       </div>)}
       <div class="adminmgmt">
-        <h2> {control-i18n:localize(if ($conversion) then 'restart_conversion' else 'start_conversion', $control:locale ) || ' ' || $filepath }</h2>
+        <h2> {control-i18n:localize(if ($conversion) then 'restart_conversion' else 'start_conversion', $control:locale ) || ' ' || $filepath } </h2>
         <form action="{$control:siteurl}/convert/start?svnurl={$svnurl}&amp;file={$file}&amp;type={$type}" method="POST" enctype="application/x-www-form-urlencoded" autocomplete="off">
           <div class="start-new-conversion">
             <input type="submit" value="{control-i18n:localize('start_conversion', $control:locale)}"/>
@@ -80,12 +78,7 @@ declare function control-widgets:manage-conversions($svnurl as xs:string, $file 
  : get the fancy page head
  :)
 declare function control-widgets:get-page-header() as element(header) {
-  let $credentials := request:header("Authorization")
-                    => substring(6)
-                    => xs:base64Binary()
-                    => bin:decode-string()
-                    => tokenize(':'),
-    $username := $credentials[1]
+  let $credentials := request:header("Authorization") => substring(6) => xs:base64Binary() => bin:decode-string() => tokenize(':'), $username := $credentials[1]
   return
     <header class="page-header">
       <div class="header-wrapper">
@@ -94,7 +87,11 @@ declare function control-widgets:get-page-header() as element(header) {
             <img src="{ $control:siteurl || '/static/icons/transpect.svg'}" alt="transpect logo"/>
           </a>
         </div>
-        <h1><a href="{ $control:siteurl }"><span class="thin">transpect</span>control</a></h1>
+        <h1>
+          <a href="{ $control:siteurl }"> 
+            <span class="thin"> transpect </span> control 
+          </a>
+        </h1>
       </div>
       <div class="nav-wrapper">
         <nav class="nav">
