@@ -50,6 +50,7 @@ db.specification.components = db.toplevel.sections
    db:refname [ "specification" ]
    db:refpurpose [ "A W3C Specification" ]
 ]
+
 div {
    db.specification.status.attribute = db.status.attribute
 
@@ -116,6 +117,7 @@ db.technical.inlines |= db.rfc2119
    db:refname [ "rfc2119" ]
    db:refpurpose [ "An RFC 2119 keyword" ]
 ]
+
 div {
 
    db.rfc2119.role.attribute = attribute role { text }

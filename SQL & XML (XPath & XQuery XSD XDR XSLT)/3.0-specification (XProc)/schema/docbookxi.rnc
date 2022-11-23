@@ -39,6 +39,7 @@ start =
   | (db.refentry | db.refsection)
   | (db.refsect1 | db.refsect2 | db.refsect3)
   | db.setindex
+
 div {
   db._any.attribute =
     
@@ -51,8 +52,9 @@ div {
       (db._any.attribute | text | db._any)*
     }
 }
+
 db.arch.attribute =
-  
+
   ## Designates the computer or chip architecture to which the element applies
   attribute arch { text }
 db.audience.attribute =
