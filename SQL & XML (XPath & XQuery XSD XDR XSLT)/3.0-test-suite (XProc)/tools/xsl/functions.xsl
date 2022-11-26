@@ -19,11 +19,9 @@
     <xsl:param name="code" as="xs:string"/>
     <xsl:variable name="name" select="substring($code, 6)"/>
     <xsl:variable name="links" select="key('id', concat('err.',$name), $specs)"/>
-
     <xsl:choose>
       <xsl:when test="count($links) = 1">
-        <xsl:variable name="basename"
-                      select="substring-before(substring-after(base-uri($links),'/build/specs/'),'.html')"/>
+        <xsl:variable name="basename" select="substring-before(substring-after(base-uri($links),'/build/specs/'),'.html')"/>
         <a href="{t:spec-link($basename)}#err.{$name}">
           <xsl:value-of select="$code"/>
         </a>
@@ -32,8 +30,7 @@
         <xsl:value-of select="$code"/>
         <xsl:text> [</xsl:text>
         <xsl:for-each select="$links">
-          <xsl:variable name="basename"
-                        select="substring-before(substring-after(base-uri(.), '/build/specs/'), '.html')"/>
+          <xsl:variable name="basename" select="substring-before(substring-after(base-uri(.), '/build/specs/'), '.html')"/>
           <xsl:if test="position() gt 1">, </xsl:if>
           <a href="{t:spec-link($basename)}#err.{$name}">
             <xsl:value-of select="t:spec-name($basename)"/>
@@ -55,15 +52,15 @@
   <xsl:function name="t:spec-name">
     <xsl:param name="shortname"/>
     <xsl:choose>
-      <xsl:when test="$shortname = 'xproc'">XProc</xsl:when>
-      <xsl:when test="$shortname = 'steps'">Core steps</xsl:when>
-      <xsl:when test="$shortname = 'file'">File steps</xsl:when>
-      <xsl:when test="$shortname = 'json'">JSON steps</xsl:when>
-      <xsl:when test="$shortname = 'os'">Operating system steps</xsl:when>
-      <xsl:when test="$shortname = 'paged-media'">Paged-media steps</xsl:when>
-      <xsl:when test="$shortname = 'run'">Run step</xsl:when>
-      <xsl:when test="$shortname = 'text'">Text steps</xsl:when>
-      <xsl:when test="$shortname = 'validation'">Validation steps</xsl:when>
+      <xsl:when test="$shortname = 'xproc'"> XProc </xsl:when>
+      <xsl:when test="$shortname = 'steps'"> Core steps </xsl:when>
+      <xsl:when test="$shortname = 'file'"> File steps </xsl:when>
+      <xsl:when test="$shortname = 'json'"> JSON steps </xsl:when>
+      <xsl:when test="$shortname = 'os'"> Operating system steps </xsl:when>
+      <xsl:when test="$shortname = 'paged-media'"> Paged-media steps </xsl:when>
+      <xsl:when test="$shortname = 'run'"> Run step </xsl:when>
+      <xsl:when test="$shortname = 'text'"> Text steps </xsl:when>
+      <xsl:when test="$shortname = 'validation'"> Validation steps </xsl:when>
       <xsl:otherwise>
         <xsl:message>Unrecognized spec: <xsl:value-of select="$shortname"/></xsl:message>
         <xsl:value-of select="$shortname"/>
@@ -89,16 +86,14 @@
         <xsl:choose>
           <xsl:when test="key('id', concat('p.',$name), $specs)">
             <xsl:variable name="links" select="key('id', concat('p.',$name), $specs)[1]"/>
-            <xsl:variable name="basename"
-                          select="substring-before(substring-after(base-uri($links), '/build/specs/'),'.html')"/>
+            <xsl:variable name="basename" select="substring-before(substring-after(base-uri($links), '/build/specs/'),'.html')"/>
             <a href="{t:spec-link($basename)}#p.{$name}">
               <xsl:value-of select="concat('p:',$name)"/>
             </a>
           </xsl:when>
           <xsl:when test="key('id', concat('c.',$name), $specs)">
             <xsl:variable name="links" select="key('id', concat('c.',$name), $specs)[1]"/>
-            <xsl:variable name="basename"
-                          select="substring-before(substring-after(base-uri($links), '/build/specs/'),'.html')"/>
+            <xsl:variable name="basename" select="substring-before(substring-after(base-uri($links), '/build/specs/'),'.html')"/>
             <a href="{t:spec-link($basename)}#c.{$name}">
               <xsl:value-of select="concat('p:', $name)"/>
             </a>

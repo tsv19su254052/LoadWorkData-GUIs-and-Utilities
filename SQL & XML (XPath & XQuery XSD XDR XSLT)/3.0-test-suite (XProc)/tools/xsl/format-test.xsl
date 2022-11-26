@@ -378,7 +378,7 @@
 
   <xsl:template match="t:option[1]" priority="100">
     <div class="options">
-      <h2>Options</h2>
+      <h2> Options </h2>
 
       <xsl:apply-templates select="../t:option" mode="options"/>
     </div>
@@ -388,7 +388,9 @@
 
   <xsl:template match="t:option" mode="options">
     <div class="option">
-      <h3>$<xsl:value-of select="@name"/></h3>
+      <h3>
+        $<xsl:value-of select="@name"/>
+      </h3>
 
       <xsl:choose>
         <xsl:when test="@select">
@@ -404,7 +406,9 @@
 
   <xsl:template match="t:schematron">
     <div class="schematron">
-      <h2>Schematron validation</h2>
+      <h2>
+        Schematron validation
+      </h2>
       <xsl:call-template name="insert-content"/>
     </div>
   </xsl:template>
@@ -428,7 +432,9 @@
   </xsl:template>
 
   <xsl:template match="element()">
-    <xsl:message>Unhandled: <xsl:value-of select="node-name(.)"/></xsl:message>
+    <xsl:message>
+      Unhandled: <xsl:value-of select="node-name(.)"/>
+    </xsl:message>
     <span style="color: #aa0000">
       <xsl:text>&lt;</xsl:text>
       <xsl:value-of select="node-name(.)"/>
@@ -470,9 +476,7 @@
             <xsl:call-template name="attributes"/>
             <span class="stc">&gt;</span>
           </span>
-
           <xsl:apply-templates mode="copy"/>
-
           <span class="etag">
             <span class="eto">&lt;/</span>
             <span class="gi endgi">
@@ -485,8 +489,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="attribute()|comment()|processing-instruction()"
-                mode="copy">
+  <xsl:template match="attribute()|comment()|processing-instruction()" mode="copy">
     <xsl:copy/>
   </xsl:template>
 
@@ -516,18 +519,16 @@
         </span>
       </xsl:if>
     </xsl:for-each>
-
     <xsl:variable name="pdef" select="string(parent::*/namespace::*[local-name(.) = ''])"/>
     <xsl:variable name="tdef" select="string(./namespace::*[local-name(.) = ''])"/>
-
     <xsl:if test="parent::* and $pdef != $tdef and $tdef ne 'http://test.xproc.org/placeholder/'">
       <xsl:text> </xsl:text>
       <span class="attr nsattr">
         <span class="aname">
           <xsl:text>xmlns</xsl:text>
         </span>
-        <span class="aeq">=</span>
-        <span class="aq">"</span>
+        <span class="aeq"> = </span>
+        <span class="aq"> " </span>
         <span class="avalue">
           <xsl:value-of select="$tdef"/>
         </span>
@@ -541,8 +542,8 @@
         <span class="aname{if (namespace-uri(.) = 'http://www.w3.org/ns/xproc') then ' paname' else ''}">
           <xsl:value-of select="node-name(.)"/>
         </span>
-        <span class="aeq">=</span>
-        <span class="aq">"</span>
+        <span class="aeq"> = </span>
+        <span class="aq"> " </span>
         <span class="avalue">
           <xsl:value-of select="."/>
         </span>
@@ -552,9 +553,7 @@
   </xsl:template>
 
   <xsl:template name="x-attributes">
-    <!--
-        <xsl:message>=== <xsl:value-of select="node-name(.)"/></xsl:message>
-    -->
+    <!-- <xsl:message>=== <xsl:value-of select="node-name(.)"/></xsl:message> -->
     <xsl:variable name="ancestors" select="ancestor::*"/>
     <xsl:for-each select="namespace::*">
       <xsl:if test="not(t:ancestor-namespace($ancestors, .))">
@@ -579,34 +578,34 @@
 
     <xsl:variable name="pdef" select="string(parent::*/namespace::*[local-name(.) = ''])"/>
     <xsl:variable name="tdef" select="string(./namespace::*[local-name(.) = ''])"/>
-
     <xsl:if test="parent::* and $pdef != $tdef and $tdef ne 'http://test.xproc.org/placeholder/'">
       <xsl:text> </xsl:text>
       <span class="attr nsattr">
         <span class="aname">
-          <xsl:text>xmlns</xsl:text>
+          <xsl:text>
+            xmlns
+          </xsl:text>
         </span>
-        <span class="aeq">=</span>
-        <span class="aq">"</span>
+        <span class="aeq"> = </span>
+        <span class="aq"> " </span>
         <span class="avalue">
           <xsl:value-of select="$tdef"/>
         </span>
-        <span class="aq">"</span>
+        <span class="aq"> " </span>
       </span>
     </xsl:if>
-
     <xsl:for-each select="@*">
       <xsl:text> </xsl:text>
       <span class="attr">
         <span class="aname{if (namespace-uri(.) = 'http://www.w3.org/ns/xproc') then ' paname' else ''}">
           <xsl:value-of select="node-name(.)"/>
         </span>
-        <span class="aeq">=</span>
-        <span class="aq">"</span>
+        <span class="aeq"> = </span>
+        <span class="aq"> " </span>
         <span class="avalue">
           <xsl:value-of select="."/>
         </span>
-        <span class="aq">"</span>
+        <span class="aq"> " </span>
       </span>
     </xsl:for-each>
   </xsl:template>
@@ -628,8 +627,7 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="attribute()|text()|comment()|processing-instruction()"
-                mode="namespace-shelter">
+  <xsl:template match="attribute()|text()|comment()|processing-instruction()" mode="namespace-shelter">
     <xsl:copy/>
   </xsl:template>
 
@@ -638,17 +636,14 @@
   <xsl:function name="t:ancestor-namespace" as="xs:boolean">
     <xsl:param name="ancestors" as="element()*"/>
     <xsl:param name="namespace" as="namespace-node()"/>
-
     <xsl:choose>
-      <xsl:when test="local-name($namespace) eq 'xml'
-                      or string($namespace) = 'http://test.xproc.org/placeholder/'">
+      <xsl:when test="local-name($namespace) eq 'xml' or string($namespace) = 'http://test.xproc.org/placeholder/'">
         <xsl:sequence select="true()"/>
       </xsl:when>
       <xsl:when test="empty($ancestors)">
         <xsl:sequence select="false()"/>
       </xsl:when>
-      <xsl:when test="$ancestors[last()][namespace::*[local-name(.) = local-name($namespace)
-                                                      and string(.) = string($namespace)]]">
+      <xsl:when test="$ancestors[last()][namespace::*[local-name(.) = local-name($namespace) and string(.) = string($namespace)]]">
         <xsl:sequence select="true()"/>
       </xsl:when>
       <xsl:otherwise>
