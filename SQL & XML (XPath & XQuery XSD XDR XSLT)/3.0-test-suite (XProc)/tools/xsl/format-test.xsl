@@ -31,29 +31,43 @@
         <link rel="stylesheet" type="text/css" href="../css/base.css" />
         <link href="../css/all.css" rel="stylesheet" type="text/css" />
         <link href="../css/testsuite.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="../js/dbmodnizr.js"></script>
+        <script type="text/javascript" src="../js/dbmodnizr.js"/>
       </head>
       <body>
         <nav>
           <xsl:choose>
             <xsl:when test="$prev eq ''">
-              <xsl:text> </xsl:text>
+              <xsl:text>
+                 
+              </xsl:text>
             </xsl:when>
             <xsl:otherwise>
-              <a href="{$prev}.html"><i class="fas fa-chevron-circle-left"></i></a>
+              <a href="{$prev}.html">
+                <i class="fas fa-chevron-circle-left"/>
+              </a>
             </xsl:otherwise>
           </xsl:choose>
-          <xsl:text> </xsl:text>
+          <xsl:text>
+             
+          </xsl:text>
           <xsl:choose>
             <xsl:when test="$next eq ''">
-              <xsl:text> </xsl:text>
+              <xsl:text>
+                 
+              </xsl:text>
             </xsl:when>
             <xsl:otherwise>
-              <a href="{$next}.html"><i class="fas fa-chevron-circle-right"></i></a>
+              <a href="{$next}.html">
+                <i class="fas fa-chevron-circle-right"/>
+              </a>
             </xsl:otherwise>
           </xsl:choose>
-          <xsl:text> </xsl:text>
-          <a href="../"><i class="fa fa-chevron-circle-up"></i></a>
+          <xsl:text>
+             
+          </xsl:text>
+          <a href="../">
+            <i class="fa fa-chevron-circle-up"/>
+          </a>
         </nav>
 
         <h1><xsl:value-of select="(t:info/t:title|t:title)[1]"/></h1>
@@ -62,7 +76,7 @@
 
         <xsl:if test="t:info/t:specref">
           <p class="seealso">
-            <xsl:text>See also </xsl:text>
+            <xsl:text> See also </xsl:text>
             <xsl:apply-templates select="t:info/t:specref"/>
             <xsl:text>.</xsl:text>
           </p>
@@ -120,7 +134,7 @@
         <xsl:choose>
           <xsl:when test="@features">
             <p class="features">
-              <xsl:text>It requires the following features: </xsl:text>
+              <xsl:text> It requires the following features: </xsl:text>
               <xsl:variable name="codes" as="xs:string*">
                 <xsl:for-each select="tokenize(@features, '\s+')">
                   <xsl:sort select="."/>
@@ -150,7 +164,7 @@
         <xsl:apply-templates select="(t:pipeline, t:input, t:option, t:schematron,
                                       t:info/t:revision-history)"/>
 
-        <script src="../js/prism.js"></script>
+        <script src="../js/prism.js"/>
       </body>
     </html>
   </xsl:template>
@@ -165,7 +179,9 @@
 
   <xsl:template match="t:revision-history">
     <dl class="{local-name(.)}">
-      <h2>Revision history</h2>
+      <h2>
+        Revision history
+      </h2>
       <xsl:apply-templates/>
     </dl>
   </xsl:template>
@@ -193,12 +209,10 @@
     <xsl:choose>
       <xsl:when test=". castable as xs:dateTime">
         <!-- ignoring timezone for now -->
-        <xsl:value-of select='format-dateTime(xs:dateTime(.),
-                            "[D01] [MNn,*-3] [Y0001] [H01]:[m01]")'/>
+        <xsl:value-of select='format-dateTime(xs:dateTime(.), "[D01] [MNn,*-3] [Y0001] [H01]:[m01]")'/>
       </xsl:when>
       <xsl:when test=". castable as xs:date">
-        <xsl:value-of select='format-date(xs:date(.),
-                            "[D01] [MNn,*-3] [Y0001]")'/>
+        <xsl:value-of select='format-date(xs:date(.), "[D01] [MNn,*-3] [Y0001]")'/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates/>
@@ -211,7 +225,9 @@
   </xsl:template>
 
   <xsl:template match="t:name">
-    <span class="name"><xsl:apply-templates/></span>
+    <span class="name">
+      <xsl:apply-templates/>
+    </span>
   </xsl:template>
 
   <xsl:template match="t:author/t:email|t:author/t:uri"/>
@@ -239,7 +255,7 @@
 
   <xsl:template match="t:specref">
     <xsl:if test="preceding-sibling::t:specref">
-      <xsl:if test="count(../t:specref) gt 2">, </xsl:if>
+      <xsl:if test="count(../t:specref) gt 2"> , </xsl:if>
       <xsl:if test="empty(following-sibling::t:specref)"> and </xsl:if>
     </xsl:if>
 
@@ -279,7 +295,9 @@
     <span class="specref">
       <xsl:choose>
         <xsl:when test="$tocref">
-          <a href="{$base}#{@linkend}"><xsl:value-of select="$tocref"/></a>
+          <a href="{$base}#{@linkend}">
+            <xsl:value-of select="$tocref"/>
+          </a>
         </xsl:when>
         <xsl:otherwise>
           <xsl:text>[[</xsl:text>
@@ -289,8 +307,8 @@
       </xsl:choose>
       <sup class="specid">
         <xsl:choose>
-          <xsl:when test="@spec = 'steps'">[XS]</xsl:when>
-          <xsl:otherwise>[XP]</xsl:otherwise>
+          <xsl:when test="@spec = 'steps'"> [XS] </xsl:when>
+          <xsl:otherwise> [XP] </xsl:otherwise>
         </xsl:choose>
       </sup>
     </span>
@@ -298,10 +316,8 @@
 
   <xsl:template match="t:pipeline">
     <div class="pipeline">
-      <h2>The pipeline</h2>
-
+      <h2> The pipeline </h2>
       <xsl:call-template name="insert-content"/>
-
       <xsl:variable name="basename" select="substring-after(base-uri(/*), '/test-suite/tests/')"/>
       <xsl:variable name="i1" select="($calabash/testcase[@name=$basename])[1]"/>
       <xsl:variable name="i2" select="($morganaxproc/testcase[@name=$basename])[1]"/>
@@ -347,16 +363,15 @@
   <xsl:template match="t:input[1]" priority="100">
     <div class="inputs">
       <h2>Inputs</h2>
-
       <xsl:apply-templates select="../t:input" mode="inputs"/>
     </div>
   </xsl:template>
-
   <xsl:template match="t:input"/>
-
   <xsl:template match="t:input" mode="inputs">
     <div class="input">
-      <h3>port = <xsl:value-of select="@port"/></h3>
+      <h3>
+        port = <xsl:value-of select="@port"/>
+      </h3>
       <xsl:call-template name="insert-content"/>
     </div>
   </xsl:template>
