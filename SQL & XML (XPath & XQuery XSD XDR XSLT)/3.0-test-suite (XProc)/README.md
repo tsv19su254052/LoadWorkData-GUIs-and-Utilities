@@ -1,13 +1,10 @@
 # XProc 3.0 test-suite
 
-The [XProc 3.0 Test Suite](https://xproc.github.io/3.0-test-suite/)
-provides the conformance tests for
-[XProc 3.0](https://github.com/xproc/3.0-specification).
+The [XProc 3.0 Test Suite](https://xproc.github.io/3.0-test-suite/) provides the conformance tests for [XProc 3.0](https://github.com/xproc/3.0-specification).
 
 ## Quick start
 
-If you just want to write a test, start with this template
-from [examples/passing.xml](blob/master/examples/passing.xml):
+If you just want to write a test, start with this template from [examples/passing.xml](blob/master/examples/passing.xml):
 
 ```xml
 <t:test xmlns:t="http://xproc.org/ns/testsuite/3.0" expected="pass">
