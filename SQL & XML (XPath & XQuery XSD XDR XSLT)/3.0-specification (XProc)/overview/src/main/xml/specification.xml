@@ -50,7 +50,9 @@
     </authorgroup>
 
     <abstract>
-      <para> This specification provides an overview of the XProc specifications. </para>
+      <para>
+        This specification provides an overview of the XProc specifications.
+      </para>
     </abstract>
 
     <legalnotice role="status">
