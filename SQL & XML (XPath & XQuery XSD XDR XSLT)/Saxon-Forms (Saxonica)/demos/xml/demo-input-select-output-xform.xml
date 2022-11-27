@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xf:xform 
-    xmlns:xf="http://www.w3.org/2002/xforms" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:ev="http://www.w3.org/2001/xml-events"
-    >
+<xf:xform xmlns:xf="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://www.w3.org/2001/xml-events">
  
     <xf:model>
         <xf:instance id="hello">
             <demo:data xmlns:demo="urn:saxon-xforms:demo">
-                <demo:PersonGivenName>Mark</demo:PersonGivenName>
-                <demo:PetType>pet</demo:PetType>
+                <demo:PersonGivenName> Mark </demo:PersonGivenName>
+                <demo:PetType> pet </demo:PetType>
                 <demo:PetDescription/>
-                <demo:CatName></demo:CatName>
-                <demo:CatNameForDisplayCheck></demo:CatNameForDisplayCheck>
-                <demo:FeedingTime>08:00</demo:FeedingTime>
-                <demo:FedToday>1</demo:FedToday>
-                <demo:FedTodayStatement></demo:FedTodayStatement>
-                <demo:Counter>0</demo:Counter>
+                <demo:CatName> </demo:CatName>
+                <demo:CatNameForDisplayCheck> </demo:CatNameForDisplayCheck>
+                <demo:FeedingTime> 08:00 </demo:FeedingTime>
+                <demo:FedToday> 1 </demo:FedToday>
+                <demo:FedTodayStatement> </demo:FedTodayStatement>
+                <demo:Counter> 0 </demo:Counter>
             </demo:data>
         </xf:instance>
         
