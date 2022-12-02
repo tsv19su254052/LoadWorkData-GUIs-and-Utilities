@@ -3,7 +3,7 @@
     <xf:model id="model-1">
         <xf:instance id="query">
             <parameters xmlns="">
-                <field>ingredient</field>   
+                <field> ingredient </field>   
                 <query/>
             </parameters>
         </xf:instance>
@@ -14,24 +14,24 @@
     
     
     <xf:input ref="instance('query')/query" incremental="true" size="35" class="block">
-        <xf:label>Query:</xf:label>
-        <xf:hint>Enter search term</xf:hint>
+        <xf:label> Query: </xf:label>
+        <xf:hint> Enter search term </xf:hint>
     </xf:input>
  
     <xf:select1 ref="instance('query')/field" incremental="true">
-        <xf:label>Field:</xf:label>
+        <xf:label> Field :</xf:label>
         <xf:item>
-            <xf:label>ingredient</xf:label>
-            <xf:value>ingredient</xf:value> 
+            <xf:label> ingredient </xf:label>
+            <xf:value> ingredient </xf:value> 
         </xf:item>
         <xf:item>
-            <xf:label>method</xf:label>
-            <xf:value>method</xf:value> 
+            <xf:label> method </xf:label>
+            <xf:value> method </xf:value> 
         </xf:item>
     </xf:select1>
     
     <xf:submit submission="search">
-        <xf:label>Submit query</xf:label>
+        <xf:label> Submit query </xf:label>
     </xf:submit>
     
 </xf:xform>
