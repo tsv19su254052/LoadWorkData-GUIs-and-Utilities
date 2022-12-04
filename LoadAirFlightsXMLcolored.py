@@ -26,7 +26,9 @@ import Classes
 # todo Научиться делать это по возможности только внутри pyCharm-а
 
 
-__myOwnDevelopingVersion__ = 7.92  # Версия обработки с цветным выводом
+# Название локальной ветки и ее версии обработки с цветным выводом
+__myOwnDevelopingVersion__ = 7.93
+# todo Связать эту ветку и версию с веткой и версией на github-е и сделать автоинкремент (зависит от объема внесенных изменений), чтобы не давать ее вручную
 
 colorama.init(autoreset=False)  # используем Colorama, чтобы сделать работу Termcolor на Windows, оставляем цветовое оформление до следующего явного указания
 print(termcolor.colored("Обработка v" + str(__myOwnDevelopingVersion__) + " загрузки рабочих данных в БД SQL Server-а", 'blue', 'on_yellow'))
