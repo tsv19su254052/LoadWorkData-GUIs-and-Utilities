@@ -13,9 +13,7 @@
   
   <xsl:import href="task.xsl"/>
   
-  <!-- XSLT examples using EXPath Tasks.
-       Run the different tests by supplying the initial template for a transform. -->
-  
+  <!-- XSLT examples using EXPath Tasks. Run the different tests by supplying the initial template for a transform. -->
   
   <!-- A. Constructing Tasks -->
   
@@ -190,8 +188,7 @@
   </xsl:template>
   
   
-  <!-- C. Asynchronous Tasks
-  Remember that an "Async" is just a reference to an asynchronous computation. -->
+  <!-- C. Asynchronous Tasks Remember that an "Async" is just a reference to an asynchronous computation. -->
   
   <!-- 1. Asynchronously executing a task where you don't care about the result -->
   <xsl:template name="exC1">
@@ -202,8 +199,7 @@
     <xsl:sequence select="$result instance of function(*)"/>
   </xsl:template>
   
-  <!-- 2. Asynchronously executing a task, when you do care about the result, you have to wait upon the asynchronous
-    computation -->
+  <!-- 2. Asynchronously executing a task, when you do care about the result, you have to wait upon the asynchronous computation -->
   <xsl:template name="exC2">
     <xsl:sequence select="task:value('hello')
       ? fmap(upper-case#1)
