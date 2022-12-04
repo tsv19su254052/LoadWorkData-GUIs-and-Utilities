@@ -1,18 +1,18 @@
-[submodule "External Repos (SubModule Folder)/Saxonica/EXPath-Task-XSLT"]
-	path = External Repos (SubModule Folder)/Saxonica/EXPath-Task-XSLT
-	url = https://github.com/Saxonica/EXPath-Task-XSLT
-[submodule "External Repos (SubModule Folder)/Saxonica/Saxon-Forms"]
-	path = External Repos (SubModule Folder)/Saxonica/Saxon-Forms
-	url = https://github.com/Saxonica/Saxon-Forms
-[submodule "External Repos (SubModule Folder)/XProc/3.0-specification"]
-	path = External Repos (SubModule Folder)/XProc/3.0-specification
-	url = https://github.com/xproc/3.0-specification
-[submodule "External Repos (SubModule Folder)/XProc/3.0-test-suite"]
-	path = External Repos (SubModule Folder)/XProc/3.0-test-suite
-	url = https://github.com/xproc/3.0-test-suite
-[submodule "External Repos (SubModule Folder)/TranSpect/Control"]
-	path = External Repos (SubModule Folder)/TranSpect/Control
-	url = https://github.com/transpect/control
-[submodule "External Repos (SubModule Folder)\Nic Gibson\XProc-tools"]
-	path = External Repos (SubModule Folder)\Nic Gibson\XProc-tools
+[submodule "extensions\\NicGibson2\\XProc-tools"]
+	path = extensions\\NicGibson2\\XProc-tools
 	url = https://github.com/nic-gibson/xproc-tools
+[submodule "ExternalRepos\\Saxonica\\EXPath-Task-XSLT"]
+	path = ExternalRepos\\Saxonica\\EXPath-Task-XSLT
+	url = https://github.com/Saxonica/EXPath-Task-XSLT
+[submodule "ExternalRepos\\Saxonica\\Saxon-Forms"]
+	path = ExternalRepos\\Saxonica\\Saxon-Forms
+	url = https://github.com/Saxonica/Saxon-Forms
+[submodule "ExternalRepos\\XProc\\3.0-specification"]
+	path = ExternalRepos\\XProc\\3.0-specification
+	url = https://github.com/xproc/3.0-specification
+[submodule "ExternalRepos\\XProc\\3.0-test-suite"]
+	path = ExternalRepos\\XProc\\3.0-test-suite
+	url = https://github.com/xproc/3.0-test-suite
+[submodule "ExternalRepos\\TranSpect\\Control"]
+	path = ExternalRepos\\TranSpect\\Control
+	url = https://github.com/transpect/control
