@@ -1,3 +1,0 @@
-<Files ~ "\.txt">
- ForceType 'text/plain; charset=ISO-8859-1'
-</Files>

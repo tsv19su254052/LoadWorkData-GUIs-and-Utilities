@@ -1,6 +1,3 @@
-[submodule "extensions\\NicGibson2\\XProc-tools"]
-	path = extensions\\NicGibson2\\XProc-tools
-	url = https://github.com/nic-gibson/xproc-tools
 [submodule "ExternalRepos\\Saxonica\\EXPath-Task-XSLT"]
 	path = ExternalRepos\\Saxonica\\EXPath-Task-XSLT
 	url = https://github.com/Saxonica/EXPath-Task-XSLT
@@ -16,3 +13,6 @@
 [submodule "ExternalRepos\\TranSpect\\Control"]
 	path = ExternalRepos\\TranSpect\\Control
 	url = https://github.com/transpect/control
+[submodule "ExternalRepos\\NicGibson\\XProc-tools"]
+	path = ExternalRepos\\NicGibson\\XProc-tools
+	url = https://github.com/nic-gibson/xproc-tools

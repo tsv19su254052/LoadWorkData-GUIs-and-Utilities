@@ -1,6 +1,0 @@
-AuthType basic
-AuthName TestAuthentication
-AuthUserFile /usr/local/apache2/cache/tests.xproc.basic-auth.passwd
-<Limit GET POST>
-require valid-user
-</Limit>
