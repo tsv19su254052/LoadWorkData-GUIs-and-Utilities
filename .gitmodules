@@ -1,3 +1,9 @@
 [submodule "External Repos (SubModule Folder)/Saxonica EXPath-Task-XSLT"]
 	path = External Repos (SubModule Folder)/Saxonica EXPath-Task-XSLT
 	url = https://github.com/Saxonica/EXPath-Task-XSLT
+[submodule "External Repos (SubModule Folder)/XProc 3.0-specification"]
+	path = External Repos (SubModule Folder)/XProc 3.0-specification
+	url = https://github.com/xproc/3.0-specification
+[submodule "External Repos (SubModule Folder)/Saxonica Saxon-Forms"]
+	path = External Repos (SubModule Folder)/Saxonica Saxon-Forms
+	url = https://github.com/Saxonica/Saxon-Forms
