@@ -205,6 +205,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def QueryAirLineByIATASQLAlchemy(self, iata):
+        # todo В процессе разработки
+        pass
+
     def QueryAirLineByICAO(self, icao):
         # Возвращает строку авиакомпании по ее коду ICAO
         try:
@@ -221,6 +225,10 @@ class Server:
             pass
         finally:
             return ResultSQL
+
+    def QueryAirLineByICAOSQLAlchemy(self, icao):
+        # todo В процессе разработки
+        pass
 
     def QueryAirLineByIATAandICAO(self, iata, icao):
         # Возвращает строку авиакомпании по ее кодам IATA и ICAO
@@ -245,6 +253,10 @@ class Server:
             pass
         finally:
             return ResultSQL
+
+    def QueryAirLineByIATAandICAOSQLAlchemy(self, iata, icao):
+        # todo В процессе разработки
+        pass
 
     def QueryAirLineByPK(self, pk):
         # Возвращает строку авиакомпании по первичному ключу
