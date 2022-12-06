@@ -205,7 +205,7 @@ class Server:
         finally:
             return ResultSQL
 
-    def QueryAirLineByIATASQLAlchemy(self, iata):
+    def QueryAirLineByIATA_SQLAlchemy(self, iata):
         # todo В процессе разработки
         pass
 
@@ -226,7 +226,7 @@ class Server:
         finally:
             return ResultSQL
 
-    def QueryAirLineByICAOSQLAlchemy(self, icao):
+    def QueryAirLineByICAO_SQLAlchemy(self, icao):
         # todo В процессе разработки
         pass
 
@@ -254,7 +254,7 @@ class Server:
         finally:
             return ResultSQL
 
-    def QueryAirLineByIATAandICAOSQLAlchemy(self, iata, icao):
+    def QueryAirLineByIATAandICAO_SQLAlchemy(self, iata, icao):
         # todo В процессе разработки
         pass
 
