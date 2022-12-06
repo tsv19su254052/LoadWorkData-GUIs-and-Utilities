@@ -25,3 +25,6 @@
 [submodule "ExternalRepos\\EXPath\\expath-tools-saxon"]
 	path = ExternalRepos\\EXPath\\expath-tools-saxon
 	url = https://github.com/expath/expath-tools-saxon
+[submodule "ExternalRepos\\MarkLogic\\Python-API"]
+	path = ExternalRepos\\MarkLogic\\Python-API
+	url = https://github.com/marklogic/python_api
