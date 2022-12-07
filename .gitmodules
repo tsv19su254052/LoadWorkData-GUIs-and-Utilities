@@ -16,3 +16,15 @@
 [submodule "ExternalRepos\\NicGibson\\XProc-tools"]
 	path = ExternalRepos\\NicGibson\\XProc-tools
 	url = https://github.com/nic-gibson/xproc-tools
+[submodule "ExternalRepos\\EXPath\\xspec"]
+	path = ExternalRepos\\EXPath\\xspec
+	url = https://github.com/expath/xspec
+[submodule "ExternalRepos\\EXPath\\tools-saxon"]
+	path = ExternalRepos\\EXPath\\tools-saxon
+	url = https://github.com/expath/tools-saxon
+[submodule "ExternalRepos\\EXPath\\expath-tools-saxon"]
+	path = ExternalRepos\\EXPath\\expath-tools-saxon
+	url = https://github.com/expath/expath-tools-saxon
+[submodule "ExternalRepos\\MarkLogic\\Python-API"]
+	path = ExternalRepos\\MarkLogic\\Python-API
+	url = https://github.com/marklogic/python_api
