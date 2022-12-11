@@ -39,18 +39,18 @@ print("Разработал Тарасов Сергей tsv19su@yandex.ru")
 #print("Разработал " + stringcolor.bold("Тарасов Сергей").cs("red", "gold") + " tsv19su@yandex.ru")
 print(termcolor.colored("Пользователь = " + str(os.getlogin()), 'green', 'on_yellow'))
 
-# fixme Вывести в файл requirements.txt список пакетов с версиями
+# fixme Вывести в файл requirements.txt список пакетов с версиями - пока не требуется
 # pip freeze > requirements.txt
 
-# fixme Установить пакеты с определенными версиями
+# fixme Установить пакеты с определенными версиями - пока не требуется
 # pip install -r requirements.txt
 
-# fixme Установить пакет из папки
+# fixme Установить пакет из папки, как пример
 # pip install SomePackage-1.0-py2.py3-none-any.whl
 
 # Делаем экземпляр
 S = Classes.Server()
-# Добавляем еще аттрибуты
+# Добавляем в него аттрибуты
 S.radioButtonUseDB = True
 S.InputFileCSV = ' '
 S.LogFileTXT = ' '
@@ -58,6 +58,7 @@ S.ErrorFileTXT = 'ErrorLog.txt'
 S.SetInputDate = False
 
 
+# fixme Почеиу функции отсоединения есть, а присоединения нет
 def Disconnect_AL():
     # Снимаем курсор
     S.seekAL.close()
