@@ -275,6 +275,9 @@ class Server:
         finally:
             return ResultSQL
 
+    def QueryAirLineByPK_SQLAlchemy(self, pk):
+        pass
+
     def QueryAliances(self):
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
@@ -290,6 +293,10 @@ class Server:
             pass
         finally:
             return ResultSQL
+
+    def QueryAliances_SQLAlchemy(self):
+        # todo В процессе разработки
+        pass
 
     def UpdateAirLineByIATAandICAO(self, id, name, alias, iata, icao, callsign, city, country, status, date, description, aliance):
         # Обновляет данные авиакомпании в один запрос - БЫСТРЕЕ, НАДЕЖНЕЕ
@@ -323,6 +330,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def UpdateAirLineByIATAandICAO_SQLAlchemy(self, id, name, alias, iata, icao, callsign, city, country, status, date, description, aliance):
+        # todo В процессе разработки
+        pass
+
     def InsertAirLineByIATAandICAO(self, iata, icao):
         # Вставляем авиакомпанию с кодами IATA и ICAO, авиаалиансом по умолчанию
         # fixme Потом подправить Альанс авиакомпании
@@ -352,6 +363,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def InsertAirLineByIATAandICAO_SQLAlchemy(self, iata, icao):
+        # todo В процессе разработки
+        pass
+
     def QueryAirCraftManufacturers(self):
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
@@ -367,6 +382,10 @@ class Server:
             pass
         finally:
             return ResultSQL
+
+    def QueryAirCraftManufacturers_SQLAlchemy(self):
+        # todo В процессе разработки
+        pass
 
     def QueryManufacturerNumberByModelNumber(self, model_number):
         try:
@@ -384,6 +403,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def QueryManufacturerNumberByModelNumber_SQLAlchemy(self, model_number):
+        # todo В процессе разработки
+        pass
+
     def QueryAirCraftModels(self):
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
@@ -399,6 +422,10 @@ class Server:
             pass
         finally:
             return ResultSQL
+
+    def QueryAirCraftModels_SQLAlchemy(self):
+        # todo В процессе разработки
+        pass
 
     def QueryAirCraftByRegistration(self, Registration):
         # Возвращает строку самолета по его регистрации
@@ -417,6 +444,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def QueryAirCraftByRegistration_SQLAlchemy(self, Registration):
+        # todo В процессе разработки
+        pass
+
     def QueryAirCraftByLN(self, ln):
         # Возвращает строку самолета по его LN
         try:
@@ -433,6 +464,10 @@ class Server:
             pass
         finally:
             return ResultSQL
+
+    def QueryAirCraftByLN_SQLAlchemy(self, ln):
+        # todo В процессе разработки
+        pass
 
     def QueryAirCraftByMSN(self, msn):
         # Возвращает строку самолета по его MSN
@@ -451,6 +486,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def QueryAirCraftByMSN_SQLAlchemy(self, msn):
+        # todo В процессе разработки
+        pass
+
     def QueryAirCraftByPK(self, pk):
         # Возвращает строку самолета по его первичному ключу
         try:
@@ -468,6 +507,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def QueryAirCraftByPK_SQLAlchemy(self, pk):
+        # todo В процессе разработки
+        pass
+
     def UpdateAirCraft(self, Registration, ALPK):
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ"
@@ -483,6 +526,10 @@ class Server:
             pass
         finally:
             return ResultSQL
+
+    def UpdateAirCraft_SQLAlchemy(self, Registration, ALPK):
+        # todo В процессе разработки
+        pass
 
     def InsertAirCraftByRegistration(self, Registration, ALPK):
         try:
@@ -506,6 +553,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def InsertAirCraftByRegistration_SQLAlchemy(self, Registration, ALPK):
+        # todo В процессе разработки
+        pass
+
     def InsertAirCraftByMSN(self, msn):
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"
@@ -521,6 +572,10 @@ class Server:
             pass
         finally:
             return ResultSQL
+
+    def InsertAirCraftByMSN_SQLAlchemy(self, msn):
+        # todo В процессе разработки
+        pass
 
     def QueryAirPortByIATA(self, iata):
         # Возвращает строку аэропорта по коду IATA
@@ -539,6 +594,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def QueryAirPortByIATA_SQLAlchemy(self, iata):
+        # todo В процессе разработки
+        pass
+
     def QueryAirPortByICAO(self, icao):
         # Возвращает строку аэропорта по коду ICAO
         try:
@@ -556,6 +615,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def QueryAirPortByICAO_SQLAlchemy(self, icao):
+        # todo В процессе разработки
+        pass
+
     def QueryAirPortByPK(self, pk):
         # Возвращает строку аэропорта по первичному ключу
         try:
@@ -572,6 +635,10 @@ class Server:
             pass
         finally:
             return ResultSQL
+
+    def QueryAirPortByPK_SQLAlchemy(self, pk):
+        # todo В процессе разработки
+        pass
 
     def UpdateAirPort(self, iata, icao, name, city, county, country, lat, long, height, csv, desc, facilities, incidents):
         # Обновляет данные аэропорта по его коду IATA в один запрос - БЫСТРЕЕ, НАДЕЖНЕЕ
@@ -593,6 +660,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def UpdateAirPort_SQLAlchemy(self, iata, icao, name, city, county, country, lat, long, height, csv, desc, facilities, incidents):
+        # todo В процессе разработки
+        pass
+
     def InsertAirPortByIATA(self, iata):
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"
@@ -608,6 +679,10 @@ class Server:
             pass
         finally:
             return ResultSQL
+
+    def InsertAirPortByIATA_SQLAlchemy(self, iata):
+        # todo В процессе разработки
+        pass
 
     def QueryAirRoute(self, IATADeparture, IATAArrival):
         # Возвращает строку маршрута по кодам IATA аэропортов
@@ -630,6 +705,10 @@ class Server:
         finally:
             return ResultSQL
 
+    def QueryAirRoute_SQLAlchemy(self, IATADeparture, IATAArrival):
+        # todo В процессе разработки
+        pass
+
     def InsertAirRoute(self, IATADeparture, IATAArrival):
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"
@@ -647,6 +726,10 @@ class Server:
             pass
         finally:
             return ResultSQL
+
+    def InsertAirRoute_SQLAlchemy(self, IATADeparture, IATAArrival):
+        # todo В процессе разработки
+        pass
 
     def ModifyAirFlight(self, ac, al, fn, dep, arr, flightdate, begindate):
         db_air_route = self.QueryAirRoute(dep, arr).AirRouteUniqueNumber
@@ -691,6 +774,10 @@ class Server:
         else:
             ResultSQL = 0
         return ResultSQL
+
+    def ModifyAirFlight_SQLAlchemy(self, ac, al, fn, dep, arr, flightdate, begindate):
+        # todo В процессе разработки
+        pass
 
     def QueryCount(self):
         # Возвращает количество строк в таблице аэропортов
