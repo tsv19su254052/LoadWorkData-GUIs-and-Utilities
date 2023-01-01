@@ -414,6 +414,7 @@ def LoadThread(Csv, Log):
     # Дописываем в журнал (обычным способом)
     # fixme Большая строка не дописывается, скрипт долго висит
     try:
+        # fixme При больших объемах дозаписи и одновременном доступе к журналу нескольких обработок не все результаты дописываются в него
         LogFile = open(Log, 'a')
         LogFile.write(OutputString)
         #LogFile.write('Вывод обычным способом\n')
@@ -421,7 +422,6 @@ def LoadThread(Csv, Log):
         try:
             LogError = open(S.ErrorFileTXT, 'a')
             LogError.write("Ошибка дозаписи результатов по " + str(S.filenameCSV) + " в " + str(S.filenameTXT) + " \n")
-            # fixme При больших объемах дозаписи и одновременном доступе к журналу не все обработки могут дописать свои результаты в журнал
         except IOError:
             print("Ошибка дозаписи в файл журнала")
         finally:
