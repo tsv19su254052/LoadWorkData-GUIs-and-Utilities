@@ -11,6 +11,7 @@ import json
 import sys
 import socket
 import threading
+# оставили 5-ую версию, потому что много наработок еще завязаны на нее
 from PyQt5 import QtWidgets  # QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner - запускаем в командной строке, QtXml
 import pathlib
 #import stringcolor  # fixme в IDLE и в pyCharm раскраска не работает, в командной строке сразу слетает
