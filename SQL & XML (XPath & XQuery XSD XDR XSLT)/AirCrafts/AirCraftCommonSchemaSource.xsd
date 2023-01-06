@@ -4,7 +4,6 @@
 		Префиксы пространства имен (краткие псевдонимы вместо их URI) -->
 
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xmlns:ns="https://www.w3schools.com"
 			xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -30,6 +29,7 @@
 			xmlns:tr="http://transpect.io"
 			xmlns:rng="http://relaxng.org/ns/structure/1.0"
 			xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+
 			targetNamespace=""
 			xsi:schemalocation="http://api.nsgreg.nga.mil/schema/cphd/1.0.1"
 			xsi:noNamespaceSchemaLocation="">
