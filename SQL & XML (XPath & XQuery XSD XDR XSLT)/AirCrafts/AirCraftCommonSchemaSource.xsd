@@ -8,6 +8,7 @@
 			xmlns:ns="https://www.w3schools.com"
 			xmlns:xml="http://www.w3.org/XML/1998/namespace"
 			xmlns:xlink="http://www.w3.org/1999/xlink"
+			xmlns:xi="http://www.w3.org/2001/XInclude"
 			xmlns:fn="http://www.w3.org/2004/07/xpath-functions"
 			xmlns:sqltypes="https://schemas.microsoft.com/sqlserver/2004/sqltypes"
 			xmlns:xdt="http://www.w3.org/2004/07/xpath-datatypes"
