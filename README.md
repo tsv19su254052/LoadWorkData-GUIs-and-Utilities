@@ -232,7 +232,7 @@
 ###### Поправки по терминологии:
  - **Коллекцию схем XML** в `Management Studio` точнее называть XSD-схемой.
  - **Созданием схемы** в SQL-ном скрипте правильнее называть привязкой XSD-схемы, потому что она уже собрана и сохранена файлом типа `*.xsd`.
- - **DTD-схемы** и **XDR-схемы** кратко упомянуты в статье на [`msdn.com`](https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-create-an-xml-schema-from-an-xml-document?view=vs-2022),
+ - **DTD-схемы** и **XDR-схемы** кратко упомянуты в [статье](https://docs.microsoft.com/ru-ru/visualstudio/xml-tools/how-to-create-an-xml-schema-from-an-xml-document?view=vs-2022),
    но уже не применяются.
 
 ###### Прочие наработки
