@@ -190,9 +190,9 @@
  - вставляем старую XML-ную базу летательного аппарата (не более 2 Гбайт на каждую согласно документации `msdn.com`)
    в XML-ное поле **XML(CONTENT dbo.XSD-схема)** его строки и парсим его как [**DOM**](https://stackoverflow.com/questions/192907/xml-parsing-elementtree-vs-sax-and-dom) , см. [статью](https://stackoverflow.com/questions/1890923/xpath-to-fetch-sql-xml-value) , а также [статью](https://stackoverflow.com/questions/43848456/t-sql-xquery-value-of-attribute-y-where-attribute-x-is-known) внутри скрипта на Python-е [**Saxon**](https://www.saxonica.com/technology/xslt-and-xquery.xml)-ом библиотеки `libxml2` (есть libxml2dom, libxml-python, libxml-python3), `libxslt` (не находит).
 
-Недостаток хранимой процедуры - не возвращает в скрипты на Python-е достоверный результат своей работы: получилось, не получилось с указанием причины
-(см. раздел ["Возврат данных с помощью кода возврата"](https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver15) ).
-Недостаток XSD-схемы - тот же и тот, что она пропускает все или не пропускает ничего.
+Недостаток хранимой процедуры - не все результаты работы возвращает в скрипты на Python-е: получилось, не получилось с указанием причины
+(см. раздел [статью](https://docs.microsoft.com/ru-ru/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver15) ).
+Особенность XSD-схемы - тот же и тот, что она пропускает все или не пропускает ничего.
 
 ###### Собираем **XML**-ные поля, определяемся с их структурой
 
