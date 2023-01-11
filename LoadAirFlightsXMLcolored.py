@@ -153,7 +153,7 @@ def LoadThread(Csv, Log):
             if DBAirLine is None:
                 if S.InsertAirLineByIATAandICAO(AL, None):
                     ListAirLinesAdded.append(AL)
-                    print(colorama.Fore.GREEN + "добавили ", end=" ")
+                    print(colorama.Fore.GREEN + "добавилась ", end=" ")
                     break
                 else:
                     print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
@@ -179,7 +179,7 @@ def LoadThread(Csv, Log):
                     # Вставляем самолет с пустым внешним ключем
                     if S.InsertAirCraftByRegistration(Registration=AC, ALPK=None):
                         ListAirCraftsAdded.append(AC)
-                        print(colorama.Fore.GREEN + "добавили", end=" ")
+                        print(colorama.Fore.GREEN + "добавился", end=" ")
                         break
                     else:
                         print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
@@ -188,7 +188,7 @@ def LoadThread(Csv, Log):
                     # Вставляем самолет (на предыдущем цикле вставили авиакомпанию)
                     if S.InsertAirCraftByRegistration(Registration=AC, ALPK=DBAirLine.AirLineUniqueNumber):
                         ListAirCraftsAdded.append(AC)
-                        print(colorama.Fore.GREEN + "добавили", end=" ")
+                        print(colorama.Fore.GREEN + "добавился", end=" ")
                         break
                     else:
                         print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
@@ -243,7 +243,7 @@ def LoadThread(Csv, Log):
                         # Если есть оба аэропорта и нет маршрута
                         if S.InsertAirRoute(DBAirPortDep.AirPortUniqueNumber, DBAirPortArr.AirPortUniqueNumber):
                             CountRoutesAdded += 1
-                            print(colorama.Fore.GREEN + "добавили", end=" ")
+                            print(colorama.Fore.GREEN + "добавился", end=" ")
                             break
                         else:
                             print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
@@ -299,11 +299,11 @@ def LoadThread(Csv, Log):
                             time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
                         if ResultModify == 1:
                             CountFlightsAdded += 1
-                            print(colorama.Fore.GREEN + "вставили", end=" ")
+                            print(colorama.Fore.GREEN + "вставился", end=" ")
                             break
                         if ResultModify == 2:
                             CountFlightsPadded += 1
-                            print(colorama.Fore.GREEN + "сплюсовали", end=" ")
+                            print(colorama.Fore.GREEN + "сплюсовался", end=" ")
                             break
                     elif DBAirRoute is None:
                         CountFlightsFailed += 1
