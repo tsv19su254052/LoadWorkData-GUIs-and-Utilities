@@ -954,7 +954,7 @@ def myApplication():
         # fixme Поток работает со своим файлом данных и журналом - СДЕЛАЛ
         threadLoad = threading.Thread(target=LoadThread, daemon=False, args=(S.InputFileCSV, S.LogFileTXT,))  # поток не сам по себе
         threadLoad.start()
-        threadLoad.join(2)  # ждем поток в основном потоке (графическая оболочка зависает) 2 секунды
+        threadLoad.join(1)  # ждем поток в основном потоке (графическая оболочка зависает) 2 секунды
         myDialog.close()  # закрываем графическую оболочку, текстовая остается
     # Отрисовка диалога
     myDialog.show()
