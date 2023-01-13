@@ -536,6 +536,7 @@ def myApplication():
             try:
                 # Добавляем атрибут cnxn
                 # через драйвер СУБД + клиентский API-курсор
+                # todo Сделать сообщение с зелеными галочками по пунктам подключения
                 S.cnxnAL = pyodbc.connect(driver=S.DriverODBC_AL, server=S.ServerName, database=S.DataBase_AL)
                 print("  БД = ", S.DataBase_AL, "подключена")
                 S.Connected_AL = True
