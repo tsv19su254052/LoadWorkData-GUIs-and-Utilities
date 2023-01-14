@@ -20,10 +20,10 @@
 			xmlns:sql="urn:schemas-microsoft-com:xml-sql"
 			xmlns:css="http://www.w3.org/1996/css"
 			xmlns:set="http://transpect.io/xml2tex"
-			xmlns:saxon="http://saxon.sf.net/"
+			xmlns:saxon="http://saxon.sf.net"
 			xmlns:collation="http://www.w3.org/2013/collation/UCA?strength=secondary"
 			xmlns:xsv="http://www.w3.org/2007/XMLSchema-versioning"
-			xmlns:soapex="http://schemas.xmlsoap.org/soap/envelope/"
+			xmlns:soapex="http://schemas.xmlsoap.org/soap/envelope"
 			xmlns:p="http://www.w3.org/ns/xproc"
 			xmlns:c="http://www.w3.org/ns/xproc-step"
 			xmlns:err="http://www.w3.org/ns/xproc-error"
@@ -41,7 +41,7 @@
 	<p:annotation>
 		<p:documentation p="http://www.w3.org/1999/xhtml">
 			==== Импорт другого файла ====
-			<p:import href="epubcheck-command-line.xpl"/>
+			<p:import href="epubcheck-command-line.xpl" />
 			==== Импорт внешних файлов ====
 			<p:import href="http://xmlcalabash.com/extension/steps/library-1.0.xpl" />
 			<p:import href="http://transpect.io/calabash-extensions/epubcheck-extension/epubcheck-declaration.xpl" />
