@@ -947,6 +947,7 @@ def myApplication():
             S.SetInputDate = True
         else:
             S.SetInputDate = False
+        # fixme кнопки не гаснут
         myDialog.pushButton_ChooseCSVFile.setEnabled(False)
         myDialog.pushButton_ChooseTXTFile.setEnabled(False)
         myDialog.dateEdit_BeginDate.setEnabled(False)
@@ -960,6 +961,7 @@ def myApplication():
         threadLoad.start()
         threadLoad.join(5)  # ждем поток в основном потоке (графическая оболочка зависает), секунд
         myDialog.close()  # закрываем графическую оболочку, текстовая остается
+
     # Отрисовка диалога
     myDialog.show()
     # Правильное закрытие диалога
