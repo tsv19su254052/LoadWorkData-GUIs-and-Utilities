@@ -947,7 +947,6 @@ def myApplication():
             S.SetInputDate = True
         else:
             S.SetInputDate = False
-        # fixme кнопки не гаснут
         myDialog.pushButton_ChooseCSVFile.setEnabled(False)
         myDialog.pushButton_ChooseTXTFile.setEnabled(False)
         myDialog.dateEdit_BeginDate.setEnabled(False)
@@ -956,7 +955,7 @@ def myApplication():
         myDialog.pushButton_Disconnect_RT.setEnabled(False)
         myDialog.pushButton_Disconnect_FN.setEnabled(False)
         myDialog.pushButton_GetStarted.setEnabled(False)
-        # fixme Поток работает со своим файлом данных и журналом - СДЕЛАЛ
+        # fixme кнопки не гаснут
         threadLoad = threading.Thread(target=LoadThread, daemon=False, args=(S.InputFileCSV, S.LogFileTXT,))  # поток не сам по себе
         threadLoad.start()
         threadLoad.join(5)  # ждем поток в основном потоке (графическая оболочка зависает), секунд
@@ -969,6 +968,7 @@ def myApplication():
 
 
 # Точка входа
-# __name__ — это специальная переменная, которая будет равна __main__, только если файл запускается как основная программа, в остальных случаях - имени модуля при импорте в качестве модуля
+# __name__ — это специальная переменная, которая будет равна __main__,
+# только если файл запускается как основная программа, в остальных случаях - имени модуля при импорте в качестве модуля
 if __name__ == "__main__":
     myApplication()
