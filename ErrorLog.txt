@@ -17,3 +17,5 @@
 Ошибка дозаписи результатов по 1039934854_T_ONTIME_REPORTING_2001_12_utf8.csv в LogReport_DBNew6.txt
 Ошибка дозаписи результатов по 1039934854_T_ONTIME_REPORTING_2001_11_utf8.csv в LogReport_DBNew6.txt
 Ошибка дозаписи результатов по 1039934854_T_ONTIME_REPORTING_2002_02_utf8.csv в LogReport_DBNew6.txt
+Ошибка дозаписи результатов по T_ONTIME_REPORTING_DL_SelectFields_2022_10 (четвертый).csv в LogReport_DBNew6Test.txt 
+Ошибка дозаписи результатов по T_ONTIME_REPORTING_DL_SelectFields_2022_10 (третий).csv в LogReport_DBNew6Test.txt 

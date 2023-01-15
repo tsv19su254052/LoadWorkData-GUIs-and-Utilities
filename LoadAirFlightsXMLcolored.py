@@ -55,7 +55,7 @@ S = Classes.Server()
 S.radioButtonUseDB = True
 S.InputFileCSV = ' '
 S.LogFileTXT = ' '
-S.ErrorFileTXT = 'ErrorLog.txt'
+S.ErrorFileTXT = 'LogReport_Errors.txt'
 S.SetInputDate = False
 
 
@@ -951,11 +951,14 @@ def myApplication():
         myDialog.pushButton_ChooseTXTFile.setEnabled(False)
         myDialog.dateEdit_BeginDate.setEnabled(False)
         myDialog.checkBox_SetInputDate.setEnabled(False)
+        myDialog.pushButton_Disconnect_AL.setEnabled(False)
+        myDialog.pushButton_Disconnect_RT.setEnabled(False)
+        myDialog.pushButton_Disconnect_FN.setEnabled(False)
         myDialog.pushButton_GetStarted.setEnabled(False)
         # fixme Поток работает со своим файлом данных и журналом - СДЕЛАЛ
         threadLoad = threading.Thread(target=LoadThread, daemon=False, args=(S.InputFileCSV, S.LogFileTXT,))  # поток не сам по себе
         threadLoad.start()
-        threadLoad.join(1)  # ждем поток в основном потоке (графическая оболочка зависает) 2 секунды
+        threadLoad.join(5)  # ждем поток в основном потоке (графическая оболочка зависает), секунд
         myDialog.close()  # закрываем графическую оболочку, текстовая остается
     # Отрисовка диалога
     myDialog.show()
