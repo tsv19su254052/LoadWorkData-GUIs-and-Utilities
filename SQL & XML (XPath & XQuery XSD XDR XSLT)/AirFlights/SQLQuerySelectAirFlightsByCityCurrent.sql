@@ -2,7 +2,7 @@ USE AirFlightsDBNew62Test2
 GO
 
 DECLARE @City varchar(250), @Reg VARCHAR(50)
-SET @Reg = 'N394DL'  -- BOEING 767-324(ER) - 27394 -- 2854
+SET @Reg = 'N394DL'  -- BOEING 767-324(ER)-27394 -- 2854 авиарейсов
 SET @City = 'Denver'  -- 148
 /*
 SELECT FlightNumberString AS FN,
