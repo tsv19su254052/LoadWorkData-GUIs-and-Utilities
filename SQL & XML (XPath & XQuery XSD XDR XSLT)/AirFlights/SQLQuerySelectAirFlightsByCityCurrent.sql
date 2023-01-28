@@ -2,7 +2,7 @@ USE AirFlightsDBNew62Test2
 GO
 
 DECLARE @City varchar(250), @Reg VARCHAR(50)
-SET @Reg = 'N8690A'  -- 10107
+SET @Reg = 'N360DN'  -- 5025
 SET @City = 'Denver'  -- 148
 /*
 SELECT FlightNumberString AS FN,
