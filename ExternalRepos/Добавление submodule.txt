@@ -24,12 +24,16 @@ Receiving objects: 100% (321/321), 145.07 KiB | 660.00 KiB/s, done.
 Resolving deltas: 100% (192/192), done.
 fatal: bad config line 17 in file .gitmodules
 fatal: Failed to register submodule 'extensions\NicGibson\XProc-tools'
+
 PS P:\Programming\Python Scripts\LoadWorkDataAirFlightsDBNew> git submodule add https://github.com/nic-gibson/xproc-tools extensions\NicGibson\XProc-tools
 fatal: 'extensions\NicGibson\XProc-tools' already exists in the index
+
 PS P:\Programming\Python Scripts\LoadWorkDataAirFlightsDBNew> git submodule add https://github.com/nic-gibson/xproc-tools extensions\NicGibson\XProc-tools
 fatal: 'extensions\NicGibson\XProc-tools' already exists in the index
+
 PS P:\Programming\Python Scripts\LoadWorkDataAirFlightsDBNew> git submodule add https://github.com/nic-gibson/xproc-tools extensions\NicGibson\XProc-tools
 fatal: 'extensions\NicGibson\XProc-tools' already exists in the index
+
 PS P:\Programming\Python Scripts\LoadWorkDataAirFlightsDBNew> git submodule add https://github.com/nic-gibson/xproc-tools extensions\NicGibson2\XProc-tools
 Cloning into '//Fileserver/объекты и изделия/Programming/Python Scripts/LoadWorkDataAirFlightsDBNew/extensions\NicGibson2\XProc-tools'...
 remote: Enumerating objects: 321, done.
@@ -38,6 +42,7 @@ Receiving objects: 100% (321/321), 145.07 KiB | 589.00 KiB/s, done.
 Resolving deltas: 100% (192/192), done.
 warning: LF will be replaced by CRLF in .gitmodules.
 The file will have its original line endings in your working directory
+
 PS P:\Programming\Python Scripts\LoadWorkDataAirFlightsDBNew> git submodule add https://github.com/Saxonica/EXPath-Task-XSLT ExternalRepos(SubModuleFolder)\Saxonica\EXPath-Task-XSLT
 Имя "SubModuleFolder" не распознано как имя командлета, функции, файла скрипта или выполняемой программы. Проверьте правильность написания имени, а также наличие и правильность пути, после чего повторите попытку.
 строка:1 знак:93
@@ -60,6 +65,7 @@ Receiving objects: 100% (14/14), 7.80 KiB | 798.00 KiB/s, done.
 Resolving deltas: 100% (2/2), done.
 warning: LF will be replaced by CRLF in .gitmodules.
 The file will have its original line endings in your working directory
+
 PS P:\Programming\Python Scripts\LoadWorkDataAirFlightsDBNew> git submodule add https://github.com/Saxonica/Saxon-Forms ExternalRepos\Saxonica\Saxon-Forms
 Cloning into '//Fileserver/объекты и изделия/Programming/Python Scripts/LoadWorkDataAirFlightsDBNew/ExternalRepos\Saxonica\Saxon-Forms'...
 remote: Enumerating objects: 740, done.
@@ -70,6 +76,7 @@ Receiving objects: 100% (740/740), 2.14 MiB | 3.24 MiB/s, done.
 Resolving deltas: 100% (428/428), done.
 warning: LF will be replaced by CRLF in .gitmodules.
 The file will have its original line endings in your working directory
+
 PS P:\Programming\Python Scripts\LoadWorkDataAirFlightsDBNew> git submodule add https://github.com/xproc/3.0-specification ExternalRepos\XProc\3.0-specification
 Cloning into '//Fileserver/объекты и изделия/Programming/Python Scripts/LoadWorkDataAirFlightsDBNew/ExternalRepos\XProc\3.0-specification'...
 remote: Enumerating objects: 24382, done.
@@ -80,6 +87,7 @@ Receiving objects: 100% (24382/24382), 147.57 MiB | 7.82 MiB/s, done.
 Resolving deltas: 100% (17553/17553), done.
 warning: LF will be replaced by CRLF in .gitmodules.
 The file will have its original line endings in your working directory
+
 PS P:\Programming\Python Scripts\LoadWorkDataAirFlightsDBNew> git submodule add https://github.com/xproc/3.0-test-suite ExternalRepos\XProc\3.0-test-suite
 Cloning into '//Fileserver/объекты и изделия/Programming/Python Scripts/LoadWorkDataAirFlightsDBNew/ExternalRepos\XProc\3.0-test-suite'...
 remote: Enumerating objects: 44056, done.
@@ -90,6 +98,7 @@ Receiving objects: 100% (44056/44056), 20.18 MiB | 4.35 MiB/s, done.
 Resolving deltas: 100% (41305/41305), done.
 warning: LF will be replaced by CRLF in .gitmodules.
 The file will have its original line endings in your working directory
+
 PS P:\Programming\Python Scripts\LoadWorkDataAirFlightsDBNew> git submodule add https://github.com/transpect/control ExternalRepos\TranSpect\Control
 Cloning into '//Fileserver/объекты и изделия/Programming/Python Scripts/LoadWorkDataAirFlightsDBNew/ExternalRepos\TranSpect\Control'...
 remote: Enumerating objects: 1260, done.
@@ -100,4 +109,5 @@ Receiving objects: 100% (1260/1260), 1.10 MiB | 2.30 MiB/s, done.
 Resolving deltas: 100% (833/833), done.
 warning: LF will be replaced by CRLF in .gitmodules.
 The file will have its original line endings in your working directory
+
 PS P:\Programming\Python Scripts\LoadWorkDataAirFlightsDBNew>
