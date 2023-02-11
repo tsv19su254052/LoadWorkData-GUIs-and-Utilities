@@ -1,4 +1,4 @@
-#  Interpreter 3.7
+#  Interpreter 3.7 -> 3.10 -> 3.11
 
 
 import pyodbc  # pymssql работает тяжелее, пробуем также SQLAlchemy
@@ -18,6 +18,8 @@ import pathlib
 import colorama
 import termcolor
 #import tqdm  # fixme tqdm нужен свой цикл -> сюда не подходит
+# todo Вероятно придется много переделать, чтобы не вызывать по 2 раза
+import sqlalchemy
 
 # Импорт пользовательской библиотеки (файла *.py в этой же папке)
 import Classes
@@ -49,8 +51,19 @@ print(termcolor.colored("Пользователь = " + str(os.getlogin()), 'gre
 # pip install SomePackage-1.0-py2.py3-none-any.whl
 
 # Делаем экземпляр
-S = Classes.Server()
-# Добавляем в него аттрибуты
+S = Classes.Servers()
+# Добавляем аттрибуты
+S.Connected_AL = False
+S.Connected_AC = False
+S.Connected_RT = False
+S.Connected_FN = False
+# print(" Загружать авиарейсы на Develop-Server? (работает медленнее) [y/n] ", end=" ")
+# if str(input()) == 'y':
+#     S.ServerNameFlights = "develop-server.movistar.vrn.skylink.local"
+# else:
+#     S.ServerNameFlights = "data-server-1.movistar.vrn.skylink.local"
+S.ServerNameOriginal = "data-server-1.movistar.vrn.skylink.local"
+S.ServerNameFlights = "develop-server.movistar.vrn.skylink.local"
 S.radioButtonUseDB = True
 S.InputFileCSV = ' '
 S.LogFileTXT = ' '
@@ -355,6 +368,7 @@ def LoadThread(Csv, Log):
     OutputString = " \n \n"
     OutputString += "Загрузка рабочих данных (версия обработки - " + str(__myOwnDevelopingVersion__) + ") начата " + str(DateTime) + " \n"
     OutputString += " Загрузка проведена с " + str(socket.gethostname()) + " \n"
+    OutputString += " Версия интерпретатора = " + str(sys.version) + " \n"
     OutputString += " Источник входных данных = " + str(S.filenameCSV) + " \n"
     OutputString += " Входные данные внесены за " + str(S.BeginDate) + " \n"
     if S.SetInputDate:
@@ -485,7 +499,7 @@ def myApplication():
     myDialog.lineEdit_Schema_FN.setEnabled(False)
     # Получаем список DSN-ов
     # Добавляем атрибут DSNs по ходу действия
-    S.DSNs = pyodbc.dataSources()  # добавленные DSN-ы
+    S.DSNs = pyodbc.dataSources()  # добавленные системные DSN-ы
     if S.DSNs:
         for DSN in S.DSNs:
             if not DSN:
@@ -506,8 +520,11 @@ def myApplication():
     myDialog.comboBox_DB_RT.addItem("AirPortsAndRoutesDBNew62")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew42")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew52")
+    myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62Test")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62Test2")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62Test3")
+    myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62Test4")
+    myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62WorkBase")
     # Привязки обработчиков todo без lambda не работает
     myDialog.pushButton_Connect_AL.clicked.connect(lambda: PushButtonSelectDB_AL())  # Подключиться к базе данных
     myDialog.pushButton_Disconnect_AL.clicked.connect(lambda: PushButtonDisconnect_AL())  # Отключиться от базы данных
@@ -536,7 +553,7 @@ def myApplication():
                 # Добавляем атрибут cnxn
                 # через драйвер СУБД + клиентский API-курсор
                 # todo Сделать сообщение с зелеными галочками по пунктам подключения
-                S.cnxnAL = pyodbc.connect(driver=S.DriverODBC_AL, server=S.ServerName, database=S.DataBase_AL)
+                S.cnxnAL = pyodbc.connect(driver=S.DriverODBC_AL, server=S.ServerNameOriginal, database=S.DataBase_AL)
                 print("  БД = ", S.DataBase_AL, "подключена")
                 S.Connected_AL = True
                 # Переводим в рабочее состояние (продолжение)
@@ -636,7 +653,7 @@ def myApplication():
             try:
                 # Добавляем атрибут cnxn
                 # через драйвер СУБД + клиентский API-курсор
-                S.cnxnRT = pyodbc.connect(driver=S.DriverODBC_RT, server=S.ServerName, database=S.DataBase_RT)
+                S.cnxnRT = pyodbc.connect(driver=S.DriverODBC_RT, server=S.ServerNameOriginal, database=S.DataBase_RT)
                 print("  БД = ", S.DataBase_RT, "подключена")
                 S.Connected_RT = True
                 # Переводим в рабочее состояние (продолжение)
@@ -760,7 +777,7 @@ def myApplication():
                 # Добавляем атрибут cnxn
                 if S.radioButtonUseDB:
                     # через драйвер СУБД + клиентский API-курсор
-                    S.cnxnAC = pyodbc.connect(driver=S.DriverODBC_AC, server=S.ServerName, database=S.DataBase_AC)
+                    S.cnxnAC = pyodbc.connect(driver=S.DriverODBC_AC, server=S.ServerNameFlights, database=S.DataBase_AC)
                     print("  БД = ", S.DataBase_AC, "подключена")
                 else:
                     # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)
@@ -818,7 +835,7 @@ def myApplication():
                 # Добавляем атрибут cnxn
                 if S.radioButtonUseDB:
                     # через драйвер СУБД + клиентский API-курсор
-                    S.cnxnFN = pyodbc.connect(driver=S.DriverODBC_FN, server=S.ServerName, database=S.DataBase_FN)
+                    S.cnxnFN = pyodbc.connect(driver=S.DriverODBC_FN, server=S.ServerNameFlights, database=S.DataBase_FN)
                     print("  БД = ", S.DataBase_FN, "подключена")
                 else:
                     # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)

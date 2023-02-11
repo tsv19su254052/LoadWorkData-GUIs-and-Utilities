@@ -1,10 +1,9 @@
-#  Interpreter 3.7
+#  Interpreter 3.7 -> 3.10 -> 3.11
 
 
 from PyQt5 import QtWidgets, QtCore, QtGui  # оставили 5-ую версию, потому что много наработок еще завязаны на нее
 # todo ветка библиотек Qt - QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner, QtXml
 # Руководство по установке см. https://packaging.python.org/tutorials/installing-packages/
-
 
 # Пользовательская библиотека с классами
 # Задача создания пользовательских структур данных не расматривается -> Только функционал
@@ -13,6 +12,7 @@ from PyQt5 import QtWidgets, QtCore, QtGui  # оставили 5-ую верси
 # Qt Designer (см. https://build-system.fman.io/qt-designer-download)
 # Запуск Qt Designer из пакета pyQt5_tools в терминале командой
 # > pyqt5-tools designer
+import sqlalchemy
 
 
 # Делаем предка
@@ -74,18 +74,14 @@ class AirPort:
 
 
 # Делаем предка
-class Server:
+class Servers:
     # fixme Написать конструктор правильно
     def __init__(self):
+        pass
         # Получаем список DSN-ов - тут выдает ошибки, лучше делать в экземпляре
         # Server.DSNs = pyodbc.dataSources()  # добавленные DSN-ы
         # Получаем список драйверов баз данных
         # Server.DriversODBC = pyodbc.drivers()
-        self.ServerName = "data-server-1.movistar.vrn.skylink.local"
-        self.Connected_AL = False
-        self.Connected_AC = False
-        self.Connected_RT = False
-        self.Connected_FN = False
 
     """
     Библиотеки Python для ввода-вывода в файл:

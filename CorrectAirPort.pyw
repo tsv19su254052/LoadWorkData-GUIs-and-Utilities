@@ -1,4 +1,4 @@
-#  Interpreter 3.7
+#  Interpreter 3.7 -> 3.10 -> 3.11
 
 
 import pyodbc
@@ -11,7 +11,13 @@ import Classes
 
 # Делаем экземпляры
 A = Classes.AirPort()
-S = Classes.Server()
+S = Classes.Servers()
+# Добавляем аттрибуты
+S.ServerName = "data-server-1.movistar.vrn.skylink.local"
+S.Connected_AL = False
+S.Connected_AC = False
+S.Connected_RT = False
+S.Connected_FN = False
 
 
 # Основная функция
