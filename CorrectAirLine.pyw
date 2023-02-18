@@ -68,6 +68,7 @@ def myApplication():
     myDialog.textEdit_AirLineCity.setEnabled(False)
     myDialog.dateEdit_CreateDate.setEnabled(False)
     myDialog.textEdit_AirLineCountry.setEnabled(False)
+    myDialog.comboBox_Alliance.setEditable(True)
     myDialog.comboBox_Alliance.setEnabled(False)
     myDialog.lineEdit_AirLineID.setEnabled(False)
     myDialog.lineEdit_AirLineAlias.setEnabled(False)
@@ -300,23 +301,30 @@ def myApplication():
             myDialog.dateEdit_CreateDate.clear()
         myDialog.textEdit_AirLineCountry.clear()
         myDialog.textEdit_AirLineCountry.append(str(A.AirLineCountry))
-        # Получаем список алиансов
+        # Получаем список алиансов и заполняем combobox каждый раз
         Aliances = S.QueryAliances()
+        print("Aliances=" + str(Aliances))
         myDialog.comboBox_Alliance.clear()
         if Aliances:
             for Aliance in Aliances:
-                myDialog.comboBox_Alliance.addItem(str(Aliance[0]))
-        quantity = myDialog.comboBox_Alliance.count()
-        index = A.Aliance - 1  # нумерация начинается с 0
-        myDialog.comboBox_Alliance.setCurrentIndex(index)
+                myDialog.comboBox_Alliance.addItem(str(Aliance[1]))
+            PKs = []
+            for PK in Aliances:
+                PKs.append(PK[0])
+            print("PKs=" + str(PKs))
+            quantity = myDialog.comboBox_Alliance.count()
+            # fixme Первичный ключ имеет разрывы в нумерации, индекс combobox-а - нет. Надо привести в соответствие
+            # fixme Нужно вывести номер позиции "A.Aliance" в списке "PKs" (нумеруется с 0) и подставить его в "index" - СДЕЛАЛ
+            index = PKs.index(A.Aliance)  # нумеруется с 0
+            print("index=" + str(index))
+            myDialog.comboBox_Alliance.setCurrentIndex(index)
         myDialog.lineEdit_AirLineID.setText(str(A.AirLine_ID))
         myDialog.lineEdit_AirLineAlias.setText(str(A.AirLineAlias))
         # Выводим позицию
         myDialog.lineEdit_Position.setText(str(A.Position))
         myDialog.textEdit_AirLineDescription.clear()
         myDialog.textEdit_AirLineDescription.append(str(A.AirLineDescription))
-        print(str(Aliances))
-        print("Fields is set up")
+        print("Fields is set up\n")
 
     def PushButtonSearchByIATA():
         # Кнопка "Поиск"
@@ -630,7 +638,9 @@ def myApplication():
         A.CreationDate = myDialog.dateEdit_CreateDate.date().toString('yyyy-MM-dd')
         A.AirLineDescription = myDialog.textEdit_AirLineDescription.toPlainText()
         index = myDialog.comboBox_Alliance.currentIndex()
-        A.Aliance = index + 1
+        #A.Aliance = index + 1  # первичный ключ альянса
+        A.Aliance = S.QueryAliancePKByName(myDialog.comboBox_Alliance.currentText())[0]
+        print("AliancePK for update=" + str(A.Aliance))
         # Вносим изменение
         ResultUpdate = S.UpdateAirLineByIATAandICAO(A.AirLine_ID,
                                                     A.AirLineName,

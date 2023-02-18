@@ -278,7 +278,7 @@ class Servers:
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
             self.seekAL.execute(SQLQuery)
-            SQLQuery = "SELECT AlianceName FROM dbo.AliancesTable"  # Убрал  ORDER BY AlianceName
+            SQLQuery = "SELECT AlianceUniqueNumber, AlianceName FROM dbo.AliancesTable"  # Убрал  ORDER BY AlianceName
             self.seekAL.execute(SQLQuery)
             ResultSQL = self.seekAL.fetchall()
             self.cnxnAL.commit()
@@ -291,6 +291,26 @@ class Servers:
             return ResultSQL
 
     def QueryAliances_SQLAlchemy(self):
+        # todo В процессе разработки
+        pass
+
+    def QueryAliancePKByName(self, name):
+        try:
+            SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
+            self.seekAL.execute(SQLQuery)
+            SQLQuery = "SELECT AlianceUniqueNumber FROM dbo.AliancesTable WHERE AlianceName='" + str(name) + "' "  # Убрал  ORDER BY AlianceName
+            self.seekAL.execute(SQLQuery)
+            ResultSQL = self.seekAL.fetchone()
+            self.cnxnAL.commit()
+        except Exception:
+            ResultSQL = False
+            self.cnxnAL.rollback()
+        else:
+            pass
+        finally:
+            return ResultSQL
+
+    def QueryAliancePKByName_SQLAlchemy(self, name):
         # todo В процессе разработки
         pass
 
