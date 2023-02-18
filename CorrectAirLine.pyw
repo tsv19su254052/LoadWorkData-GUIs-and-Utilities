@@ -317,6 +317,9 @@ def myApplication():
             # fixme Нужно вывести номер позиции "A.Aliance" в списке "PKs" (нумеруется с 0) и подставить его в "index" - СДЕЛАЛ
             index = PKs.index(A.Aliance)  # нумеруется с 0
             print("index=" + str(index))
+            # Адаптированное решение с https://stackoverflow.com/questions/75496493/search-position-in-two-dimensional-list?noredirect=1#comment133202629_75496493
+            index_2 = next((i for i, x in enumerate(Aliances) if x[0] == A.Aliance), None)
+            print("Index2=" + str(index_2))
             myDialog.comboBox_Alliance.setCurrentIndex(index)
         myDialog.lineEdit_AirLineID.setText(str(A.AirLine_ID))
         myDialog.lineEdit_AirLineAlias.setText(str(A.AirLineAlias))
