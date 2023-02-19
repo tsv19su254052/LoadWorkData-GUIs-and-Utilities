@@ -32,7 +32,7 @@ class AirLine:
         self.AirLineStatus = 1
         self.CreationDate = '1920-01-01'
         self.AirLineDescription = " "
-        self.Aliance = 4
+        self.Alliance = 4
         self.Position = 1  # Позиция курсора в таблице (в SQL начинается с 1)
 
 
@@ -274,11 +274,11 @@ class Servers:
     def QueryAirLineByPK_SQLAlchemy(self, pk):
         pass
 
-    def QueryAliances(self):
+    def QueryAlliances(self):
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
             self.seekAL.execute(SQLQuery)
-            SQLQuery = "SELECT AlianceUniqueNumber, AlianceName FROM dbo.AliancesTable"  # Убрал  ORDER BY AlianceName
+            SQLQuery = "SELECT AllianceUniqueNumber, AllianceName FROM dbo.AlliancesTable"  # Убрал  ORDER BY AlianceName
             self.seekAL.execute(SQLQuery)
             ResultSQL = self.seekAL.fetchall()
             self.cnxnAL.commit()
@@ -290,15 +290,15 @@ class Servers:
         finally:
             return ResultSQL
 
-    def QueryAliances_SQLAlchemy(self):
+    def QueryAlliances_SQLAlchemy(self):
         # todo В процессе разработки
         pass
 
-    def QueryAliancePKByName(self, name):
+    def QueryAlliancePKByName(self, name):
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
             self.seekAL.execute(SQLQuery)
-            SQLQuery = "SELECT AlianceUniqueNumber FROM dbo.AliancesTable WHERE AlianceName='" + str(name) + "' "  # Убрал  ORDER BY AlianceName
+            SQLQuery = "SELECT AllianceUniqueNumber FROM dbo.AlliancesTable WHERE AllianceName='" + str(name) + "' "  # Убрал  ORDER BY AlianceName
             self.seekAL.execute(SQLQuery)
             ResultSQL = self.seekAL.fetchone()
             self.cnxnAL.commit()
@@ -310,7 +310,7 @@ class Servers:
         finally:
             return ResultSQL
 
-    def QueryAliancePKByName_SQLAlchemy(self, name):
+    def QueryAlliancePKByName_SQLAlchemy(self, name):
         # todo В процессе разработки
         pass
 
@@ -322,7 +322,7 @@ class Servers:
             SQLQuery = "UPDATE dbo.AirLinesTable SET AirLine_ID = " + str(id) + ", AirLineName = '" + str(name) + "', AirLineAlias = '" + str(alias)
             SQLQuery += "', AirLineCallSighn = '" + str(callsign)
             SQLQuery += "', AirLineCity = '" + str(city) + "', AirLineCountry = '" + str(country) + "', AirLineStatus = " + str(status)
-            SQLQuery += ", CreationDate = '" + str(date) + "', AirLineDescription = '" + str(description) + "', Aliance = " + str(aliance)
+            SQLQuery += ", CreationDate = '" + str(date) + "', AirLineDescription = '" + str(description) + "', Alliance = " + str(aliance)
             if iata is None:
                 print(" ICAO=", str(icao))
                 SQLQuery += " WHERE AirLineCodeIATA IS NULL AND AirLineCodeICAO = '" + str(icao) + "' "
@@ -1454,6 +1454,7 @@ class Ui_DialogReverse(QtWidgets.QDialog):
 
 
 # Конвертация ресурсного файла *.ui -> *.py в терминале командой (командной строке)
+# Вставка картинки https://stackoverflow.com/questions/28536306/inserting-an-image-in-gui-using-qt-designer
 # > pyuic5 Qt_Designer_CorrectDialogAirLines.ui -o Qt_Designer_CorrectDialogAirLines.py
 class Ui_DialogCorrectAirLine(QtWidgets.QDialog):
     def __init__(self):

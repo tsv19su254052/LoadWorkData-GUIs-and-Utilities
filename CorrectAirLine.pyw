@@ -301,33 +301,37 @@ def myApplication():
             myDialog.dateEdit_CreateDate.clear()
         myDialog.textEdit_AirLineCountry.clear()
         myDialog.textEdit_AirLineCountry.append(str(A.AirLineCountry))
-        # Получаем список алиансов и заполняем combobox каждый раз
-        Aliances = S.QueryAliances()
-        print("Aliances=" + str(Aliances))
+        # Перезапрашиваем список алиансов и заполняем combobox каждый раз
+        Alliances = S.QueryAlliances()
+        print("Alliances = " + str(Alliances))
         myDialog.comboBox_Alliance.clear()
-        if Aliances:
-            for Aliance in Aliances:
-                myDialog.comboBox_Alliance.addItem(str(Aliance[1]))
-            PKs = []
-            for PK in Aliances:
-                PKs.append(PK[0])
-            print("PKs=" + str(PKs))
-            quantity = myDialog.comboBox_Alliance.count()
+        if Alliances:
+            for Alliance in Alliances:
+                myDialog.comboBox_Alliance.addItem(str(Alliance[1]))
             # fixme Первичный ключ имеет разрывы в нумерации, индекс combobox-а - нет. Надо привести в соответствие
-            # fixme Нужно вывести номер позиции "A.Aliance" в списке "PKs" (нумеруется с 0) и подставить его в "index" - СДЕЛАЛ
-            index = PKs.index(A.Aliance)  # нумеруется с 0
-            print("index=" + str(index))
-            # Адаптированное решение с https://stackoverflow.com/questions/75496493/search-position-in-two-dimensional-list?noredirect=1#comment133202629_75496493
-            index_2 = next((i for i, x in enumerate(Aliances) if x[0] == A.Aliance), None)
-            print("Index2=" + str(index_2))
-            myDialog.comboBox_Alliance.setCurrentIndex(index)
+            # fixme Нужно вывести номер позиции "A.Alliance" в списке "PKs" (нумеруется с 0) и подставить его в "index" - СДЕЛАЛ
+            PKs = []
+            for PK in Alliances:
+                PKs.append(PK[0])
+            print("PKs = " + str(PKs))
+            quantity = myDialog.comboBox_Alliance.count()
+            index = PKs.index(A.Alliance)  # нумеруется с 0
+            print("index = " + str(index))
+            # todo - Адаптированное решение с https://stackoverflow.com/questions/75496493/search-position-in-two-dimensional-list?noredirect=1#comment133202629_75496493 - РАБОТАЕТ
+            index_improved = next((i for i, x in enumerate(Alliances) if x[0] == A.Alliance), None)
+            if index_improved is None:
+                index_improved = 3  # Unknown Alliance
+                print("Альянс не найден в списке")
+            else:
+                print("Альянс = " + str(index_improved))
+            myDialog.comboBox_Alliance.setCurrentIndex(index_improved)
         myDialog.lineEdit_AirLineID.setText(str(A.AirLine_ID))
         myDialog.lineEdit_AirLineAlias.setText(str(A.AirLineAlias))
         # Выводим позицию
         myDialog.lineEdit_Position.setText(str(A.Position))
         myDialog.textEdit_AirLineDescription.clear()
         myDialog.textEdit_AirLineDescription.append(str(A.AirLineDescription))
-        print("Fields is set up\n")
+        print("Поля ввода заполнены\n")
 
     def PushButtonSearchByIATA():
         # Кнопка "Поиск"
@@ -355,7 +359,7 @@ def myApplication():
                 if DBAirLine.CreationDate:
                     A.CreationDate = DBAirLine.CreationDate
                 A.AirLineDescription = DBAirLine.AirLineDescription
-                A.Aliance = DBAirLine.Aliance
+                A.Alliance = DBAirLine.Alliance
             elif DBAirLine is None:
                 message = QtWidgets.QMessageBox()
                 message.setText("Запись не найдена")
@@ -395,7 +399,7 @@ def myApplication():
                 if DBAirLine.CreationDate:
                     A.CreationDate = DBAirLine.CreationDate
                 A.AirLineDescription = DBAirLine.AirLineDescription
-                A.Aliance = DBAirLine.Aliance
+                A.Alliance = DBAirLine.Alliance
             elif DBAirLine is None:
                 message = QtWidgets.QMessageBox()
                 message.setText("Запись не найдена")
@@ -460,10 +464,10 @@ def myApplication():
             if DBAirLine.CreationDate:
                 A.CreationDate = DBAirLine.CreationDate
             A.AirLineDescription = DBAirLine.AirLineDescription
-            if DBAirLine.Aliance:
-                A.Aliance = DBAirLine.Aliance
+            if DBAirLine.Alliance:
+                A.Alliance = DBAirLine.Alliance
             else:
-                A.Aliance = 4
+                A.Alliance = 4
             if A.Position == 1:
                 myDialog.pushButton_Begin.setEnabled(False)
                 myDialog.pushButton_Previous.setEnabled(False)
@@ -515,10 +519,10 @@ def myApplication():
             if DBAirLine.CreationDate:
                 A.CreationDate = DBAirLine.CreationDate
             A.AirLineDescription = DBAirLine.AirLineDescription
-            if DBAirLine.Aliance:
-                A.Aliance = DBAirLine.Aliance
+            if DBAirLine.Alliance:
+                A.Alliance = DBAirLine.Alliance
             else:
-                A.Aliance = 4
+                A.Alliance = 4
             SetFields()
             return True
         elif DBAirLine is None:
@@ -641,9 +645,10 @@ def myApplication():
         A.CreationDate = myDialog.dateEdit_CreateDate.date().toString('yyyy-MM-dd')
         A.AirLineDescription = myDialog.textEdit_AirLineDescription.toPlainText()
         index = myDialog.comboBox_Alliance.currentIndex()
-        #A.Aliance = index + 1  # первичный ключ альянса
-        A.Aliance = S.QueryAliancePKByName(myDialog.comboBox_Alliance.currentText())[0]
-        print("AliancePK for update=" + str(A.Aliance))
+        A.Alliance = index + 1  # первичный ключ альянса
+        print("old AlliancePK for update =" + str(A.Alliance))
+        A.Alliance = S.QueryAlliancePKByName(myDialog.comboBox_Alliance.currentText())[0]
+        print("AlliancePK for update =" + str(A.Alliance))
         # Вносим изменение
         ResultUpdate = S.UpdateAirLineByIATAandICAO(A.AirLine_ID,
                                                     A.AirLineName,
@@ -656,7 +661,7 @@ def myApplication():
                                                     A.AirLineStatus,
                                                     A.CreationDate,
                                                     A.AirLineDescription,
-                                                    A.Aliance)
+                                                    A.Alliance)
         if not ResultUpdate:
             message = QtWidgets.QMessageBox()
             message.setText("Запись не переписалась")
