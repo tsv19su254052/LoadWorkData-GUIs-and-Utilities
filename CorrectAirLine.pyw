@@ -4,6 +4,8 @@
 import pyodbc
 import sys
 from PyQt5 import QtWidgets, QtCore  # QtSQL медленнее, чем pyodbc
+import tkinter
+import tkvue
 
 # Импорт пользовательской библиотеки (файла *.py в этой же папке)
 import Classes
@@ -73,8 +75,57 @@ def myApplication():
     myDialog.lineEdit_AirLineID.setEnabled(False)
     myDialog.lineEdit_AirLineAlias.setEnabled(False)
     myDialog.lineEdit_Position.setEnabled(False)
+    # todo Сделать 2 гиперссылки на:
+    #  сайт на википедии,
+    #  сайт авиакомпании
+    #  + Кнопку диалога их правки (чтобы не выводить длинную краказябру, подставить псевдонимы)
+    #  Простенькие примеры с https://stackoverflow.com/questions/29987065/how-can-i-make-link-on-web-page-in-window-using-pyqt4
+    """
+    Бесхозный многострочный текст в роли комментария
+    ------------------------------------------------------------
+    from PyQt5.QtGui import QDesktopServices
+    from PyQt5.QtCore import QUrl
+
+    class MainWindow(QMainWindow, Ui_MainWindow):
+        def link(self, linkStr):
+            QDesktopServices.openUrl(QUrl(linkStr))
+
+        def __init__(self):
+            super(MainWindow, self).__init__()
+
+            # Set up the user interface from Designer.
+            self.setupUi(self)
+            self.label.linkActivated.connect(self.link)
+            self.label.setText('<a href="http://stackoverflow.com/">Stackoverflow/</a>')  # Адрес + Псевдоним
+
+    -------------------------------------------------------------
+    label.setText('<a href="http://stackoverflow.com/">Link</a>')  # Адрес + Псевдоним
+    label.setOpenExternalLinks(True)
+    -------------------------------------------------------------
+    from PyQt5 import QtWidgets
+
+    app = QtWidgets.QApplication([])
+    w = QtWidgets.QMainWindow()
+    QtWidgets.QLabel(parent=w, text='Hover mouse here', toolTip='<a href="http://google.com">Unclickable link</a>')  # Адрес + Псевдоним
+    w.show()
+    app.exec_()
+    -------------------------------------------------------------
+    """
+
     myDialog.tabWidget.setTabText(0, "Описание")
     myDialog.tabWidget.setTabText(1, "Функционал")
+    # todo Сделать хабы интерактивным динамическим набором виджетов с подписанными "Наименованиями аэропортов" из базы аэропортов на вкладке "Хабы"
+    #  + Кнопка "Добавить аэропорт" внизу справа вкладки.
+    #  По каждой кнопке открывается модальный диалог с этим аэропортом (без кнопок и параметров подключения).
+    #  Поиск в базе аэропортов по кодам IATA и ICAO.
+    #  Соответственно оба поля ввода IATA и ICAO неактивные.
+    #  Набрать 3 XML-ных файла-образца хабов авиакомпаний (пара IATA и ICAO) и сделать с них схему dbo.SchemaHubs. Привязать схему к базе.
+    #  Добавить в таблице базы поле "Hubs" типа XML (CONTENT dbo.SchemaHubs).
+    #  Преимущество - не надо править таблицу в базе, можно править XML-ный файл-образец и перепривязывать схему.
+    #  На диалоге аэропорта сделать:
+    #  - две гиперссылки на сайт википедии ии на сайт аэропорта
+    #  + Кнопка "Изменить" -> Модальный диалог с 2-мя полями ввода
+    #  - кнопку, которая выводит модальный диалог с таблицей авиакомпаний, в которых он числится хабом
     myDialog.tabWidget.setTabText(2, "Хабы")
     myDialog.tabWidget.setTabText(3, "Структура")
     myDialog.tabWidget.setTabText(4, "Дополнительно")
@@ -295,6 +346,7 @@ def myApplication():
         myDialog.textEdit_AirLineCity.clear()
         myDialog.textEdit_AirLineCity.append(str(A.AirLineCity))
         #myDialog.dateEdit_CreateDate.dateTimeFromText(A.CreationDate)
+        # fixme Замечены случаи, что не читает дату из базы и оставляет предыдущую - ПРОВЕРЯЕМ ДАТУ ПЕРЕД ЗАПИСЬЮ
         if A.CreationDate:
             myDialog.dateEdit_CreateDate.setDate(QtCore.QDate.fromString(str(A.CreationDate), "yyyy-MM-dd"))
         else:

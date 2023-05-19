@@ -12,7 +12,7 @@ from PyQt5 import QtWidgets, QtCore, QtGui  # оставили 5-ую верси
 # Qt Designer (см. https://build-system.fman.io/qt-designer-download)
 # Запуск Qt Designer из пакета pyQt5_tools в терминале командой
 # > pyqt5-tools designer
-import sqlalchemy
+from sqlalchemy import create_engine
 
 
 # Делаем предка

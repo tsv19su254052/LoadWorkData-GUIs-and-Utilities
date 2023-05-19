@@ -19,7 +19,9 @@ import colorama
 import termcolor
 #import tqdm  # fixme tqdm нужен свой цикл -> сюда не подходит
 # todo Вероятно придется много переделать, чтобы не вызывать по 2 раза. Не работает с XML-ными полями см. https://docs.sqlalchemy.org/en/20/dialects/mssql.html#sqlalchemy.dialects.mssql.XML
-import sqlalchemy
+from sqlalchemy import create_engine
+import tkinter
+import tkvue
 
 # Импорт пользовательской библиотеки (файла *.py в этой же папке)
 import Classes
