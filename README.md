@@ -30,7 +30,7 @@
  - [jetphotos.com](https://www.jetphotos.com)
 
 ###### Рабочие данные
-загружаются с [transtats.bts.gov](https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr )
+загружаются с [transtats.bts.gov](https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr) - долго думает
 
 ###### Оперативные данные
 загружаются асинхронно:
