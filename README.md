@@ -24,12 +24,12 @@
 использовались из источников:
  - [apinfo.ru](http://apinfo.ru )
  - [openflights.org](http://openflights.org)
- - [ourairport.com](http://www1.ourairport.com) - переезжает на другое место (в России не открывается)
+ - [ourairport.com](http://www1.ourairport.com) (переезжает на другое место, в России не открывается)
  - [planelist.net](http://planelist.net)
  - [flightradar24.com](http://www.flightradar24.com)
  - [jetphotos.com](https://www.jetphotos.com)
 
-Рабочие данные загружаются с [transtats.bts.gov](https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr) - долго думает
+Рабочие данные загружаются с [transtats.bts.gov](https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr) (долго думает)
 
 Оперативные данные загружаются асинхронно:
  - с [flightradar24.com](http://www.flightradar24.com) на API-шках и по ВЭБ-хукам (надо покупать и оплачивать токен),
