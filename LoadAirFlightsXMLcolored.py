@@ -7,21 +7,17 @@ import itertools
 import datetime
 import time
 import os
-import json
 import sys
 import socket
 import threading
 # оставили 5-ую версию, потому что много наработок еще завязаны на нее
-from PyQt5 import QtWidgets  # QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner - запускаем в командной строке, QtXml (устарел) -> замена QXmlStreamReader, QXmlStreamWriter
+# QtCore, QtGui, QtNetwork, QtOpenGL, QtScript, QtSQL (медленнее чем pyodbc), QtDesigner - запускаем в командной строке, QtXml (устарел) -> замена QXmlStreamReader, QXmlStreamWriter
+from PyQt5 import QtWidgets
 import pathlib
 #import stringcolor  # fixme в IDLE и в pyCharm раскраска не работает, в командной строке сразу слетает
 import colorama
 import termcolor
 #import tqdm  # fixme tqdm нужен свой цикл -> сюда не подходит
-# todo Вероятно придется много переделать, чтобы не вызывать по 2 раза. Не работает с XML-ными полями см. https://docs.sqlalchemy.org/en/20/dialects/mssql.html#sqlalchemy.dialects.mssql.XML
-from sqlalchemy import create_engine
-import tkinter
-import tkvue
 
 # Импорт пользовательской библиотеки (файла *.py в этой же папке)
 import Classes

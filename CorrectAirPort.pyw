@@ -1,11 +1,10 @@
 #  Interpreter 3.7 -> 3.10 -> 3.11
 
 
+# QtSQL медленнее, чем pyodbc
 import pyodbc
 import sys
-from PyQt5 import QtWidgets  # QtSQL медленнее, чем pyodbc
-import tkinter
-import tkvue
+from PyQt5 import QtWidgets
 
 # Импорт пользовательской библиотеки (файла *.py в этой же папке)
 import Classes
