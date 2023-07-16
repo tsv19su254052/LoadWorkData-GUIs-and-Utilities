@@ -4,7 +4,7 @@
 # QtSQL медленнее, чем pyodbc
 import pyodbc
 import sys
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 
 # Импорт пользовательской библиотеки (файла *.py в этой же папке)
 import Classes
