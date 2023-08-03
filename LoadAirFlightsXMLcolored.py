@@ -59,8 +59,11 @@ S.Connected_FN = False
 #     S.ServerNameFlights = "develop-server.movistar.vrn.skylink.local"
 # else:
 #     S.ServerNameFlights = "data-server-1.movistar.vrn.skylink.local"
-S.ServerNameOriginal = "data-server-1.movistar.vrn.skylink.local"
-S.ServerNameFlights = "develop-server.movistar.vrn.skylink.local"
+#S.ServerNameOriginal = "data-server-1.movistar.vrn.skylink.local"
+S.ServerNameOriginal = "TerminalServer\sqldeveloper"  # указал имя NetBIOS и указал инстанс
+# fixme Забыл отменить обратно, надо проверить как самолеты и авиарейсы грузились без него причем в рабочую базу -> Все нормально, этот выбор работал, если грузить не через системный DSN
+#S.ServerNameFlights = "develop-server.movistar.vrn.skylink.local"  # указал доменное имя
+S.ServerNameFlights = "TerminalServer\sqldeveloper"  # указал имя NetBIOS и указал инстанс
 S.radioButtonUseDB = True
 S.InputFileCSV = ' '
 S.LogFileTXT = ' '
@@ -68,7 +71,7 @@ S.ErrorFileTXT = 'LogReport_Errors.txt'
 S.SetInputDate = False
 
 
-# fixme Почеиу функции отсоединения есть, а присоединения нет
+# fixme Почеиу функции отсоединения есть, а присоединения нет?
 def Disconnect_AL():
     # Снимаем курсор
     S.seekAL.close()
@@ -518,9 +521,6 @@ def myApplication():
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew42")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew52")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62Test")
-    myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62Test2")
-    myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62Test3")
-    myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62Test4")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62WorkBase")
     # Привязки обработчиков todo без lambda не работает
     myDialog.pushButton_Connect_AL.clicked.connect(lambda: PushButtonSelectDB_AL())  # Подключиться к базе данных

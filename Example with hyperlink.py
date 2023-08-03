@@ -9,7 +9,7 @@ class MainWindow(QWidget):
 
         self.text_browser = QTextBrowser()
         self.text_browser.setOpenExternalLinks(True)
-        #self.text_browser.setReadOnly(True)
+        self.text_browser.setReadOnly(True)  # todo можно закомментировать
         self.text_browser.append("<a href='https://google.com/'>Google</a>")
         self.text_browser.append("<a href='https://github.com/'>Github</a>")
 
