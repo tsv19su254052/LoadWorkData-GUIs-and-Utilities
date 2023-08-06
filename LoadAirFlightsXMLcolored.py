@@ -520,7 +520,6 @@ def myApplication():
     myDialog.comboBox_DB_RT.addItem("AirPortsAndRoutesDBNew62")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew42")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew52")
-    myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62Test")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62WorkBase")
     # Привязки обработчиков todo без lambda не работает
     myDialog.pushButton_Connect_AL.clicked.connect(lambda: PushButtonSelectDB_AL())  # Подключиться к базе данных
