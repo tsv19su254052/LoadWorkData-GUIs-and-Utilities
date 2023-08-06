@@ -16,7 +16,7 @@ A = Classes.AirLine()
 S = Classes.Servers()
 # Добавляем аттрибуты
 #S.ServerName = "data-server-1.movistar.vrn.skylink.local"
-S.ServerName = "TerminalServer\sqldeveloper"  # указал инстанс
+S.ServerName = "TerminalServer\mssqlserver15"  # указал инстанс
 S.Connected_AL = False
 S.Connected_AC = False
 S.Connected_RT = False
