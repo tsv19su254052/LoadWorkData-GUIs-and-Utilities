@@ -29,7 +29,7 @@
  - [flightradar24.com](http://www.flightradar24.com)
  - [jetphotos.com](https://www.jetphotos.com)
 
-Рабочие данные загружаются с [BTS](https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr) (долго думает)
+Рабочие данные загружаются с [BTS](https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr)
 
 Оперативные данные загружаются асинхронно:
  - с [flightradar24.com](http://www.flightradar24.com) на API-шках и по ВЭБ-хукам (надо покупать и оплачивать токен),
