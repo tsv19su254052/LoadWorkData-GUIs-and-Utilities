@@ -369,7 +369,7 @@ def myApplication():
             quantity = myDialog.comboBox_Alliance.count()
             index = PKs.index(A.Alliance)  # нумеруется с 0
             print("index = " + str(index))
-            # todo - Адаптированное решение с https://stackoverflow.com/questions/75496493/search-position-in-two-dimensional-list?noredirect=1#comment133202629_75496493 - РАБОТАЕТ
+            # todo - Адаптированное решение по подсказке с https://stackoverflow.com/questions/75496493/search-position-in-two-dimensional-list?noredirect=1#comment133202629_75496493 - РАБОТАЕТ
             index_improved = next((i for i, x in enumerate(Alliances) if x[0] == A.Alliance), None)
             if index_improved is None:
                 index_improved = 3  # Unknown Alliance
