@@ -970,7 +970,7 @@ def myApplication():
         # fixme кнопки не гаснут
         threadLoad = threading.Thread(target=LoadThread, daemon=False, args=(S.InputFileCSV, S.LogFileTXT, ))  # поток не сам по себе
         threadLoad.start()
-        threadLoad.join(1)  # ждем поток в основном потоке (графическая оболочка зависает), секунд
+        threadLoad.join(5)  # ждем поток в основном потоке (графическая оболочка зависает), секунд
         myDialog.close()  # закрываем графическую оболочку, текстовая остается
 
     # Отрисовка диалога
