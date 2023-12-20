@@ -62,7 +62,7 @@ S.Connected_FN = False
 #S.ServerNameOriginal = "data-server-1.movistar.vrn.skylink.local"
 S.ServerNameOriginal = "TerminalServer\mssqlserver15"  # указал имя NetBIOS и указал инстанс
 # fixme Забыл отменить обратно, надо проверить как самолеты и авиарейсы грузились без него причем в рабочую базу -> Все нормально, этот выбор работал, если грузить не через системный DSN
-#S.ServerNameFlights = "data-server-1.movistar.vrn.skylink.local"  # указал доменное имя
+#S.ServerNameFlights = "data-server-1.movistar.vrn.skylink.local"  # указал ресурсную запись из DNS
 S.ServerNameFlights = "TerminalServer\mssqlserver15"  # указал имя NetBIOS и указал инстанс
 S.radioButtonUseDB = True
 S.InputFileCSV = ' '
