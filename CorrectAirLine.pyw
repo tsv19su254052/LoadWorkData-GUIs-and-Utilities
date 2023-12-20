@@ -15,7 +15,7 @@ import Classes
 A = Classes.AirLine()
 S = Classes.Servers()
 # Добавляем аттрибуты
-#S.ServerName = "data-server-1.movistar.vrn.skylink.local"
+#S.ServerName = "data-server-1.movistar.vrn.skylink.local"  # указал ресурсную запись из DNS
 S.ServerName = "TerminalServer\mssqlserver15"  # указал инстанс
 S.Connected_AL = False
 S.Connected_AC = False
