@@ -138,7 +138,7 @@ def LoadThread(Csv, Log):
     DistributionDensityAirCrafts = []
     DistributionDensityAirRoutes = []
     DistributionDensityAirFlights = []
-    Density = 10  # раз в секунду
+    Density = 2  # раз в секунду
     MaxDelay = 750 * Density  # секунд
     for Index in range(MaxDelay):
         DistributionDensityAirLines.append(0)
