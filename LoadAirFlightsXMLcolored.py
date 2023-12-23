@@ -123,6 +123,7 @@ def LoadThread(Csv, Log):
     ListMonth = DataFrameFromCSV['MONTH'].tolist()
     ListDay = DataFrameFromCSV['DAY_OF_MONTH'].tolist()
     # todo Собрать новый список с датами из 3-х списков с целыми числами поэлементно конкатенацией через минусы и использовать теперь его
+    # todo Проверить на соответствие результат перед записью в базу
     ListFlightDateConcatenated = []
     print("готово")
     # Списки
