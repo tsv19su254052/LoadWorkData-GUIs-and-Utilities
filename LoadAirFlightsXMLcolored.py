@@ -165,7 +165,7 @@ def LoadThread(Csv, Log):
     completion = 0  # Выполнение загрузки
     #pbar = tqdm.tqdm(len(ListAirLineCodeIATA))
     # Один внешний цикл и три вложенных цикла
-    for AL, AC, Dep, Arr, FN, FD in zip(ListAirLineCodeIATA, ListAirCraft, ListAirPortDeparture, ListAirPortArrival, ListFlightNumber, ListFlightDate):
+    for AL, AC, Dep, Arr, FN, FD in zip(ListAirLineCodeIATA, ListAirCraft, ListAirPortDeparture, ListAirPortArrival, ListFlightNumber, ListFlightDateConcatenated):
         print(colorama.Fore.BLUE + "Авикомпания", str(AL), end=" ")
         CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
         # Цикл попыток
