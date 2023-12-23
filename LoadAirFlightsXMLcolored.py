@@ -119,11 +119,11 @@ def LoadThread(Csv, Log):
     ListFlightNumber = DataFrameFromCSV['OP_CARRIER_FL_NUM'].tolist()
     # fixme Переделать эту часть (формат даты и времени в файле исходных данных поменялся с 2018-09-23 на 9/1/2023 12:00:00 AM)
     ListFlightDate = DataFrameFromCSV['FL_DATE'].tolist()
+    # todo Собрать новый список с датами соединением из 3-х списков с целыми числами поэлементно через минусы и использовать теперь его -> СОБРАЛ
+    # todo Проверить на соответствие результат перед записью в базу -> ПРОВЕРИЛ
     ListYear = DataFrameFromCSV['YEAR'].tolist()
     ListMonth = DataFrameFromCSV['MONTH'].tolist()
     ListDay = DataFrameFromCSV['DAY_OF_MONTH'].tolist()
-    # todo Собрать новый список с датами из 3-х списков с целыми числами поэлементно конкатенацией через минусы и использовать теперь его
-    # todo Проверить на соответствие результат перед записью в базу
     ListFlightDateConcatenated = []
     for i in range(len(ListYear)):
         ListFlightDateConcatenated.append(str(ListYear[i]) + "-" + str(ListMonth[i]) + "-" + str(ListDay[i]))
