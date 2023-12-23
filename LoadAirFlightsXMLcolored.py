@@ -125,6 +125,8 @@ def LoadThread(Csv, Log):
     # todo Собрать новый список с датами из 3-х списков с целыми числами поэлементно конкатенацией через минусы и использовать теперь его
     # todo Проверить на соответствие результат перед записью в базу
     ListFlightDateConcatenated = []
+    for i in range(len(ListYear)):
+        ListFlightDateConcatenated.append(str(ListYear[i]) + "-" + str(ListMonth[i]) + "-" + str(ListDay[i]))
     print("готово")
     # Списки
     ListAirLinesAdded = []
