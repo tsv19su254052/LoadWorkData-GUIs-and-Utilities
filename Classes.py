@@ -353,7 +353,7 @@ class Servers:
         pass
 
     def InsertAirLineByIATAandICAO(self, iata, icao):
-        # Вставляем авиакомпанию с кодами IATA и ICAO, авиаалиансом по умолчанию
+        # Вставляем авиакомпанию с кодами IATA и ICAO, альянсом по умолчанию
         # fixme Потом подправить Альанс авиакомпании
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"
