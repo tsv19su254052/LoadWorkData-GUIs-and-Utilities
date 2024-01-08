@@ -702,7 +702,7 @@ def myApplication():
                 #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
                 #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
 
-                # Клиентские однопроходные , статические API-курсоры ODBC.
+                # Клиентские однопроходные, статические API-курсоры ODBC.
                 # Добавляем атрибуты seek...
                 S.seekRT = S.cnxnRT.cursor()
                 print("seeks is on")
