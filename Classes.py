@@ -10,8 +10,10 @@ from PyQt5 import QtWidgets, QtCore, QtGui  # оставили 5-ую верси
 # Компилируется и кладется в папку __pycache__
 # Идея выноса каждого класса в этот отдельный файл, как на Java -> Удобство просмотра типов данных, не особо практично
 # Qt Designer (см. https://build-system.fman.io/qt-designer-download)
-# Запуск Qt Designer из пакета pyQt5_tools в терминале командой
+# Запуск Qt Designer из пакета pyQt5_tools (3.10 и более ранние) командой в терминале
 # > pyqt5-tools designer
+# или из пакета pyQt6_tools (3.11) командой в терминале
+# > pyqt6-tools designer
 # todo Вероятно придется много переделать, чтобы не вызывать по 2 раза. Не работает с XML-ными полями см. https://docs.sqlalchemy.org/en/20/dialects/mssql.html#sqlalchemy.dialects.mssql.XML
 from sqlalchemy import create_engine
 
