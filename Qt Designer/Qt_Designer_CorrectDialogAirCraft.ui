@@ -229,9 +229,9 @@
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>470</y>
-     <width>101</width>
+     <width>81</width>
      <height>16</height>
     </rect>
    </property>
@@ -617,9 +617,9 @@
   <widget class="QLabel" name="label_22">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>110</x>
      <y>470</y>
-     <width>101</width>
+     <width>91</width>
      <height>16</height>
     </rect>
    </property>
@@ -745,9 +745,9 @@
   <widget class="QLabel" name="label_30">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>210</x>
      <y>470</y>
-     <width>101</width>
+     <width>91</width>
      <height>16</height>
     </rect>
    </property>
