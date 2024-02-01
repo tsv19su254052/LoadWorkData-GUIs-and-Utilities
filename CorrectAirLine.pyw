@@ -1,4 +1,4 @@
-#  Interpreter 3.7 -> 3.10 -> 3.11
+#  Interpreter 3.7 -> 3.10
 
 
 # QtSQL медленнее, чем pyodbc
