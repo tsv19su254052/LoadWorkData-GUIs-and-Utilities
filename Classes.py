@@ -743,7 +743,7 @@ class Servers:
                 try:
                     SQLQuery = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"
                     self.seekFN.execute(SQLQuery)
-                    SQLQuery = "SELECT * FROM dbo.AirFlightsTable WHERE FlightNumberString = '" + str(al) + str(fn) + "' AND AirRoute = "
+                    SQLQuery = "SELECT * FROM dbo.AirFlightsTable WITH (UPDLOCK) WHERE FlightNumberString = '" + str(al) + str(fn) + "' AND AirRoute = "
                     SQLQuery += str(db_air_route) + " AND AirCraft = " + str(db_air_craft) + " AND FlightDate = '" + str(flightdate) + "' AND BeginDate = '" + str(begindate) + "' "
                     self.seekFN.execute(SQLQuery)
                     ResultQuery = self.seekFN.fetchone()
