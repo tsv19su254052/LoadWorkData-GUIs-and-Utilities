@@ -126,8 +126,8 @@ def LoadThread(Csv, Log):
     ListMonth = DataFrameFromCSV['MONTH'].tolist()
     ListDay = DataFrameFromCSV['DAY_OF_MONTH'].tolist()
     ListFlightDateConcatenated = []
-    for i in range(len(ListYear)):
-        ListFlightDateConcatenated.append(str(ListYear[i]) + "-" + str(ListMonth[i]) + "-" + str(ListDay[i]))
+    for attemptNumber in range(len(ListYear)):
+        ListFlightDateConcatenated.append(str(ListYear[attemptNumber]) + "-" + str(ListMonth[attemptNumber]) + "-" + str(ListDay[attemptNumber]))
     print("готово")
     # Списки
     ListAirLinesAdded = []
@@ -149,8 +149,8 @@ def LoadThread(Csv, Log):
     DistributionDensityAirRoutes = []
     DistributionDensityAirFlights = []
     Density = 2  # раз в секунду
-    MaxDelay = 750 * Density  # секунд
-    for Index in range(MaxDelay):
+    attemptRetryCount = 750 * Density
+    for Index in range(attemptRetryCount):
         DistributionDensityAirLines.append(0)
         DistributionDensityAirCrafts.append(0)
         DistributionDensityAirRoutes.append(0)
@@ -168,10 +168,10 @@ def LoadThread(Csv, Log):
     # Один внешний цикл и три вложенных цикла
     for AL, AC, Dep, Arr, FN, FD in zip(ListAirLineCodeIATA, ListAirCraft, ListAirPortDeparture, ListAirPortArrival, ListFlightNumber, ListFlightDateConcatenated):
         print(colorama.Fore.BLUE + "Авикомпания", str(AL), end=" ")
-        CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
+        deadlockCount = 0  # Счетчик попыток -> Обнуляем
         # Цикл попыток
-        for i in range(MaxDelay):
-            CurrentMax_i = i
+        for attemptNumber in range(attemptRetryCount):
+            deadlockCount = attemptNumber
             DBAirLine = S.QueryAirLineByIATA(AL)
             if DBAirLine is None:
                 if S.InsertAirLineByIATAandICAO(AL, None):
@@ -180,21 +180,21 @@ def LoadThread(Csv, Log):
                     break
                 else:
                     print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
-                    time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                    time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
             elif DBAirLine is not None:
                 break
             else:
                 print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
         else:
             ListAirLinesFailed.append(AL)
         print(" ")
-        DistributionDensityAirLines[CurrentMax_i] += 1
+        DistributionDensityAirLines[deadlockCount] += 1
         print(colorama.Fore.BLUE + " Самолет", str(AC), end=" ")
-        CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
+        deadlockCount = 0  # Счетчик попыток -> Обнуляем
         # Цикл попыток
-        for i in range(MaxDelay):
-            CurrentMax_i = i
+        for attemptNumber in range(attemptRetryCount):
+            deadlockCount = attemptNumber
             DBAirCraft = S.QueryAirCraftByRegistration(AC)
             if DBAirCraft is None:
                 DBAirLine = S.QueryAirLineByIATA(AL)
@@ -206,7 +206,7 @@ def LoadThread(Csv, Log):
                         break
                     else:
                         print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
-                        time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                        time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                 elif DBAirLine is not None:
                     # Вставляем самолет (на предыдущем цикле вставили авиакомпанию)
                     if S.InsertAirCraftByRegistration(Registration=AC, ALPK=DBAirLine.AirLineUniqueNumber):
@@ -215,10 +215,10 @@ def LoadThread(Csv, Log):
                         break
                     else:
                         print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
-                        time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                        time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                 else:
                     print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                    time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                    time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
             elif DBAirCraft is not None:
                 # todo Когда сделаю базу данных по самолетам, эту часть переделать
                 DBAirLinePK = S.QueryAirLineByPK(DBAirCraft.AirCraftAirLine)
@@ -236,27 +236,27 @@ def LoadThread(Csv, Log):
                             break
                         else:
                             print(colorama.Fore.LIGHTYELLOW_EX + "*", end=" ")
-                            time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                            time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                     else:
                         print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                        time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                        time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                 elif DBAirLinePK.AirLineCodeIATA == AL:
                     break
                 else:
                     print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                    time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                    time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
             else:
                 print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
         else:
             ListAirCraftsFailed.append(AC)
         print(" ")
-        DistributionDensityAirCrafts[CurrentMax_i] += 1
+        DistributionDensityAirCrafts[deadlockCount] += 1
         print(colorama.Fore.BLUE + " Маршрут", str(Dep), "-", str(Arr), end=" ")
-        CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
+        deadlockCount = 0  # Счетчик попыток -> Обнуляем
         # Цикл попыток
-        for i in range(MaxDelay):
-            CurrentMax_i = i
+        for attemptNumber in range(attemptRetryCount):
+            deadlockCount = attemptNumber
             DBAirPortDep = S.QueryAirPortByIATA(Dep)
             if DBAirPortDep is not None:
                 DBAirPortArr = S.QueryAirPortByIATA(Arr)
@@ -270,12 +270,12 @@ def LoadThread(Csv, Log):
                             break
                         else:
                             print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
-                            time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                            time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                     elif DBAirRoute is not None:
                         break
                     else:
                         print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                        time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                        time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                 elif DBAirPortArr is None:
                     ListAirPortsNotFounded.append(Arr)
                     # Вставляем аэропорт только с кодом IATA
@@ -283,10 +283,10 @@ def LoadThread(Csv, Log):
                         print(colorama.Fore.GREEN + "добавили аэропорт", str(Arr), end=" ")
                     else:
                         print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
-                        time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                        time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                 else:
                     print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                    time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                    time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
             elif DBAirPortDep is None:
                 ListAirPortsNotFounded.append(Dep)
                 # Вставляем аэропорт только с кодом IATA
@@ -294,21 +294,21 @@ def LoadThread(Csv, Log):
                     print(colorama.Fore.GREEN + "добавили аэропорт", str(Dep), end=" ")
                 else:
                     print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
-                    time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                    time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
             else:
                 print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
         else:
             CountRoutesFailed += 1
         print(" ")
-        DistributionDensityAirRoutes[CurrentMax_i] += 1
+        DistributionDensityAirRoutes[deadlockCount] += 1
         print(colorama.Fore.BLUE + " Авиарейс", str(AL) + str(FN), end=" ")
-        CurrentMax_i = 0  # Текущий максимум, секунд -> Обнуляем
+        deadlockCount = 0  # Счетчик попыток -> Обнуляем
         if not S.SetInputDate:
             FD = S.BeginDate
         # Цикл попыток
-        for i in range(MaxDelay):
-            CurrentMax_i = i
+        for attemptNumber in range(attemptRetryCount):
+            deadlockCount = attemptNumber
             DBAirLine = S.QueryAirLineByIATA(AL)
             if DBAirLine is not None:
                 DBAirCraft = S.QueryAirCraftByRegistration(AC)
@@ -319,7 +319,7 @@ def LoadThread(Csv, Log):
                         ResultModify = S.ModifyAirFlight(AC, AL, FN, Dep, Arr, FD, S.BeginDate)
                         if ResultModify == 0:
                             print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                            time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                            time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                         if ResultModify == 1:
                             CountFlightsAdded += 1
                             print(colorama.Fore.GREEN + "вставился", end=" ")
@@ -333,23 +333,23 @@ def LoadThread(Csv, Log):
                         break
                     else:
                         print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                        time.sleep(i / Density)
+                        time.sleep(attemptNumber / Density)
                 elif DBAirCraft is None:
                     CountFlightsFailed += 1
                     break
                 else:
                     print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                    time.sleep(i / Density)
+                    time.sleep(attemptNumber / Density)
             elif DBAirLine is None:
                 CountFlightsFailed += 1
                 break
             else:
                 print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                time.sleep(i / Density)  # пытаемся уйти от взаимоблокировки
+                time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
         else:
             CountFlightsFailed += 1
         print(" ")
-        DistributionDensityAirFlights[CurrentMax_i] += 1
+        DistributionDensityAirFlights[deadlockCount] += 1
         completion += 1
         Execute = round(100 * completion / len(ListFlightNumber), 2)  # вычисляем и округляем процент выполнения до 2 цифр после запятой
         # todo Сделать полосу выполнения все время внизу со всеми параметрами например с помощью tqdm - Не работает в цикле
@@ -361,7 +361,7 @@ def LoadThread(Csv, Log):
     # Отметка времени окончания загрузки
     __EndTime__ = datetime.datetime.now()
     # Убираем с конца столбцы с нулями
-    for Index in reversed(range(MaxDelay)):
+    for Index in reversed(range(attemptRetryCount)):
         if DistributionDensityAirLines[Index] == 0 and DistributionDensityAirCrafts[Index] == 0 and DistributionDensityAirRoutes[Index] == 0 and DistributionDensityAirFlights[Index] == 0:
             DistributionDensityAirLines.pop(Index)
             DistributionDensityAirCrafts.pop(Index)
