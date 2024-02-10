@@ -149,7 +149,8 @@ def LoadThread(Csv, Log):
     DistributionDensityAirRoutes = []
     DistributionDensityAirFlights = []
     Density = 2  # раз в секунду
-    attemptRetryCount = 750 * Density
+    #attemptRetryCount = 750 * Density
+    attemptRetryCount = 750
     for Index in range(attemptRetryCount):
         DistributionDensityAirLines.append(0)
         DistributionDensityAirCrafts.append(0)
