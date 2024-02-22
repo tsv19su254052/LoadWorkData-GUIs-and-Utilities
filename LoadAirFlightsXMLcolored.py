@@ -470,45 +470,13 @@ def myApplication():
     # Одно прикладное приложение
     myApp = QtWidgets.QApplication(sys.argv)
     # Делаем экземпляры
-    myDialog = Classes.Ui_DialogLoadAirFlights()
+    myDialog = Classes.Ui_DialogLoadAirFlightsWithAirCrafts()
     myDialog.setupUi(Dialog=myDialog)  # надо вызывать явно
-    myDialog.setFixedSize(975, 380)
+    myDialog.setFixedSize(1025, 390)
     myDialog.setWindowTitle('Загрузка рабочих данных')
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
     myDialog.label_Version.setText("Версия обработки " + str(__myOwnDevelopingVersion__))
-    myDialog.radioButton_DB.setChecked(True)
-    myDialog.radioButton_DB.setToolTip("Использовать имя базы данных и драйвер СУБД")
-    myDialog.radioButton_DSN.setChecked(False)
-    myDialog.radioButton_DSN.setToolTip("Использовать системный или пользовательский DSN\n(настроено и проверено внутри)")
-    myDialog.pushButton_Disconnect_AL.setEnabled(False)
-    myDialog.pushButton_Disconnect_RT.setEnabled(False)
-    myDialog.pushButton_Disconnect_FN.setEnabled(False)
-    myDialog.dateEdit_BeginDate.setEnabled(False)
-    myDialog.dateEdit_BeginDate.setToolTip("Дата начала периода загрузки рабочих данных")
-    myDialog.checkBox_SetInputDate.setChecked(False)
-    myDialog.checkBox_SetInputDate.setEnabled(False)
-    myDialog.checkBox_SetInputDate.setToolTip("Перенос даты авиарейса из входных данных")
-    myDialog.pushButton_ChooseCSVFile.setEnabled(False)
-    myDialog.lineEdit_CSVFile.setEnabled(False)
-    myDialog.pushButton_ChooseTXTFile.setEnabled(False)
-    myDialog.lineEdit_TXTFile.setEnabled(False)
-    myDialog.progressBar_completion.setEnabled(False)
-    myDialog.progressBar_completion.setToolTip("Выполнение загрузки рабочих данных, проценты")
-    myDialog.pushButton_GetStarted.setEnabled(False)
-    myDialog.pushButton_GetStarted.setToolTip("Запуск загрузки входных данных по авиарейсам в базу данных на сервере \nВнимательно проверьте параметры загрузки")
-    # параметры соединения с сервером
-    myDialog.lineEdit_Server.setEnabled(False)
-    myDialog.lineEdit_Driver_AL.setEnabled(False)
-    myDialog.lineEdit_Driver_RT.setEnabled(False)
-    myDialog.lineEdit_Driver_FN.setEnabled(False)
-    myDialog.lineEdit_ODBCversion_AL.setEnabled(False)
-    myDialog.lineEdit_ODBCversion_RT.setEnabled(False)
-    myDialog.lineEdit_ODBCversion_FN.setEnabled(False)
-    myDialog.lineEdit_DSN_FN.setEnabled(False)
-    myDialog.lineEdit_Schema_AL.setEnabled(False)
-    myDialog.lineEdit_Schema_RT.setEnabled(False)
-    myDialog.lineEdit_Schema_FN.setEnabled(False)
     # Получаем список DSN-ов
     # Добавляем атрибут DSNs по ходу действия
     S.DSNs = pyodbc.dataSources()  # добавленные системные DSN-ы
@@ -517,6 +485,7 @@ def myApplication():
             if not DSN:
                 break
             myDialog.comboBox_DSN_FN.addItem(str(DSN))
+            myDialog.comboBox_DSN_AC.addItem(str(DSN))
     # Получаем список драйверов баз данных
     # Добавляем атрибут DriversODBC по ходу действия
     S.DriversODBC = pyodbc.drivers()
@@ -533,6 +502,52 @@ def myApplication():
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew42")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew52")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62WorkBase")
+    myDialog.radioButton_DB.setToolTip("Использовать имя базы данных и драйвер СУБД")
+    myDialog.radioButton_DSN.setToolTip("Использовать системный или пользовательский DSN\n(настроено и проверено внутри)")
+    myDialog.radioButton_DB.setChecked(False)
+    if S.radioButtonUseDB:
+        #myDialog.radioButton_DB.setEnabled(True)
+        #myDialog.radioButton_DSN.setChecked(False)
+        myDialog.comboBox_DB_FN.setEnabled(True)
+        myDialog.comboBox_Driver_FN.setEnabled(True)
+        myDialog.comboBox_DSN_FN.setEnabled(False)
+        myDialog.comboBox_DSN_AC.setEnabled(False)
+    else:
+        #myDialog.radioButton_DB.setEnabled(False)
+        #myDialog.radioButton_DSN.setEnabled(True)
+        myDialog.comboBox_DB_FN.setEnabled(False)
+        myDialog.comboBox_Driver_FN.setEnabled(False)
+        myDialog.comboBox_DSN_FN.setEnabled(True)
+        myDialog.comboBox_DSN_AC.setEnabled(True)
+    #myDialog.radioButton_DSN.setChecked(False)
+    myDialog.pushButton_Disconnect_AL.setEnabled(False)
+    myDialog.pushButton_Disconnect_RT.setEnabled(False)
+    myDialog.pushButton_Disconnect_FN.setEnabled(False)
+    myDialog.dateEdit_BeginDate.setEnabled(False)
+    myDialog.dateEdit_BeginDate.setToolTip("Дата начала периода загрузки рабочих данных")
+    myDialog.checkBox_SetInputDate.setChecked(False)
+    myDialog.checkBox_SetInputDate.setEnabled(False)
+    myDialog.checkBox_SetInputDate.setToolTip("Перенос даты авиарейса из входных данных")
+    myDialog.pushButton_ChooseCSVFile.setEnabled(False)
+    myDialog.lineEdit_CSVFile.setEnabled(False)
+    myDialog.pushButton_ChooseTXTFile.setEnabled(False)
+    myDialog.lineEdit_TXTFile.setEnabled(False)
+    #myDialog.progressBar_completion.setEnabled(False)
+    #myDialog.progressBar_completion.setToolTip("Выполнение загрузки рабочих данных, проценты")
+    myDialog.pushButton_GetStarted.setEnabled(False)
+    myDialog.pushButton_GetStarted.setToolTip("Запуск загрузки входных данных по авиарейсам в базу данных на сервере \nВнимательно проверьте параметры загрузки")
+    # параметры соединения с сервером
+    myDialog.lineEdit_Server.setEnabled(False)
+    myDialog.lineEdit_Driver_AL.setEnabled(False)
+    myDialog.lineEdit_Driver_RT.setEnabled(False)
+    myDialog.lineEdit_Driver_FN.setEnabled(False)
+    myDialog.lineEdit_ODBCversion_AL.setEnabled(False)
+    myDialog.lineEdit_ODBCversion_RT.setEnabled(False)
+    myDialog.lineEdit_ODBCversion_FN.setEnabled(False)
+    myDialog.lineEdit_DSN_FN.setEnabled(False)
+    myDialog.lineEdit_Schema_AL.setEnabled(False)
+    myDialog.lineEdit_Schema_RT.setEnabled(False)
+    myDialog.lineEdit_Schema_FN.setEnabled(False)
     # Привязки обработчиков todo без lambda не работает
     myDialog.pushButton_Connect_AL.clicked.connect(lambda: PushButtonSelectDB_AL())  # Подключиться к базе данных
     myDialog.pushButton_Disconnect_AL.clicked.connect(lambda: PushButtonDisconnect_AL())  # Отключиться от базы данных
@@ -577,8 +592,8 @@ def myApplication():
                     myDialog.dateEdit_BeginDate.setEnabled(True)
                     myDialog.dateEdit_BeginDate.setCalendarPopup(True)
                     myDialog.checkBox_SetInputDate.setEnabled(True)
-                    myDialog.progressBar_completion.setEnabled(True)
-                    myDialog.progressBar_completion.reset()
+                    #myDialog.progressBar_completion.setEnabled(True)
+                    #myDialog.progressBar_completion.reset()
                     myDialog.pushButton_GetStarted.setEnabled(True)
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnAL.autocommit = False
@@ -643,8 +658,8 @@ def myApplication():
             myDialog.lineEdit_CSVFile.setEnabled(False)
             myDialog.pushButton_ChooseTXTFile.setEnabled(False)
             myDialog.lineEdit_TXTFile.setEnabled(False)
-            myDialog.progressBar_completion.setEnabled(True)
-            myDialog.progressBar_completion.reset()
+            #myDialog.progressBar_completion.setEnabled(True)
+            #myDialog.progressBar_completion.reset()
             myDialog.pushButton_GetStarted.setEnabled(False)
             # параметры соединения с сервером
             myDialog.lineEdit_Server.setEnabled(False)
@@ -743,7 +758,7 @@ def myApplication():
             myDialog.lineEdit_CSVFile.setEnabled(False)
             myDialog.pushButton_ChooseTXTFile.setEnabled(False)
             myDialog.lineEdit_TXTFile.setEnabled(False)
-            myDialog.progressBar_completion.setEnabled(False)
+            #myDialog.progressBar_completion.setEnabled(False)
             myDialog.pushButton_GetStarted.setEnabled(False)
             # параметры соединения с сервером
             myDialog.lineEdit_Server.setEnabled(False)
@@ -756,6 +771,7 @@ def myApplication():
             myDialog.comboBox_DB_FN.setEnabled(True)
             myDialog.comboBox_Driver_FN.setEnabled(True)
             myDialog.comboBox_DSN_FN.setEnabled(False)
+            myDialog.comboBox_DSN_AC.setEnabled(False)
             S.radioButtonUseDB = True
             print("подключаемся без DSN")
 
@@ -764,6 +780,7 @@ def myApplication():
             myDialog.comboBox_DB_FN.setEnabled(False)
             myDialog.comboBox_Driver_FN.setEnabled(False)
             myDialog.comboBox_DSN_FN.setEnabled(True)
+            myDialog.comboBox_DSN_AC.setEnabled(True)
             S.radioButtonUseDB = False
             print("подключаемся через DSN")
 
@@ -866,8 +883,8 @@ def myApplication():
                     myDialog.dateEdit_BeginDate.setEnabled(True)
                     myDialog.dateEdit_BeginDate.setCalendarPopup(True)
                     myDialog.checkBox_SetInputDate.setEnabled(True)
-                    myDialog.progressBar_completion.setEnabled(True)
-                    myDialog.progressBar_completion.reset()
+                    #myDialog.progressBar_completion.setEnabled(True)
+                    #myDialog.progressBar_completion.reset()
                     myDialog.pushButton_GetStarted.setEnabled(True)
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnFN.autocommit = False
@@ -944,7 +961,7 @@ def myApplication():
             myDialog.lineEdit_CSVFile.setEnabled(False)
             myDialog.pushButton_ChooseTXTFile.setEnabled(False)
             myDialog.lineEdit_TXTFile.setEnabled(False)
-            myDialog.progressBar_completion.setEnabled(False)
+            #myDialog.progressBar_completion.setEnabled(False)
             myDialog.pushButton_GetStarted.setEnabled(False)
             # параметры соединения с сервером
             myDialog.lineEdit_Server.setEnabled(False)
