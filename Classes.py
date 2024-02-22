@@ -318,8 +318,10 @@ class Servers:
                 print(" IATA=", str(iata))
                 SQLQuery += " WHERE AirLineCodeIATA = '" + str(iata) + "' AND AirLineCodeICAO IS NULL "
             elif iata is None and icao is None:
-                print("raise Exception")
-                raise Exception
+                print(" IATA=", str(iata), " ICAO=", str(icao))
+                SQLQuery += " WHERE AirLineCodeIATA IS NULL AND AirLineCodeICAO IS NULL "
+                #print("raise Exception")
+                #raise Exception
             else:
                 print(" IATA=", str(iata), " ICAO=", str(icao))
                 SQLQuery += " WHERE AirLineCodeIATA = '" + str(iata) + "' AND AirLineCodeICAO = '" + str(icao) + "' "
@@ -351,8 +353,10 @@ class Servers:
                 print(" IATA=", str(iata))
                 SQLQuery = "INSERT INTO dbo.AirLinesTable (AirLineCodeIATA) VALUES ('" + str(iata) + "') "
             elif iata is None and icao is None:
-                print("raise Exception")
-                raise Exception
+                print(" IATA=", str(iata), " ICAO=", str(icao))
+                SQLQuery = "INSERT INTO dbo.AirLinesTable (AirLineCodeIATA, AirLineCodeICAO) VALUES (NULL, NULL) "
+                #print("raise Exception")
+                #raise Exception
             else:
                 print(" IATA=", str(iata), " ICAO=", str(icao))
                 SQLQuery = "INSERT INTO dbo.AirLinesTable (AirLineCodeIATA, AirLineCodeICAO) VALUES ('" + str(iata) + "', '" + str(icao) + "') "
@@ -530,6 +534,21 @@ class Servers:
             pass
         finally:
             return ResultSQL
+
+    def UpdateAirCraftOperator(self, RegistartionXML):
+        try:
+            SQLQuery = "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ"
+            self.seekAC.execute(SQLQuery)
+            ResultSQL = True
+            self.cnxnAC.commit()  # фиксируем транзакцию, снимаем блокировку с запрошенных диапазонов
+        except Exception:
+            ResultSQL = False
+            self.cnxnAC.rollback()  # откатываем транзакцию, снимаем блокировку с запрошенных диапазонов
+        else:
+            pass
+        finally:
+            return ResultSQL
+        pass
 
     def UpdateAirCraft_SQLAlchemy(self, Registration, ALPK):
         # todo В процессе разработки
