@@ -29,7 +29,7 @@ import Classes
 
 
 # Версия обработки с цветным выводом
-__myOwnDevelopingVersion__ = 8.25
+__myOwnDevelopingVersion__ = 8.3
 # todo Версия задается тут. Пакеты на GitHub-е *.tar.gz (под Linux или под BSD) не нужны. Выпуск релизов пока не имеет практической пользы, как указано в ReadME.md
 
 colorama.init(autoreset=False)  # используем Colorama, чтобы сделать работу Termcolor на Windows, оставляем цветовое оформление до следующего явного указания
@@ -63,7 +63,7 @@ S.Connected_FN = False
 S.ServerNameOriginal = "localhost\mssqlserver15"  # указал имя NetBIOS и указал инстанс
 #S.ServerNameOriginal = "localhost\sqldeveloper"  # указал инстанс
 # fixme Забыл отменить обратно, надо проверить как самолеты и авиарейсы грузились без него причем в рабочую базу -> Все нормально, этот выбор работал, если грузить не через системный DSN
-#S.ServerNameFlights = "data-server-1.movistar.vrn.skylink.local"  # указал ресурсную запись из DNS
+S.ServerNameFlights = "data-server-1.movistar.vrn.skylink.local"  # указал ресурсную запись из DNS
 S.ServerName = "localhost\mssqlserver15"  # указал инстанс
 #S.ServerName = "localhost\sqldeveloper"  # указал инстанс
 S.radioButtonUseDB = True
@@ -472,7 +472,7 @@ def myApplication():
     # Делаем экземпляры
     myDialog = Classes.Ui_DialogLoadAirFlights()
     myDialog.setupUi(Dialog=myDialog)  # надо вызывать явно
-    myDialog.setFixedSize(770, 380)
+    myDialog.setFixedSize(975, 380)
     myDialog.setWindowTitle('Загрузка рабочих данных')
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
