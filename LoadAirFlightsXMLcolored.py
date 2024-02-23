@@ -654,6 +654,9 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAL = S.cnxnAL.cursor()
                 print("seeks is on")
+                # SQL Server
+                myDialog.lineEdit_Server.setText(S.cnxnAL.getinfo(pyodbc.SQL_SERVER_NAME))
+                myDialog.lineEdit_Server.setEnabled(True)
                 # Драйвер
                 myDialog.lineEdit_Driver_AL.setText(S.cnxnAL.getinfo(pyodbc.SQL_DRIVER_NAME))
                 myDialog.lineEdit_Driver_AL.setEnabled(True)
@@ -754,6 +757,9 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekRT = S.cnxnRT.cursor()
                 print("seeks is on")
+                # SQL Server
+                myDialog.lineEdit_Server.setText(S.cnxnRT.getinfo(pyodbc.SQL_SERVER_NAME))
+                myDialog.lineEdit_Server.setEnabled(True)
                 # Драйвер
                 myDialog.lineEdit_Driver_RT.setText(S.cnxnRT.getinfo(pyodbc.SQL_DRIVER_NAME))
                 myDialog.lineEdit_Driver_RT.setEnabled(True)
