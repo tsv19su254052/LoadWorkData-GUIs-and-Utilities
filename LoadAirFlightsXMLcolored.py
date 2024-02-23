@@ -807,7 +807,7 @@ def myApplication():
 
     def PushButtonSelectDB_FN():
         if not S.Connected_AC:
-            # Подключаемся к базе данных самолетов - пока так же, как и авиарейсы
+            # Подключаемся к таблице самолетов - пока так же, как и авиарейсы
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             ChoiceDB_AC = myDialog.comboBox_DB_FN.currentText()
             ChoiceDriver_AC = myDialog.comboBox_Driver_FN.currentText()
