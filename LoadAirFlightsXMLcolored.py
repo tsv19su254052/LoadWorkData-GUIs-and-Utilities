@@ -1007,7 +1007,6 @@ def myApplication():
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.comboBox_DSN_AC.setEnabled(False)
                 myDialog.pushButton_Disconnect_AC.setEnabled(True)
-                #myDialog.pushButton_Disconnect_AC.setEnabled(True)
                 if S.Connected_AL and S.Connected_AC and S.Connected_RT and S.Connected_AC_XML:
                     myDialog.pushButton_ChooseCSVFile.setEnabled(True)
                     myDialog.lineEdit_CSVFile.setEnabled(True)
