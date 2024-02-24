@@ -432,10 +432,18 @@ def LoadThread(Csv, Log):
     # with open(Log, 'a') as LogFile:
     #     LogFile.write(OutputString)
     #     LogFile.write('Вывод с помощью менеджера контекста\n')
-    Disconnect_AL()
-    Disconnect_AC()
-    Disconnect_RT()
-    Disconnect_FN()
+    # Снимаем курсоры
+    S.seekAL.close()
+    S.seekAC.close()
+    S.seekRT.close()
+    S.seekFN.close()
+    S.seekAC_XML.close()
+    # Отключаемся от баз данных
+    S.cnxnAL.close()
+    S.cnxnAC.close()
+    S.seekRT.close()
+    S.seekFN.close()
+    S.seekAC_XML.close()
 
 
 # Основная функция
