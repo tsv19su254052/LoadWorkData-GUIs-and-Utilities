@@ -633,8 +633,6 @@ def myApplication():
                     myDialog.dateEdit_BeginDate.setEnabled(True)
                     myDialog.dateEdit_BeginDate.setCalendarPopup(True)
                     myDialog.checkBox_SetInputDate.setEnabled(True)
-                    #myDialog.progressBar_completion.setEnabled(True)
-                    #myDialog.progressBar_completion.reset()
                     myDialog.pushButton_GetStarted.setEnabled(True)
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnAL.getinfo(pyodbc.SQL_SERVER_NAME))
@@ -670,8 +668,6 @@ def myApplication():
             myDialog.lineEdit_CSVFile.setEnabled(False)
             myDialog.pushButton_ChooseTXTFile.setEnabled(False)
             myDialog.lineEdit_TXTFile.setEnabled(False)
-            #myDialog.progressBar_completion.setEnabled(True)
-            #myDialog.progressBar_completion.reset()
             myDialog.pushButton_GetStarted.setEnabled(False)
             # параметры соединения с сервером
             if not S.Connected_RT and not S.Connected_AC_XML:
@@ -776,7 +772,6 @@ def myApplication():
             myDialog.lineEdit_CSVFile.setEnabled(False)
             myDialog.pushButton_ChooseTXTFile.setEnabled(False)
             myDialog.lineEdit_TXTFile.setEnabled(False)
-            #myDialog.progressBar_completion.setEnabled(False)
             myDialog.pushButton_GetStarted.setEnabled(False)
             # параметры соединения с сервером
             if not S.Connected_AL and not S.Connected_AC_XML:
@@ -916,8 +911,6 @@ def myApplication():
                     myDialog.dateEdit_BeginDate.setEnabled(True)
                     myDialog.dateEdit_BeginDate.setCalendarPopup(True)
                     myDialog.checkBox_SetInputDate.setEnabled(True)
-                    #myDialog.progressBar_completion.setEnabled(True)
-                    #myDialog.progressBar_completion.reset()
                     myDialog.pushButton_GetStarted.setEnabled(True)
                 # SQL Server
                 myDialog.lineEdit_Server_remote.setText(S.cnxnFN.getinfo(pyodbc.SQL_SERVER_NAME))
@@ -966,7 +959,6 @@ def myApplication():
             myDialog.lineEdit_CSVFile.setEnabled(False)
             myDialog.pushButton_ChooseTXTFile.setEnabled(False)
             myDialog.lineEdit_TXTFile.setEnabled(False)
-            #myDialog.progressBar_completion.setEnabled(False)
             myDialog.pushButton_GetStarted.setEnabled(False)
             # параметры соединения с сервером
             myDialog.lineEdit_Server_remote.setEnabled(False)
@@ -1034,8 +1026,6 @@ def myApplication():
                     myDialog.dateEdit_BeginDate.setEnabled(True)
                     myDialog.dateEdit_BeginDate.setCalendarPopup(True)
                     myDialog.checkBox_SetInputDate.setEnabled(True)
-                    #myDialog.progressBar_completion.setEnabled(True)
-                    #myDialog.progressBar_completion.reset()
                     myDialog.pushButton_GetStarted.setEnabled(True)
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_SERVER_NAME))
@@ -1073,7 +1063,6 @@ def myApplication():
             myDialog.lineEdit_CSVFile.setEnabled(False)
             myDialog.pushButton_ChooseTXTFile.setEnabled(False)
             myDialog.lineEdit_TXTFile.setEnabled(False)
-            #myDialog.progressBar_completion.setEnabled(False)
             myDialog.pushButton_GetStarted.setEnabled(False)
             # параметры соединения с сервером
             if not S.Connected_AL and not S.Connected_RT:
