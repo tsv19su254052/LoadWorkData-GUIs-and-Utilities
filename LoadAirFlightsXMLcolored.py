@@ -441,9 +441,9 @@ def LoadThread(Csv, Log):
     # Отключаемся от баз данных
     S.cnxnAL.close()
     S.cnxnAC.close()
-    S.seekRT.close()
-    S.seekFN.close()
-    S.seekAC_XML.close()
+    S.cnxnRT.close()
+    S.cnxnFN.close()
+    S.cnxnAC_XML.close()
 
 
 # Основная функция
@@ -1101,6 +1101,7 @@ def myApplication():
         myDialog.lineEdit_TXTFile.setText(S.filenameTXT)
 
     def PushButtonGetStarted():
+        myDialog.pushButton_GetStarted.setEnabled(False)
         S.BeginDate = myDialog.dateEdit_BeginDate.date().toString('yyyy-MM-dd')
         if myDialog.checkBox_SetInputDate.isChecked():
             S.SetInputDate = True
@@ -1114,11 +1115,10 @@ def myApplication():
         myDialog.pushButton_Disconnect_RT.setEnabled(False)
         myDialog.pushButton_Disconnect_FN.setEnabled(False)
         myDialog.pushButton_Disconnect_AC.setEnabled(False)
-        myDialog.pushButton_GetStarted.setEnabled(False)
         # fixme кнопки не гаснут
         threadLoad = threading.Thread(target=LoadThread, daemon=False, args=(S.InputFileCSV, S.LogFileTXT, ))  # поток не сам по себе
         threadLoad.start()
-        threadLoad.join(1)  # ждем поток в основном потоке (графическая оболочка зависает), секунд
+        threadLoad.join(5)  # ждем поток в основном потоке (графическая оболочка зависает), секунд
         myDialog.close()  # закрываем графическую оболочку, текстовая остается
 
     # Отрисовка диалога
