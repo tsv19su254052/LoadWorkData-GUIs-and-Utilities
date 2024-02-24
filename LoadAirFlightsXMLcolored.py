@@ -75,41 +75,6 @@ S.SetInputDate = False
 
 
 # fixme Почеиу функции отсоединения есть, а присоединения нет?
-def Disconnect_AL():
-    # Снимаем курсор
-    S.seekAL.close()
-    # Отключаемся от базы данных
-    S.cnxnAL.close()
-
-
-def Disconnect_AC():
-    # Снимаем курсор
-    S.seekAC.close()
-    # Отключаемся от базы данных
-    S.cnxnAC.close()
-
-
-def Disconnect_RT():
-    # Снимаем курсор
-    S.seekRT.close()
-    # Отключаемся от базы данных
-    S.cnxnRT.close()
-
-
-def Disconnect_FN():
-    # Снимаем курсор
-    S.seekFN.close()
-    # Отключаемся от базы данных
-    S.cnxnFN.close()
-
-
-def Disconnect_AC_XML():
-    # Снимаем курсор
-    S.seekAC_XML.close()
-    # Отключаемся от базы данных
-    S.cnxnAC_XML.close()
-
-
 def LoadThread(Csv, Log):
     """
     Читаем входной файл и перепаковываем его в DataFrame (кодировка UTF-8, шапка таблицы на столбцы, разделитель - ,)
@@ -681,7 +646,10 @@ def myApplication():
     def PushButtonDisconnect_AL():
         # Обработчик кнопки 'Отключиться от базы данных'
         if S.Connected_AL:
-            Disconnect_AL()
+            # Снимаем курсор
+            S.seekAL.close()
+            # Отключаемся от базы данных
+            S.cnxnAL.close()
             S.Connected_AL = False
             # Переключаем в исходное состояние
             myDialog.comboBox_DB_AL.setEnabled(True)
@@ -784,7 +752,10 @@ def myApplication():
     def PushButtonDisconnect_RT():
         # Обработчик кнопки 'Отключиться от базы данных'
         if S.Connected_RT:
-            Disconnect_RT()
+            # Снимаем курсор
+            S.seekRT.close()
+            # Отключаемся от базы данных
+            S.cnxnRT.close()
             S.Connected_RT = False
             # Переключаем в исходное состояние
             myDialog.comboBox_DB_RT.setEnabled(True)
@@ -961,10 +932,16 @@ def myApplication():
     def PushButtonDisconnect_FN():
         # Обработчик кнопки 'Отключиться от базы данных'
         if S.Connected_AC:
-            Disconnect_AC()
+            # Снимаем курсор
+            S.seekAC.close()
+            # Отключаемся от базы данных
+            S.cnxnAC.close()
             S.Connected_AC = False
         if S.Connected_FN:
-            Disconnect_FN()
+            # Снимаем курсор
+            S.seekFN.close()
+            # Отключаемся от базы данных
+            S.cnxnFN.close()
             S.Connected_FN = False
             # Переключаем в исходное состояние
             myDialog.radioButton_DB.setEnabled(True)
@@ -993,7 +970,7 @@ def myApplication():
 
     def PushButtonSelectDB_AC_XML():
         if not S.Connected_AC_XML:
-            # Подключаемся к базе данных самолетов - пока так же, как и авиарейсы
+            # Подключаемся к базе данных самолетов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             ChoiceDSN_AC_XML = myDialog.comboBox_DSN_AC.currentText()
             # Добавляем атрибут myDSN
@@ -1074,7 +1051,10 @@ def myApplication():
     def PushButtonDisconnect_AC_XML():
         # Обработчик кнопки 'Отключиться от базы данных'
         if S.Connected_AC_XML:
-            Disconnect_AC_XML()
+            # Снимаем курсор
+            S.seekAC_XML.close()
+            # Отключаемся от базы данных
+            S.cnxnAC_XML.close()
             S.Connected_AC_XML = False
             # Переключаем в исходное состояние
             myDialog.comboBox_DSN_AC.setEnabled(True)
@@ -1121,6 +1101,7 @@ def myApplication():
         myDialog.pushButton_Disconnect_AL.setEnabled(False)
         myDialog.pushButton_Disconnect_RT.setEnabled(False)
         myDialog.pushButton_Disconnect_FN.setEnabled(False)
+        myDialog.pushButton_Disconnect_AC.setEnabled(False)
         myDialog.pushButton_GetStarted.setEnabled(False)
         # fixme кнопки не гаснут
         threadLoad = threading.Thread(target=LoadThread, daemon=False, args=(S.InputFileCSV, S.LogFileTXT, ))  # поток не сам по себе
