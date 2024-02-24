@@ -517,7 +517,7 @@ def myApplication():
     #myDialog.progressBar_completion.setEnabled(False)
     #myDialog.progressBar_completion.setToolTip("Выполнение загрузки рабочих данных, проценты")
     myDialog.pushButton_GetStarted.setEnabled(False)
-    myDialog.pushButton_GetStarted.setToolTip("Запуск загрузки входных данных по авиарейсам в базу данных на сервере \nВнимательно проверьте параметры загрузки")
+    myDialog.pushButton_GetStarted.setToolTip("Запуск загрузки входных данных по авиаперелетам и закрытие этой формочки \nВнимательно проверьте параметры загрузки")
     # параметры соединения с сервером
     myDialog.lineEdit_Server.setEnabled(False)
     myDialog.lineEdit_Server_remote.setEnabled(False)
