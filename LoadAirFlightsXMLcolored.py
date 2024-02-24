@@ -741,8 +741,6 @@ def myApplication():
                     myDialog.dateEdit_BeginDate.setEnabled(True)
                     myDialog.dateEdit_BeginDate.setCalendarPopup(True)
                     myDialog.checkBox_SetInputDate.setEnabled(True)
-                    myDialog.progressBar_completion.setEnabled(True)
-                    myDialog.progressBar_completion.reset()
                     myDialog.pushButton_GetStarted.setEnabled(True)
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnRT.getinfo(pyodbc.SQL_SERVER_NAME))
