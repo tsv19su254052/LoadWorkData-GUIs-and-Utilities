@@ -625,7 +625,6 @@ def myApplication():
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.comboBox_DB_AL.setEnabled(False)
                 myDialog.comboBox_Driver_AL.setEnabled(False)
-                myDialog.pushButton_Disconnect_AL.setEnabled(True)
                 if S.Connected_RT and S.Connected_AC and S.Connected_FN and S.Connected_AC_XML:
                     myDialog.pushButton_ChooseCSVFile.setEnabled(True)
                     myDialog.lineEdit_CSVFile.setEnabled(True)
@@ -650,6 +649,7 @@ def myApplication():
                 myDialog.lineEdit_Schema_AL.setText(S.cnxnAL.getinfo(pyodbc.SQL_USER_NAME))
                 myDialog.lineEdit_Schema_AL.setEnabled(True)
                 myDialog.pushButton_Connect_AL.setEnabled(False)
+                myDialog.pushButton_Disconnect_AL.setEnabled(True)
             finally:
                 pass
 
@@ -733,7 +733,6 @@ def myApplication():
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.comboBox_DB_RT.setEnabled(False)
                 myDialog.comboBox_Driver_RT.setEnabled(False)
-                myDialog.pushButton_Disconnect_RT.setEnabled(True)
                 if S.Connected_AL and S.Connected_AC and S.Connected_FN and S.Connected_AC_XML:
                     myDialog.pushButton_ChooseCSVFile.setEnabled(True)
                     myDialog.lineEdit_CSVFile.setEnabled(True)
@@ -758,6 +757,7 @@ def myApplication():
                 myDialog.lineEdit_Schema_RT.setText(S.cnxnRT.getinfo(pyodbc.SQL_USER_NAME))
                 myDialog.lineEdit_Schema_RT.setEnabled(True)
                 myDialog.pushButton_Connect_RT.setEnabled(False)
+                myDialog.pushButton_Disconnect_RT.setEnabled(True)
             finally:
                 pass
 
@@ -909,7 +909,6 @@ def myApplication():
                 myDialog.comboBox_DB_FN.setEnabled(False)
                 myDialog.comboBox_Driver_FN.setEnabled(False)
                 myDialog.comboBox_DSN_FN.setEnabled(False)
-                myDialog.pushButton_Disconnect_FN.setEnabled(True)
                 #myDialog.pushButton_Disconnect_AC.setEnabled(True)
                 if S.Connected_AL and S.Connected_RT and S.Connected_AC and S.Connected_AC_XML:
                     myDialog.pushButton_ChooseCSVFile.setEnabled(True)
@@ -938,6 +937,7 @@ def myApplication():
                 myDialog.lineEdit_DSN_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_DATA_SOURCE_NAME))
                 myDialog.lineEdit_DSN_FN.setEnabled(True)
                 myDialog.pushButton_Connect_FN.setEnabled(False)
+                myDialog.pushButton_Disconnect_FN.setEnabled(True)
             finally:
                 pass
 
@@ -1028,7 +1028,6 @@ def myApplication():
                 S.Connected_AC_XML = True
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.comboBox_DSN_AC.setEnabled(False)
-                myDialog.pushButton_Disconnect_AC.setEnabled(True)
                 if S.Connected_AL and S.Connected_RT and S.Connected_AC and S.Connected_FN:
                     myDialog.pushButton_ChooseCSVFile.setEnabled(True)
                     myDialog.lineEdit_CSVFile.setEnabled(True)
@@ -1056,6 +1055,7 @@ def myApplication():
                 myDialog.lineEdit_DSN_AC.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_DATA_SOURCE_NAME))
                 myDialog.lineEdit_DSN_AC.setEnabled(True)
                 myDialog.pushButton_Connect_AC.setEnabled(False)
+                myDialog.pushButton_Disconnect_AC.setEnabled(True)
             finally:
                 pass
 
