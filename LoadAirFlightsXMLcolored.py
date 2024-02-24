@@ -574,6 +574,7 @@ def myApplication():
 
     def PushButtonSelectDB_AL():
         if not S.Connected_AL:
+            myDialog.pushButton_Connect_AL.setEnabled(False)
             # Подключаемся к базе данных авиакомпаний
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             # https://docs.microsoft.com/ru-ru/previous-versions/dotnet/framework/data/adonet/sql/ownership-and-user-schema-separation-in-sql-server
@@ -613,12 +614,20 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAL = S.cnxnAL.cursor()
                 print("seeks is on")
+            except Exception:
+                myDialog.pushButton_Connect_AL.setEnabled(True)
+                myDialog.pushButton_Disconnect_AL.setEnabled(False)
+                message = QtWidgets.QMessageBox()
+                message.setText("Нет подключения к базе данных авиакомпаний")
+                message.setIcon(QtWidgets.QMessageBox.Warning)
+                message.exec_()
+            else:
                 S.Connected_AL = True
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.comboBox_DB_AL.setEnabled(False)
                 myDialog.comboBox_Driver_AL.setEnabled(False)
                 myDialog.pushButton_Disconnect_AL.setEnabled(True)
-                if S.Connected_AC and S.Connected_RT and S.Connected_FN and S.Connected_AC_XML:
+                if S.Connected_RT and S.Connected_AC and S.Connected_FN and S.Connected_AC_XML:
                     myDialog.pushButton_ChooseCSVFile.setEnabled(True)
                     myDialog.lineEdit_CSVFile.setEnabled(True)
                     myDialog.pushButton_ChooseTXTFile.setEnabled(True)
@@ -641,17 +650,6 @@ def myApplication():
                 # Схема (если из-под другой учетки, то выводит имя учетки)
                 myDialog.lineEdit_Schema_AL.setText(S.cnxnAL.getinfo(pyodbc.SQL_USER_NAME))
                 myDialog.lineEdit_Schema_AL.setEnabled(True)
-                # Переводим в рабочее состояние
-                myDialog.pushButton_Connect_AL.setEnabled(False)
-            except Exception:
-                myDialog.pushButton_Connect_AL.setEnabled(True)
-                myDialog.pushButton_Disconnect_AL.setEnabled(False)
-                message = QtWidgets.QMessageBox()
-                message.setText("Нет подключения к базе данных авиакомпаний")
-                message.setIcon(QtWidgets.QMessageBox.Warning)
-                message.exec_()
-            else:
-                pass
             finally:
                 pass
 
@@ -722,6 +720,15 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekRT = S.cnxnRT.cursor()
                 print("seeks is on")
+            except Exception:
+                # Переводим в неактивное состояние
+                myDialog.pushButton_Connect_RT.setEnabled(True)
+                myDialog.pushButton_Disconnect_RT.setEnabled(False)
+                message = QtWidgets.QMessageBox()
+                message.setText("Нет подключения к базе данных аэропортов и маршрутов")
+                message.setIcon(QtWidgets.QMessageBox.Warning)
+                message.exec_()
+            else:
                 S.Connected_RT = True
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.comboBox_DB_RT.setEnabled(False)
@@ -752,16 +759,6 @@ def myApplication():
                 myDialog.lineEdit_Schema_RT.setEnabled(True)
                 # Переводим в рабочее состояние
                 myDialog.pushButton_Connect_RT.setEnabled(False)
-            except Exception:
-                # Переводим в неактивное состояние
-                myDialog.pushButton_Connect_RT.setEnabled(True)
-                myDialog.pushButton_Disconnect_RT.setEnabled(False)
-                message = QtWidgets.QMessageBox()
-                message.setText("Нет подключения к базе данных аэропортов и маршрутов")
-                message.setIcon(QtWidgets.QMessageBox.Warning)
-                message.exec_()
-            else:
-                pass
             finally:
                 pass
 
@@ -841,14 +838,13 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAC = S.cnxnAC.cursor()
                 print("seeks is on")
-                S.Connected_AC = True
             except Exception:
                 message = QtWidgets.QMessageBox()
                 message.setText("Нет подключения к базе данных самолетов")
                 message.setIcon(QtWidgets.QMessageBox.Warning)
                 message.exec_()
             else:
-                pass
+                S.Connected_AC = True
             finally:
                 pass
         if not S.Connected_FN:
@@ -898,6 +894,15 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekFN = S.cnxnFN.cursor()
                 print("seeks is on")
+            except Exception:
+                # Переводим в неактивное состояние
+                myDialog.pushButton_Connect_FN.setEnabled(True)
+                myDialog.pushButton_Disconnect_FN.setEnabled(False)
+                message = QtWidgets.QMessageBox()
+                message.setText("Нет подключения к базе данных авиаперелетов")
+                message.setIcon(QtWidgets.QMessageBox.Warning)
+                message.exec_()
+            else:
                 S.Connected_FN = True
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.radioButton_DB.setEnabled(False)
@@ -907,7 +912,7 @@ def myApplication():
                 myDialog.comboBox_DSN_FN.setEnabled(False)
                 myDialog.pushButton_Disconnect_FN.setEnabled(True)
                 #myDialog.pushButton_Disconnect_AC.setEnabled(True)
-                if S.Connected_AL and S.Connected_AC and S.Connected_RT and S.Connected_AC_XML:
+                if S.Connected_AL and S.Connected_RT and S.Connected_AC and S.Connected_AC_XML:
                     myDialog.pushButton_ChooseCSVFile.setEnabled(True)
                     myDialog.lineEdit_CSVFile.setEnabled(True)
                     myDialog.pushButton_ChooseTXTFile.setEnabled(True)
@@ -935,16 +940,6 @@ def myApplication():
                 myDialog.lineEdit_DSN_FN.setEnabled(True)
                 # Переводим в рабочее состояние
                 myDialog.pushButton_Connect_FN.setEnabled(False)
-            except Exception:
-                # Переводим в неактивное состояние
-                myDialog.pushButton_Connect_FN.setEnabled(True)
-                myDialog.pushButton_Disconnect_FN.setEnabled(False)
-                message = QtWidgets.QMessageBox()
-                message.setText("Нет подключения к базе данных авиаперелетов")
-                message.setIcon(QtWidgets.QMessageBox.Warning)
-                message.exec_()
-            else:
-                pass
             finally:
                 pass
 
@@ -1024,11 +1019,19 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAC_XML = S.cnxnAC_XML.cursor()
                 print("seeks is on")
+            except Exception:
+                myDialog.pushButton_Connect_AC.setEnabled(True)
+                myDialog.pushButton_Disconnect_AC.setEnabled(False)
+                message = QtWidgets.QMessageBox()
+                message.setText("Нет подключения к базе данных самолетов")
+                message.setIcon(QtWidgets.QMessageBox.Warning)
+                message.exec_()
+            else:
                 S.Connected_AC_XML = True
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.comboBox_DSN_AC.setEnabled(False)
                 myDialog.pushButton_Disconnect_AC.setEnabled(True)
-                if S.Connected_AL and S.Connected_AC and S.Connected_RT and S.Connected_AC_XML:
+                if S.Connected_AL and S.Connected_RT and S.Connected_AC and S.Connected_FN:
                     myDialog.pushButton_ChooseCSVFile.setEnabled(True)
                     myDialog.lineEdit_CSVFile.setEnabled(True)
                     myDialog.pushButton_ChooseTXTFile.setEnabled(True)
@@ -1056,15 +1059,6 @@ def myApplication():
                 myDialog.lineEdit_DSN_AC.setEnabled(True)
                 # Переводим в рабочее состояние
                 myDialog.pushButton_Connect_AC.setEnabled(False)
-            except Exception:
-                myDialog.pushButton_Connect_AC.setEnabled(True)
-                myDialog.pushButton_Disconnect_AC.setEnabled(False)
-                message = QtWidgets.QMessageBox()
-                message.setText("Нет подключения к базе данных самолетов")
-                message.setIcon(QtWidgets.QMessageBox.Warning)
-                message.exec_()
-            else:
-                pass
             finally:
                 pass
 
