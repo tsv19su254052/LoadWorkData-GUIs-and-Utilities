@@ -485,14 +485,22 @@ def myApplication():
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62WorkBase")
     myDialog.radioButton_DB.setToolTip("Использовать имя базы данных и драйвер СУБД")
     myDialog.radioButton_DSN.setToolTip("Использовать системный или пользовательский DSN\n(настроено и проверено внутри)")
-    if S.radioButtonUseDB:
-        myDialog.comboBox_DB_FN.setEnabled(True)
-        myDialog.comboBox_Driver_FN.setEnabled(True)
-        myDialog.comboBox_DSN_FN.setEnabled(False)
-    else:
-        myDialog.comboBox_DB_FN.setEnabled(False)
-        myDialog.comboBox_Driver_FN.setEnabled(False)
-        myDialog.comboBox_DSN_FN.setEnabled(True)
+
+    def SwitchRadioButtons():
+        if S.radioButtonUseDB:
+            myDialog.radioButton_DB.setChecked(True)
+            myDialog.radioButton_DSN.setChecked(False)
+            myDialog.comboBox_DB_FN.setEnabled(True)
+            myDialog.comboBox_Driver_FN.setEnabled(True)
+            myDialog.comboBox_DSN_FN.setEnabled(False)
+        else:
+            myDialog.radioButton_DB.setChecked(False)
+            myDialog.radioButton_DSN.setChecked(True)
+            myDialog.comboBox_DB_FN.setEnabled(False)
+            myDialog.comboBox_Driver_FN.setEnabled(False)
+            myDialog.comboBox_DSN_FN.setEnabled(True)
+
+    SwitchRadioButtons()
     myDialog.pushButton_Disconnect_AL.setEnabled(False)
     myDialog.pushButton_Disconnect_RT.setEnabled(False)
     myDialog.pushButton_Disconnect_FN.setEnabled(False)
@@ -957,13 +965,12 @@ def myApplication():
             # Переключаем в исходное состояние
             myDialog.radioButton_DB.setEnabled(True)
             myDialog.radioButton_DSN.setEnabled(True)
-            myDialog.comboBox_DB_FN.setEnabled(True)
-            myDialog.comboBox_Driver_FN.setEnabled(True)
-            myDialog.comboBox_DSN_FN.setEnabled(True)
+            SwitchRadioButtons()
+            #myDialog.comboBox_DB_FN.setEnabled(True)
+            #myDialog.comboBox_Driver_FN.setEnabled(True)
+            #myDialog.comboBox_DSN_FN.setEnabled(True)
             myDialog.pushButton_Connect_FN.setEnabled(True)
-            #myDialog.pushButton_Connect_AC.setEnabled(True)
             myDialog.pushButton_Disconnect_FN.setEnabled(False)
-            #myDialog.pushButton_Disconnect_AC.setEnabled(False)
             myDialog.dateEdit_BeginDate.setEnabled(False)
             myDialog.checkBox_SetInputDate.setEnabled(False)
             myDialog.pushButton_ChooseCSVFile.setEnabled(False)
