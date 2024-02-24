@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Qt_Designer_LoadDialogWithAirCraftsrGBPss.ui'
+## Form generated from reading UI file 'Qt_Designer_LoadDialogWithAirCraftsAxXhku.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -153,12 +153,6 @@ class Ui_Dialog(object):
         self.label_29.setObjectName(u"label_29")
         self.label_29.setGeometry(QRect(70, 180, 41, 41))
         self.label_29.setPixmap(QPixmap(u"\u0417\u043d\u0430\u0447\u043a\u0438 (\u0418\u043a\u043e\u043d\u043a\u0438)/a_23.ico"))
-        self.radioButton_DB = QRadioButton(Dialog)
-        self.radioButton_DB.setObjectName(u"radioButton_DB")
-        self.radioButton_DB.setGeometry(QRect(730, 60, 151, 18))
-        self.radioButton_DSN = QRadioButton(Dialog)
-        self.radioButton_DSN.setObjectName(u"radioButton_DSN")
-        self.radioButton_DSN.setGeometry(QRect(730, 90, 41, 18))
         self.dateEdit_BeginDate = QDateEdit(Dialog)
         self.dateEdit_BeginDate.setObjectName(u"dateEdit_BeginDate")
         self.dateEdit_BeginDate.setGeometry(QRect(520, 350, 110, 22))
@@ -179,16 +173,16 @@ class Ui_Dialog(object):
         self.label_Version.setLayoutDirection(Qt.LeftToRight)
         self.pushButton_Disconnect_AC = QPushButton(Dialog)
         self.pushButton_Disconnect_AC.setObjectName(u"pushButton_Disconnect_AC")
-        self.pushButton_Disconnect_AC.setGeometry(QRect(800, 200, 131, 23))
+        self.pushButton_Disconnect_AC.setGeometry(QRect(880, 200, 131, 23))
         self.label_13 = QLabel(Dialog)
         self.label_13.setObjectName(u"label_13")
-        self.label_13.setGeometry(QRect(740, 120, 181, 16))
+        self.label_13.setGeometry(QRect(820, 120, 181, 16))
         self.pushButton_Connect_AC = QPushButton(Dialog)
         self.pushButton_Connect_AC.setObjectName(u"pushButton_Connect_AC")
-        self.pushButton_Connect_AC.setGeometry(QRect(800, 170, 131, 23))
+        self.pushButton_Connect_AC.setGeometry(QRect(880, 170, 131, 23))
         self.comboBox_DSN_AC = QComboBox(Dialog)
         self.comboBox_DSN_AC.setObjectName(u"comboBox_DSN_AC")
-        self.comboBox_DSN_AC.setGeometry(QRect(730, 140, 201, 22))
+        self.comboBox_DSN_AC.setGeometry(QRect(810, 140, 201, 22))
         self.lineEdit_DSN_AC = QLineEdit(Dialog)
         self.lineEdit_DSN_AC.setObjectName(u"lineEdit_DSN_AC")
         self.lineEdit_DSN_AC.setGeometry(QRect(730, 320, 201, 20))
@@ -208,6 +202,15 @@ class Ui_Dialog(object):
         self.label_17.setObjectName(u"label_17")
         self.label_17.setGeometry(QRect(150, 0, 261, 20))
         self.label_17.setLayoutDirection(Qt.LeftToRight)
+        self.groupBox = QGroupBox(Dialog)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setGeometry(QRect(750, 9, 171, 81))
+        self.radioButton_DSN = QRadioButton(self.groupBox)
+        self.radioButton_DSN.setObjectName(u"radioButton_DSN")
+        self.radioButton_DSN.setGeometry(QRect(10, 50, 41, 18))
+        self.radioButton_DB = QRadioButton(self.groupBox)
+        self.radioButton_DB.setObjectName(u"radioButton_DB")
+        self.radioButton_DB.setGeometry(QRect(10, 20, 151, 18))
 
         self.retranslateUi(Dialog)
 
@@ -239,8 +242,6 @@ class Ui_Dialog(object):
         self.label_21.setText(QCoreApplication.translate("Dialog", u"\u0421\u043f\u0440\u0430\u0432\u043e\u0447\u043d\u0438\u043a \u0430\u0432\u0438\u0430\u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0439", None))
         self.label_28.setText("")
         self.label_29.setText("")
-        self.radioButton_DB.setText(QCoreApplication.translate("Dialog", u"\u0411\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445 \u0438 \u0414\u0440\u0430\u0439\u0432\u0435\u0440", None))
-        self.radioButton_DSN.setText(QCoreApplication.translate("Dialog", u"DSN", None))
         self.label_30.setText("")
         self.checkBox_SetInputDate.setText(QCoreApplication.translate("Dialog", u"\u041f\u0435\u0440\u0435\u043d\u043e\u0441 \u0434\u0430\u0442\u044b \u0438\u0437 \u0444\u0430\u0439\u043b\u0430 \u0434\u0430\u043d\u043d\u044b\u0445", None))
         self.label_10.setText(QCoreApplication.translate("Dialog", u"DSN-\u044b", None))
@@ -249,5 +250,8 @@ class Ui_Dialog(object):
         self.label_13.setText(QCoreApplication.translate("Dialog", u"\u0421\u043f\u0440\u0430\u0432\u043e\u0447\u043d\u0438\u043a \u043f\u043e \u0441\u0430\u043c\u043e\u043b\u0435\u0442\u0430\u043c", None))
         self.pushButton_Connect_AC.setText(QCoreApplication.translate("Dialog", u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f \u043a DSN", None))
         self.label_17.setText(QCoreApplication.translate("Dialog", u"\u0421\u0435\u0440\u0432\u0435\u0440 \u0421\u0423\u0411\u0414 \u043e\u043f\u0435\u0440\u0430\u0442\u0438\u0432\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445", None))
+        self.groupBox.setTitle(QCoreApplication.translate("Dialog", u"\u0418\u0441\u0442\u043e\u0447\u043d\u0438\u043a \u0434\u0430\u043d\u043d\u044b\u0445", None))
+        self.radioButton_DSN.setText(QCoreApplication.translate("Dialog", u"DSN", None))
+        self.radioButton_DB.setText(QCoreApplication.translate("Dialog", u"\u0411\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445 \u0438 \u0414\u0440\u0430\u0439\u0432\u0435\u0440", None))
     # retranslateUi
 
