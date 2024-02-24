@@ -1102,10 +1102,10 @@ def myApplication():
         myDialog.pushButton_Disconnect_FN.setEnabled(False)
         myDialog.pushButton_Disconnect_AC.setEnabled(False)
         myDialog.pushButton_GetStarted.setEnabled(False)
-        # fixme кнопки не гаснут, формочка загрузки не отвечает
         threadLoad = threading.Thread(target=LoadThread, daemon=False, args=(S.InputFileCSV, S.LogFileTXT, ))  # поток не сам по себе
         threadLoad.start()
         threadLoad.join(1)  # ждем поток в основном потоке (графическая оболочка зависает), секунд
+        # fixme кнопки не гаснут, формочка загрузки не отвечает
         #myDialog.close()  # закрываем графическую оболочку, текстовая остается
 
     # Отрисовка диалога
