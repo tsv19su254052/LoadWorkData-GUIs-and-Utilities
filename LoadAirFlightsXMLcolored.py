@@ -574,7 +574,6 @@ def myApplication():
 
     def PushButtonSelectDB_AL():
         if not S.Connected_AL:
-            myDialog.pushButton_Connect_AL.setEnabled(False)
             # Подключаемся к базе данных авиакомпаний
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             # https://docs.microsoft.com/ru-ru/previous-versions/dotnet/framework/data/adonet/sql/ownership-and-user-schema-separation-in-sql-server
@@ -650,6 +649,7 @@ def myApplication():
                 # Схема (если из-под другой учетки, то выводит имя учетки)
                 myDialog.lineEdit_Schema_AL.setText(S.cnxnAL.getinfo(pyodbc.SQL_USER_NAME))
                 myDialog.lineEdit_Schema_AL.setEnabled(True)
+                myDialog.pushButton_Connect_AL.setEnabled(False)
             finally:
                 pass
 
@@ -664,8 +664,6 @@ def myApplication():
             # Переключаем в исходное состояние
             myDialog.comboBox_DB_AL.setEnabled(True)
             myDialog.comboBox_Driver_AL.setEnabled(True)
-            myDialog.pushButton_Connect_AL.setEnabled(True)
-            myDialog.pushButton_Disconnect_AL.setEnabled(False)
             myDialog.dateEdit_BeginDate.setEnabled(False)
             myDialog.checkBox_SetInputDate.setEnabled(False)
             myDialog.pushButton_ChooseCSVFile.setEnabled(False)
@@ -681,10 +679,11 @@ def myApplication():
             myDialog.lineEdit_Driver_AL.setEnabled(False)
             myDialog.lineEdit_ODBCversion_AL.setEnabled(False)
             myDialog.lineEdit_Schema_AL.setEnabled(False)
+            myDialog.pushButton_Connect_AL.setEnabled(True)
+            myDialog.pushButton_Disconnect_AL.setEnabled(False)
 
     def PushButtonSelectDB_RT():
         if not S.Connected_RT:
-            myDialog.pushButton_Connect_RT.setEnabled(False)
             # Подключаемся к базе данных аэропортов и маршрутов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             # Добавляем атрибуты DataBase, DriverODBC
@@ -758,6 +757,7 @@ def myApplication():
                 # Схема (если из-под другой учетки, то выводит имя учетки)
                 myDialog.lineEdit_Schema_RT.setText(S.cnxnRT.getinfo(pyodbc.SQL_USER_NAME))
                 myDialog.lineEdit_Schema_RT.setEnabled(True)
+                myDialog.pushButton_Connect_RT.setEnabled(False)
             finally:
                 pass
 
@@ -772,8 +772,6 @@ def myApplication():
             # Переключаем в исходное состояние
             myDialog.comboBox_DB_RT.setEnabled(True)
             myDialog.comboBox_Driver_RT.setEnabled(True)
-            myDialog.pushButton_Connect_RT.setEnabled(True)
-            myDialog.pushButton_Disconnect_RT.setEnabled(False)
             myDialog.dateEdit_BeginDate.setEnabled(False)
             myDialog.checkBox_SetInputDate.setEnabled(False)
             myDialog.pushButton_ChooseCSVFile.setEnabled(False)
@@ -788,6 +786,8 @@ def myApplication():
             myDialog.lineEdit_Driver_RT.setEnabled(False)
             myDialog.lineEdit_ODBCversion_RT.setEnabled(False)
             myDialog.lineEdit_Schema_RT.setEnabled(False)
+            myDialog.pushButton_Connect_RT.setEnabled(True)
+            myDialog.pushButton_Disconnect_RT.setEnabled(False)
 
     def PushButtonSelectDB_FN():
         if not S.Connected_AC:
@@ -847,7 +847,6 @@ def myApplication():
             finally:
                 pass
         if not S.Connected_FN:
-            myDialog.pushButton_Connect_FN.setEnabled(False)
             # Подключаемся к базе данных авиаперелетов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             ChoiceDB_FN = myDialog.comboBox_DB_FN.currentText()
@@ -938,6 +937,7 @@ def myApplication():
                 # Источник данных
                 myDialog.lineEdit_DSN_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_DATA_SOURCE_NAME))
                 myDialog.lineEdit_DSN_FN.setEnabled(True)
+                myDialog.pushButton_Connect_FN.setEnabled(False)
             finally:
                 pass
 
@@ -962,8 +962,6 @@ def myApplication():
             #myDialog.comboBox_DB_FN.setEnabled(True)
             #myDialog.comboBox_Driver_FN.setEnabled(True)
             #myDialog.comboBox_DSN_FN.setEnabled(True)
-            myDialog.pushButton_Connect_FN.setEnabled(True)
-            myDialog.pushButton_Disconnect_FN.setEnabled(False)
             myDialog.dateEdit_BeginDate.setEnabled(False)
             myDialog.checkBox_SetInputDate.setEnabled(False)
             myDialog.pushButton_ChooseCSVFile.setEnabled(False)
@@ -978,10 +976,11 @@ def myApplication():
             myDialog.lineEdit_ODBCversion_FN.setEnabled(False)
             myDialog.lineEdit_DSN_FN.setEnabled(False)
             myDialog.lineEdit_Schema_FN.setEnabled(False)
+            myDialog.pushButton_Connect_FN.setEnabled(True)
+            myDialog.pushButton_Disconnect_FN.setEnabled(False)
 
     def PushButtonSelectDB_AC_XML():
         if not S.Connected_AC_XML:
-            myDialog.pushButton_Connect_AC.setEnabled(False)
             # Подключаемся к базе данных самолетов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             ChoiceDSN_AC_XML = myDialog.comboBox_DSN_AC.currentText()
@@ -1056,6 +1055,7 @@ def myApplication():
                 # Источник данных
                 myDialog.lineEdit_DSN_AC.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_DATA_SOURCE_NAME))
                 myDialog.lineEdit_DSN_AC.setEnabled(True)
+                myDialog.pushButton_Connect_AC.setEnabled(False)
             finally:
                 pass
 
@@ -1069,8 +1069,6 @@ def myApplication():
             S.Connected_AC_XML = False
             # Переключаем в исходное состояние
             myDialog.comboBox_DSN_AC.setEnabled(True)
-            myDialog.pushButton_Connect_AC.setEnabled(True)
-            myDialog.pushButton_Disconnect_AC.setEnabled(False)
             myDialog.dateEdit_BeginDate.setEnabled(False)
             myDialog.checkBox_SetInputDate.setEnabled(False)
             myDialog.pushButton_ChooseCSVFile.setEnabled(False)
@@ -1086,6 +1084,8 @@ def myApplication():
             myDialog.lineEdit_ODBCversion_AC.setEnabled(False)
             myDialog.lineEdit_Schema_AC.setEnabled(False)
             myDialog.lineEdit_DSN_AC.setEnabled(False)
+            myDialog.pushButton_Connect_AC.setEnabled(True)
+            myDialog.pushButton_Disconnect_AC.setEnabled(False)
 
     def PushButtonChooseCSVFile():
         filter = "Data files (*.csv)"
