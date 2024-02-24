@@ -577,22 +577,6 @@ def myApplication():
                 # todo Изучить тему пула соединений
                 S.cnxnAL = pyodbc.connect(driver=S.DriverODBC_AL, server=S.ServerNameOriginal, database=S.DataBase_AL)
                 print("  БД = ", S.DataBase_AL, "подключена")
-                S.Connected_AL = True
-                # Переводим в рабочее состояние (продолжение)
-                myDialog.comboBox_DB_AL.setEnabled(False)
-                myDialog.comboBox_Driver_AL.setEnabled(False)
-                myDialog.pushButton_Disconnect_AL.setEnabled(True)
-                if S.Connected_AC and S.Connected_RT and S.Connected_FN and S.Connected_AC_XML:
-                    myDialog.pushButton_ChooseCSVFile.setEnabled(True)
-                    myDialog.lineEdit_CSVFile.setEnabled(True)
-                    myDialog.pushButton_ChooseTXTFile.setEnabled(True)
-                    myDialog.lineEdit_TXTFile.setEnabled(True)
-                    myDialog.dateEdit_BeginDate.setEnabled(True)
-                    myDialog.dateEdit_BeginDate.setCalendarPopup(True)
-                    myDialog.checkBox_SetInputDate.setEnabled(True)
-                    #myDialog.progressBar_completion.setEnabled(True)
-                    #myDialog.progressBar_completion.reset()
-                    myDialog.pushButton_GetStarted.setEnabled(True)
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnAL.autocommit = False
                 print("autocommit is disabled")
@@ -619,6 +603,22 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAL = S.cnxnAL.cursor()
                 print("seeks is on")
+                S.Connected_AL = True
+                # Переводим в рабочее состояние (продолжение)
+                myDialog.comboBox_DB_AL.setEnabled(False)
+                myDialog.comboBox_Driver_AL.setEnabled(False)
+                myDialog.pushButton_Disconnect_AL.setEnabled(True)
+                if S.Connected_AC and S.Connected_RT and S.Connected_FN and S.Connected_AC_XML:
+                    myDialog.pushButton_ChooseCSVFile.setEnabled(True)
+                    myDialog.lineEdit_CSVFile.setEnabled(True)
+                    myDialog.pushButton_ChooseTXTFile.setEnabled(True)
+                    myDialog.lineEdit_TXTFile.setEnabled(True)
+                    myDialog.dateEdit_BeginDate.setEnabled(True)
+                    myDialog.dateEdit_BeginDate.setCalendarPopup(True)
+                    myDialog.checkBox_SetInputDate.setEnabled(True)
+                    #myDialog.progressBar_completion.setEnabled(True)
+                    #myDialog.progressBar_completion.reset()
+                    myDialog.pushButton_GetStarted.setEnabled(True)
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnAL.getinfo(pyodbc.SQL_SERVER_NAME))
                 myDialog.lineEdit_Server.setEnabled(True)
@@ -634,6 +634,8 @@ def myApplication():
                 # Переводим в рабочее состояние
                 myDialog.pushButton_Connect_AL.setEnabled(False)
             except Exception:
+                myDialog.pushButton_Connect_AL.setEnabled(True)
+                myDialog.pushButton_Disconnect_AL.setEnabled(False)
                 message = QtWidgets.QMessageBox()
                 message.setText("Нет подключения к базе данных авиакомпаний")
                 message.setIcon(QtWidgets.QMessageBox.Warning)
@@ -666,7 +668,8 @@ def myApplication():
             #myDialog.progressBar_completion.reset()
             myDialog.pushButton_GetStarted.setEnabled(False)
             # параметры соединения с сервером
-            myDialog.lineEdit_Server.setEnabled(False)
+            if not S.Connected_RT and not S.Connected_AC_XML:
+                myDialog.lineEdit_Server.setEnabled(False)
             myDialog.lineEdit_Driver_AL.setEnabled(False)
             myDialog.lineEdit_ODBCversion_AL.setEnabled(False)
             myDialog.lineEdit_Schema_AL.setEnabled(False)
@@ -683,22 +686,6 @@ def myApplication():
                 # через драйвер СУБД + клиентский API-курсор
                 S.cnxnRT = pyodbc.connect(driver=S.DriverODBC_RT, server=S.ServerNameOriginal, database=S.DataBase_RT)
                 print("  БД = ", S.DataBase_RT, "подключена")
-                S.Connected_RT = True
-                # Переводим в рабочее состояние (продолжение)
-                myDialog.comboBox_DB_RT.setEnabled(False)
-                myDialog.comboBox_Driver_RT.setEnabled(False)
-                myDialog.pushButton_Disconnect_RT.setEnabled(True)
-                if S.Connected_AL and S.Connected_AC and S.Connected_FN and S.Connected_AC_XML:
-                    myDialog.pushButton_ChooseCSVFile.setEnabled(True)
-                    myDialog.lineEdit_CSVFile.setEnabled(True)
-                    myDialog.pushButton_ChooseTXTFile.setEnabled(True)
-                    myDialog.lineEdit_TXTFile.setEnabled(True)
-                    myDialog.dateEdit_BeginDate.setEnabled(True)
-                    myDialog.dateEdit_BeginDate.setCalendarPopup(True)
-                    myDialog.checkBox_SetInputDate.setEnabled(True)
-                    myDialog.progressBar_completion.setEnabled(True)
-                    myDialog.progressBar_completion.reset()
-                    myDialog.pushButton_GetStarted.setEnabled(True)
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnRT.autocommit = False
                 print("autocommit is disabled")
@@ -725,6 +712,22 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekRT = S.cnxnRT.cursor()
                 print("seeks is on")
+                S.Connected_RT = True
+                # Переводим в рабочее состояние (продолжение)
+                myDialog.comboBox_DB_RT.setEnabled(False)
+                myDialog.comboBox_Driver_RT.setEnabled(False)
+                myDialog.pushButton_Disconnect_RT.setEnabled(True)
+                if S.Connected_AL and S.Connected_AC and S.Connected_FN and S.Connected_AC_XML:
+                    myDialog.pushButton_ChooseCSVFile.setEnabled(True)
+                    myDialog.lineEdit_CSVFile.setEnabled(True)
+                    myDialog.pushButton_ChooseTXTFile.setEnabled(True)
+                    myDialog.lineEdit_TXTFile.setEnabled(True)
+                    myDialog.dateEdit_BeginDate.setEnabled(True)
+                    myDialog.dateEdit_BeginDate.setCalendarPopup(True)
+                    myDialog.checkBox_SetInputDate.setEnabled(True)
+                    myDialog.progressBar_completion.setEnabled(True)
+                    myDialog.progressBar_completion.reset()
+                    myDialog.pushButton_GetStarted.setEnabled(True)
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnRT.getinfo(pyodbc.SQL_SERVER_NAME))
                 myDialog.lineEdit_Server.setEnabled(True)
@@ -740,6 +743,9 @@ def myApplication():
                 # Переводим в рабочее состояние
                 myDialog.pushButton_Connect_RT.setEnabled(False)
             except Exception:
+                # Переводим в неактивное состояние
+                myDialog.pushButton_Connect_RT.setEnabled(True)
+                myDialog.pushButton_Disconnect_RT.setEnabled(False)
                 message = QtWidgets.QMessageBox()
                 message.setText("Нет подключения к базе данных аэропортов и маршрутов")
                 message.setIcon(QtWidgets.QMessageBox.Warning)
@@ -771,7 +777,8 @@ def myApplication():
             #myDialog.progressBar_completion.setEnabled(False)
             myDialog.pushButton_GetStarted.setEnabled(False)
             # параметры соединения с сервером
-            myDialog.lineEdit_Server.setEnabled(False)
+            if not S.Connected_AL and not S.Connected_AC_XML:
+                myDialog.lineEdit_Server.setEnabled(False)
             myDialog.lineEdit_Driver_RT.setEnabled(False)
             myDialog.lineEdit_ODBCversion_RT.setEnabled(False)
             myDialog.lineEdit_Schema_RT.setEnabled(False)
@@ -798,8 +805,6 @@ def myApplication():
                     # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)
                     S.cnxnAC = pyodbc.connect("DSN=" + S.myDSN_AC)
                     print("  DSN = ", S.myDSN_AC, "подключен")
-                S.Connected_AC = True
-                # Переводим в рабочее состояние (продолжение)
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnAC.autocommit = False
                 print("autocommit is disabled")
@@ -826,6 +831,7 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAC = S.cnxnAC.cursor()
                 print("seeks is on")
+                S.Connected_AC = True
             except Exception:
                 message = QtWidgets.QMessageBox()
                 message.setText("Нет подключения к базе данных самолетов")
@@ -856,26 +862,6 @@ def myApplication():
                     # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)
                     S.cnxnFN = pyodbc.connect("DSN=" + S.myDSN_FN)
                     print("  DSN = ", S.myDSN_FN, "подключен")
-                S.Connected_FN = True
-                # Переводим в рабочее состояние (продолжение)
-                myDialog.radioButton_DB.setEnabled(False)
-                myDialog.radioButton_DSN.setEnabled(False)
-                myDialog.comboBox_DB_FN.setEnabled(False)
-                myDialog.comboBox_Driver_FN.setEnabled(False)
-                myDialog.comboBox_DSN_FN.setEnabled(False)
-                myDialog.pushButton_Disconnect_FN.setEnabled(True)
-                #myDialog.pushButton_Disconnect_AC.setEnabled(True)
-                if S.Connected_AL and S.Connected_AC and S.Connected_RT and S.Connected_AC_XML:
-                    myDialog.pushButton_ChooseCSVFile.setEnabled(True)
-                    myDialog.lineEdit_CSVFile.setEnabled(True)
-                    myDialog.pushButton_ChooseTXTFile.setEnabled(True)
-                    myDialog.lineEdit_TXTFile.setEnabled(True)
-                    myDialog.dateEdit_BeginDate.setEnabled(True)
-                    myDialog.dateEdit_BeginDate.setCalendarPopup(True)
-                    myDialog.checkBox_SetInputDate.setEnabled(True)
-                    #myDialog.progressBar_completion.setEnabled(True)
-                    #myDialog.progressBar_completion.reset()
-                    myDialog.pushButton_GetStarted.setEnabled(True)
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnFN.autocommit = False
                 print("autocommit is disabled")
@@ -902,6 +888,26 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekFN = S.cnxnFN.cursor()
                 print("seeks is on")
+                S.Connected_FN = True
+                # Переводим в рабочее состояние (продолжение)
+                myDialog.radioButton_DB.setEnabled(False)
+                myDialog.radioButton_DSN.setEnabled(False)
+                myDialog.comboBox_DB_FN.setEnabled(False)
+                myDialog.comboBox_Driver_FN.setEnabled(False)
+                myDialog.comboBox_DSN_FN.setEnabled(False)
+                myDialog.pushButton_Disconnect_FN.setEnabled(True)
+                #myDialog.pushButton_Disconnect_AC.setEnabled(True)
+                if S.Connected_AL and S.Connected_AC and S.Connected_RT and S.Connected_AC_XML:
+                    myDialog.pushButton_ChooseCSVFile.setEnabled(True)
+                    myDialog.lineEdit_CSVFile.setEnabled(True)
+                    myDialog.pushButton_ChooseTXTFile.setEnabled(True)
+                    myDialog.lineEdit_TXTFile.setEnabled(True)
+                    myDialog.dateEdit_BeginDate.setEnabled(True)
+                    myDialog.dateEdit_BeginDate.setCalendarPopup(True)
+                    myDialog.checkBox_SetInputDate.setEnabled(True)
+                    #myDialog.progressBar_completion.setEnabled(True)
+                    #myDialog.progressBar_completion.reset()
+                    myDialog.pushButton_GetStarted.setEnabled(True)
                 # SQL Server
                 myDialog.lineEdit_Server_remote.setText(S.cnxnFN.getinfo(pyodbc.SQL_SERVER_NAME))
                 myDialog.lineEdit_Server_remote.setEnabled(True)
@@ -920,6 +926,9 @@ def myApplication():
                 # Переводим в рабочее состояние
                 myDialog.pushButton_Connect_FN.setEnabled(False)
             except Exception:
+                # Переводим в неактивное состояние
+                myDialog.pushButton_Connect_FN.setEnabled(True)
+                myDialog.pushButton_Disconnect_FN.setEnabled(False)
                 message = QtWidgets.QMessageBox()
                 message.setText("Нет подключения к базе данных авиаперелетов")
                 message.setIcon(QtWidgets.QMessageBox.Warning)
@@ -980,21 +989,6 @@ def myApplication():
                 # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)
                 S.cnxnAC_XML = pyodbc.connect("DSN=" + S.myDSN_AC_XML)
                 print("  DSN = ", S.myDSN_AC_XML, "подключен")
-                S.Connected_AC_XML = True
-                # Переводим в рабочее состояние (продолжение)
-                myDialog.comboBox_DSN_AC.setEnabled(False)
-                myDialog.pushButton_Disconnect_AC.setEnabled(True)
-                if S.Connected_AL and S.Connected_AC and S.Connected_RT and S.Connected_AC_XML:
-                    myDialog.pushButton_ChooseCSVFile.setEnabled(True)
-                    myDialog.lineEdit_CSVFile.setEnabled(True)
-                    myDialog.pushButton_ChooseTXTFile.setEnabled(True)
-                    myDialog.lineEdit_TXTFile.setEnabled(True)
-                    myDialog.dateEdit_BeginDate.setEnabled(True)
-                    myDialog.dateEdit_BeginDate.setCalendarPopup(True)
-                    myDialog.checkBox_SetInputDate.setEnabled(True)
-                    #myDialog.progressBar_completion.setEnabled(True)
-                    #myDialog.progressBar_completion.reset()
-                    myDialog.pushButton_GetStarted.setEnabled(True)
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnAC_XML.autocommit = False
                 print("autocommit is disabled")
@@ -1021,6 +1015,21 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAC_XML = S.cnxnAC_XML.cursor()
                 print("seeks is on")
+                S.Connected_AC_XML = True
+                # Переводим в рабочее состояние (продолжение)
+                myDialog.comboBox_DSN_AC.setEnabled(False)
+                myDialog.pushButton_Disconnect_AC.setEnabled(True)
+                if S.Connected_AL and S.Connected_AC and S.Connected_RT and S.Connected_AC_XML:
+                    myDialog.pushButton_ChooseCSVFile.setEnabled(True)
+                    myDialog.lineEdit_CSVFile.setEnabled(True)
+                    myDialog.pushButton_ChooseTXTFile.setEnabled(True)
+                    myDialog.lineEdit_TXTFile.setEnabled(True)
+                    myDialog.dateEdit_BeginDate.setEnabled(True)
+                    myDialog.dateEdit_BeginDate.setCalendarPopup(True)
+                    myDialog.checkBox_SetInputDate.setEnabled(True)
+                    #myDialog.progressBar_completion.setEnabled(True)
+                    #myDialog.progressBar_completion.reset()
+                    myDialog.pushButton_GetStarted.setEnabled(True)
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_SERVER_NAME))
                 myDialog.lineEdit_Server.setEnabled(True)
@@ -1039,6 +1048,8 @@ def myApplication():
                 # Переводим в рабочее состояние
                 myDialog.pushButton_Connect_AC.setEnabled(False)
             except Exception:
+                myDialog.pushButton_Connect_AC.setEnabled(True)
+                myDialog.pushButton_Disconnect_AC.setEnabled(False)
                 message = QtWidgets.QMessageBox()
                 message.setText("Нет подключения к базе данных самолетов")
                 message.setIcon(QtWidgets.QMessageBox.Warning)
@@ -1069,7 +1080,8 @@ def myApplication():
             #myDialog.progressBar_completion.setEnabled(False)
             myDialog.pushButton_GetStarted.setEnabled(False)
             # параметры соединения с сервером
-            myDialog.lineEdit_Server.setEnabled(False)
+            if not S.Connected_AL and not S.Connected_RT:
+                myDialog.lineEdit_Server.setEnabled(False)
             myDialog.lineEdit_Driver_AC.setEnabled(False)
             myDialog.lineEdit_ODBCversion_AC.setEnabled(False)
             myDialog.lineEdit_Schema_AC.setEnabled(False)
