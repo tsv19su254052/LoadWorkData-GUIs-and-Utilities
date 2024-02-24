@@ -684,6 +684,7 @@ def myApplication():
 
     def PushButtonSelectDB_RT():
         if not S.Connected_RT:
+            myDialog.pushButton_Connect_RT.setEnabled(False)
             # Подключаемся к базе данных аэропортов и маршрутов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             # Добавляем атрибуты DataBase, DriverODBC
@@ -757,8 +758,6 @@ def myApplication():
                 # Схема (если из-под другой учетки, то выводит имя учетки)
                 myDialog.lineEdit_Schema_RT.setText(S.cnxnRT.getinfo(pyodbc.SQL_USER_NAME))
                 myDialog.lineEdit_Schema_RT.setEnabled(True)
-                # Переводим в рабочее состояние
-                myDialog.pushButton_Connect_RT.setEnabled(False)
             finally:
                 pass
 
@@ -848,6 +847,7 @@ def myApplication():
             finally:
                 pass
         if not S.Connected_FN:
+            myDialog.pushButton_Connect_FN.setEnabled(False)
             # Подключаемся к базе данных авиаперелетов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             ChoiceDB_FN = myDialog.comboBox_DB_FN.currentText()
@@ -938,8 +938,6 @@ def myApplication():
                 # Источник данных
                 myDialog.lineEdit_DSN_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_DATA_SOURCE_NAME))
                 myDialog.lineEdit_DSN_FN.setEnabled(True)
-                # Переводим в рабочее состояние
-                myDialog.pushButton_Connect_FN.setEnabled(False)
             finally:
                 pass
 
@@ -983,6 +981,7 @@ def myApplication():
 
     def PushButtonSelectDB_AC_XML():
         if not S.Connected_AC_XML:
+            myDialog.pushButton_Connect_AC.setEnabled(False)
             # Подключаемся к базе данных самолетов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             ChoiceDSN_AC_XML = myDialog.comboBox_DSN_AC.currentText()
@@ -1057,8 +1056,6 @@ def myApplication():
                 # Источник данных
                 myDialog.lineEdit_DSN_AC.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_DATA_SOURCE_NAME))
                 myDialog.lineEdit_DSN_AC.setEnabled(True)
-                # Переводим в рабочее состояние
-                myDialog.pushButton_Connect_AC.setEnabled(False)
             finally:
                 pass
 
