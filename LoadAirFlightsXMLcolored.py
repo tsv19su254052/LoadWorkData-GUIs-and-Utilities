@@ -29,7 +29,7 @@ import Classes
 
 
 # Версия обработки с цветным выводом
-__myOwnDevelopingVersion__ = 8.3
+__myOwnDevelopingVersion__ = 8.31
 # todo Версия задается тут. Пакеты на GitHub-е *.tar.gz (под Linux или под BSD) не нужны. Выпуск релизов пока не имеет практической пользы, как указано в ReadME.md
 
 colorama.init(autoreset=False)  # используем Colorama, чтобы сделать работу Termcolor на Windows, оставляем цветовое оформление до следующего явного указания
@@ -453,7 +453,7 @@ def myApplication():
     # Делаем экземпляры
     myDialog = Classes.Ui_DialogLoadAirFlightsWithAirCrafts()
     myDialog.setupUi(Dialog=myDialog)  # надо вызывать явно
-    myDialog.setFixedSize(1025, 390)
+    myDialog.setFixedSize(940, 375)
     myDialog.setWindowTitle('Загрузка рабочих данных')
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
