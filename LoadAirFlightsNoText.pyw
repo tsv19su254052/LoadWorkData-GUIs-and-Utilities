@@ -335,6 +335,7 @@ def myApplication():
             # myDialog.progressBar_completion.setValue(int(Execute))  # fixme выдает ошибку про рекурсивную отрисовку (см. снимок экрана)
         # pbar.close()
         myDialog.label_execute.setText("Загрузка окончена")
+        myDialog.label_execute.setStyleSheet("border: 5px solid; border-color: yellow")
         print(termcolor.colored("Загрузка окончена", "red", "on_yellow"))
         # Отметка времени окончания загрузки
         __EndTime__ = datetime.datetime.now()
@@ -1106,6 +1107,7 @@ def myApplication():
         myDialog.pushButton_Disconnect_AC.setEnabled(False)
         myDialog.pushButton_GetStarted.setEnabled(False)
         myDialog.label_execute.setEnabled(True)
+        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")
         # todo Заброс на возможность запуска нескольких загрузок с доработкой графической оболочки без ее закрытия на запуске загрузки
         threadLoad = threading.Thread(target=LoadThread, daemon=False, args=(S.InputFileCSV, S.LogFileTXT, ))  # поток не сам по себе
         threadLoad.start()
