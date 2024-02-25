@@ -483,8 +483,10 @@ def myApplication():
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew42")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew52")
     myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew62WorkBase")
+    myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew72WorkBase")
+    myDialog.comboBox_DB_FN.addItem("AirFlightsDBNew82WorkBase")
     myDialog.radioButton_DB.setToolTip("Использовать имя базы данных и драйвер СУБД")
-    myDialog.radioButton_DSN.setToolTip("Использовать системный или пользовательский DSN\n(настроено и проверено внутри)")
+    myDialog.radioButton_DSN.setToolTip("Использовать системный или пользовательский DSN")
 
     def SwitchRadioButtons():
         if S.radioButtonUseDB:
