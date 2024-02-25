@@ -83,6 +83,8 @@ def myApplication():
         https://www.transtats.bts.gov/DL_SelectFields.asp - не работает
         https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr - работает
         """
+        myDialog.label_execute.setText("Чтение, перепаковка и проверка исходных данных")
+        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: yellow")
         print("  Чтение, перепаковка и проверка входного файла")
         print("  ожидайте ...", end=' ')
         DataFrameFromCSV = pandas.read_csv(Csv, sep=",")
@@ -102,7 +104,9 @@ def myApplication():
         ListFlightDateConcatenated = []
         for attemptNumber in range(len(ListYear)):
             ListFlightDateConcatenated.append(str(ListYear[attemptNumber]) + "-" + str(ListMonth[attemptNumber]) + "-" + str(ListDay[attemptNumber]))
-        print("готово")
+        myDialog.label_execute.setText("Исходные данные перепакованы")
+        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")
+        print("Исходные данные перепакованы")
         # Списки
         ListAirLinesAdded = []
         ListAirLinesFailed = []
@@ -135,6 +139,7 @@ def myApplication():
         DateTime = time.ctime(Now)
         # Отметка времени начала загрузки
         __StartTime__ = datetime.datetime.now()
+        myDialog.label_execute.setText("Загрузка начата")
         print(termcolor.colored("Загрузка начата", "red", "on_yellow"))
         # Сигнал на обновление полоски выполнения
         # _signalUpdateProgressBar = QtCore.pyqtSignal(float)
@@ -335,7 +340,7 @@ def myApplication():
             # myDialog.progressBar_completion.setValue(int(Execute))  # fixme выдает ошибку про рекурсивную отрисовку (см. снимок экрана)
         # pbar.close()
         myDialog.label_execute.setText("Загрузка окончена")
-        myDialog.label_execute.setStyleSheet("border: 5px solid; border-color: yellow")
+        myDialog.label_execute.setStyleSheet("border: 5px solid; border-color: pink")
         print(termcolor.colored("Загрузка окончена", "red", "on_yellow"))
         # Отметка времени окончания загрузки
         __EndTime__ = datetime.datetime.now()
@@ -1107,7 +1112,6 @@ def myApplication():
         myDialog.pushButton_Disconnect_AC.setEnabled(False)
         myDialog.pushButton_GetStarted.setEnabled(False)
         myDialog.label_execute.setEnabled(True)
-        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")
         # todo Заброс на возможность запуска нескольких загрузок с доработкой графической оболочки без ее закрытия на запуске загрузки
         threadLoad = threading.Thread(target=LoadThread, daemon=False, args=(S.InputFileCSV, S.LogFileTXT, ))  # поток не сам по себе
         threadLoad.start()

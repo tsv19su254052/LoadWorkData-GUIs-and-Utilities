@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Qt_Designer_LoadDialogWithAirCraftsgVqoNF.ui'
+## Form generated from reading UI file 'Qt_Designer_LoadDialogWithAirCraftsSEgYoE.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -74,7 +74,7 @@ class Ui_Dialog(object):
         self.pushButton_Disconnect_FN.setGeometry(QRect(540, 160, 181, 23))
         self.pushButton_GetStarted = QPushButton(Dialog)
         self.pushButton_GetStarted.setObjectName(u"pushButton_GetStarted")
-        self.pushButton_GetStarted.setGeometry(QRect(730, 350, 111, 21))
+        self.pushButton_GetStarted.setGeometry(QRect(820, 350, 111, 21))
         self.pushButton_ChooseTXTFile = QPushButton(Dialog)
         self.pushButton_ChooseTXTFile.setObjectName(u"pushButton_ChooseTXTFile")
         self.pushButton_ChooseTXTFile.setGeometry(QRect(40, 350, 91, 23))
@@ -156,14 +156,14 @@ class Ui_Dialog(object):
         self.label_28.setPixmap(QPixmap(u"\u0417\u043d\u0430\u0447\u043a\u0438 (\u0418\u043a\u043e\u043d\u043a\u0438)/a_22.ico"))
         self.label_29 = QLabel(Dialog)
         self.label_29.setObjectName(u"label_29")
-        self.label_29.setGeometry(QRect(320, 170, 41, 41))
+        self.label_29.setGeometry(QRect(330, 170, 41, 41))
         self.label_29.setPixmap(QPixmap(u"\u0417\u043d\u0430\u0447\u043a\u0438 (\u0418\u043a\u043e\u043d\u043a\u0438)/a_23.ico"))
         self.dateEdit_BeginDate = QDateEdit(Dialog)
         self.dateEdit_BeginDate.setObjectName(u"dateEdit_BeginDate")
         self.dateEdit_BeginDate.setGeometry(QRect(490, 320, 110, 22))
         self.label_30 = QLabel(Dialog)
         self.label_30.setObjectName(u"label_30")
-        self.label_30.setGeometry(QRect(730, 170, 41, 41))
+        self.label_30.setGeometry(QRect(750, 130, 41, 41))
         self.label_30.setPixmap(QPixmap(u"\u0417\u043d\u0430\u0447\u043a\u0438 (\u0418\u043a\u043e\u043d\u043a\u0438)/a_21.ico"))
         self.checkBox_SetInputDate = QCheckBox(Dialog)
         self.checkBox_SetInputDate.setObjectName(u"checkBox_SetInputDate")
@@ -214,7 +214,10 @@ class Ui_Dialog(object):
         self.radioButton_DB.setGeometry(QRect(10, 20, 151, 18))
         self.label_execute = QLabel(Dialog)
         self.label_execute.setObjectName(u"label_execute")
-        self.label_execute.setGeometry(QRect(730, 320, 201, 20))
+        self.label_execute.setGeometry(QRect(670, 320, 261, 20))
+        self.label_22 = QLabel(Dialog)
+        self.label_22.setObjectName(u"label_22")
+        self.label_22.setGeometry(QRect(610, 320, 51, 20))
 
         self.retranslateUi(Dialog)
 
@@ -257,5 +260,6 @@ class Ui_Dialog(object):
         self.radioButton_DSN.setText(QCoreApplication.translate("Dialog", u"DSN", None))
         self.radioButton_DB.setText(QCoreApplication.translate("Dialog", u"\u0411\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445 \u0438 \u0414\u0440\u0430\u0439\u0432\u0435\u0440", None))
         self.label_execute.setText(QCoreApplication.translate("Dialog", u"\u0412\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 = ", None))
+        self.label_22.setText(QCoreApplication.translate("Dialog", u"\u0421\u0442\u0430\u0442\u0443\u0441:", None))
     # retranslateUi
 
