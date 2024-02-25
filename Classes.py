@@ -1530,7 +1530,7 @@ class Ui_DialogLoadAirFlightsWithAirCrafts(QtWidgets.QDialog):
         self.label_17.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setGeometry(QtCore.QRect(750, 30, 181, 81))
+        self.groupBox.setGeometry(QtCore.QRect(750, 0, 181, 81))
         self.radioButton_DSN = QtWidgets.QRadioButton(self.groupBox)
         self.radioButton_DSN.setObjectName(u"radioButton_DSN")
         self.radioButton_DSN.setGeometry(QtCore.QRect(10, 50, 41, 18))
@@ -1539,7 +1539,7 @@ class Ui_DialogLoadAirFlightsWithAirCrafts(QtWidgets.QDialog):
         self.radioButton_DB.setGeometry(QtCore.QRect(10, 20, 151, 18))
         self.label_execute = QtWidgets.QLabel(Dialog)
         self.label_execute.setObjectName(u"label_execute")
-        self.label_execute.setGeometry(QtCore.QRect(10, 170, 151, 20))
+        self.label_execute.setGeometry(QtCore.QRect(740, 90, 151, 20))
 
         self.retranslateUi(Dialog)
 

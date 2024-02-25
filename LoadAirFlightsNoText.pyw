@@ -334,6 +334,7 @@ def myApplication():
             # pbar.update()
             # myDialog.progressBar_completion.setValue(int(Execute))  # fixme выдает ошибку про рекурсивную отрисовку (см. снимок экрана)
         # pbar.close()
+        myDialog.label_execute.setText("Загрузка окончена")
         print(termcolor.colored("Загрузка окончена", "red", "on_yellow"))
         # Отметка времени окончания загрузки
         __EndTime__ = datetime.datetime.now()
