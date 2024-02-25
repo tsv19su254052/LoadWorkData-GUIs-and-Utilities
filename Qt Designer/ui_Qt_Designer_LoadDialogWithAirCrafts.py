@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Qt_Designer_LoadDialogWithAirCraftsYGnHTx.ui'
+## Form generated from reading UI file 'Qt_Designer_LoadDialogWithAirCraftsZJdMOZ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -205,13 +205,16 @@ class Ui_Dialog(object):
         self.label_17.setLayoutDirection(Qt.LeftToRight)
         self.groupBox = QGroupBox(Dialog)
         self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setGeometry(QRect(750, 30, 181, 81))
+        self.groupBox.setGeometry(QRect(750, 0, 181, 81))
         self.radioButton_DSN = QRadioButton(self.groupBox)
         self.radioButton_DSN.setObjectName(u"radioButton_DSN")
         self.radioButton_DSN.setGeometry(QRect(10, 50, 41, 18))
         self.radioButton_DB = QRadioButton(self.groupBox)
         self.radioButton_DB.setObjectName(u"radioButton_DB")
         self.radioButton_DB.setGeometry(QRect(10, 20, 151, 18))
+        self.label_execute = QLabel(Dialog)
+        self.label_execute.setObjectName(u"label_execute")
+        self.label_execute.setGeometry(QRect(740, 90, 151, 20))
 
         self.retranslateUi(Dialog)
 
@@ -253,5 +256,6 @@ class Ui_Dialog(object):
         self.groupBox.setTitle(QCoreApplication.translate("Dialog", u"\u0418\u0441\u0442\u043e\u0447\u043d\u0438\u043a \u043e\u043f\u0435\u0440\u0430\u0442\u0438\u0432\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445", None))
         self.radioButton_DSN.setText(QCoreApplication.translate("Dialog", u"DSN", None))
         self.radioButton_DB.setText(QCoreApplication.translate("Dialog", u"\u0411\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445 \u0438 \u0414\u0440\u0430\u0439\u0432\u0435\u0440", None))
+        self.label_execute.setText(QCoreApplication.translate("Dialog", u"\u0412\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 = ", None))
     # retranslateUi
 

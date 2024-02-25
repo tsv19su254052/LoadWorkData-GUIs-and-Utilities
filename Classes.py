@@ -1528,14 +1528,6 @@ class Ui_DialogLoadAirFlightsWithAirCrafts(QtWidgets.QDialog):
         self.label_17.setObjectName(u"label_17")
         self.label_17.setGeometry(QtCore.QRect(150, 0, 261, 20))
         self.label_17.setLayoutDirection(QtCore.Qt.LeftToRight)
-        """ Было
-        self.radioButton_DB = QtWidgets.QRadioButton(Dialog)
-        self.radioButton_DB.setObjectName(u"radioButton_DB")
-        self.radioButton_DB.setGeometry(QtCore.QRect(730, 60, 151, 18))
-        self.radioButton_DSN = QtWidgets.QRadioButton(Dialog)
-        self.radioButton_DSN.setObjectName(u"radioButton_DSN")
-        self.radioButton_DSN.setGeometry(QtCore.QRect(730, 90, 41, 18))
-        """
         self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setObjectName(u"groupBox")
         self.groupBox.setGeometry(QtCore.QRect(750, 30, 181, 81))
@@ -1545,6 +1537,9 @@ class Ui_DialogLoadAirFlightsWithAirCrafts(QtWidgets.QDialog):
         self.radioButton_DB = QtWidgets.QRadioButton(self.groupBox)
         self.radioButton_DB.setObjectName(u"radioButton_DB")
         self.radioButton_DB.setGeometry(QtCore.QRect(10, 20, 151, 18))
+        self.label_execute = QtWidgets.QLabel(Dialog)
+        self.label_execute.setObjectName(u"label_execute")
+        self.label_execute.setGeometry(QtCore.QRect(10, 170, 151, 20))
 
         self.retranslateUi(Dialog)
 
@@ -1583,13 +1578,10 @@ class Ui_DialogLoadAirFlightsWithAirCrafts(QtWidgets.QDialog):
         self.label_13.setText(QtCore.QCoreApplication.translate("Dialog", u"\u0421\u043f\u0440\u0430\u0432\u043e\u0447\u043d\u0438\u043a \u043f\u043e \u0441\u0430\u043c\u043e\u043b\u0435\u0442\u0430\u043c", None))
         self.pushButton_Connect_AC.setText(QtCore.QCoreApplication.translate("Dialog", u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f \u043a DSN", None))
         self.label_17.setText(QtCore.QCoreApplication.translate("Dialog", u"\u0421\u0435\u0440\u0432\u0435\u0440 \u0421\u0423\u0411\u0414 \u043e\u043f\u0435\u0440\u0430\u0442\u0438\u0432\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445", None))
-        ''' Было 
-        self.radioButton_DB.setText(QtCore.QCoreApplication.translate("Dialog", u"\u0411\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445 \u0438 \u0414\u0440\u0430\u0439\u0432\u0435\u0440", None))
-        self.radioButton_DSN.setText(QtCore.QCoreApplication.translate("Dialog", u"DSN", None))
-        '''
         self.groupBox.setTitle(QtCore.QCoreApplication.translate("Dialog", u"\u0418\u0441\u0442\u043e\u0447\u043d\u0438\u043a \u043e\u043f\u0435\u0440\u0430\u0442\u0438\u0432\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445", None))
         self.radioButton_DSN.setText(QtCore.QCoreApplication.translate("Dialog", u"DSN", None))
         self.radioButton_DB.setText(QtCore.QCoreApplication.translate("Dialog", u"\u0411\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445 \u0438 \u0414\u0440\u0430\u0439\u0432\u0435\u0440", None))
+        self.label_execute.setText(QtCore.QCoreApplication.translate("Dialog", u"\u0412\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 = ", None))
     # retranslateUi
 
     # Окончание вставки тела конвертированного ресурсного файла
