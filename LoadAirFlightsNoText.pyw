@@ -83,9 +83,9 @@ def myApplication():
         https://www.transtats.bts.gov/DL_SelectFields.asp - не работает
         https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr - работает
         """
-        myDialog.label_execute.setText("Чтение, перепаковка и проверка исходных данных")
+        myDialog.label_execute.setText("Чтение и перепаковка исходных данных")
         myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: yellow")
-        print("  Чтение, перепаковка и проверка входного файла")
+        print("  Чтение и перепаковка исходных данных")
         print("  ожидайте ...", end=' ')
         DataFrameFromCSV = pandas.read_csv(Csv, sep=",")
         # В исходном файле *.csv подписаны столбцы -> в DataFrame можно перемещаться по именам столбцов -> Разбираем на столбцы и работаем с ними
