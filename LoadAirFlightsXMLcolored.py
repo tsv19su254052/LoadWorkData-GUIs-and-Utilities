@@ -1104,9 +1104,10 @@ def myApplication():
         myDialog.pushButton_Disconnect_FN.setEnabled(False)
         myDialog.pushButton_Disconnect_AC.setEnabled(False)
         myDialog.pushButton_GetStarted.setEnabled(False)
+        # todo Заброс на возможность запуска нескольких загрузок с доработкой графической оболочки
         threadLoad = threading.Thread(target=LoadThread, daemon=False, args=(S.InputFileCSV, S.LogFileTXT, ))  # поток не сам по себе
         threadLoad.start()
-        # fixme с ... .join() кнопки не гаснут, формочка загрузки зависает -> убрал ... .join()
+        # fixme с ... .join() кнопки не гаснут, графическая оболочка зависает -> убрал ... .join()
         #threadLoad.join(1)  # ждем поток в основном потоке (графическая оболочка зависает), секунд
         myDialog.close()  # закрываем графическую оболочку, текстовая остается
         #myDialog.destroy()  # не останавливается
