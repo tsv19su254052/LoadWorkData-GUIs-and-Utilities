@@ -104,7 +104,7 @@ def myApplication():
         ListFlightDateConcatenated = []
         for attemptNumber in range(len(ListYear)):
             ListFlightDateConcatenated.append(str(ListYear[attemptNumber]) + "-" + str(ListMonth[attemptNumber]) + "-" + str(ListDay[attemptNumber]))
-        myDialog.label_execute.setText("Исходные данные перепакованы")
+        #myDialog.label_execute.setText("Исходные данные перепакованы")  # оболочка зависает и слетает
         myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")
         print("Исходные данные перепакованы")
         # Списки
@@ -139,7 +139,7 @@ def myApplication():
         DateTime = time.ctime(Now)
         # Отметка времени начала загрузки
         __StartTime__ = datetime.datetime.now()
-        myDialog.label_execute.setText("Загрузка начата")
+        #myDialog.label_execute.setText("Загрузка начата")  # оболочка зависает и слетает
         print(termcolor.colored("Загрузка начата", "red", "on_yellow"))
         # Сигнал на обновление полоски выполнения
         # _signalUpdateProgressBar = QtCore.pyqtSignal(float)
