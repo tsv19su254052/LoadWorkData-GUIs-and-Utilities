@@ -87,6 +87,7 @@ def myApplication():
         myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: yellow")
         print("  Чтение и перепаковка исходных данных")
         print("  ожидайте ...", end=' ')
+        # todo Если оперативной памяти не достаточно, то тут остановится
         DataFrameFromCSV = pandas.read_csv(Csv, sep=",")
         # В исходном файле *.csv подписаны столбцы -> в DataFrame можно перемещаться по именам столбцов -> Разбираем на столбцы и работаем с ними
         ListAirLineCodeIATA = DataFrameFromCSV['OP_UNIQUE_CARRIER'].tolist()
