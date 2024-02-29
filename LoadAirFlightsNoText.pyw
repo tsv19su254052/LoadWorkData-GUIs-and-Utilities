@@ -824,10 +824,10 @@ def myApplication():
 
     def PushButtonSelectDB_FN():
         myDialog.pushButton_Connect_FN.setEnabled(False)
+        # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
         if not S.Connected_AC or not S.Connected_FN:
-            # Подключаемся к таблице самолетов - пока так же, как и авиарейсы
-            # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             if not S.Connected_AC:
+                # Подключаемся к таблице самолетов - пока так же, как и авиарейсы
                 ChoiceDB_AC = myDialog.comboBox_DB_FN.currentText()
                 ChoiceDriver_AC = myDialog.comboBox_Driver_FN.currentText()
                 # Добавляем атрибуты DataBase, DriverODBC
@@ -961,7 +961,6 @@ def myApplication():
             myDialog.comboBox_DB_FN.setEnabled(False)
             myDialog.comboBox_Driver_FN.setEnabled(False)
             myDialog.comboBox_DSN_FN.setEnabled(False)
-            #myDialog.pushButton_Disconnect_AC.setEnabled(True)
             if S.Connected_AL and S.Connected_RT and S.Connected_AC_XML:
                 myDialog.pushButton_ChooseCSVFile.setEnabled(True)
                 myDialog.lineEdit_CSVFile.setEnabled(True)
