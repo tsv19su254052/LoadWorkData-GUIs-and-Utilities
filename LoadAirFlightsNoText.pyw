@@ -870,16 +870,18 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAC = S.cnxnAC.cursor()
                 print("seeks is on")
+                S.Connected_AC = True
             except Exception:
                 message = QtWidgets.QMessageBox()
                 message.setText("Нет подключения к базе данных самолетов")
                 message.setIcon(QtWidgets.QMessageBox.Warning)
                 message.exec_()
             else:
-                S.Connected_AC = True
+                pass
             finally:
                 pass
         if not S.Connected_FN:
+            myDialog.pushButton_Connect_FN.setEnabled(False)
             # Подключаемся к базе данных авиаперелетов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             ChoiceDB_FN = myDialog.comboBox_DB_FN.currentText()
@@ -926,16 +928,22 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekFN = S.cnxnFN.cursor()
                 print("seeks is on")
-            except Exception:
-                # Переводим в неактивное состояние
-                myDialog.pushButton_Connect_FN.setEnabled(True)
-                myDialog.pushButton_Disconnect_FN.setEnabled(False)
-                message = QtWidgets.QMessageBox()
-                message.setText("Нет подключения к базе данных авиаперелетов")
-                message.setIcon(QtWidgets.QMessageBox.Warning)
-                message.exec_()
-            else:
                 S.Connected_FN = True
+                # SQL Server
+                myDialog.lineEdit_Server_remote.setEnabled(True)
+                myDialog.lineEdit_Server_remote.setText(S.cnxnFN.getinfo(pyodbc.SQL_SERVER_NAME))
+                # Драйвер
+                myDialog.lineEdit_Driver_FN.setEnabled(True)
+                myDialog.lineEdit_Driver_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_DRIVER_NAME))
+                # версия ODBC
+                myDialog.lineEdit_ODBCversion_FN.setEnabled(True)
+                myDialog.lineEdit_ODBCversion_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_ODBC_VER))
+                # Схема (если из-под другой учетки, то выводит имя учетки)
+                myDialog.lineEdit_Schema_FN.setEnabled(True)
+                myDialog.lineEdit_Schema_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_USER_NAME))
+                # Источник данных
+                myDialog.lineEdit_DSN_FN.setEnabled(True)
+                myDialog.lineEdit_DSN_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_DATA_SOURCE_NAME))
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.radioButton_DB.setEnabled(False)
                 myDialog.radioButton_DSN.setEnabled(False)
@@ -952,23 +960,17 @@ def myApplication():
                     myDialog.dateEdit_BeginDate.setCalendarPopup(True)
                     myDialog.checkBox_SetInputDate.setEnabled(True)
                     myDialog.pushButton_GetStarted.setEnabled(True)
-                # SQL Server
-                myDialog.lineEdit_Server_remote.setText(S.cnxnFN.getinfo(pyodbc.SQL_SERVER_NAME))
-                myDialog.lineEdit_Server_remote.setEnabled(True)
-                # Драйвер
-                myDialog.lineEdit_Driver_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_DRIVER_NAME))
-                myDialog.lineEdit_Driver_FN.setEnabled(True)
-                # версия ODBC
-                myDialog.lineEdit_ODBCversion_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_ODBC_VER))
-                myDialog.lineEdit_ODBCversion_FN.setEnabled(True)
-                # Схема (если из-под другой учетки, то выводит имя учетки)
-                myDialog.lineEdit_Schema_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_USER_NAME))
-                myDialog.lineEdit_Schema_FN.setEnabled(True)
-                # Источник данных
-                myDialog.lineEdit_DSN_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_DATA_SOURCE_NAME))
-                myDialog.lineEdit_DSN_FN.setEnabled(True)
-                myDialog.pushButton_Connect_FN.setEnabled(False)
                 myDialog.pushButton_Disconnect_FN.setEnabled(True)
+            except Exception:
+                message = QtWidgets.QMessageBox()
+                message.setText("Нет подключения к базе данных авиаперелетов")
+                message.setIcon(QtWidgets.QMessageBox.Warning)
+                message.exec_()
+                # Переводим в неактивное состояние
+                myDialog.pushButton_Connect_FN.setEnabled(True)
+                myDialog.pushButton_Disconnect_FN.setEnabled(False)
+            else:
+                pass
             finally:
                 pass
 
@@ -1011,6 +1013,7 @@ def myApplication():
 
     def PushButtonSelectDB_AC_XML():
         if not S.Connected_AC_XML:
+            myDialog.pushButton_Connect_AC.setEnabled(False)
             # Подключаемся к базе данных самолетов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             ChoiceDSN_AC_XML = myDialog.comboBox_DSN_AC.currentText()
@@ -1047,15 +1050,22 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAC_XML = S.cnxnAC_XML.cursor()
                 print("seeks is on")
-            except Exception:
-                myDialog.pushButton_Connect_AC.setEnabled(True)
-                myDialog.pushButton_Disconnect_AC.setEnabled(False)
-                message = QtWidgets.QMessageBox()
-                message.setText("Нет подключения к базе данных самолетов")
-                message.setIcon(QtWidgets.QMessageBox.Warning)
-                message.exec_()
-            else:
                 S.Connected_AC_XML = True
+                # SQL Server
+                myDialog.lineEdit_Server.setEnabled(True)
+                myDialog.lineEdit_Server.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_SERVER_NAME))
+                # Драйвер
+                myDialog.lineEdit_Driver_AC.setEnabled(True)
+                myDialog.lineEdit_Driver_AC.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_DRIVER_NAME))
+                # версия ODBC
+                myDialog.lineEdit_ODBCversion_AC.setEnabled(True)
+                myDialog.lineEdit_ODBCversion_AC.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_ODBC_VER))
+                # Схема (если из-под другой учетки, то выводит имя учетки)
+                myDialog.lineEdit_Schema_AC.setEnabled(True)
+                myDialog.lineEdit_Schema_AC.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_USER_NAME))
+                # Источник данных
+                myDialog.lineEdit_DSN_AC.setEnabled(True)
+                myDialog.lineEdit_DSN_AC.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_DATA_SOURCE_NAME))
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.comboBox_DSN_AC.setEnabled(False)
                 if S.Connected_AL and S.Connected_RT and S.Connected_AC and S.Connected_FN:
@@ -1067,23 +1077,16 @@ def myApplication():
                     myDialog.dateEdit_BeginDate.setCalendarPopup(True)
                     myDialog.checkBox_SetInputDate.setEnabled(True)
                     myDialog.pushButton_GetStarted.setEnabled(True)
-                # SQL Server
-                myDialog.lineEdit_Server.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_SERVER_NAME))
-                myDialog.lineEdit_Server.setEnabled(True)
-                # Драйвер
-                myDialog.lineEdit_Driver_AC.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_DRIVER_NAME))
-                myDialog.lineEdit_Driver_AC.setEnabled(True)
-                # версия ODBC
-                myDialog.lineEdit_ODBCversion_AC.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_ODBC_VER))
-                myDialog.lineEdit_ODBCversion_AC.setEnabled(True)
-                # Схема (если из-под другой учетки, то выводит имя учетки)
-                myDialog.lineEdit_Schema_AC.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_USER_NAME))
-                myDialog.lineEdit_Schema_AC.setEnabled(True)
-                # Источник данных
-                myDialog.lineEdit_DSN_AC.setText(S.cnxnAC_XML.getinfo(pyodbc.SQL_DATA_SOURCE_NAME))
-                myDialog.lineEdit_DSN_AC.setEnabled(True)
-                myDialog.pushButton_Connect_AC.setEnabled(False)
                 myDialog.pushButton_Disconnect_AC.setEnabled(True)
+            except Exception:
+                message = QtWidgets.QMessageBox()
+                message.setText("Нет подключения к базе данных самолетов")
+                message.setIcon(QtWidgets.QMessageBox.Warning)
+                message.exec_()
+                myDialog.pushButton_Connect_AC.setEnabled(True)
+                myDialog.pushButton_Disconnect_AC.setEnabled(False)
+            else:
+                pass
             finally:
                 pass
 
