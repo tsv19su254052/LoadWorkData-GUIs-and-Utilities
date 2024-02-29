@@ -29,7 +29,7 @@ import Classes
 
 
 # Версия обработки с цветным выводом
-__myOwnDevelopingVersion__ = 8.36
+__myOwnDevelopingVersion__ = 8.37
 # todo Версия задается тут. Пакеты на GitHub-е *.tar.gz (под Linux или под BSD) не нужны. Выпуск релизов пока не имеет практической пользы, как указано в ReadME.md
 
 colorama.init(autoreset=False)  # используем Colorama, чтобы сделать работу Termcolor на Windows, оставляем цветовое оформление до следующего явного указания
@@ -823,120 +823,119 @@ def myApplication():
     def PushButtonSelectDB_FN():
         myDialog.pushButton_Connect_FN.setEnabled(False)
         # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
-        if not S.Connected_AC or not S.Connected_FN:
-            if not S.Connected_AC:
-                # Подключаемся к таблице самолетов - пока так же, как и авиарейсы
-                ChoiceDB_AC = myDialog.comboBox_DB_FN.currentText()
-                ChoiceDriver_AC = myDialog.comboBox_Driver_FN.currentText()
-                # Добавляем атрибуты DataBase, DriverODBC
-                S.DataBase_AC = str(ChoiceDB_AC)
-                S.DriverODBC_AC = str(ChoiceDriver_AC)
-                ChoiceDSN_AC = myDialog.comboBox_DSN_FN.currentText()
-                # Добавляем атрибут myDSN
-                S.myDSN_AC = ChoiceDSN_AC
-                try:
-                    # Добавляем атрибут cnxn
-                    if S.radioButtonUseDB:
-                        # через драйвер СУБД + клиентский API-курсор
-                        S.cnxnAC = pyodbc.connect(driver=S.DriverODBC_AC, server=S.ServerNameFlights, database=S.DataBase_AC)
-                        print("  БД = ", S.DataBase_AC, "подключена")
-                    else:
-                        # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)
-                        S.cnxnAC = pyodbc.connect("DSN=" + S.myDSN_AC)
-                        print("  DSN = ", S.myDSN_AC, "подключен")
-                    # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
-                    S.cnxnAC.autocommit = False
-                    print("autocommit is disabled")
-                    # Делаем свой экземпляр и ставим набор курсоров
-                    # КУРСОР нужен для перехода функционального языка формул на процедурный или для вставки процедурных кусков в функциональный скрипт.
-                    #
-                    # Способы реализации курсоров:
-                    #  - SQL, Transact-SQL,
-                    #  - серверные API-курсоры (OLE DB, ADO, ODBC),
-                    #  - клиентские API-курсоры (выборка кэшируется на клиенте)
-                    #
-                    # API-курсоры ODBC по SQLSetStmtAttr:
-                    #  - тип SQL_ATTR_CURSOR_TYPE:
-                    #    - однопроходный (последовательный доступ),
-                    #    - статический (копия в tempdb),
-                    #    - управляемый набор ключей,
-                    #    - динамический,
-                    #    - смешанный
-                    #  - режим работы в стиле ISO:
-                    #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
-                    #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
-
-                    # Клиентские однопроходные , статические API-курсоры ODBC.
-                    # Добавляем атрибуты seek...
-                    S.seekAC = S.cnxnAC.cursor()
-                    print("seeks is on")
-                    S.Connected_AC = True
-                except Exception:
-                    message = QtWidgets.QMessageBox()
-                    message.setText("Нет подключения к базе данных самолетов")
-                    message.setIcon(QtWidgets.QMessageBox.Warning)
-                    message.exec_()
+        if not S.Connected_AC:
+            # Подключаемся к таблице самолетов - пока так же, как и авиарейсы
+            ChoiceDB_AC = myDialog.comboBox_DB_FN.currentText()
+            ChoiceDriver_AC = myDialog.comboBox_Driver_FN.currentText()
+            # Добавляем атрибуты DataBase, DriverODBC
+            S.DataBase_AC = str(ChoiceDB_AC)
+            S.DriverODBC_AC = str(ChoiceDriver_AC)
+            ChoiceDSN_AC = myDialog.comboBox_DSN_FN.currentText()
+            # Добавляем атрибут myDSN
+            S.myDSN_AC = ChoiceDSN_AC
+            try:
+                # Добавляем атрибут cnxn
+                if S.radioButtonUseDB:
+                    # через драйвер СУБД + клиентский API-курсор
+                    S.cnxnAC = pyodbc.connect(driver=S.DriverODBC_AC, server=S.ServerNameFlights, database=S.DataBase_AC)
+                    print("  БД = ", S.DataBase_AC, "подключена")
                 else:
-                    pass
-                finally:
-                    pass
-            if not S.Connected_FN:
-                # Подключаемся к базе данных авиаперелетов
-                # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
-                ChoiceDB_FN = myDialog.comboBox_DB_FN.currentText()
-                ChoiceDriver_FN = myDialog.comboBox_Driver_FN.currentText()
-                # Добавляем атрибуты DataBase, DriverODBC
-                S.DataBase_FN = str(ChoiceDB_FN)
-                S.DriverODBC_FN = str(ChoiceDriver_FN)
-                ChoiceDSN_FN = myDialog.comboBox_DSN_FN.currentText()
-                # Добавляем атрибут myDSN
-                S.myDSN_FN = ChoiceDSN_FN
-                try:
-                    # Добавляем атрибут cnxn
-                    if S.radioButtonUseDB:
-                        # через драйвер СУБД + клиентский API-курсор
-                        S.cnxnFN = pyodbc.connect(driver=S.DriverODBC_FN, server=S.ServerNameFlights, database=S.DataBase_FN)
-                        print("  БД = ", S.DataBase_FN, "подключена")
-                    else:
-                        # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)
-                        S.cnxnFN = pyodbc.connect("DSN=" + S.myDSN_FN)
-                        print("  DSN = ", S.myDSN_FN, "подключен")
-                    # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
-                    S.cnxnFN.autocommit = False
-                    print("autocommit is disabled")
-                    # Делаем свой экземпляр и ставим набор курсоров
-                    # КУРСОР нужен для перехода функционального языка формул на процедурный или для вставки процедурных кусков в функциональный скрипт.
-                    #
-                    # Способы реализации курсоров:
-                    #  - SQL, Transact-SQL,
-                    #  - серверные API-курсоры (OLE DB, ADO, ODBC),
-                    #  - клиентские API-курсоры (выборка кэшируется на клиенте)
-                    #
-                    # API-курсоры ODBC по SQLSetStmtAttr:
-                    #  - тип SQL_ATTR_CURSOR_TYPE:
-                    #    - однопроходный (последовательный доступ),
-                    #    - статический (копия в tempdb),
-                    #    - управляемый набор ключей,
-                    #    - динамический,
-                    #    - смешанный
-                    #  - режим работы в стиле ISO:
-                    #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
-                    #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
+                    # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)
+                    S.cnxnAC = pyodbc.connect("DSN=" + S.myDSN_AC)
+                    print("  DSN = ", S.myDSN_AC, "подключен")
+                # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
+                S.cnxnAC.autocommit = False
+                print("autocommit is disabled")
+                # Делаем свой экземпляр и ставим набор курсоров
+                # КУРСОР нужен для перехода функционального языка формул на процедурный или для вставки процедурных кусков в функциональный скрипт.
+                #
+                # Способы реализации курсоров:
+                #  - SQL, Transact-SQL,
+                #  - серверные API-курсоры (OLE DB, ADO, ODBC),
+                #  - клиентские API-курсоры (выборка кэшируется на клиенте)
+                #
+                # API-курсоры ODBC по SQLSetStmtAttr:
+                #  - тип SQL_ATTR_CURSOR_TYPE:
+                #    - однопроходный (последовательный доступ),
+                #    - статический (копия в tempdb),
+                #    - управляемый набор ключей,
+                #    - динамический,
+                #    - смешанный
+                #  - режим работы в стиле ISO:
+                #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
+                #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
 
-                    # Клиентские однопроходные , статические API-курсоры ODBC.
-                    # Добавляем атрибуты seek...
-                    S.seekFN = S.cnxnFN.cursor()
-                    print("seeks is on")
-                    S.Connected_FN = True
-                except Exception:
-                    message = QtWidgets.QMessageBox()
-                    message.setText("Нет подключения к базе данных авиаперелетов")
-                    message.setIcon(QtWidgets.QMessageBox.Warning)
-                    message.exec_()
+                # Клиентские однопроходные , статические API-курсоры ODBC.
+                # Добавляем атрибуты seek...
+                S.seekAC = S.cnxnAC.cursor()
+                print("seeks is on")
+                S.Connected_AC = True
+            except Exception:
+                message = QtWidgets.QMessageBox()
+                message.setText("Нет подключения к базе данных самолетов")
+                message.setIcon(QtWidgets.QMessageBox.Warning)
+                message.exec_()
+            else:
+                pass
+            finally:
+                pass
+        if not S.Connected_FN:
+            # Подключаемся к базе данных авиаперелетов
+            # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
+            ChoiceDB_FN = myDialog.comboBox_DB_FN.currentText()
+            ChoiceDriver_FN = myDialog.comboBox_Driver_FN.currentText()
+            # Добавляем атрибуты DataBase, DriverODBC
+            S.DataBase_FN = str(ChoiceDB_FN)
+            S.DriverODBC_FN = str(ChoiceDriver_FN)
+            ChoiceDSN_FN = myDialog.comboBox_DSN_FN.currentText()
+            # Добавляем атрибут myDSN
+            S.myDSN_FN = ChoiceDSN_FN
+            try:
+                # Добавляем атрибут cnxn
+                if S.radioButtonUseDB:
+                    # через драйвер СУБД + клиентский API-курсор
+                    S.cnxnFN = pyodbc.connect(driver=S.DriverODBC_FN, server=S.ServerNameFlights, database=S.DataBase_FN)
+                    print("  БД = ", S.DataBase_FN, "подключена")
                 else:
-                    pass
-                finally:
-                    pass
+                    # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)
+                    S.cnxnFN = pyodbc.connect("DSN=" + S.myDSN_FN)
+                    print("  DSN = ", S.myDSN_FN, "подключен")
+                # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
+                S.cnxnFN.autocommit = False
+                print("autocommit is disabled")
+                # Делаем свой экземпляр и ставим набор курсоров
+                # КУРСОР нужен для перехода функционального языка формул на процедурный или для вставки процедурных кусков в функциональный скрипт.
+                #
+                # Способы реализации курсоров:
+                #  - SQL, Transact-SQL,
+                #  - серверные API-курсоры (OLE DB, ADO, ODBC),
+                #  - клиентские API-курсоры (выборка кэшируется на клиенте)
+                #
+                # API-курсоры ODBC по SQLSetStmtAttr:
+                #  - тип SQL_ATTR_CURSOR_TYPE:
+                #    - однопроходный (последовательный доступ),
+                #    - статический (копия в tempdb),
+                #    - управляемый набор ключей,
+                #    - динамический,
+                #    - смешанный
+                #  - режим работы в стиле ISO:
+                #    - прокручиваемый SQL_ATTR_CURSOR_SCROLLABLE,
+                #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
+
+                # Клиентские однопроходные , статические API-курсоры ODBC.
+                # Добавляем атрибуты seek...
+                S.seekFN = S.cnxnFN.cursor()
+                print("seeks is on")
+                S.Connected_FN = True
+            except Exception:
+                message = QtWidgets.QMessageBox()
+                message.setText("Нет подключения к базе данных авиаперелетов")
+                message.setIcon(QtWidgets.QMessageBox.Warning)
+                message.exec_()
+            else:
+                pass
+            finally:
+                pass
         if S.Connected_AC and S.Connected_FN:
             # SQL Server
             myDialog.lineEdit_Server_remote.setEnabled(True)
