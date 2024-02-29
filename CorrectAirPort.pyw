@@ -114,6 +114,8 @@ def myApplication():
 
     def PushButtonSelectDB():
         if not S.Connected_RT:
+            # Переводим в неактивное состояние
+            myDialog.pushButton_SelectDB.setEnabled(False)
             # Подключаемся к базе данных по выбранному источнику
             # Добавляем атрибуты DataBase, DriverODBC
             S.DataBase = myDialog.comboBox_DB.currentText()
@@ -130,11 +132,6 @@ def myApplication():
                 S.Connected_AC = True
                 S.Connected_RT = True
                 S.Connected_FN = True
-                # Переводим в рабочее состояние (продолжение)
-                myDialog.comboBox_DB.setEnabled(False)
-                myDialog.comboBox_Driver.setEnabled(False)
-                myDialog.pushButton_Disconnect.setEnabled(True)
-                myDialog.pushButton_Begin.setEnabled(True)  # кнопка "Начало"
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnAL.autocommit = False
                 S.cnxnAC.autocommit = False
@@ -164,6 +161,11 @@ def myApplication():
                 S.seekRT = S.cnxnRT.cursor()
                 S.seekFN = S.cnxnFN.cursor()
                 print("seeks is on")
+                # Переводим в рабочее состояние (продолжение)
+                myDialog.comboBox_DB.setEnabled(False)
+                myDialog.comboBox_Driver.setEnabled(False)
+                myDialog.pushButton_Disconnect.setEnabled(True)
+                myDialog.pushButton_Begin.setEnabled(True)  # кнопка "Начало"
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnRT.getinfo(pyodbc.SQL_SERVER_NAME))
                 myDialog.lineEdit_Server.setEnabled(True)
@@ -180,9 +182,9 @@ def myApplication():
                 # todo Схема по умолчанию - dbo
                 myDialog.lineEdit_Schema.setText(S.cnxnRT.getinfo(pyodbc.SQL_USER_NAME))
                 myDialog.lineEdit_Schema.setEnabled(True)
-                # Переводим в рабочее состояние
-                myDialog.pushButton_SelectDB.setEnabled(False)
             except Exception:
+                # Переводим в рабочее состояние
+                myDialog.pushButton_SelectDB.setEnabled(True)
                 message = QtWidgets.QMessageBox()
                 message.setText("Нет подключения к базе данных аэропортов")
                 message.setIcon(QtWidgets.QMessageBox.Warning)
