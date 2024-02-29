@@ -29,7 +29,7 @@ import Classes
 
 
 # Версия обработки с цветным выводом
-__myOwnDevelopingVersion__ = 8.31
+__myOwnDevelopingVersion__ = 8.35
 # todo Версия задается тут. Пакеты на GitHub-е *.tar.gz (под Linux или под BSD) не нужны. Выпуск релизов пока не имеет практической пользы, как указано в ReadME.md
 
 colorama.init(autoreset=False)  # используем Colorama, чтобы сделать работу Termcolor на Windows, оставляем цветовое оформление до следующего явного указания
@@ -613,6 +613,7 @@ def myApplication():
 
     def PushButtonSelectDB_AL():
         if not S.Connected_AL:
+            myDialog.pushButton_Connect_AL.setEnabled(False)
             # Подключаемся к базе данных авиакомпаний
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             # https://docs.microsoft.com/ru-ru/previous-versions/dotnet/framework/data/adonet/sql/ownership-and-user-schema-separation-in-sql-server
@@ -623,7 +624,6 @@ def myApplication():
                 # Добавляем атрибут cnxn
                 # через драйвер СУБД + клиентский API-курсор
                 # todo Сделать сообщение с зелеными галочками по пунктам подключения
-                # todo Изучить тему пула соединений
                 S.cnxnAL = pyodbc.connect(driver=S.DriverODBC_AL, server=S.ServerNameOriginal, database=S.DataBase_AL)
                 print("  БД = ", S.DataBase_AL, "подключена")
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
@@ -652,15 +652,19 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekAL = S.cnxnAL.cursor()
                 print("seeks is on")
-            except Exception:
-                myDialog.pushButton_Connect_AL.setEnabled(True)
-                myDialog.pushButton_Disconnect_AL.setEnabled(False)
-                message = QtWidgets.QMessageBox()
-                message.setText("Нет подключения к базе данных авиакомпаний")
-                message.setIcon(QtWidgets.QMessageBox.Warning)
-                message.exec_()
-            else:
                 S.Connected_AL = True
+                # SQL Server
+                myDialog.lineEdit_Server.setEnabled(True)
+                myDialog.lineEdit_Server.setText(S.cnxnAL.getinfo(pyodbc.SQL_SERVER_NAME))
+                # Драйвер
+                myDialog.lineEdit_Driver_AL.setEnabled(True)
+                myDialog.lineEdit_Driver_AL.setText(S.cnxnAL.getinfo(pyodbc.SQL_DRIVER_NAME))
+                # версия ODBC
+                myDialog.lineEdit_ODBCversion_AL.setEnabled(True)
+                myDialog.lineEdit_ODBCversion_AL.setText(S.cnxnAL.getinfo(pyodbc.SQL_ODBC_VER))
+                # Схема (если из-под другой учетки, то выводит имя учетки)
+                myDialog.lineEdit_Schema_AL.setEnabled(True)
+                myDialog.lineEdit_Schema_AL.setText(S.cnxnAL.getinfo(pyodbc.SQL_USER_NAME))
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.comboBox_DB_AL.setEnabled(False)
                 myDialog.comboBox_Driver_AL.setEnabled(False)
@@ -673,20 +677,16 @@ def myApplication():
                     myDialog.dateEdit_BeginDate.setCalendarPopup(True)
                     myDialog.checkBox_SetInputDate.setEnabled(True)
                     myDialog.pushButton_GetStarted.setEnabled(True)
-                # SQL Server
-                myDialog.lineEdit_Server.setText(S.cnxnAL.getinfo(pyodbc.SQL_SERVER_NAME))
-                myDialog.lineEdit_Server.setEnabled(True)
-                # Драйвер
-                myDialog.lineEdit_Driver_AL.setText(S.cnxnAL.getinfo(pyodbc.SQL_DRIVER_NAME))
-                myDialog.lineEdit_Driver_AL.setEnabled(True)
-                # версия ODBC
-                myDialog.lineEdit_ODBCversion_AL.setText(S.cnxnAL.getinfo(pyodbc.SQL_ODBC_VER))
-                myDialog.lineEdit_ODBCversion_AL.setEnabled(True)
-                # Схема (если из-под другой учетки, то выводит имя учетки)
-                myDialog.lineEdit_Schema_AL.setText(S.cnxnAL.getinfo(pyodbc.SQL_USER_NAME))
-                myDialog.lineEdit_Schema_AL.setEnabled(True)
-                myDialog.pushButton_Connect_AL.setEnabled(False)
                 myDialog.pushButton_Disconnect_AL.setEnabled(True)
+            except Exception:
+                message = QtWidgets.QMessageBox()
+                message.setText("Нет подключения к базе данных авиакомпаний")
+                message.setIcon(QtWidgets.QMessageBox.Warning)
+                message.exec_()
+                myDialog.pushButton_Connect_AL.setEnabled(True)
+                myDialog.pushButton_Disconnect_AL.setEnabled(False)
+            else:
+                pass
             finally:
                 pass
 
@@ -719,6 +719,7 @@ def myApplication():
 
     def PushButtonSelectDB_RT():
         if not S.Connected_RT:
+            myDialog.pushButton_Connect_RT.setEnabled(False)
             # Подключаемся к базе данных аэропортов и маршрутов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             # Добавляем атрибуты DataBase, DriverODBC
@@ -755,28 +756,7 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekRT = S.cnxnRT.cursor()
                 print("seeks is on")
-            except Exception:
-                # Переводим в неактивное состояние
-                myDialog.pushButton_Connect_RT.setEnabled(True)
-                myDialog.pushButton_Disconnect_RT.setEnabled(False)
-                message = QtWidgets.QMessageBox()
-                message.setText("Нет подключения к базе данных аэропортов и маршрутов")
-                message.setIcon(QtWidgets.QMessageBox.Warning)
-                message.exec_()
-            else:
                 S.Connected_RT = True
-                # Переводим в рабочее состояние (продолжение)
-                myDialog.comboBox_DB_RT.setEnabled(False)
-                myDialog.comboBox_Driver_RT.setEnabled(False)
-                if S.Connected_AL and S.Connected_AC and S.Connected_FN and S.Connected_AC_XML:
-                    myDialog.pushButton_ChooseCSVFile.setEnabled(True)
-                    myDialog.lineEdit_CSVFile.setEnabled(True)
-                    myDialog.pushButton_ChooseTXTFile.setEnabled(True)
-                    myDialog.lineEdit_TXTFile.setEnabled(True)
-                    myDialog.dateEdit_BeginDate.setEnabled(True)
-                    myDialog.dateEdit_BeginDate.setCalendarPopup(True)
-                    myDialog.checkBox_SetInputDate.setEnabled(True)
-                    myDialog.pushButton_GetStarted.setEnabled(True)
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnRT.getinfo(pyodbc.SQL_SERVER_NAME))
                 myDialog.lineEdit_Server.setEnabled(True)
@@ -789,8 +769,29 @@ def myApplication():
                 # Схема (если из-под другой учетки, то выводит имя учетки)
                 myDialog.lineEdit_Schema_RT.setText(S.cnxnRT.getinfo(pyodbc.SQL_USER_NAME))
                 myDialog.lineEdit_Schema_RT.setEnabled(True)
-                myDialog.pushButton_Connect_RT.setEnabled(False)
+                # Переводим в рабочее состояние (продолжение)
+                myDialog.comboBox_DB_RT.setEnabled(False)
+                myDialog.comboBox_Driver_RT.setEnabled(False)
+                if S.Connected_AL and S.Connected_AC and S.Connected_FN and S.Connected_AC_XML:
+                    myDialog.pushButton_ChooseCSVFile.setEnabled(True)
+                    myDialog.lineEdit_CSVFile.setEnabled(True)
+                    myDialog.pushButton_ChooseTXTFile.setEnabled(True)
+                    myDialog.lineEdit_TXTFile.setEnabled(True)
+                    myDialog.dateEdit_BeginDate.setEnabled(True)
+                    myDialog.dateEdit_BeginDate.setCalendarPopup(True)
+                    myDialog.checkBox_SetInputDate.setEnabled(True)
+                    myDialog.pushButton_GetStarted.setEnabled(True)
                 myDialog.pushButton_Disconnect_RT.setEnabled(True)
+            except Exception:
+                # Переводим в неактивное состояние
+                message = QtWidgets.QMessageBox()
+                message.setText("Нет подключения к базе данных аэропортов и маршрутов")
+                message.setIcon(QtWidgets.QMessageBox.Warning)
+                message.exec_()
+                myDialog.pushButton_Connect_RT.setEnabled(True)
+                myDialog.pushButton_Disconnect_RT.setEnabled(False)
+            else:
+                pass
             finally:
                 pass
 
