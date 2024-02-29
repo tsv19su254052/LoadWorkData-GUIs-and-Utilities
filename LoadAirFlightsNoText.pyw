@@ -935,20 +935,18 @@ def myApplication():
                     message.setText("Нет подключения к базе данных авиаперелетов")
                     message.setIcon(QtWidgets.QMessageBox.Warning)
                     message.exec_()
-                    # Переводим в неактивное состояние
-                    myDialog.pushButton_Connect_FN.setEnabled(True)
-                    myDialog.pushButton_Disconnect_FN.setEnabled(False)
                 else:
                     pass
                 finally:
                     pass
+        if S.Connected_AC and S.Connected_FN:
             # SQL Server
             myDialog.lineEdit_Server_remote.setEnabled(True)
             myDialog.lineEdit_Server_remote.setText(S.cnxnFN.getinfo(pyodbc.SQL_SERVER_NAME))
             # Драйвер
             myDialog.lineEdit_Driver_FN.setEnabled(True)
             myDialog.lineEdit_Driver_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_DRIVER_NAME))
-            # версия ODBC
+            # Версия ODBC
             myDialog.lineEdit_ODBCversion_FN.setEnabled(True)
             myDialog.lineEdit_ODBCversion_FN.setText(S.cnxnFN.getinfo(pyodbc.SQL_ODBC_VER))
             # Схема (если из-под другой учетки, то выводит имя учетки)
@@ -964,7 +962,7 @@ def myApplication():
             myDialog.comboBox_Driver_FN.setEnabled(False)
             myDialog.comboBox_DSN_FN.setEnabled(False)
             #myDialog.pushButton_Disconnect_AC.setEnabled(True)
-            if S.Connected_AL and S.Connected_RT and S.Connected_AC and S.Connected_AC_XML:
+            if S.Connected_AL and S.Connected_RT and S.Connected_AC_XML:
                 myDialog.pushButton_ChooseCSVFile.setEnabled(True)
                 myDialog.lineEdit_CSVFile.setEnabled(True)
                 myDialog.pushButton_ChooseTXTFile.setEnabled(True)
@@ -974,6 +972,9 @@ def myApplication():
                 myDialog.checkBox_SetInputDate.setEnabled(True)
                 myDialog.pushButton_GetStarted.setEnabled(True)
             myDialog.pushButton_Disconnect_FN.setEnabled(True)
+        if not S.Connected_AC or not S.Connected_FN:
+            # Переводим в неактивное состояние
+            myDialog.pushButton_Connect_FN.setEnabled(True)
 
     def PushButtonDisconnect_FN():
         # Обработчик кнопки 'Отключиться от базы данных'
