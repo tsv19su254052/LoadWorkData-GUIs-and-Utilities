@@ -617,9 +617,11 @@ def myApplication():
             # Подключаемся к базе данных авиакомпаний
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             # https://docs.microsoft.com/ru-ru/previous-versions/dotnet/framework/data/adonet/sql/ownership-and-user-schema-separation-in-sql-server
+            ChoiceDB = myDialog.comboBox_DB_AL.currentText()
+            ChoiceDriver = myDialog.comboBox_Driver_AL.currentText()
             # Добавляем атрибуты DataBase, DriverODBC
-            S.DataBase_AL = myDialog.comboBox_DB_AL.currentText()
-            S.DriverODBC_AL = myDialog.comboBox_Driver_AL.currentText()
+            S.DataBase_AL = str(ChoiceDB)
+            S.DriverODBC_AL = str(ChoiceDriver)
             try:
                 # Добавляем атрибут cnxn
                 # через драйвер СУБД + клиентский API-курсор
@@ -721,9 +723,11 @@ def myApplication():
         if not S.Connected_RT:
             # Подключаемся к базе данных аэропортов и маршрутов
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
+            ChoiceDB = myDialog.comboBox_DB_RT.currentText()
+            ChoiceDriver = myDialog.comboBox_Driver_RT.currentText()
             # Добавляем атрибуты DataBase, DriverODBC
-            S.DataBase_RT = myDialog.comboBox_DB_RT.currentText()
-            S.DriverODBC_RT = myDialog.comboBox_Driver_RT.currentText()
+            S.DataBase_RT = str(ChoiceDB)
+            S.DriverODBC_RT = str(ChoiceDriver)
             try:
                 # Добавляем атрибут cnxn
                 # через драйвер СУБД + клиентский API-курсор
@@ -832,7 +836,7 @@ def myApplication():
             S.DriverODBC_AC = str(ChoiceDriver_AC)
             ChoiceDSN_AC = myDialog.comboBox_DSN_FN.currentText()
             # Добавляем атрибут myDSN
-            S.myDSN_AC = ChoiceDSN_AC
+            S.myDSN_AC = str(ChoiceDSN_AC)
             try:
                 # Добавляем атрибут cnxn
                 if S.radioButtonUseDB:
@@ -889,7 +893,7 @@ def myApplication():
             S.DriverODBC_FN = str(ChoiceDriver_FN)
             ChoiceDSN_FN = myDialog.comboBox_DSN_FN.currentText()
             # Добавляем атрибут myDSN
-            S.myDSN_FN = ChoiceDSN_FN
+            S.myDSN_FN = str(ChoiceDSN_FN)
             try:
                 # Добавляем атрибут cnxn
                 if S.radioButtonUseDB:
@@ -1016,7 +1020,7 @@ def myApplication():
             # todo Схема по умолчанию - dbo, другая схема указывается в явном виде
             ChoiceDSN_AC_XML = myDialog.comboBox_DSN_AC.currentText()
             # Добавляем атрибут myDSN
-            S.myDSN_AC_XML = ChoiceDSN_AC_XML
+            S.myDSN_AC_XML = str(ChoiceDSN_AC_XML)
             try:
                 # Добавляем атрибут cnxn
                 # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)

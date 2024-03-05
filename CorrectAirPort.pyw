@@ -117,9 +117,11 @@ def myApplication():
             # Переводим в неактивное состояние
             myDialog.pushButton_SelectDB.setEnabled(False)
             # Подключаемся к базе данных по выбранному источнику
+            ChoiceDB = myDialog.comboBox_DB.currentText()
+            ChoiceDriver = myDialog.comboBox_Driver.currentText()
             # Добавляем атрибуты DataBase, DriverODBC
-            S.DataBase = myDialog.comboBox_DB.currentText()
-            S.DriverODBC = myDialog.comboBox_Driver.currentText()
+            S.DataBase = str(ChoiceDB)
+            S.DriverODBC = str(ChoiceDriver)
             try:
                 # Добавляем атрибут cnxn
                 # через драйвер СУБД + клиентский API-курсор
