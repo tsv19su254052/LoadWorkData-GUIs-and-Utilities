@@ -158,17 +158,17 @@ def myApplication():
                 if DBAirLine is None:
                     if S.InsertAirLineByIATAandICAO(AL, None):
                         ListAirLinesAdded.append(AL)
-                        #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
+                        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
                         print(colorama.Fore.GREEN + "добавилась ", end=" ")
                         break
                     else:
-                        #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                         print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
                         time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                 elif DBAirLine is not None:
                     break
                 else:
-                    #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                    myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                     print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                     time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
             else:
@@ -187,26 +187,26 @@ def myApplication():
                         # Вставляем самолет с пустым внешним ключем
                         if S.InsertAirCraftByRegistration(Registration=AC, ALPK=None):
                             ListAirCraftsAdded.append(AC)
-                            #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
+                            myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
                             print(colorama.Fore.GREEN + "добавился", end=" ")
                             break
                         else:
-                            #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                            myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                             print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
                             time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                     elif DBAirLine is not None:
                         # Вставляем самолет (на предыдущем цикле вставили авиакомпанию)
                         if S.InsertAirCraftByRegistration(Registration=AC, ALPK=DBAirLine.AirLineUniqueNumber):
                             ListAirCraftsAdded.append(AC)
-                            #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
+                            myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
                             print(colorama.Fore.GREEN + "добавился", end=" ")
                             break
                         else:
-                            #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                            myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                             print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
                             time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                     else:
-                        #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                         print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                         time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                 elif DBAirCraft is not None:
@@ -222,25 +222,25 @@ def myApplication():
                         elif DBAirLine is not None:
                             if S.UpdateAirCraft(Registration=AC, ALPK=DBAirLine.AirLineUniqueNumber):
                                 ListAirCraftsUpdated.append(AC)
-                                #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
+                                myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
                                 print(colorama.Fore.LIGHTCYAN_EX + "переписали на", str(AL), end=" ")
                                 break
                             else:
-                                #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                                myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                                 print(colorama.Fore.LIGHTYELLOW_EX + "*", end=" ")
                                 time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                         else:
-                            #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                            myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                             print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                             time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                     elif DBAirLinePK.AirLineCodeIATA == AL:
                         break
                     else:
-                        #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                         print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                         time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                 else:
-                    #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                    myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                     print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                     time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
             else:
@@ -261,45 +261,45 @@ def myApplication():
                             # Если есть оба аэропорта и нет маршрута
                             if S.InsertAirRoute(DBAirPortDep.AirPortUniqueNumber, DBAirPortArr.AirPortUniqueNumber):
                                 CountRoutesAdded += 1
-                                #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
+                                myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
                                 print(colorama.Fore.GREEN + "добавился", end=" ")
                                 break
                             else:
-                                #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                                myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                                 print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
                                 time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                         elif DBAirRoute is not None:
                             break
                         else:
-                            #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                            myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                             print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                             time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                     elif DBAirPortArr is None:
                         ListAirPortsNotFounded.append(Arr)
                         # Вставляем аэропорт только с кодом IATA
                         if S.InsertAirPortByIATA(Arr):
-                            #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
+                            myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
                             print(colorama.Fore.GREEN + "добавили аэропорт", str(Arr), end=" ")
                         else:
-                            #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                            myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                             print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
                             time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                     else:
-                        #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                         print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                         time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                 elif DBAirPortDep is None:
                     ListAirPortsNotFounded.append(Dep)
                     # Вставляем аэропорт только с кодом IATA
                     if S.InsertAirPortByIATA(Dep):
-                        #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
+                        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
                         print(colorama.Fore.GREEN + "добавили аэропорт", str(Dep), end=" ")
                     else:
-                        #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                         print(colorama.Fore.LIGHTYELLOW_EX + "+", end=" ")
                         time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                 else:
-                    #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                    myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                     print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                     time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
             else:
@@ -323,38 +323,38 @@ def myApplication():
                             ResultModify = S.ModifyAirFlight(AC, AL, FN, Dep, Arr, FD, S.BeginDate)
                             if ResultModify == 0:
                                 # fixme оболочка зависает и слетает
-                                #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                                myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                                 print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                                 time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                             if ResultModify == 1:
                                 CountFlightsAdded += 1
-                                #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
+                                myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
                                 print(colorama.Fore.GREEN + "вставился", end=" ")
                                 break
                             if ResultModify == 2:
                                 CountFlightsPadded += 1
-                                #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
+                                myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: green")  # оболочка зависает и слетает
                                 print(colorama.Fore.GREEN + "сплюсовался", end=" ")
                                 break
                         elif DBAirRoute is None:
                             CountFlightsFailed += 1
                             break
                         else:
-                            #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                            myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                             print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                             time.sleep(attemptNumber / Density)
                     elif DBAirCraft is None:
                         CountFlightsFailed += 1
                         break
                     else:
-                        #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                        myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                         print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                         time.sleep(attemptNumber / Density)
                 elif DBAirLine is None:
                     CountFlightsFailed += 1
                     break
                 else:
-                    #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
+                    myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # оболочка зависает и слетает
                     print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                     time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
             else:
