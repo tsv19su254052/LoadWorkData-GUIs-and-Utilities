@@ -29,7 +29,7 @@ import Classes
 
 
 # Версия обработки с цветным выводом
-__myOwnDevelopingVersion__ = 8.38
+__myOwnDevelopingVersion__ = 8.39
 # todo Версия задается тут. Пакеты на GitHub-е *.tar.gz (под Linux или под BSD) не нужны. Выпуск релизов пока не имеет практической пользы, как указано в ReadME.md
 
 colorama.init(autoreset=False)  # используем Colorama, чтобы сделать работу Termcolor на Windows, оставляем цветовое оформление до следующего явного указания
@@ -145,6 +145,7 @@ def myApplication():
         # Сигнал на обновление полоски выполнения
         # _signalUpdateProgressBar = QtCore.pyqtSignal(float)
         completion = 0  # Выполнение загрузки
+        ExecutePrevious = 0
         # pbar = tqdm.tqdm(len(ListAirLineCodeIATA))
         # Один внешний цикл и три вложенных цикла
         for AL, AC, Dep, Arr, FN, FD in zip(ListAirLineCodeIATA, ListAirCraft, ListAirPortDeparture, ListAirPortArrival, ListFlightNumber, ListFlightDateConcatenated):
@@ -362,8 +363,10 @@ def myApplication():
             DistributionDensityAirFlights[deadlockCount] += 1
             completion += 1
             Execute = round(100 * completion / len(ListFlightNumber), 2)  # вычисляем и округляем процент выполнения до 2 цифр после запятой
-            stringExecute = "Выполнение = " + str(Execute) + " %"
-            myDialog.label_execute.setText(stringExecute)
+            if Execute > ExecutePrevious:
+                stringExecute = "Выполнение = " + str(Execute) + " %"
+                myDialog.label_execute.setText(stringExecute)
+                ExecutePrevious = Execute
             # todo Сделать полосу выполнения все время внизу со всеми параметрами например с помощью tqdm - Не работает в цикле
             print(colorama.Fore.CYAN + "Выполнение =", str(Execute), "%")
             # pbar.update()
