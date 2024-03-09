@@ -71,6 +71,7 @@ def myApplication():
     myDialog.textEdit_AirLineCity.setEnabled(False)
     myDialog.dateEdit_CreateDate.setEnabled(False)
     myDialog.textEdit_AirLineCountry.setEnabled(False)
+    myDialog.comboBox_Alliance.setToolTip("Альянсы вставляются с помощью хранимой процедуры \nПосле вставки закрыть и снова открыть этот диалог")
     myDialog.comboBox_Alliance.setEditable(True)
     myDialog.comboBox_Alliance.setEnabled(False)
     myDialog.lineEdit_AirLineID.setEnabled(False)
