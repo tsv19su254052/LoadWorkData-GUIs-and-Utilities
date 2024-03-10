@@ -29,7 +29,7 @@ import Classes
 
 
 # Версия обработки с цветным выводом
-__myOwnDevelopingVersion__ = 8.39
+__myOwnDevelopingVersion__ = 8.4
 # todo Версия задается тут. Пакеты на GitHub-е *.tar.gz (под Linux или под BSD) не нужны. Выпуск релизов пока не имеет практической пользы, как указано в ReadME.md
 
 colorama.init(autoreset=False)  # используем Colorama, чтобы сделать работу Termcolor на Windows, оставляем цветовое оформление до следующего явного указания
@@ -373,9 +373,6 @@ def myApplication():
             # pbar.update()
             # myDialog.progressBar_completion.setValue(int(Execute))  # fixme выдает ошибку про рекурсивную отрисовку (см. снимок экрана)
         # pbar.close()
-        myDialog.label_execute.setText("Загрузка окончена")
-        myDialog.label_execute.setStyleSheet("border: 5px solid; border-color: pink")
-        print(termcolor.colored("Загрузка окончена", "red", "on_yellow"))
         # Отметка времени окончания загрузки
         __EndTime__ = datetime.datetime.now()
         # Убираем с конца столбцы с нулями
@@ -476,6 +473,9 @@ def myApplication():
         # with open(Log, 'a') as LogFile:
         #     LogFile.write(OutputString)
         #     LogFile.write('Вывод с помощью менеджера контекста\n')
+        myDialog.label_execute.setText("Загрузка окончена")
+        myDialog.label_execute.setStyleSheet("border: 5px solid; border-color: pink")
+        print(termcolor.colored("Загрузка окончена", "red", "on_yellow"))
         # Снимаем курсоры
         S.seekAL.close()
         S.seekAC.close()
