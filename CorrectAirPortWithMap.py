@@ -272,6 +272,17 @@ def myApplication():
         myDialog.textEdit_AirPortFacilities.append(A.AirPortFacilities)
         myDialog.textEdit_Incidents.clear()
         myDialog.textEdit_Incidents.append(A.AirPortIncidents)
+        coordinates = (A.AirPortLatitude, A.AirPortLongitude)
+        # Варианты карт: OpenStreetMap (подробная цветная), CartoDB Positron (серенькая), CartoDB Voyager (аскетичная, мало подписей и меток), NASAGIBS Blue Marble (пока не отрисовывается)
+        m = folium.Map(tiles='OpenStreetMap',
+                       zoom_start=13,
+                       location=coordinates)
+        # save map data to data object
+        data = io.BytesIO()
+        m.save(data, close_file=False)
+        webView = QWebEngineView()
+        webView.setHtml(data.getvalue().decode())
+        myDialog.verticalLayout.addWidget(webView)
         # Ставим выполнение на полоске
         count = S.QueryCount()
         # fixme Сделать повторяющийся подсчет количества строк и полоску "Выполнение" - СДЕЛАЛ, но есть разрывы в нумерации, недостоверно
