@@ -282,6 +282,13 @@ def myApplication():
         m.save(data, close_file=False)
         webView = QWebEngineView()
         webView.setHtml(data.getvalue().decode())
+        if myDialog.verticalLayout is not None:
+            while myDialog.verticalLayout.count():
+                child = myDialog.verticalLayout.takeAt(0)
+                if child.widget() is not None:
+                    child.widget().deleteLater()
+                elif child.layout() is not None:
+                    myDialog.verticalLayout.clearLayout(child.layout())
         myDialog.verticalLayout.addWidget(webView)
         # Ставим выполнение на полоске
         count = S.QueryCount()
