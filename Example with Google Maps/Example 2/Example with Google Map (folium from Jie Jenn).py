@@ -17,8 +17,9 @@ class MyApp(QWidget):
         self.setMinimumSize(self.window_width, self.window_height)
         layout = QVBoxLayout()
         self.setLayout(layout)
-        coordinate = (37.8199286, -122.4782551)
-        # Варианты карт: OpenStreetMap, CartoDB Positron, CartoDB Voyager, NASAGIBS Blue Marble
+        #coordinate = (37.8199286, -122.4782551)  # San Francisco
+        coordinate = (43.44, 39.94)
+        # Варианты карт: OpenStreetMap (подробная цветная), CartoDB Positron (серенькая), CartoDB Voyager (аскетичная, мало подписей и меток), NASAGIBS Blue Marble (пока не отрисовывается)
         m = folium.Map(tiles='OpenStreetMap',
                        zoom_start=13,
                        location=coordinate)
