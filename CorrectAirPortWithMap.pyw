@@ -202,6 +202,44 @@ def myApplication():
                     myDialog.verticalLayout.clearLayout(child.layout())
         myDialog.verticalLayout.addWidget(webView)
 
+    def SwitchingGUI(Key):
+        myDialog.comboBox_DB.setEnabled(not Key)
+        myDialog.comboBox_Driver.setEnabled(not Key)
+        myDialog.lineEdit_Server.setEnabled(Key)
+        myDialog.lineEdit_Driver.setEnabled(Key)
+        myDialog.lineEdit_ODBCversion.setEnabled(Key)
+        myDialog.lineEdit_DSN.setEnabled(Key)
+        myDialog.lineEdit_Schema.setEnabled(Key)
+        myDialog.textEdit_SourceCSVFile.setEnabled(Key)
+        myDialog.label_hyperlink_to_WikiPedia.setEnabled(Key)
+        myDialog.label_HyperLink_to_AirPort.setEnabled(Key)
+        myDialog.label_HyperLink_to_Operator.setEnabled(Key)
+        myDialog.pushButton_HyperLinkChange_Wikipedia.setEnabled(Key)
+        myDialog.pushButton_HyperLinkChange_AirPort.setEnabled(Key)
+        myDialog.pushButton_HyperLinkChange_Operator.setEnabled(Key)
+        myDialog.lineEdit_AirPortCodeIATA.setEnabled(Key)
+        myDialog.lineEdit_AirPortCodeICAO.setEnabled(Key)
+        myDialog.lineEdit_AirPortCodeFAA_LID.setEnabled(Key)
+        myDialog.lineEdit_AirPortCodeWMO.setEnabled(Key)
+        myDialog.pushButton_SearchByIATA.setEnabled(Key)
+        myDialog.pushButton_SearchByICAO.setEnabled(Key)
+        myDialog.pushButton_SearchByFAALID.setEnabled(Key)
+        myDialog.pushButton_SearchByWMO.setEnabled(Key)
+        myDialog.pushButton_SearchAndInsertByIATAandICAO.setEnabled(Key)
+        myDialog.textEdit_AirPortName.setEnabled(Key)
+        myDialog.textEdit_AirPortCity.setEnabled(Key)
+        myDialog.textEdit_AirPortCounty.setEnabled(Key)
+        myDialog.textEdit_AirPortCountry.setEnabled(Key)
+        myDialog.lineEdit_AirPortLatitude.setEnabled(Key)
+        myDialog.lineEdit_AirPortLongitude.setEnabled(Key)
+        myDialog.lineEdit_HeightAboveSeaLevel.setEnabled(Key)
+        myDialog.textBrowser_HyperLinks.setEnabled(Key)
+        myDialog.pushButton_HyperLinksChange.setEnabled(Key)
+        myDialog.textEdit_AirPortDescription.setEnabled(Key)
+        myDialog.textEdit_AirPortFacilities.setEnabled(Key)
+        myDialog.textEdit_Incidents.setEnabled(Key)
+        myDialog.verticalLayout_Map.setEnabled(Key)
+
     def PushButtonConnectDB():
         if not S.Connected_RT:
             # Переводим в неактивное состояние
@@ -241,58 +279,21 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekRT = S.cnxnRT.cursor()
                 print("seeks is on")
-                # Переводим в рабочее состояние (продолжение)
-                myDialog.comboBox_DB.setEnabled(False)
-                myDialog.comboBox_Driver.setEnabled(False)
-                myDialog.pushButton_DisconnectDB.setEnabled(True)
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnRT.getinfo(pyodbc.SQL_SERVER_NAME))
-                myDialog.lineEdit_Server.setEnabled(True)
                 # Драйвер
                 myDialog.lineEdit_Driver.setText(S.cnxnRT.getinfo(pyodbc.SQL_DRIVER_NAME))
-                myDialog.lineEdit_Driver.setEnabled(True)
                 # версия ODBC
                 myDialog.lineEdit_ODBCversion.setText(S.cnxnRT.getinfo(pyodbc.SQL_ODBC_VER))
-                myDialog.lineEdit_ODBCversion.setEnabled(True)
                 # Источник данных
                 myDialog.lineEdit_DSN.setText(S.cnxnRT.getinfo(pyodbc.SQL_DATA_SOURCE_NAME))
-                myDialog.lineEdit_DSN.setEnabled(True)
                 # Схема (если из-под другой учетки, то выводит имя учетки)
                 # todo Схема по умолчанию - dbo
                 myDialog.lineEdit_Schema.setText(S.cnxnRT.getinfo(pyodbc.SQL_USER_NAME))
-                myDialog.lineEdit_Schema.setEnabled(True)
-                # переводим в рабочее состояние (окончание)
-                myDialog.textEdit_SourceCSVFile.setEnabled(True)
-                myDialog.label_hyperlink_to_WikiPedia.setEnabled(True)
-                myDialog.label_HyperLink_to_AirPort.setEnabled(True)
-                myDialog.label_HyperLink_to_Operator.setEnabled(True)
-                myDialog.pushButton_HyperLinkChange_Wikipedia.setEnabled(True)
-                myDialog.pushButton_HyperLinkChange_AirPort.setEnabled(True)
-                myDialog.pushButton_HyperLinkChange_Operator.setEnabled(True)
-                myDialog.lineEdit_AirPortCodeIATA.setEnabled(True)
-                myDialog.lineEdit_AirPortCodeICAO.setEnabled(True)
-                myDialog.lineEdit_AirPortCodeFAA_LID.setEnabled(True)
-                myDialog.lineEdit_AirPortCodeWMO.setEnabled(True)
-                myDialog.pushButton_SearchByIATA.setEnabled(True)
-                myDialog.pushButton_SearchByICAO.setEnabled(True)
-                myDialog.pushButton_SearchByFAALID.setEnabled(True)
-                myDialog.pushButton_SearchByWMO.setEnabled(True)
-                myDialog.pushButton_HyperLinksChange.setEnabled(True)
-                myDialog.pushButton_SearchAndInsertByIATAandICAO.setEnabled(True)
-                myDialog.textEdit_AirPortName.setEnabled(True)
-                myDialog.textEdit_AirPortCity.setEnabled(True)
-                myDialog.textEdit_AirPortCounty.setEnabled(True)
-                myDialog.textEdit_AirPortCountry.setEnabled(True)
-                myDialog.lineEdit_AirPortLatitude.setEnabled(True)
-                myDialog.lineEdit_AirPortLongitude.setEnabled(True)
-                myDialog.lineEdit_HeightAboveSeaLevel.setEnabled(True)
-                myDialog.textBrowser_HyperLinks.setEnabled(True)
-                myDialog.pushButton_HyperLinksChange.setEnabled(True)
-                myDialog.textEdit_AirPortDescription.setEnabled(True)
-                myDialog.textEdit_AirPortFacilities.setEnabled(True)
-                myDialog.textEdit_Incidents.setEnabled(True)
-                myDialog.verticalLayout_Map.setEnabled(True)
-                myDialog.pushButton_UpdateDB.setEnabled(True)  # возможно пока не активировать
+                # Переводим в рабочее состояние (продолжение)
+                SwitchingGUI(True)
+                myDialog.pushButton_UpdateDB.setEnabled(True)  # возможно пока не тут
+                myDialog.pushButton_DisconnectDB.setEnabled(True)
                 A.Position = 1
             except Exception:
                 # Переводим в рабочее состояние
@@ -344,45 +345,18 @@ def myApplication():
     def PushButtonDisconnect():
         # кнопка 'Отключиться от базы данных' нажата
         if S.Connected_RT:
+            # Переводим в неактивное состояние
+            myDialog.pushButton_DisconnectDB.setEnabled(False)
             # Снимаем курсоры
             S.seekRT.close()
             # Отключаемся от базы данных
             S.cnxnRT.close()
             # Снимаем флаги
             S.Connected_RT = False
-            # Переключаем в исходное состояние
-            myDialog.comboBox_DB.setEnabled(True)
-            myDialog.comboBox_Driver.setEnabled(True)
+            # Переводим в рабочее состояние (продолжение)
+            SwitchingGUI(False)
+            myDialog.pushButton_UpdateDB.setEnabled(False)  # возможно пока не тут
             myDialog.pushButton_ConnectDB.setEnabled(True)
-            myDialog.pushButton_DisconnectDB.setEnabled(False)
-            # Параметры соединения с сервером
-            myDialog.lineEdit_Server.setEnabled(False)
-            myDialog.lineEdit_Driver.setEnabled(False)
-            myDialog.lineEdit_ODBCversion.setEnabled(False)
-            myDialog.lineEdit_DSN.setEnabled(False)
-            myDialog.lineEdit_Schema.setEnabled(False)
-            myDialog.lineEdit_AirPortCodeIATA.setEnabled(False)
-            myDialog.lineEdit_AirPortCodeICAO.setEnabled(False)
-            myDialog.lineEdit_AirPortCodeFAA_LID.setEnabled(False)
-            myDialog.pushButton_HyperLinksChange.setEnabled(False)
-            myDialog.pushButton_SearchByIATA.setEnabled(False)
-            myDialog.pushButton_SearchByICAO.setEnabled(False)
-            myDialog.pushButton_Insert.setEnabled(False)
-            myDialog.textEdit_AirPortName.setEnabled(False)
-            myDialog.textEdit_AirPortCity.setEnabled(False)
-            myDialog.textEdit_AirPortCounty.setEnabled(False)
-            myDialog.textEdit_AirPortCountry.setEnabled(False)
-            myDialog.lineEdit_AirPortLatitude.setEnabled(False)
-            myDialog.lineEdit_AirPortLongitude.setEnabled(False)
-            myDialog.lineEdit_HeightAboveSeaLevel.setEnabled(False)
-            myDialog.textEdit_SourceCSVFile.setEnabled(False)
-            myDialog.textBrowser_HyperLinks.setEnabled(False)
-            myDialog.textEdit_AirPortDescription.setEnabled(False)
-            myDialog.textEdit_AirPortFacilities.setEnabled(False)
-            myDialog.textEdit_Incidents.setEnabled(False)
-            myDialog.verticalLayout.setEnabled(False)
-            myDialog.pushButton_Begin.setEnabled(False)
-            myDialog.pushButton_Update.setEnabled(False)
 
     def PushButtonChangeHyperLinkWikiPedia():
         pass
