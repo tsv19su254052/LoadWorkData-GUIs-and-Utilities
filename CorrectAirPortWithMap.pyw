@@ -161,9 +161,9 @@ def myApplication():
         myDialog.textEdit_SourceCSVFile.append(str(A.SourceCSVFile))
         myDialog.label_hyperlink_to_WikiPedia.setText("<a href=" + str(A.HyperLinkToWikiPedia) + ">Wikipedia</a>")
         myDialog.label_hyperlink_to_WikiPedia.setOpenExternalLinks(True)
-        myDialog.label_HyperLink_to_AirPort.setText("<a href=" + str(A.HyperLinkToAirPortSite) + ">Wikipedia</a>")
+        myDialog.label_HyperLink_to_AirPort.setText("<a href=" + str(A.HyperLinkToAirPortSite) + ">Сайт аэропорта или аэродрома</a>")
         myDialog.label_HyperLink_to_AirPort.setOpenExternalLinks(True)
-        myDialog.label_HyperLink_to_Operator.setText("<a href=" + str(A.HyperLinkToAirPortSite) + ">Wikipedia</a>")
+        myDialog.label_HyperLink_to_Operator.setText("<a href=" + str(A.HyperLinkToAirPortSite) + ">Сайт оператора аэропорта</a>")
         myDialog.label_HyperLink_to_Operator.setOpenExternalLinks(True)
         myDialog.lineEdit_AirPortCodeIATA.setText(str(A.AirPortCodeIATA))
         myDialog.lineEdit_AirPortCodeICAO.setText(str(A.AirPortCodeICAO))
@@ -379,17 +379,23 @@ def myApplication():
 
     def PushButtonSearchByIATA():
         # Кнопка "Поиск" нажата
-        LineCodeIATA, ok = QtWidgets.QInputDialog.getText(myDialog, "Код IATA", "Введите код IATA")
+        CodeIATA, ok = QtWidgets.QInputDialog.getText(myDialog, "Код IATA", "Введите код IATA")
         if ok:
-            myDialog.lineEditCodeIATA.setText(str(LineCodeIATA))
+            myDialog.lineEditCodeIATA.setText(str(CodeIATA))
             Code = myDialog.lineEditCodeIATA.text()
             DBAirPort = S.QueryAirPortByIATA(Code)
             # fixme Решение 3 - не перезаписывать код IATA (Недостаток - можно сделать дубликат по коду ICAO, их много, возможно это НОРМА, исправлять только вручную)
             # fixme Решение 4 - код IATA всегда неактивный, он вводится только при вставке
             if DBAirPort is not None:
                 A.Position = DBAirPort.AirPortUniqueNumber
+                A.SourceCSVFile = DBAirPort.SourceCSVFile
+                A.HyperLinkToWikiPedia = DBAirPort.HyperLinkToWikiPedia
+                A.HyperLinkToAirPortSite = DBAirPort.HyperLinkToAirPortSite
+                A.HyperLinkToOperatorSite = DBAirPort.HyperLinkToOperatorSite
                 A.AirPortCodeIATA = DBAirPort.AirPortCodeIATA
                 A.AirPortCodeICAO = DBAirPort.AirPortCodeICAO
+                A.AirPortCodeFAA_LID = DBAirPort.AirPortCodeFAA_LID
+                A.AirPortCodeWMO = DBAirPort.AirPortCodeWMO
                 A.AirPortName = DBAirPort.AirPortName
                 A.AirPortCity = DBAirPort.AirPortCity
                 A.AirPortCounty = DBAirPort.AirPortCounty
@@ -397,32 +403,35 @@ def myApplication():
                 A.AirPortLatitude = DBAirPort.AirPortLatitude
                 A.AirPortLongitude = DBAirPort.AirPortLongitude
                 A.HeightAboveSeaLevel = DBAirPort.HeightAboveSeaLevel
-                A.SourceCSVFile = DBAirPort.SourceCSVFile
                 A.AirPortDescription = DBAirPort.AirPortDescription
                 A.AirPortFacilities = DBAirPort.AirPortFacilities
                 A.AirPortIncidents = DBAirPort.AirPortIncidents
             elif DBAirPort is None:
                 message = QtWidgets.QMessageBox()
-                message.setText("Запись не найдена. Можете вставить новую запись")
+                message.setText("Запись не найдена")
                 message.setIcon(QtWidgets.QMessageBox.Information)
                 message.exec_()
-                # Вставка новой записи
-                PushButtonInsertByIATAandICAO()
             else:
                 pass
             SetFields()
 
     def PushButtonSearchByICAO():
         # Кнопка "Поиск" нажата
-        LineCodeICAO, ok = QtWidgets.QInputDialog.getText(myDialog, "Код ICAO", "Введите код ICAO")
+        CodeICAO, ok = QtWidgets.QInputDialog.getText(myDialog, "Код ICAO", "Введите код ICAO")
         if ok:
-            myDialog.lineEditCodeICAO.setText(str(LineCodeICAO))
+            myDialog.lineEditCodeICAO.setText(str(CodeICAO))
             Code = myDialog.lineEditCodeICAO.text()
             DBAirPort = S.QueryAirPortByICAO(Code)
             if DBAirPort is not None:
                 A.Position = DBAirPort.AirPortUniqueNumber
+                A.SourceCSVFile = DBAirPort.SourceCSVFile
+                A.HyperLinkToWikiPedia = DBAirPort.HyperLinkToWikiPedia
+                A.HyperLinkToAirPortSite = DBAirPort.HyperLinkToAirPortSite
+                A.HyperLinkToOperatorSite = DBAirPort.HyperLinkToOperatorSite
                 A.AirPortCodeIATA = DBAirPort.AirPortCodeIATA
                 A.AirPortCodeICAO = DBAirPort.AirPortCodeICAO
+                A.AirPortCodeFAA_LID = DBAirPort.AirPortCodeFAA_LID
+                A.AirPortCodeWMO = DBAirPort.AirPortCodeWMO
                 A.AirPortName = DBAirPort.AirPortName
                 A.AirPortCity = DBAirPort.AirPortCity
                 A.AirPortCounty = DBAirPort.AirPortCounty
@@ -430,7 +439,6 @@ def myApplication():
                 A.AirPortLatitude = DBAirPort.AirPortLatitude
                 A.AirPortLongitude = DBAirPort.AirPortLongitude
                 A.HeightAboveSeaLevel = DBAirPort.HeightAboveSeaLevel
-                A.SourceCSVFile = DBAirPort.SourceCSVFile
                 A.AirPortDescription = DBAirPort.AirPortDescription
                 A.AirPortFacilities = DBAirPort.AirPortFacilities
                 A.AirPortIncidents = DBAirPort.AirPortIncidents
