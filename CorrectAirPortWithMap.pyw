@@ -41,9 +41,9 @@ def myApplication():
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
     myDialog.comboBox_Driver.setToolTip("предпочтительно - драйвер ODBC для SDK SQL Server-а \n(работает во всех режимах, полностью функционален, расходует больше ресурсов сервера) \nдля просмотра и внесения исправлений компл. драйвер SQL Server-а \n (не отрабатывает вложенные обработки исключений)")
-    myDialog.pushButton_SelectDB.setToolTip("После подключения нажмите кнопку Поиск")
-    myDialog.pushButton_Disconnect.setToolTip("Перед закрытием диалога отключиться от базы данных")
-    myDialog.pushButton_Disconnect.setEnabled(False)
+    myDialog.pushButton_ConnectDB.setToolTip("После подключения нажмите кнопку Поиск")
+    myDialog.pushButton_DisconnectDB.setToolTip("Перед закрытием диалога отключиться от базы данных")
+    myDialog.pushButton_DisconnectDB.setEnabled(False)
     # Параметры соединения с сервером
     myDialog.lineEdit_Server.setEnabled(False)
     myDialog.lineEdit_Driver.setEnabled(False)
@@ -105,18 +105,18 @@ def myApplication():
                 break
             myDialog.comboBox_Driver.addItem(str(DriverODBC))
     # Привязки обработчиков
-    myDialog.pushButton_SelectDB.clicked.connect(lambda: PushButtonSelectDB())
-    myDialog.pushButton_Disconnect.clicked.connect(lambda: PushButtonDisconnect())
+    myDialog.pushButton_ConnectDB.clicked.connect(lambda: PushButtonConnectDB())
+    myDialog.pushButton_DisconnectDB.clicked.connect(lambda: PushButtonDisconnect())
     myDialog.pushButton_HyperLinksChange.clicked.connect(lambda: PushButtonChangeHyperLinks())
     myDialog.pushButton_SearchByIATA.clicked.connect(lambda: PushButtonSearchByIATA())
     myDialog.pushButton_SearchByICAO.clicked.connect(lambda: PushButtonSearchByICAO())
     myDialog.pushButton_Insert.clicked.connect(lambda: PushButtonInsert())
     myDialog.pushButton_Update.clicked.connect(lambda: PushButtonUpdate())
 
-    def PushButtonSelectDB():
+    def PushButtonConnectDB():
         if not S.Connected_RT:
             # Переводим в неактивное состояние
-            myDialog.pushButton_SelectDB.setEnabled(False)
+            myDialog.pushButton_ConnectDB.setEnabled(False)
             # Подключаемся к базе данных по выбранному источнику
             ChoiceDB = myDialog.comboBox_DB.currentText()
             ChoiceDriver = myDialog.comboBox_Driver.currentText()
@@ -167,7 +167,7 @@ def myApplication():
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.comboBox_DB.setEnabled(False)
                 myDialog.comboBox_Driver.setEnabled(False)
-                myDialog.pushButton_Disconnect.setEnabled(True)
+                myDialog.pushButton_DisconnectDB.setEnabled(True)
                 myDialog.pushButton_Begin.setEnabled(True)  # кнопка "Начало"
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnRT.getinfo(pyodbc.SQL_SERVER_NAME))
@@ -187,7 +187,7 @@ def myApplication():
                 myDialog.lineEdit_Schema.setEnabled(True)
             except Exception:
                 # Переводим в рабочее состояние
-                myDialog.pushButton_SelectDB.setEnabled(True)
+                myDialog.pushButton_ConnectDB.setEnabled(True)
                 message = QtWidgets.QMessageBox()
                 message.setText("Нет подключения к базе данных аэропортов")
                 message.setIcon(QtWidgets.QMessageBox.Warning)
@@ -219,6 +219,7 @@ def myApplication():
         myDialog.verticalLayout.setEnabled(True)
         myDialog.pushButton_Begin.setEnabled(False)
         myDialog.pushButton_Update.setEnabled(True)
+        A.Position = 1
 
     def PushButtonDisconnect():
         # кнопка 'Отключиться от базы данных' нажата
@@ -241,8 +242,8 @@ def myApplication():
             # Переключаем в исходное состояние
             myDialog.comboBox_DB.setEnabled(True)
             myDialog.comboBox_Driver.setEnabled(True)
-            myDialog.pushButton_SelectDB.setEnabled(True)
-            myDialog.pushButton_Disconnect.setEnabled(False)
+            myDialog.pushButton_ConnectDB.setEnabled(True)
+            myDialog.pushButton_DisconnectDB.setEnabled(False)
             # Параметры соединения с сервером
             myDialog.lineEdit_Server.setEnabled(False)
             myDialog.lineEdit_Driver.setEnabled(False)
@@ -318,17 +319,6 @@ def myApplication():
                 elif child.layout() is not None:
                     myDialog.verticalLayout.clearLayout(child.layout())
         myDialog.verticalLayout.addWidget(webView)
-        # Ставим выполнение на полоске
-        count = S.QueryCount()
-        # fixme Сделать повторяющийся подсчет количества строк и полоску "Выполнение" - СДЕЛАЛ, но есть разрывы в нумерации, недостоверно
-        if count is not None:
-            Execute = round(100 * A.Position / count)
-            if Execute >= 100:
-                Execute = 100
-            elif Execute <= 0:
-                Execute = 0
-            else:
-                pass
 
     def PushButtonChangeHyperLinks():
         pass
@@ -366,10 +356,6 @@ def myApplication():
                 PushButtonInsert()
             else:
                 pass
-            if A.Position == 1:
-                myDialog.pushButton_Begin.setEnabled(False)
-            if A.Position >= 2:
-                myDialog.pushButton_Begin.setEnabled(True)
             SetFields()
 
     def PushButtonSearchByICAO():
@@ -401,10 +387,6 @@ def myApplication():
                 message.exec_()
             else:
                 pass
-            if A.Position == 1:
-                myDialog.pushButton_Begin.setEnabled(False)
-            if A.Position >= 2:
-                myDialog.pushButton_Begin.setEnabled(True)
             SetFields()
 
     def PushButtonInsert():
@@ -446,10 +428,6 @@ def myApplication():
                     DBAirPort = S.QueryAirPortByIATA(Code)
                     if DBAirPort is not None:
                         Transfer()
-                        if A.Position == 1:
-                            myDialog.pushButton_Begin.setEnabled(False)
-                        if A.Position >= 2:
-                            myDialog.pushButton_Begin.setEnabled(True)
                     else:
                         message = QtWidgets.QMessageBox()
                         message.setText("Запись не прочиталась. Посмотрите ее через поиск")
