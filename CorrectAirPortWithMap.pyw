@@ -124,6 +124,84 @@ def myApplication():
     myDialog.pushButton_SearchAndInsertByIATAandICAO.clicked.connect(lambda: PushButtonInsertByIATAandICAO())
     myDialog.pushButton_HyperLinksChange.clicked.connect(lambda: PushButtonChangeHyperLinks())
 
+    def CommonPart():
+        DBAirPort = S.QueryAirPortByPK(A.Position)
+        if DBAirPort is not None:
+            A.AirPortCodeIATA = DBAirPort.AirPortCodeIATA
+            A.AirPortCodeICAO = DBAirPort.AirPortCodeICAO
+            A.AirPortName = DBAirPort.AirPortName
+            A.AirPortCity = DBAirPort.AirPortCity
+            A.AirPortCounty = DBAirPort.AirPortCounty
+            A.AirPortCountry = DBAirPort.AirPortCountry
+            A.AirPortLatitude = DBAirPort.AirPortLatitude
+            A.AirPortLongitude = DBAirPort.AirPortLongitude
+            A.HeightAboveSeaLevel = DBAirPort.HeightAboveSeaLevel
+            A.SourceCSVFile = DBAirPort.SourceCSVFile
+            A.AirPortDescription = DBAirPort.AirPortDescription
+            A.AirPortFacilities = DBAirPort.AirPortFacilities
+            A.AirPortIncidents = DBAirPort.AirPortIncidents
+            SetFields()
+            return True
+        elif DBAirPort is None:
+            message = QtWidgets.QMessageBox()
+            message.setText("Запись не найдена")
+            message.setIcon(QtWidgets.QMessageBox.Information)
+            message.exec_()
+            return False
+        else:
+            message = QtWidgets.QMessageBox()
+            message.setText("Запись не прочиталась")
+            message.setIcon(QtWidgets.QMessageBox.Warning)
+            message.exec_()
+            return False
+
+    def SetFields():
+        # Выводим запись
+        myDialog.lineEdit_AirPortCodeIATA.setText(str(A.AirPortCodeIATA))
+        #myDialog.lineEdit_AirPortCodeIATA.setEnabled(False)
+        myDialog.lineEdit_AirPortCodeICAO.setText(str(A.AirPortCodeICAO))
+        myDialog.textEdit_AirPortName.clear()
+        myDialog.textEdit_AirPortName.append(str(A.AirPortName))
+        myDialog.textEdit_AirPortCity.clear()
+        myDialog.textEdit_AirPortCity.append(str(A.AirPortCity))
+        myDialog.textEdit_AirPortCounty.clear()
+        myDialog.textEdit_AirPortCounty.append(str(A.AirPortCounty))
+        myDialog.textEdit_AirPortCountry.clear()
+        myDialog.textEdit_AirPortCountry.append(str(A.AirPortCountry))
+        myDialog.lineEdit_AirPortLatitude.setText(str(A.AirPortLatitude))
+        myDialog.lineEdit_AirPortLongitude.setText(str(A.AirPortLongitude))
+        myDialog.lineEdit_HeightAboveSeaLevel.setText(str(A.HeightAboveSeaLevel))
+        myDialog.textEdit_SourceCSVFile.clear()
+        myDialog.textEdit_SourceCSVFile.append(str(A.SourceCSVFile))
+        myDialog.textBrowser_HyperLinks.clear()
+        myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Wikipedia</a>")
+        myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Сайт аэропорта или аэродрома</a>")
+        myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Сайт оператора аэропорта</a>")
+        myDialog.textEdit_AirPortDescription.clear()
+        myDialog.textEdit_AirPortDescription.append(str(A.AirPortDescription))
+        myDialog.textEdit_AirPortFacilities.clear()
+        myDialog.textEdit_AirPortFacilities.append(A.AirPortFacilities)
+        myDialog.textEdit_Incidents.clear()
+        myDialog.textEdit_Incidents.append(A.AirPortIncidents)
+        coordinates = (A.AirPortLatitude, A.AirPortLongitude)
+        # Варианты карт: OpenStreetMap (подробная цветная), CartoDB Positron (серенькая), CartoDB Voyager (аскетичная, мало подписей и меток), NASAGIBS Blue Marble (пока не отрисовывается)
+        m = folium.Map(tiles='OpenStreetMap',
+                       zoom_start=13,
+                       location=coordinates)
+        # save map data to data object
+        data = io.BytesIO()
+        m.save(data, close_file=False)
+        webView = QtWebEngineWidgets.QWebEngineView()
+        webView.setHtml(data.getvalue().decode())
+        if myDialog.verticalLayout is not None:
+            while myDialog.verticalLayout.count():
+                child = myDialog.verticalLayout.takeAt(0)
+                if child.widget() is not None:
+                    child.widget().deleteLater()
+                elif child.layout() is not None:
+                    myDialog.verticalLayout.clearLayout(child.layout())
+        myDialog.verticalLayout.addWidget(webView)
+
     def PushButtonConnectDB():
         if not S.Connected_RT:
             # Переводим в неактивное состояние
@@ -259,20 +337,11 @@ def myApplication():
         # кнопка 'Отключиться от базы данных' нажата
         if S.Connected_RT:
             # Снимаем курсоры
-            S.seekAL.close()
-            S.seekAC.close()
             S.seekRT.close()
-            S.seekFN.close()
             # Отключаемся от базы данных
-            S.cnxnAL.close()
-            S.cnxnAC.close()
             S.cnxnRT.close()
-            S.cnxnFN.close()
             # Снимаем флаги
-            S.Connected_AL = False
-            S.Connected_AC = False
             S.Connected_RT = False
-            S.Connected_FN = False
             # Переключаем в исходное состояние
             myDialog.comboBox_DB.setEnabled(True)
             myDialog.comboBox_Driver.setEnabled(True)
@@ -306,53 +375,6 @@ def myApplication():
             myDialog.verticalLayout.setEnabled(False)
             myDialog.pushButton_Begin.setEnabled(False)
             myDialog.pushButton_Update.setEnabled(False)
-
-    def SetFields():
-        # Выводим запись
-        myDialog.lineEdit_AirPortCodeIATA.setText(str(A.AirPortCodeIATA))
-        #myDialog.lineEdit_AirPortCodeIATA.setEnabled(False)
-        myDialog.lineEdit_AirPortCodeICAO.setText(str(A.AirPortCodeICAO))
-        myDialog.textEdit_AirPortName.clear()
-        myDialog.textEdit_AirPortName.append(str(A.AirPortName))
-        myDialog.textEdit_AirPortCity.clear()
-        myDialog.textEdit_AirPortCity.append(str(A.AirPortCity))
-        myDialog.textEdit_AirPortCounty.clear()
-        myDialog.textEdit_AirPortCounty.append(str(A.AirPortCounty))
-        myDialog.textEdit_AirPortCountry.clear()
-        myDialog.textEdit_AirPortCountry.append(str(A.AirPortCountry))
-        myDialog.lineEdit_AirPortLatitude.setText(str(A.AirPortLatitude))
-        myDialog.lineEdit_AirPortLongitude.setText(str(A.AirPortLongitude))
-        myDialog.lineEdit_HeightAboveSeaLevel.setText(str(A.HeightAboveSeaLevel))
-        myDialog.textEdit_SourceCSVFile.clear()
-        myDialog.textEdit_SourceCSVFile.append(str(A.SourceCSVFile))
-        myDialog.textBrowser_HyperLinks.clear()
-        myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Wikipedia</a>")
-        myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Сайт аэропорта или аэродрома</a>")
-        myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Сайт оператора аэропорта</a>")
-        myDialog.textEdit_AirPortDescription.clear()
-        myDialog.textEdit_AirPortDescription.append(str(A.AirPortDescription))
-        myDialog.textEdit_AirPortFacilities.clear()
-        myDialog.textEdit_AirPortFacilities.append(A.AirPortFacilities)
-        myDialog.textEdit_Incidents.clear()
-        myDialog.textEdit_Incidents.append(A.AirPortIncidents)
-        coordinates = (A.AirPortLatitude, A.AirPortLongitude)
-        # Варианты карт: OpenStreetMap (подробная цветная), CartoDB Positron (серенькая), CartoDB Voyager (аскетичная, мало подписей и меток), NASAGIBS Blue Marble (пока не отрисовывается)
-        m = folium.Map(tiles='OpenStreetMap',
-                       zoom_start=13,
-                       location=coordinates)
-        # save map data to data object
-        data = io.BytesIO()
-        m.save(data, close_file=False)
-        webView = QtWebEngineWidgets.QWebEngineView()
-        webView.setHtml(data.getvalue().decode())
-        if myDialog.verticalLayout is not None:
-            while myDialog.verticalLayout.count():
-                child = myDialog.verticalLayout.takeAt(0)
-                if child.widget() is not None:
-                    child.widget().deleteLater()
-                elif child.layout() is not None:
-                    myDialog.verticalLayout.clearLayout(child.layout())
-        myDialog.verticalLayout.addWidget(webView)
 
     def PushButtonChangeHyperLinkWikiPedia():
         pass
@@ -487,37 +509,6 @@ def myApplication():
                     message.setText("Запись не вставилась")
                     message.setIcon(QtWidgets.QMessageBox.Warning)
                     message.exec_()
-
-    def CommonPart():
-        DBAirPort = S.QueryAirPortByPK(A.Position)
-        if DBAirPort is not None:
-            A.AirPortCodeIATA = DBAirPort.AirPortCodeIATA
-            A.AirPortCodeICAO = DBAirPort.AirPortCodeICAO
-            A.AirPortName = DBAirPort.AirPortName
-            A.AirPortCity = DBAirPort.AirPortCity
-            A.AirPortCounty = DBAirPort.AirPortCounty
-            A.AirPortCountry = DBAirPort.AirPortCountry
-            A.AirPortLatitude = DBAirPort.AirPortLatitude
-            A.AirPortLongitude = DBAirPort.AirPortLongitude
-            A.HeightAboveSeaLevel = DBAirPort.HeightAboveSeaLevel
-            A.SourceCSVFile = DBAirPort.SourceCSVFile
-            A.AirPortDescription = DBAirPort.AirPortDescription
-            A.AirPortFacilities = DBAirPort.AirPortFacilities
-            A.AirPortIncidents = DBAirPort.AirPortIncidents
-            SetFields()
-            return True
-        elif DBAirPort is None:
-            message = QtWidgets.QMessageBox()
-            message.setText("Запись не найдена")
-            message.setIcon(QtWidgets.QMessageBox.Information)
-            message.exec_()
-            return False
-        else:
-            message = QtWidgets.QMessageBox()
-            message.setText("Запись не прочиталась")
-            message.setIcon(QtWidgets.QMessageBox.Warning)
-            message.exec_()
-            return False
 
     # Отрисовка первого окна
     myDialog.show()
