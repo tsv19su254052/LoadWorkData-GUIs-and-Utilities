@@ -156,10 +156,19 @@ def myApplication():
             return False
 
     def SetFields():
-        # Выводим запись
+        # Выводим записи
+        myDialog.textEdit_SourceCSVFile.clear()
+        myDialog.textEdit_SourceCSVFile.append(str(A.SourceCSVFile))
+        myDialog.label_hyperlink_to_WikiPedia.setText("<a href=" + str(A.HyperLinkToWikiPedia) + ">Wikipedia</a>")
+        myDialog.label_hyperlink_to_WikiPedia.setOpenExternalLinks(True)
+        myDialog.label_HyperLink_to_AirPort.setText("<a href=" + str(A.HyperLinkToAirPortSite) + ">Wikipedia</a>")
+        myDialog.label_HyperLink_to_AirPort.setOpenExternalLinks(True)
+        myDialog.label_HyperLink_to_Operator.setText("<a href=" + str(A.HyperLinkToAirPortSite) + ">Wikipedia</a>")
+        myDialog.label_HyperLink_to_Operator.setOpenExternalLinks(True)
         myDialog.lineEdit_AirPortCodeIATA.setText(str(A.AirPortCodeIATA))
-        #myDialog.lineEdit_AirPortCodeIATA.setEnabled(False)
         myDialog.lineEdit_AirPortCodeICAO.setText(str(A.AirPortCodeICAO))
+        myDialog.lineEdit_AirPortCodeFAA_LID.setText(str(A.AirPortCodeFAA_LID))
+        myDialog.lineEdit_AirPortCodeWMO.setText(str(A.AirPortCodeWMO))
         myDialog.textEdit_AirPortName.clear()
         myDialog.textEdit_AirPortName.append(str(A.AirPortName))
         myDialog.textEdit_AirPortCity.clear()
@@ -171,12 +180,10 @@ def myApplication():
         myDialog.lineEdit_AirPortLatitude.setText(str(A.AirPortLatitude))
         myDialog.lineEdit_AirPortLongitude.setText(str(A.AirPortLongitude))
         myDialog.lineEdit_HeightAboveSeaLevel.setText(str(A.HeightAboveSeaLevel))
-        myDialog.textEdit_SourceCSVFile.clear()
-        myDialog.textEdit_SourceCSVFile.append(str(A.SourceCSVFile))
         myDialog.textBrowser_HyperLinks.clear()
-        myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Wikipedia</a>")
-        myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Сайт аэропорта или аэродрома</a>")
-        myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Сайт оператора аэропорта</a>")
+        #myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Wikipedia</a>")
+        #myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Сайт аэропорта или аэродрома</a>")
+        #myDialog.textBrowser_HyperLinks.append("<a href=" + str(A.SourceCSVFile) + ">Сайт оператора аэропорта</a>")
         myDialog.textEdit_AirPortDescription.clear()
         myDialog.textEdit_AirPortDescription.append(str(A.AirPortDescription))
         myDialog.textEdit_AirPortFacilities.clear()
@@ -193,14 +200,14 @@ def myApplication():
         m.save(data, close_file=False)
         webView = QtWebEngineWidgets.QWebEngineView()
         webView.setHtml(data.getvalue().decode())
-        if myDialog.verticalLayout is not None:
-            while myDialog.verticalLayout.count():
-                child = myDialog.verticalLayout.takeAt(0)
+        if myDialog.verticalLayout_Map is not None:
+            while myDialog.verticalLayout_Map.count():
+                child = myDialog.verticalLayout_Map.takeAt(0)
                 if child.widget() is not None:
                     child.widget().deleteLater()
                 elif child.layout() is not None:
-                    myDialog.verticalLayout.clearLayout(child.layout())
-        myDialog.verticalLayout.addWidget(webView)
+                    myDialog.verticalLayout_Map.clearLayout(child.layout())
+        myDialog.verticalLayout_Map.addWidget(webView)
 
     def SwitchingGUI(Key):
         myDialog.comboBox_DB.setEnabled(not Key)
@@ -255,7 +262,6 @@ def myApplication():
                 # через драйвер СУБД + клиентский API-курсор
                 S.cnxnRT = pyodbc.connect(driver=S.DriverODBC, server=S.ServerName, database=S.DataBase)
                 print("  База данных ", S.DataBase, " подключена")
-                S.Connected_RT = True
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
                 S.cnxnRT.autocommit = False
                 print("autocommit is disabled")
@@ -279,6 +285,7 @@ def myApplication():
                 # Добавляем атрибуты seek...
                 S.seekRT = S.cnxnRT.cursor()
                 print("seeks is on")
+                S.Connected_RT = True
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnRT.getinfo(pyodbc.SQL_SERVER_NAME))
                 # Драйвер
@@ -306,6 +313,22 @@ def myApplication():
                 pass
             finally:
                 pass
+
+    def PushButtonDisconnect():
+        # кнопка 'Отключиться от базы данных' нажата
+        if S.Connected_RT:
+            # Переводим в неактивное состояние
+            myDialog.pushButton_DisconnectDB.setEnabled(False)
+            # Снимаем курсоры
+            S.seekRT.close()
+            # Отключаемся от базы данных
+            S.cnxnRT.close()
+            # Снимаем флаги
+            S.Connected_RT = False
+            # Переводим в рабочее состояние (продолжение)
+            SwitchingGUI(False)
+            myDialog.pushButton_UpdateDB.setEnabled(False)  # возможно пока не тут
+            myDialog.pushButton_ConnectDB.setEnabled(True)
 
     def PushButtonUpdateDB():
         # Кнопка "Записать"
@@ -341,22 +364,6 @@ def myApplication():
             message.setText("Запись не переписалась")
             message.setIcon(QtWidgets.QMessageBox.Warning)
             message.exec_()
-
-    def PushButtonDisconnect():
-        # кнопка 'Отключиться от базы данных' нажата
-        if S.Connected_RT:
-            # Переводим в неактивное состояние
-            myDialog.pushButton_DisconnectDB.setEnabled(False)
-            # Снимаем курсоры
-            S.seekRT.close()
-            # Отключаемся от базы данных
-            S.cnxnRT.close()
-            # Снимаем флаги
-            S.Connected_RT = False
-            # Переводим в рабочее состояние (продолжение)
-            SwitchingGUI(False)
-            myDialog.pushButton_UpdateDB.setEnabled(False)  # возможно пока не тут
-            myDialog.pushButton_ConnectDB.setEnabled(True)
 
     def PushButtonChangeHyperLinkWikiPedia():
         pass

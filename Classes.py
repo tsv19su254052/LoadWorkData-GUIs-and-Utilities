@@ -61,8 +61,14 @@ class AirCraft:
 class AirPort:
     # fixme правильно писать конструктор
     def __init__(self):
+        self.HyperLinkToWikiPedia = "https://ru.wikipedia.org/wiki"
+        self.HyperLinkToAirPortSite = " "
+        self.HyperLinkToOperatorSite = " "
+        self.HyperLinksToOtherSites = " "
         self.AirPortCodeIATA = " "
         self.AirPortCodeICAO = " "
+        self.AirPortCodeFAA_LID = " "
+        self.AirPortCodeWMO = " "
         self.AirPortName = " "
         self.AirPortCity = " "
         self.AirPortCounty = " "
@@ -72,6 +78,7 @@ class AirPort:
         self.HeightAboveSeaLevel = 0
         self.SourceCSVFile = " "
         self.AirPortDescription = " "
+        self.AirPortRunWays = " "
         self.AirPortFacilities = " "
         self.AirPortIncidents = " "
         self.Position = 1  # Позиция курсора в таблице (в SQL начинается с 1)
