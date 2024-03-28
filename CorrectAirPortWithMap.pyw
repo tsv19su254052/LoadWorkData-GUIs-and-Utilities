@@ -38,6 +38,8 @@ def myApplication():
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
     myDialog.pushButton_ConnectDB.setToolTip("После подключения нажмите кнопку Поиск")
+    myDialog.pushButton_UpdateDB.setToolTip("Запись внесенных изменений в БД \n Перед нажатием правильно заполнить и проверить введенные данные")
+    myDialog.pushButton_UpdateDB.setEnabled(False)
     myDialog.pushButton_DisconnectDB.setToolTip("Перед закрытием диалога отключиться от базы данных")
     myDialog.pushButton_DisconnectDB.setEnabled(False)
     # Параметры соединения с сервером
@@ -46,24 +48,36 @@ def myApplication():
     myDialog.lineEdit_ODBCversion.setEnabled(False)
     myDialog.lineEdit_DSN.setEnabled(False)
     myDialog.lineEdit_Schema.setEnabled(False)
+    # Добавляем базы данных в выпадающий список
+    myDialog.comboBox_DB.addItem("AirPortsAndRoutesDBNew62")
+    # Получаем список драйверов баз данных
+    # Добавляем атрибут DriversODBC по ходу действия
+    S.DriversODBC = pyodbc.drivers()
+    if S.DriversODBC:
+        for DriverODBC in S.DriversODBC:
+            if not DriverODBC:
+                break
+            myDialog.comboBox_Driver.addItem(str(DriverODBC))
+    myDialog.textEdit_SourceCSVFile.setEnabled(False)
+    myDialog.label_hyperlink_to_WikiPedia.setEnabled(False)
+    myDialog.label_HyperLink_to_AirPort.setEnabled(False)
+    myDialog.label_HyperLink_to_Operator.setEnabled(False)
+    myDialog.pushButton_HyperLinkChange_Wikipedia.setEnabled(False)
+    myDialog.pushButton_HyperLinkChange_AirPort.setEnabled(False)
+    myDialog.pushButton_HyperLinkChange_Operator.setEnabled(False)
     myDialog.lineEdit_AirPortCodeIATA.setEnabled(False)
     myDialog.lineEdit_AirPortCodeICAO.setEnabled(False)
     myDialog.lineEdit_AirPortCodeFAA_LID.setEnabled(False)
     myDialog.lineEdit_AirPortCodeWMO.setEnabled(False)
-    myDialog.pushButton_HyperLinkChange_Wikipedia.setEnabled(False)
-    myDialog.pushButton_HyperLinkChange_AirPort.setEnabled(False)
-    myDialog.pushButton_HyperLinkChange_Operator.setEnabled(False)
-    myDialog.pushButton_HyperLinksChange.setToolTip("Изменение адресов ссылок")
-    myDialog.pushButton_HyperLinksChange.setEnabled(False)
-    myDialog.pushButton_SearchByIATA.setToolTip("Поиск по коду IATA (дубликаты не предусматриваются)")
+    myDialog.pushButton_SearchByIATA.setToolTip("Поиск по коду IATA\n (выводит первую запись из БД, дубликаты не предусматриваются)")
     myDialog.pushButton_SearchByIATA.setEnabled(False)
-    myDialog.pushButton_SearchByICAO.setToolTip("Поиск по коду ICAO (дубликаты не предусматриваются)")
+    myDialog.pushButton_SearchByICAO.setToolTip("Поиск по коду ICAO\n (выводит первую запись из БД, дубликаты не предусматриваются)")
     myDialog.pushButton_SearchByICAO.setEnabled(False)
-    myDialog.pushButton_SearchByFAALID.setToolTip("Поиск по коду FAA LID (дубликаты не предусматриваются)")
+    myDialog.pushButton_SearchByFAALID.setToolTip("Поиск по коду FAA LID\n (выводит первую запись из БД, дубликаты не предусматриваются)")
     myDialog.pushButton_SearchByFAALID.setEnabled(False)
-    myDialog.pushButton_SearchByWMO.setToolTip("Поиск по коду WMO (дубликаты не предусматриваются)")
+    myDialog.pushButton_SearchByWMO.setToolTip("Поиск по коду WMO\n (выводит первую запись из БД, дубликаты не предусматриваются)")
     myDialog.pushButton_SearchByWMO.setEnabled(False)
-    myDialog.pushButton_SearchAndInsertByIATAandICAO.setToolTip("Поиск и вставка по коду IATA\nЕсли код IATA пустой - это вероятно просто аэродром, без инфраструктуры")
+    myDialog.pushButton_SearchAndInsertByIATAandICAO.setToolTip("Поиск и вставка по коду IATA\nЕсли код IATA пустой, то вероятно просто аэродром без инфраструктуры")
     myDialog.pushButton_SearchAndInsertByIATAandICAO.setEnabled(False)
     myDialog.textEdit_AirPortName.setEnabled(False)
     myDialog.textEdit_AirPortCity.setEnabled(False)
@@ -72,10 +86,11 @@ def myApplication():
     myDialog.lineEdit_AirPortLatitude.setEnabled(False)
     myDialog.lineEdit_AirPortLongitude.setEnabled(False)
     myDialog.lineEdit_HeightAboveSeaLevel.setEnabled(False)
-    myDialog.textEdit_SourceCSVFile.setEnabled(False)
     myDialog.textBrowser_HyperLinks.setOpenExternalLinks(True)
     myDialog.textBrowser_HyperLinks.setReadOnly(True)
     myDialog.textBrowser_HyperLinks.setEnabled(False)
+    myDialog.pushButton_HyperLinksChange.setToolTip("Изменение адресов ссылок")
+    myDialog.pushButton_HyperLinksChange.setEnabled(False)
     myDialog.tabWidget.setTabText(0, "Описание")
     myDialog.tabWidget.setTabText(1, "Сооружения")
     myDialog.tabWidget.setTabText(2, "Случаи")
@@ -90,36 +105,24 @@ def myApplication():
     myDialog.textEdit_AirPortFacilities.setEnabled(False)
     myDialog.textEdit_Incidents.setEnabled(False)
     myDialog.verticalLayout_Map.setEnabled(False)
-    myDialog.pushButton_UpdateDB.setToolTip("Запись внесенных изменений в БД \n Перед нажатием правильно заполнить и проверить введенные данные")
-    myDialog.pushButton_UpdateDB.setEnabled(False)
     # Добавляем атрибут ввода
     myDialog.lineEditCodeIATA = QtWidgets.QLineEdit()
     myDialog.lineEditCodeICAO = QtWidgets.QLineEdit()
     myDialog.lineEditCodeFAA_LID = QtWidgets.QLineEdit()
     myDialog.lineEditCodeWMO = QtWidgets.QLineEdit()
-    # Добавляем базы данных в выпадающий список
-    myDialog.comboBox_DB.addItem("AirPortsAndRoutesDBNew62")
-    # Получаем список драйверов баз данных
-    # Добавляем атрибут DriversODBC по ходу действия
-    S.DriversODBC = pyodbc.drivers()
-    if S.DriversODBC:
-        for DriverODBC in S.DriversODBC:
-            if not DriverODBC:
-                break
-            myDialog.comboBox_Driver.addItem(str(DriverODBC))
     # Привязки обработчиков
     myDialog.pushButton_ConnectDB.clicked.connect(lambda: PushButtonConnectDB())
+    myDialog.pushButton_UpdateDB.clicked.connect(lambda: PushButtonUpdateDB())
     myDialog.pushButton_DisconnectDB.clicked.connect(lambda: PushButtonDisconnect())
     myDialog.pushButton_HyperLinkChange_Wikipedia.clicked.connect(lambda: PushButtonChangeHyperLinkWikiPedia())
     myDialog.pushButton_HyperLinkChange_AirPort.clicked.connect(lambda: PushButtonChangeHyperLinkAirPort())
     myDialog.pushButton_HyperLinkChange_Operator.clicked.connect(lambda: PushButtonChangeHyperLinkOperator())
-    myDialog.pushButton_HyperLinksChange.clicked.connect(lambda: PushButtonChangeHyperLinks())
     myDialog.pushButton_SearchByIATA.clicked.connect(lambda: PushButtonSearchByIATA())
     myDialog.pushButton_SearchByICAO.clicked.connect(lambda: PushButtonSearchByICAO())
     myDialog.pushButton_SearchByFAALID.clicked.connect(lambda: PushButtonSearchByFAA_LID())
     myDialog.pushButton_SearchByWMO.clicked.connect(lambda: PushButtonSearchByWMO())
     myDialog.pushButton_SearchAndInsertByIATAandICAO.clicked.connect(lambda: PushButtonInsertByIATAandICAO())
-    myDialog.pushButton_UpdateDB.clicked.connect(lambda: PushButtonUpdateDB())
+    myDialog.pushButton_HyperLinksChange.clicked.connect(lambda: PushButtonChangeHyperLinks())
 
     def PushButtonConnectDB():
         if not S.Connected_RT:
@@ -216,6 +219,41 @@ def myApplication():
         myDialog.pushButton_Begin.setEnabled(False)
         myDialog.pushButton_Update.setEnabled(True)
         A.Position = 1
+
+    def PushButtonUpdateDB():
+        # Кнопка "Записать"
+        # todo вставить диалог выбора и проверки сертификата (ЭЦП) и условный переход с проверкой
+        A.AirPortCodeICAO = myDialog.lineEdit_AirPortCodeICAO.text()
+        A.AirPortName = myDialog.textEdit_AirPortName.toPlainText()
+        A.AirPortCity = myDialog.textEdit_AirPortCity.toPlainText()
+        A.AirPortCounty = myDialog.textEdit_AirPortCounty.toPlainText()
+        A.AirPortCountry = myDialog.textEdit_AirPortCountry.toPlainText()
+        A.AirPortLatitude = myDialog.lineEdit_AirPortLatitude.text()
+        A.AirPortLongitude = myDialog.lineEdit_AirPortLongitude.text()
+        A.HeightAboveSeaLevel = myDialog.lineEdit_HeightAboveSeaLevel.text()
+        A.SourceCSVFile = myDialog.textEdit_SourceCSVFile.toPlainText()
+        A.AirPortDescription = myDialog.textEdit_AirPortDescription.toPlainText()
+        A.AirPortFacilities = myDialog.textEdit_AirPortFacilities.toPlainText()
+        A.AirPortIncidents = myDialog.textEdit_Incidents.toPlainText()
+        # Вносим изменение
+        ResultUpdate = S.UpdateAirPort(A.AirPortCodeIATA,
+                                       A.AirPortCodeICAO,
+                                       A.AirPortName,
+                                       A.AirPortCity,
+                                       A.AirPortCounty,
+                                       A.AirPortCountry,
+                                       A.AirPortLatitude,
+                                       A.AirPortLongitude,
+                                       A.HeightAboveSeaLevel,
+                                       A.SourceCSVFile,
+                                       A.AirPortDescription,
+                                       A.AirPortFacilities,
+                                       A.AirPortIncidents)
+        if not ResultUpdate:
+            message = QtWidgets.QMessageBox()
+            message.setText("Запись не переписалась")
+            message.setIcon(QtWidgets.QMessageBox.Warning)
+            message.exec_()
 
     def PushButtonDisconnect():
         # кнопка 'Отключиться от базы данных' нажата
@@ -481,40 +519,6 @@ def myApplication():
             message.exec_()
             return False
 
-    def PushButtonUpdateDB():
-        # Кнопка "Записать"
-        # todo вставить диалог выбора и проверки сертификата (ЭЦП) и условный переход с проверкой
-        A.AirPortCodeICAO = myDialog.lineEdit_AirPortCodeICAO.text()
-        A.AirPortName = myDialog.textEdit_AirPortName.toPlainText()
-        A.AirPortCity = myDialog.textEdit_AirPortCity.toPlainText()
-        A.AirPortCounty = myDialog.textEdit_AirPortCounty.toPlainText()
-        A.AirPortCountry = myDialog.textEdit_AirPortCountry.toPlainText()
-        A.AirPortLatitude = myDialog.lineEdit_AirPortLatitude.text()
-        A.AirPortLongitude = myDialog.lineEdit_AirPortLongitude.text()
-        A.HeightAboveSeaLevel = myDialog.lineEdit_HeightAboveSeaLevel.text()
-        A.SourceCSVFile = myDialog.textEdit_SourceCSVFile.toPlainText()
-        A.AirPortDescription = myDialog.textEdit_AirPortDescription.toPlainText()
-        A.AirPortFacilities = myDialog.textEdit_AirPortFacilities.toPlainText()
-        A.AirPortIncidents = myDialog.textEdit_Incidents.toPlainText()
-        # Вносим изменение
-        ResultUpdate = S.UpdateAirPort(A.AirPortCodeIATA,
-                                       A.AirPortCodeICAO,
-                                       A.AirPortName,
-                                       A.AirPortCity,
-                                       A.AirPortCounty,
-                                       A.AirPortCountry,
-                                       A.AirPortLatitude,
-                                       A.AirPortLongitude,
-                                       A.HeightAboveSeaLevel,
-                                       A.SourceCSVFile,
-                                       A.AirPortDescription,
-                                       A.AirPortFacilities,
-                                       A.AirPortIncidents)
-        if not ResultUpdate:
-            message = QtWidgets.QMessageBox()
-            message.setText("Запись не переписалась")
-            message.setIcon(QtWidgets.QMessageBox.Warning)
-            message.exec_()
     # Отрисовка первого окна
     myDialog.show()
     # Правильное закрытие окна
