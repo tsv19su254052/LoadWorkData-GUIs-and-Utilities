@@ -245,7 +245,6 @@ def myApplication():
                 myDialog.comboBox_DB.setEnabled(False)
                 myDialog.comboBox_Driver.setEnabled(False)
                 myDialog.pushButton_DisconnectDB.setEnabled(True)
-                myDialog.pushButton_Begin.setEnabled(True)  # кнопка "Начало"
                 # SQL Server
                 myDialog.lineEdit_Server.setText(S.cnxnRT.getinfo(pyodbc.SQL_SERVER_NAME))
                 myDialog.lineEdit_Server.setEnabled(True)
@@ -274,13 +273,23 @@ def myApplication():
             finally:
                 pass
         # переводим в рабочее состояние (окончание)
-        myDialog.lineEdit_AirPortCodeIATA.setEnabled(True)  # применям Решение 4 Проблемы 1
+        myDialog.textEdit_SourceCSVFile.setEnabled(True)
+        myDialog.label_hyperlink_to_WikiPedia.setEnabled(True)
+        myDialog.label_HyperLink_to_AirPort.setEnabled(True)
+        myDialog.label_HyperLink_to_Operator.setEnabled(True)
+        myDialog.pushButton_HyperLinkChange_Wikipedia.setEnabled(True)
+        myDialog.pushButton_HyperLinkChange_AirPort.setEnabled(True)
+        myDialog.pushButton_HyperLinkChange_Operator.setEnabled(True)
+        myDialog.lineEdit_AirPortCodeIATA.setEnabled(True)
         myDialog.lineEdit_AirPortCodeICAO.setEnabled(True)
-        myDialog.lineEdit_AirPortCodeFAA_LID.setEnabled(True)  # код FAA пока не используется - поле ввода неактивное
-        myDialog.pushButton_HyperLinksChange.setEnabled(True)
+        myDialog.lineEdit_AirPortCodeFAA_LID.setEnabled(True)
+        myDialog.lineEdit_AirPortCodeWMO.setEnabled(True)
         myDialog.pushButton_SearchByIATA.setEnabled(True)
         myDialog.pushButton_SearchByICAO.setEnabled(True)
-        myDialog.pushButton_Insert.setEnabled(True)
+        myDialog.pushButton_SearchByFAALID.setEnabled(True)
+        myDialog.pushButton_SearchByWMO.setEnabled(True)
+        myDialog.pushButton_HyperLinksChange.setEnabled(True)
+        myDialog.pushButton_SearchAndInsertByIATAandICAO.setEnabled(True)
         myDialog.textEdit_AirPortName.setEnabled(True)
         myDialog.textEdit_AirPortCity.setEnabled(True)
         myDialog.textEdit_AirPortCounty.setEnabled(True)
@@ -288,14 +297,13 @@ def myApplication():
         myDialog.lineEdit_AirPortLatitude.setEnabled(True)
         myDialog.lineEdit_AirPortLongitude.setEnabled(True)
         myDialog.lineEdit_HeightAboveSeaLevel.setEnabled(True)
-        myDialog.textEdit_SourceCSVFile.setEnabled(True)
         myDialog.textBrowser_HyperLinks.setEnabled(True)
+        myDialog.pushButton_HyperLinksChange.setEnabled(True)
         myDialog.textEdit_AirPortDescription.setEnabled(True)
         myDialog.textEdit_AirPortFacilities.setEnabled(True)
         myDialog.textEdit_Incidents.setEnabled(True)
-        myDialog.verticalLayout.setEnabled(True)
-        myDialog.pushButton_Begin.setEnabled(False)
-        myDialog.pushButton_Update.setEnabled(True)
+        myDialog.verticalLayout_Map.setEnabled(True)
+        myDialog.pushButton_UpdateDB.setEnabled(True)  # возможно пока не активировать
         A.Position = 1
 
     def PushButtonUpdateDB():
