@@ -4,10 +4,10 @@
 # QtSQL медленнее, чем pyodbc
 import pyodbc
 import sys
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtWebEngineWidgets  # pip install PyQtWebEngine -> поставил
 import io
 import folium
-from PyQt5.QtWebEngineWidgets import QWebEngineView  # pip install PyQtWebEngine -> поставил
+#from PyQt5.QtWebEngineWidgets import QWebEngineView  # pip install PyQtWebEngine -> поставил
 
 # Импорт пользовательской библиотеки (файла *.py в этой же папке)
 import Classes
@@ -20,10 +20,7 @@ S = Classes.Servers()
 #S.ServerName = "data-server-1.movistar.vrn.skylink.local"  # указал ресурсную запись из DNS
 S.ServerName = "localhost\mssqlserver15"  # указал инстанс
 #S.ServerName = "localhost\sqldeveloper"  # указал инстанс
-S.Connected_AL = False
-S.Connected_AC = False
 S.Connected_RT = False
-S.Connected_FN = False
 
 
 # Основная функция
@@ -40,7 +37,6 @@ def myApplication():
     myDialog.setWindowTitle('АэроПорты')
     # Дополняем функционал экземпляра главного диалога
     # Переводим в исходное состояние
-    myDialog.comboBox_Driver.setToolTip("предпочтительно - драйвер ODBC для SDK SQL Server-а \n(работает во всех режимах, полностью функционален, расходует больше ресурсов сервера) \nдля просмотра и внесения исправлений компл. драйвер SQL Server-а \n (не отрабатывает вложенные обработки исключений)")
     myDialog.pushButton_ConnectDB.setToolTip("После подключения нажмите кнопку Поиск")
     myDialog.pushButton_DisconnectDB.setToolTip("Перед закрытием диалога отключиться от базы данных")
     myDialog.pushButton_DisconnectDB.setEnabled(False)
@@ -53,14 +49,22 @@ def myApplication():
     myDialog.lineEdit_AirPortCodeIATA.setEnabled(False)
     myDialog.lineEdit_AirPortCodeICAO.setEnabled(False)
     myDialog.lineEdit_AirPortCodeFAA_LID.setEnabled(False)
+    myDialog.lineEdit_AirPortCodeWMO.setEnabled(False)
+    myDialog.pushButton_HyperLinkChange_Wikipedia.setEnabled(False)
+    myDialog.pushButton_HyperLinkChange_AirPort.setEnabled(False)
+    myDialog.pushButton_HyperLinkChange_Operator.setEnabled(False)
     myDialog.pushButton_HyperLinksChange.setToolTip("Изменение адресов ссылок")
     myDialog.pushButton_HyperLinksChange.setEnabled(False)
     myDialog.pushButton_SearchByIATA.setToolTip("Поиск по коду IATA (дубликаты не предусматриваются)")
     myDialog.pushButton_SearchByIATA.setEnabled(False)
     myDialog.pushButton_SearchByICAO.setToolTip("Поиск по коду ICAO (дубликаты не предусматриваются)")
     myDialog.pushButton_SearchByICAO.setEnabled(False)
-    myDialog.pushButton_Insert.setToolTip("Поиск и вставка по коду IATA\nЕсли код IATA пустой - это вероятно просто аэродром, без инфраструктуры")
-    myDialog.pushButton_Insert.setEnabled(False)
+    myDialog.pushButton_SearchByFAALID.setToolTip("Поиск по коду FAA LID (дубликаты не предусматриваются)")
+    myDialog.pushButton_SearchByFAALID.setEnabled(False)
+    myDialog.pushButton_SearchByWMO.setToolTip("Поиск по коду WMO (дубликаты не предусматриваются)")
+    myDialog.pushButton_SearchByWMO.setEnabled(False)
+    myDialog.pushButton_SearchAndInsertByIATAandICAO.setToolTip("Поиск и вставка по коду IATA\nЕсли код IATA пустой - это вероятно просто аэродром, без инфраструктуры")
+    myDialog.pushButton_SearchAndInsertByIATAandICAO.setEnabled(False)
     myDialog.textEdit_AirPortName.setEnabled(False)
     myDialog.textEdit_AirPortCity.setEnabled(False)
     myDialog.textEdit_AirPortCounty.setEnabled(False)
@@ -85,15 +89,14 @@ def myApplication():
     myDialog.textEdit_AirPortDescription.setEnabled(False)
     myDialog.textEdit_AirPortFacilities.setEnabled(False)
     myDialog.textEdit_Incidents.setEnabled(False)
-    myDialog.verticalLayout.setEnabled(False)
-    myDialog.pushButton_Begin.setToolTip("После нажатия использовать Поиск")
-    myDialog.pushButton_Begin.setEnabled(False)
-    myDialog.pushButton_Update.setToolTip("Запись внесенных изменений в БД \n Перед нажатием правильно заполнить и проверить введенные данные")
-    myDialog.pushButton_Update.setEnabled(False)
+    myDialog.verticalLayout_Map.setEnabled(False)
+    myDialog.pushButton_UpdateDB.setToolTip("Запись внесенных изменений в БД \n Перед нажатием правильно заполнить и проверить введенные данные")
+    myDialog.pushButton_UpdateDB.setEnabled(False)
     # Добавляем атрибут ввода
     myDialog.lineEditCodeIATA = QtWidgets.QLineEdit()
     myDialog.lineEditCodeICAO = QtWidgets.QLineEdit()
-    #myDialog.lineEditReserveDB = QtWidgets.QLineEdit()
+    myDialog.lineEditCodeFAA_LID = QtWidgets.QLineEdit()
+    myDialog.lineEditCodeWMO = QtWidgets.QLineEdit()
     # Добавляем базы данных в выпадающий список
     myDialog.comboBox_DB.addItem("AirPortsAndRoutesDBNew62")
     # Получаем список драйверов баз данных
@@ -107,11 +110,16 @@ def myApplication():
     # Привязки обработчиков
     myDialog.pushButton_ConnectDB.clicked.connect(lambda: PushButtonConnectDB())
     myDialog.pushButton_DisconnectDB.clicked.connect(lambda: PushButtonDisconnect())
+    myDialog.pushButton_HyperLinkChange_Wikipedia.clicked.connect(lambda: PushButtonChangeHyperLinkWikiPedia())
+    myDialog.pushButton_HyperLinkChange_AirPort.clicked.connect(lambda: PushButtonChangeHyperLinkAirPort())
+    myDialog.pushButton_HyperLinkChange_Operator.clicked.connect(lambda: PushButtonChangeHyperLinkOperator())
     myDialog.pushButton_HyperLinksChange.clicked.connect(lambda: PushButtonChangeHyperLinks())
     myDialog.pushButton_SearchByIATA.clicked.connect(lambda: PushButtonSearchByIATA())
     myDialog.pushButton_SearchByICAO.clicked.connect(lambda: PushButtonSearchByICAO())
-    myDialog.pushButton_Insert.clicked.connect(lambda: PushButtonInsert())
-    myDialog.pushButton_Update.clicked.connect(lambda: PushButtonUpdate())
+    myDialog.pushButton_SearchByFAALID.clicked.connect(lambda: PushButtonSearchByFAA_LID())
+    myDialog.pushButton_SearchByWMO.clicked.connect(lambda: PushButtonSearchByWMO())
+    myDialog.pushButton_SearchAndInsertByIATAandICAO.clicked.connect(lambda: PushButtonInsertByIATAandICAO())
+    myDialog.pushButton_UpdateDB.clicked.connect(lambda: PushButtonUpdateDB())
 
     def PushButtonConnectDB():
         if not S.Connected_RT:
@@ -126,20 +134,11 @@ def myApplication():
             try:
                 # Добавляем атрибут cnxn
                 # через драйвер СУБД + клиентский API-курсор
-                S.cnxnAL = pyodbc.connect(driver=S.DriverODBC, server=S.ServerName, database=S.DataBase)
-                S.cnxnAC = pyodbc.connect(driver=S.DriverODBC, server=S.ServerName, database=S.DataBase)
                 S.cnxnRT = pyodbc.connect(driver=S.DriverODBC, server=S.ServerName, database=S.DataBase)
-                S.cnxnFN = pyodbc.connect(driver=S.DriverODBC, server=S.ServerName, database=S.DataBase)
                 print("  База данных ", S.DataBase, " подключена")
-                S.Connected_AL = True
-                S.Connected_AC = True
                 S.Connected_RT = True
-                S.Connected_FN = True
                 # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде, в СУБД по умолчанию FALSE
-                S.cnxnAL.autocommit = False
-                S.cnxnAC.autocommit = False
                 S.cnxnRT.autocommit = False
-                S.cnxnFN.autocommit = False
                 print("autocommit is disabled")
                 # Ставим набор курсоров
                 # КУРСОР нужен для перехода функционального языка формул на процедурный или для вставки процедурных кусков в функциональный скрипт.
@@ -159,10 +158,7 @@ def myApplication():
                 #    - обновляемый (чувствительный) SQL_ATTR_CURSOR_SENSITIVITY
                 # Клиентские однопроходные , статические API-курсоры ODBC.
                 # Добавляем атрибуты seek...
-                S.seekAL = S.cnxnAL.cursor()
-                S.seekAC = S.cnxnAC.cursor()
                 S.seekRT = S.cnxnRT.cursor()
-                S.seekFN = S.cnxnFN.cursor()
                 print("seeks is on")
                 # Переводим в рабочее состояние (продолжение)
                 myDialog.comboBox_DB.setEnabled(False)
@@ -309,7 +305,7 @@ def myApplication():
         # save map data to data object
         data = io.BytesIO()
         m.save(data, close_file=False)
-        webView = QWebEngineView()
+        webView = QtWebEngineWidgets.QWebEngineView()
         webView.setHtml(data.getvalue().decode())
         if myDialog.verticalLayout is not None:
             while myDialog.verticalLayout.count():
@@ -319,6 +315,15 @@ def myApplication():
                 elif child.layout() is not None:
                     myDialog.verticalLayout.clearLayout(child.layout())
         myDialog.verticalLayout.addWidget(webView)
+
+    def PushButtonChangeHyperLinkWikiPedia():
+        pass
+
+    def PushButtonChangeHyperLinkAirPort():
+        pass
+
+    def PushButtonChangeHyperLinkOperator():
+        pass
 
     def PushButtonChangeHyperLinks():
         pass
@@ -353,7 +358,7 @@ def myApplication():
                 message.setIcon(QtWidgets.QMessageBox.Information)
                 message.exec_()
                 # Вставка новой записи
-                PushButtonInsert()
+                PushButtonInsertByIATAandICAO()
             else:
                 pass
             SetFields()
@@ -389,7 +394,13 @@ def myApplication():
                 pass
             SetFields()
 
-    def PushButtonInsert():
+    def PushButtonSearchByFAA_LID():
+        pass
+
+    def PushButtonSearchByWMO():
+        pass
+
+    def PushButtonInsertByIATAandICAO():
         # кнопка 'Вставить новый' нажата
         LineCodeIATA, ok = QtWidgets.QInputDialog.getText(myDialog, "Код IATA", "Введите новый код IATA")
         if ok:
@@ -470,7 +481,7 @@ def myApplication():
             message.exec_()
             return False
 
-    def PushButtonUpdate():
+    def PushButtonUpdateDB():
         # Кнопка "Записать"
         # todo вставить диалог выбора и проверки сертификата (ЭЦП) и условный переход с проверкой
         A.AirPortCodeICAO = myDialog.lineEdit_AirPortCodeICAO.text()
