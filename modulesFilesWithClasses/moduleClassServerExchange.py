@@ -1,8 +1,9 @@
-#  Interpreter 3.7 -> 3.10 -> 3.12
+#  Interpreter 3.7 -> 3.10 -> 3.12 -> 3.13 -> 3.14
 
 
-import pyodbc  # v. 5.0.1 - fixme вызов хранимых процедур EXECUTE ... не работает -> обновил до 5.1.0, работает
-import pymssql  # v. 2.3.0 работает тяжелее - fixme не подключается
+import pyodbc  # v. 5.3.0 - fixme вызов хранимых процедур EXECUTE ... не работает -> обновил до 5.1.0, работает
+import pymssql # v. 2.3.0 работает тяжелее - fixme не подключается, поставить mssql-python и попробовать ее
+import mssql_python  # v. 1.1.0
 # todo Вероятно придется много переделать, чтобы не вызывать по 2 раза. Не работает с XML-ными полями см. https://docs.sqlalchemy.org/en/20/dialects/mssql.html#sqlalchemy.dialects.mssql.XML
 from sqlalchemy import create_engine
 
@@ -12,6 +13,7 @@ class ServerExchange:
     def __init__(self, c, s):
         self.cnxn = c  # подключение
         self.seek = s  # курсор
+        self.Result = False
 
     """
     Библиотеки Python для ввода-вывода в файл:
@@ -30,13 +32,13 @@ class ServerExchange:
     Обмен данными между программами:
      - двоичный файл типа *.dat,
      - текстовый файл типа *.txt,
-     - файл с разделителями и переводом строки типа *.csv,
-     - файл с тэгами и иерархией типа *.xml (xml.dom, xml.sax) или *.html (XML-RPC, WDDX, WSDL),
+     - файл с разделителями и с переводами строк типа *.csv,
+     - файл с тэгами и с иерархией типа *.xml (xml.dom, xml.sax) или *.html (XML-RPC, WDDX, WSDL),
         XQuery для информационно-ориентированного XML
         XSLT для документно-ориентированного XML (может переводить XML в формат представления HTML или PDF)
         Схемы:
          - схема XDR с заметками (устаревшая до SQLXML 4.0)
-         - схема XSD (полнее, чем XDR) с заметками,  файл типа *.xsd
+         - схема XSD (полнее, чем XDR) с заметками, файл типа *.xsd
          - типы данных и операторы XPath & XQuery,
          - типы данных XDR,
          - типы данных XSD
@@ -47,7 +49,7 @@ class ServerExchange:
      - научный формат HDF5,
      - БД с помощью DB-API (функционал - connect, cursor, execute, fetch) нет своего функционала для прямой работы с таблицами SQL Server-а
      (для выборки вызываем скрипт на SQL или хранимую процедуру с параметрами на входе),
-     - файл формата dbm (словарь),
+     - файл формата *.dbm (словарь),
      - python-memcached,
      - сервер структурных данных Redis,
 
@@ -100,8 +102,7 @@ class ServerExchange:
      тем самым завершая транзакцию (которая автоматически запускалась, когда этот оператор начал выполняться) и снимая все блокировки обновленных строк.
     """
 
-    def connectDB_odbc(self, driver, servername, database):
-        self.Result = False
+    def connect_DB_odbc(self, driver, servername, database):
         try:
             # через драйвер СУБД + клиентский API-курсор
             self.cnxn = pyodbc.connect(driver=driver, server=servername, database=database)
@@ -134,13 +135,12 @@ class ServerExchange:
             self.Result = False
         return self.Result
 
-    def connectDB_mssql(self, servername, database):
-        self.Result = False
+    def connect_DB_mssql(self, servername, database):
         try:
             # через драйвер СУБД + клиентский API-курсор
             # Разрешаем транзакции и вызываем функцию commit() при необходимости в явном виде
             #self.cnxn = pymssql.connect(server=servername, database=database, host=host, autocommit=False)
-            self.cnxn = pymssql.connect(server=servername, database=database, autocommit=False)
+            self.cnxn = mssql_python.connect(server=servername, database=database, autocommit=False)
             # Делаем свой экземпляр и ставим курсор
             # КУРСОР нужен для перехода функционального языка формул на процедурный или для вставки процедурных кусков в функциональный скрипт.
             #
@@ -168,8 +168,7 @@ class ServerExchange:
             self.Result = False
         return self.Result
 
-    def connectDSN_odbc(self, dsn):
-        self.Result = False
+    def connect_DSN_odbc(self, dsn):
         try:
             # через DSN + клиентский API-курсор (все настроено и протестировано в DSN)
             self.cnxn = pyodbc.connect("DSN=" + dsn)
@@ -229,9 +228,9 @@ class ServerExchange:
         return SQLData
 
     def getSQLData_mssql(self):
-        SQLData = (self.cnxn.getinfo(pymssql.STRING),
-                   self.cnxn.getinfo(pymssql.paramstyle),
-                   self.cnxn.getinfo(pymssql.VERSION),
-                   self.cnxn.getinfo(pymssql.get_dbversion()),
-                   self.cnxn.getinfo(pymssql.apilevel))
+        SQLData = (self.cnxn.getinfo(mssql_python.STRING),
+                   self.cnxn.getinfo(mssql_python.paramstyle),
+                   self.cnxn.getinfo(mssql_python.VERSION),
+                   self.cnxn.getinfo(mssql_python.get_dbversion()),
+                   self.cnxn.getinfo(mssql_python.apilevel))
         return SQLData

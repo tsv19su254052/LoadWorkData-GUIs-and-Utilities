@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!-- 	todo Конфигурация с URI -->
 
-<!-- 	Префиксы пространства имен (краткие псевдонимы вместо их URI) -->
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xmlns:ns="https://www.w3schools.com"
@@ -32,36 +31,41 @@
 			xmlns:rng="http://relaxng.org/ns/structure/1.0"
 			xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
 
-			targetNamespace=""
+			xsi:targetNamespace="myNS"
 			xsi:schemalocation="http://api.nsgreg.nga.mil/schema/cphd/1.0.1"
 			xsi:noNamespaceSchemaLocation="">
-	<!-- t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns - префиксы пространства имен (краткие псевдонимы вместо их URI) -->
+<!--	Префиксы пространства имен (краткие псевдонимы вместо их URI)
+		t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns - префиксы пространства имен (краткие псевдонимы вместо их URI)
+		targetNameSpace -
+		schemaLocation -
+		noNameSpaceSchemaLocation -
+		-->
 
-	<p:annotation>
-		<p:documentation p="http://www.w3.org/1999/xhtml">
+	<xsd:annotation>
+		<xsd:documentation>
 			==== Импорт другого файла ====
-			<p:import href="epubcheck-command-line.xpl" />
+			<xsd:import href="epubcheck-command-line.xpl" />
 			==== Импорт внешних файлов ====
-			<p:import href="http://xmlcalabash.com/extension/steps/library-1.0.xpl" />
-			<p:import href="http://transpect.io/calabash-extensions/epubcheck-extension/epubcheck-declaration.xpl" />
-			<p:import href="http://transpect.io/xproc-util/file-uri/xpl/file-uri.xpl" />
-			<p:import href="http://transpect.io/xproc-util/store-debug/xpl/store-debug.xpl" />
-			<p:import href="http://transpect.io/xproc-util/simple-progress-msg/xpl/simple-progress-msg.xpl" />
+			<xsd:import href="http://xmlcalabash.com/extension/steps/library-1.0.xpl" />
+			<xsd:import href="http://transpect.io/calabash-extensions/epubcheck-extension/epubcheck-declaration.xpl" />
+			<xsd:import href="http://transpect.io/xproc-util/file-uri/xpl/file-uri.xpl" />
+			<xsd:import href="http://transpect.io/xproc-util/store-debug/xpl/store-debug.xpl" />
+			<xsd:import href="http://transpect.io/xproc-util/simple-progress-msg/xpl/simple-progress-msg.xpl" />
 			==== Внешний документ ====
-			<p:document href="http://this.transpect.io/xmlcatalog/catalog.xml" />
-		</p:documentation>
-	</p:annotation>
+			<xsd:document href="http://this.transpect.io/xmlcatalog/catalog.xml" />
+		</xsd:documentation>
+	</xsd:annotation>
 
 	<tr:simple-progress-msg file="epubcheck-start.txt" name="msg-epubcheck-start">
-		<p:input port="msgs">
-			<p:inline>
-				<c:messages>
-					<c:message xml:lang="en"> Starting EPUB check </c:message>
-					<c:message xml:lang="de"> Beginne EPUB-Prüfung </c:message>
-				</c:messages>
-			</p:inline>
-		</p:input>
-		<p:with-option name="status-dir-uri" select="$status-dir-uri" />
+		<xsd:input port="msgs">
+			<xsd:inline>
+				<xsd:messages>
+					<xsd:message xml:lang="en"> Starting EPUB check </xsd:message>
+					<xsd:message xml:lang="de"> Beginne EPUB-Prüfung </xsd:message>
+				</xsd:messages>
+			</xsd:inline>
+		</xsd:input>
+		<xsd:with-option name="status-dir-uri" select="$status-dir-uri" />
 	</tr:simple-progress-msg>
 
 	<!-- Основная часть (несколько элементов) -->

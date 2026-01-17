@@ -16,6 +16,27 @@
       <step FlightDate="2002-07-11" BeginDate="2002-07-01">1</step>
       <step FlightDate="2002-07-20" BeginDate="2002-07-01">1</step>
       <step FlightDate="2002-07-27" BeginDate="2002-07-01">1</step>
+      <step FlightDate="2006-04-05" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2005-12-14" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2005-12-17" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2006-04-12" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-02-06" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2006-03-16" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2006-03-06" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2005-12-22" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2006-03-28" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2006-03-23" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2006-01-29" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-01-15" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-06-07" BeginDate="2006-06-01">1</step>
+      <step FlightDate="2006-06-05" BeginDate="2006-06-01">1</step>
+      <step FlightDate="2006-08-08" BeginDate="2006-08-01">1</step>
+      <step FlightDate="2006-09-11" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-10-19" BeginDate="2006-10-01">1</step>
+      <step FlightDate="2006-12-19" BeginDate="2006-12-01">1</step>
+      <step FlightDate="2006-09-04" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-08-12" BeginDate="2006-08-01">1</step>
+      <step FlightDate="2006-10-13" BeginDate="2006-10-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO792">
@@ -74,6 +95,44 @@
   <Flight FlightNumberString="CO1941">
     <Route RouteFK="2683">
       <step FlightDate="2002-03-16" BeginDate="2002-03-01">1</step>
+      <step FlightDate="2003-09-20" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-05-26" BeginDate="2003-05-01">1</step>
+      <step FlightDate="2003-08-16" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2004-09-23" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2003-11-04" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-13" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2004-07-24" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-05-25" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-04-10" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-08-08" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-06-15" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-03-28" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-08-21" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-14" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-17" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-04-29" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-02-18" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-01-30" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-07-02" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-01-13" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-27" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-04-01" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-05-30" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-05-29" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-05-27" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-06-23" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-03-21" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-06" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-12" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-24" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-07-16" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-05-23" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2003-12-19" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2004-10-14" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-10-11" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-12-29" BeginDate="2004-12-01">1</step>
+      <step FlightDate="2004-10-04" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-10-25" BeginDate="2004-10-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO1942">
@@ -94,6 +153,18 @@
       <step FlightDate="2003-01-18" BeginDate="2003-01-01">1</step>
       <step FlightDate="2003-01-24" BeginDate="2003-01-01">1</step>
       <step FlightDate="2003-01-29" BeginDate="2003-01-01">1</step>
+      <step FlightDate="2003-03-12" BeginDate="2003-03-01">1</step>
+      <step FlightDate="2003-03-20" BeginDate="2003-03-01">1</step>
+      <step FlightDate="2003-03-31" BeginDate="2003-03-01">1</step>
+      <step FlightDate="2003-04-07" BeginDate="2003-04-01">1</step>
+      <step FlightDate="2003-04-14" BeginDate="2003-04-01">1</step>
+      <step FlightDate="2003-04-18" BeginDate="2003-04-01">1</step>
+      <step FlightDate="2003-04-25" BeginDate="2003-04-01">1</step>
+      <step FlightDate="2003-04-29" BeginDate="2003-04-01">1</step>
+      <step FlightDate="2003-02-14" BeginDate="2003-02-01">1</step>
+      <step FlightDate="2003-02-21" BeginDate="2003-02-01">1</step>
+      <step FlightDate="2004-02-07" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-02-28" BeginDate="2004-02-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO1654">
@@ -117,6 +188,30 @@
       <step FlightDate="2002-07-09" BeginDate="2002-07-01">1</step>
       <step FlightDate="2002-07-18" BeginDate="2002-07-01">1</step>
       <step FlightDate="2002-07-24" BeginDate="2002-07-01">1</step>
+      <step FlightDate="2003-02-16" BeginDate="2003-02-01">1</step>
+      <step FlightDate="2003-02-23" BeginDate="2003-02-01">1</step>
+      <step FlightDate="2003-03-14" BeginDate="2003-03-01">1</step>
+      <step FlightDate="2003-03-22" BeginDate="2003-03-01">1</step>
+      <step FlightDate="2003-06-03" BeginDate="2003-06-01">1</step>
+      <step FlightDate="2003-06-09" BeginDate="2003-06-01">1</step>
+      <step FlightDate="2003-05-01" BeginDate="2003-05-01">1</step>
+      <step FlightDate="2003-05-11" BeginDate="2003-05-01">1</step>
+      <step FlightDate="2003-05-16" BeginDate="2003-05-01">1</step>
+      <step FlightDate="2003-04-01" BeginDate="2003-04-01">1</step>
+      <step FlightDate="2003-04-09" BeginDate="2003-04-01">1</step>
+      <step FlightDate="2003-04-16" BeginDate="2003-04-01">1</step>
+      <step FlightDate="2003-04-27" BeginDate="2003-04-01">1</step>
+      <step FlightDate="2004-09-06" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-07-19" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-09-10" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2005-05-14" BeginDate="2005-05-01">1</step>
+      <step FlightDate="2005-08-01" BeginDate="2005-08-01">1</step>
+      <step FlightDate="2005-01-28" BeginDate="2005-01-01">1</step>
+      <step FlightDate="2005-10-22" BeginDate="2005-10-01">1</step>
+      <step FlightDate="2006-09-02" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-09-25" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-10-28" BeginDate="2006-10-01">1</step>
+      <step FlightDate="2006-11-11" BeginDate="2006-11-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO1055">
@@ -128,6 +223,8 @@
   <Flight FlightNumberString="CO1801">
     <Route RouteFK="825">
       <step FlightDate="2002-12-30" BeginDate="2002-12-01">1</step>
+      <step FlightDate="2003-03-16" BeginDate="2003-03-01">1</step>
+      <step FlightDate="2003-10-22" BeginDate="2003-10-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO1692">
@@ -138,6 +235,8 @@
   <Flight FlightNumberString="CO1500">
     <Route RouteFK="658">
       <step FlightDate="2002-12-30" BeginDate="2002-12-01">1</step>
+      <step FlightDate="2003-10-22" BeginDate="2003-10-01">1</step>
+      <step FlightDate="2003-03-16" BeginDate="2003-03-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO62">
@@ -145,6 +244,22 @@
       <step FlightDate="2002-12-17" BeginDate="2002-12-01">1</step>
       <step FlightDate="2003-01-06" BeginDate="2003-01-01">1</step>
       <step FlightDate="2003-01-20" BeginDate="2003-01-01">1</step>
+      <step FlightDate="2003-09-25" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-10-08" BeginDate="2003-10-01">1</step>
+      <step FlightDate="2003-09-18" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-08-14" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2003-06-20" BeginDate="2003-06-01">1</step>
+      <step FlightDate="2003-06-22" BeginDate="2003-06-01">1</step>
+      <step FlightDate="2003-06-23" BeginDate="2003-06-01">1</step>
+      <step FlightDate="2003-07-10" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-10-28" BeginDate="2003-10-01">1</step>
+      <step FlightDate="2003-10-20" BeginDate="2003-10-01">1</step>
+      <step FlightDate="2003-07-20" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-08-22" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2003-08-12" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2003-08-30" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2003-11-01" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2005-06-01" BeginDate="2005-06-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO710">
@@ -179,6 +294,8 @@
       <step FlightDate="2002-10-22" BeginDate="2002-10-01">1</step>
       <step FlightDate="2002-08-19" BeginDate="2002-08-01">1</step>
       <step FlightDate="2003-01-02" BeginDate="2003-01-01">1</step>
+      <step FlightDate="2003-04-04" BeginDate="2003-04-01">1</step>
+      <step FlightDate="2003-02-02" BeginDate="2003-02-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO1800">
@@ -216,18 +333,67 @@
       <step FlightDate="2002-10-10" BeginDate="2002-10-01">1</step>
       <step FlightDate="2002-10-22" BeginDate="2002-10-01">1</step>
       <step FlightDate="2003-01-02" BeginDate="2003-01-01">1</step>
+      <step FlightDate="2003-04-04" BeginDate="2003-04-01">1</step>
+      <step FlightDate="2003-02-02" BeginDate="2003-02-01">1</step>
+      <step FlightDate="2004-05-22" BeginDate="2004-05-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO1693">
     <Route RouteFK="497">
       <step FlightDate="2002-06-28" BeginDate="2002-06-01">1</step>
       <step FlightDate="2003-01-09" BeginDate="2003-01-01">1</step>
+      <step FlightDate="2005-06-13" BeginDate="2005-06-01">1</step>
+      <step FlightDate="2006-01-05" BeginDate="2006-01-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO40">
     <Route RouteFK="385">
       <step FlightDate="2002-08-06" BeginDate="2002-08-01">1</step>
       <step FlightDate="2002-08-31" BeginDate="2002-08-01">1</step>
+      <step FlightDate="2003-12-02" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2005-05-08" BeginDate="2005-05-01">1</step>
+      <step FlightDate="2005-06-11" BeginDate="2005-06-01">1</step>
+      <step FlightDate="2005-04-18" BeginDate="2005-04-01">1</step>
+      <step FlightDate="2005-06-18" BeginDate="2005-06-01">1</step>
+      <step FlightDate="2005-11-18" BeginDate="2005-11-01">1</step>
+      <step FlightDate="2006-05-08" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2005-05-29" BeginDate="2005-05-01">1</step>
+      <step FlightDate="2006-04-11" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-04-19" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-02-16" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2006-02-01" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2006-03-21" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2006-03-19" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2006-03-11" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2006-04-15" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2005-12-17" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2006-05-19" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2006-05-04" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2005-11-08" BeginDate="2005-11-01">1</step>
+      <step FlightDate="2005-07-02" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-07-21" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-07-31" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-09-17" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2005-10-21" BeginDate="2005-10-01">1</step>
+      <step FlightDate="2005-09-14" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2005-09-06" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2005-09-08" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2006-01-12" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-01-19" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2005-10-05" BeginDate="2005-10-01">1</step>
+      <step FlightDate="2005-08-31" BeginDate="2005-08-01">1</step>
+      <step FlightDate="2005-08-28" BeginDate="2005-08-01">1</step>
+      <step FlightDate="2006-06-28" BeginDate="2006-06-01">1</step>
+      <step FlightDate="2006-09-07" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-09-29" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-12-18" BeginDate="2006-12-01">1</step>
+      <step FlightDate="2006-12-29" BeginDate="2006-12-01">1</step>
+      <step FlightDate="2006-12-25" BeginDate="2006-12-01">1</step>
+      <step FlightDate="2006-08-07" BeginDate="2006-08-01">1</step>
+      <step FlightDate="2006-08-21" BeginDate="2006-08-01">1</step>
+      <step FlightDate="2006-10-12" BeginDate="2006-10-01">1</step>
+      <step FlightDate="2006-09-15" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-09-09" BeginDate="2006-09-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO119">
@@ -259,6 +425,7 @@
   <Flight FlightNumberString="CO393">
     <Route RouteFK="497">
       <step FlightDate="2002-11-24" BeginDate="2002-11-01">1</step>
+      <step FlightDate="2005-04-21" BeginDate="2005-04-01">1</step>
     </Route>
   </Flight>
   <Flight FlightNumberString="CO693">
@@ -284,6 +451,703 @@
   <Flight FlightNumberString="CO1557">
     <Route RouteFK="4217">
       <step FlightDate="2002-09-20" BeginDate="2002-09-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO136">
+    <Route RouteFK="1792">
+      <step FlightDate="2003-09-09" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-08-11" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2003-08-29" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2003-07-08" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-07-06" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-07-03" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-10-07" BeginDate="2003-10-01">1</step>
+      <step FlightDate="2003-07-16" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-09-23" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-06-17" BeginDate="2003-06-01">1</step>
+      <step FlightDate="2003-07-18" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-09-15" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-08-19" BeginDate="2003-08-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO63">
+    <Route RouteFK="799">
+      <step FlightDate="2003-09-04" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-10-30" BeginDate="2003-10-01">1</step>
+      <step FlightDate="2003-09-21" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-07-31" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-07-15" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-07-02" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-09-14" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-08-08" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2003-05-06" BeginDate="2003-05-01">1</step>
+      <step FlightDate="2003-05-13" BeginDate="2003-05-01">1</step>
+      <step FlightDate="2003-05-23" BeginDate="2003-05-01">1</step>
+      <step FlightDate="2003-10-26" BeginDate="2003-10-01">1</step>
+      <step FlightDate="2003-10-19" BeginDate="2003-10-01">1</step>
+      <step FlightDate="2003-10-04" BeginDate="2003-10-01">1</step>
+      <step FlightDate="2003-06-01" BeginDate="2003-06-01">1</step>
+      <step FlightDate="2003-06-16" BeginDate="2003-06-01">1</step>
+      <step FlightDate="2003-08-27" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2003-08-18" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2004-02-24" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-02-13" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2003-12-01" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-04" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2004-01-22" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-09" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2003-11-18" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-28" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2006-04-14" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2005-09-13" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2005-08-27" BeginDate="2005-08-01">1</step>
+      <step FlightDate="2005-10-20" BeginDate="2005-10-01">1</step>
+      <step FlightDate="2005-12-09" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2005-12-11" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2005-05-28" BeginDate="2005-05-01">1</step>
+      <step FlightDate="2005-05-07" BeginDate="2005-05-01">1</step>
+      <step FlightDate="2005-05-31" BeginDate="2005-05-01">1</step>
+      <step FlightDate="2005-11-17" BeginDate="2005-11-01">1</step>
+      <step FlightDate="2006-05-18" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2006-03-20" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2006-03-18" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2005-12-16" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2006-04-07" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-04-10" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-04-18" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-05-07" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2006-03-10" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2005-06-26" BeginDate="2005-06-01">1</step>
+      <step FlightDate="2005-06-17" BeginDate="2005-06-01">1</step>
+      <step FlightDate="2006-05-03" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2005-11-07" BeginDate="2005-11-01">1</step>
+      <step FlightDate="2005-07-01" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-07-05" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-07-20" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-07-30" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-10-04" BeginDate="2005-10-01">1</step>
+      <step FlightDate="2005-09-05" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2005-06-10" BeginDate="2005-06-01">1</step>
+      <step FlightDate="2006-01-03" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-01-31" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-01-18" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-01-11" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-02-15" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2005-08-30" BeginDate="2005-08-01">1</step>
+      <step FlightDate="2005-09-16" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2005-09-07" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2006-08-06" BeginDate="2006-08-01">1</step>
+      <step FlightDate="2006-09-14" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-08-20" BeginDate="2006-08-01">1</step>
+      <step FlightDate="2006-08-18" BeginDate="2006-08-01">1</step>
+      <step FlightDate="2006-09-28" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-09-08" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-09-20" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-12-28" BeginDate="2006-12-01">1</step>
+      <step FlightDate="2006-09-18" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-10-11" BeginDate="2006-10-01">1</step>
+      <step FlightDate="2006-09-06" BeginDate="2006-09-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1946">
+    <Route RouteFK="1972">
+      <step FlightDate="2003-09-20" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-05-26" BeginDate="2003-05-01">1</step>
+      <step FlightDate="2003-08-16" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2004-07-16" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2003-11-04" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-13" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2004-02-18" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-06-15" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-07-24" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-08-14" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-21" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-08" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-17" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-04-01" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-01-30" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-13" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-07-02" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-01-27" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-04-10" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-04-29" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-09-23" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-05-30" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-06-23" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-03-21" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-06" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-28" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-24" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-12" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-05-25" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-05-29" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-05-27" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-05-23" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2003-12-19" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2004-10-25" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-10-04" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-10-11" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-10-14" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-12-29" BeginDate="2004-12-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO237">
+    <Route RouteFK="4217">
+      <step FlightDate="2003-09-23" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-08-19" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2003-07-16" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-07-03" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-09-15" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-07-08" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-07-18" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-07-06" BeginDate="2003-07-01">1</step>
+      <step FlightDate="2003-10-07" BeginDate="2003-10-01">1</step>
+      <step FlightDate="2003-09-09" BeginDate="2003-09-01">1</step>
+      <step FlightDate="2003-08-11" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2003-08-29" BeginDate="2003-08-01">1</step>
+      <step FlightDate="2003-06-17" BeginDate="2003-06-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO34">
+    <Route RouteFK="2344">
+      <step FlightDate="2003-03-22" BeginDate="2003-03-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO633">
+    <Route RouteFK="86">
+      <step FlightDate="2003-03-14" BeginDate="2003-03-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1026">
+    <Route RouteFK="4217">
+      <step FlightDate="2003-05-07" BeginDate="2003-05-01">1</step>
+      <step FlightDate="2003-05-09" BeginDate="2003-05-01">1</step>
+      <step FlightDate="2003-06-05" BeginDate="2003-06-01">1</step>
+      <step FlightDate="2003-06-06" BeginDate="2003-06-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1016">
+    <Route RouteFK="2193">
+      <step FlightDate="2003-03-22" BeginDate="2003-03-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO240">
+    <Route RouteFK="1792">
+      <step FlightDate="2003-06-05" BeginDate="2003-06-01">1</step>
+      <step FlightDate="2003-06-06" BeginDate="2003-06-01">1</step>
+      <step FlightDate="2003-05-07" BeginDate="2003-05-01">1</step>
+      <step FlightDate="2003-05-09" BeginDate="2003-05-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO532">
+    <Route RouteFK="274">
+      <step FlightDate="2003-03-14" BeginDate="2003-03-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO294">
+    <Route RouteFK="1703">
+      <step FlightDate="2003-10-05" BeginDate="2003-10-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1495">
+    <Route RouteFK="1954">
+      <step FlightDate="2003-10-05" BeginDate="2003-10-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1201">
+    <Route RouteFK="825">
+      <step FlightDate="2003-06-11" BeginDate="2003-06-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO211">
+    <Route RouteFK="799">
+      <step FlightDate="2003-06-23" BeginDate="2003-06-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1400">
+    <Route RouteFK="658">
+      <step FlightDate="2003-06-11" BeginDate="2003-06-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO23">
+    <Route RouteFK="799">
+      <step FlightDate="2004-06-03" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-09-30" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-07-12" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-05-18" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-08-30" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-06-21" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-08-12" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-19" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-02" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-06" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2003-12-24" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2004-06-17" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-07-29" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-07-08" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-09-16" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-06-30" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-08-28" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-04" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-05-08" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-05-06" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-05-02" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-09-03" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-09-21" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-10-27" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-10-02" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-10-18" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2006-12-23" BeginDate="2006-12-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO65">
+    <Route RouteFK="731">
+      <step FlightDate="2004-06-10" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-09-28" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-06-19" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-09-18" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-07-26" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-07-05" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-03-17" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-05-10" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-06-06" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-08-23" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-10" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-26" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-02-22" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-02-10" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-04-06" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2003-12-11" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-22" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-28" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-31" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2004-06-28" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-01-02" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-06" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-02-05" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-02-03" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-04-14" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-04-23" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-04-03" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-05-16" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2003-11-06" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-09" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-16" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-23" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2004-03-14" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-07-31" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-05-12" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-09-13" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-10-07" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2005-02-08" BeginDate="2005-02-01">1</step>
+      <step FlightDate="2004-11-11" BeginDate="2004-11-01">1</step>
+      <step FlightDate="2005-03-24" BeginDate="2005-03-01">1</step>
+      <step FlightDate="2005-03-15" BeginDate="2005-03-01">1</step>
+      <step FlightDate="2004-12-14" BeginDate="2004-12-01">1</step>
+      <step FlightDate="2004-10-16" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-11-02" BeginDate="2004-11-01">1</step>
+      <step FlightDate="2005-01-07" BeginDate="2005-01-01">1</step>
+      <step FlightDate="2005-02-04" BeginDate="2005-02-01">1</step>
+      <step FlightDate="2005-01-23" BeginDate="2005-01-01">1</step>
+      <step FlightDate="2004-12-07" BeginDate="2004-12-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO48">
+    <Route RouteFK="385">
+      <step FlightDate="2004-06-19" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-09-18" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-05-10" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-05-08" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-06-05" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-07-31" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-08-30" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-06" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-04" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-05-04" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-05-22" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-07-14" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-09-01" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-10-20" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-10-02" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-10-29" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2005-12-12" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2005-07-05" BeginDate="2005-07-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1703">
+    <Route RouteFK="770">
+      <step FlightDate="2003-11-07" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-10" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-24" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-27" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2004-03-15" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-02-23" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-04-24" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-04-04" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-08-24" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-06-07" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-06-20" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-06-11" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-06-29" BeginDate="2004-06-01">1</step>
+      <step FlightDate="2004-08-27" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-02-11" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-09-29" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2004-08-11" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-08-01" BeginDate="2004-08-01">1</step>
+      <step FlightDate="2004-01-03" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-07" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-01" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-02-06" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-04-07" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-04-15" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-05-13" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-03-18" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-07-27" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-07-06" BeginDate="2004-07-01">1</step>
+      <step FlightDate="2004-05-11" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2004-05-17" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2003-12-12" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-23" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-29" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2004-09-19" BeginDate="2004-09-01">1</step>
+      <step FlightDate="2005-02-05" BeginDate="2005-02-01">1</step>
+      <step FlightDate="2004-10-17" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2004-12-08" BeginDate="2004-12-01">1</step>
+      <step FlightDate="2004-11-12" BeginDate="2004-11-01">1</step>
+      <step FlightDate="2004-11-03" BeginDate="2004-11-01">1</step>
+      <step FlightDate="2005-03-01" BeginDate="2005-03-01">1</step>
+      <step FlightDate="2005-04-05" BeginDate="2005-04-01">1</step>
+      <step FlightDate="2005-04-12" BeginDate="2005-04-01">1</step>
+      <step FlightDate="2005-04-20" BeginDate="2005-04-01">1</step>
+      <step FlightDate="2005-04-22" BeginDate="2005-04-01">1</step>
+      <step FlightDate="2005-04-28" BeginDate="2005-04-01">1</step>
+      <step FlightDate="2004-10-08" BeginDate="2004-10-01">1</step>
+      <step FlightDate="2005-03-16" BeginDate="2005-03-01">1</step>
+      <step FlightDate="2005-03-25" BeginDate="2005-03-01">1</step>
+      <step FlightDate="2005-01-24" BeginDate="2005-01-01">1</step>
+      <step FlightDate="2005-01-08" BeginDate="2005-01-01">1</step>
+      <step FlightDate="2005-02-09" BeginDate="2005-02-01">1</step>
+      <step FlightDate="2004-12-15" BeginDate="2004-12-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1995">
+    <Route RouteFK="385">
+      <step FlightDate="2004-07-11" BeginDate="2004-07-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO90">
+    <Route RouteFK="770">
+      <step FlightDate="2004-03-31" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-02" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-03" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-04-28" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2003-12-07" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-08" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-16" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-17" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2004-02-17" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-01-19" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-16" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-18" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-03-23" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2003-11-03" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-12" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2004-03-09" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-05-26" BeginDate="2004-05-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO12">
+    <Route RouteFK="770">
+      <step FlightDate="2004-03-04" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2003-12-18" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2004-01-29" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-03-11" BeginDate="2004-03-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO495">
+    <Route RouteFK="1954">
+      <step FlightDate="2004-02-29" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-02-14" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-02-25" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-02-08" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2003-11-19" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-29" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2004-01-10" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-23" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2003-12-05" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-25" BeginDate="2003-12-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1402">
+    <Route RouteFK="731">
+      <step FlightDate="2004-02-17" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-05-26" BeginDate="2004-05-01">1</step>
+      <step FlightDate="2003-11-03" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-12" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-25" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2004-03-04" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-04-28" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2004-01-16" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-29" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-19" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-18" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2003-12-07" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-08" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-16" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-17" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-18" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2004-03-09" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-02" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-23" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-03" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-31" BeginDate="2004-03-01">1</step>
+      <step FlightDate="2004-03-11" BeginDate="2004-03-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1719">
+    <Route RouteFK="482">
+      <step FlightDate="2004-05-22" BeginDate="2004-05-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1000">
+    <Route RouteFK="658">
+      <step FlightDate="2004-04-26" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2005-03-17" BeginDate="2005-03-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1503">
+    <Route RouteFK="770">
+      <step FlightDate="2003-11-16" BeginDate="2003-11-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO16">
+    <Route RouteFK="770">
+      <step FlightDate="2004-02-25" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2003-12-05" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2003-12-25" BeginDate="2003-12-01">1</step>
+      <step FlightDate="2004-02-14" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-01-23" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-01-10" BeginDate="2004-01-01">1</step>
+      <step FlightDate="2004-02-29" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2004-02-08" BeginDate="2004-02-01">1</step>
+      <step FlightDate="2003-11-19" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2003-11-29" BeginDate="2003-11-01">1</step>
+      <step FlightDate="2004-09-14" BeginDate="2004-09-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO301">
+    <Route RouteFK="825">
+      <step FlightDate="2004-04-26" BeginDate="2004-04-01">1</step>
+      <step FlightDate="2005-03-17" BeginDate="2005-03-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1803">
+    <Route RouteFK="770">
+      <step FlightDate="2004-02-03" BeginDate="2004-02-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1506">
+    <Route RouteFK="1567">
+      <step FlightDate="2005-07-20" BeginDate="2005-07-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1507">
+    <Route RouteFK="1201">
+      <step FlightDate="2005-07-21" BeginDate="2005-07-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO17">
+    <Route RouteFK="731">
+      <step FlightDate="2005-04-04" BeginDate="2005-04-01">1</step>
+      <step FlightDate="2005-04-12" BeginDate="2005-04-01">1</step>
+      <step FlightDate="2005-04-19" BeginDate="2005-04-01">1</step>
+      <step FlightDate="2005-04-21" BeginDate="2005-04-01">1</step>
+      <step FlightDate="2005-04-27" BeginDate="2005-04-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO470">
+    <Route RouteFK="2683">
+      <step FlightDate="2006-04-01" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-04-22" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-11-18" BeginDate="2006-11-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO476">
+    <Route RouteFK="1972">
+      <step FlightDate="2006-04-01" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-04-22" BeginDate="2006-04-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO52">
+    <Route RouteFK="385">
+      <step FlightDate="2006-04-13" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2005-09-19" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2005-11-24" BeginDate="2005-11-01">1</step>
+      <step FlightDate="2006-03-29" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2006-03-07" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2005-08-17" BeginDate="2005-08-01">1</step>
+      <step FlightDate="2006-02-07" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2006-03-24" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2005-11-16" BeginDate="2005-11-01">1</step>
+      <step FlightDate="2005-12-18" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2006-04-09" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-04-06" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2005-12-08" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2006-03-17" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2005-06-21" BeginDate="2005-06-01">1</step>
+      <step FlightDate="2005-07-16" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-07-19" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-07-29" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-10-17" BeginDate="2005-10-01">1</step>
+      <step FlightDate="2005-10-28" BeginDate="2005-10-01">1</step>
+      <step FlightDate="2005-10-30" BeginDate="2005-10-01">1</step>
+      <step FlightDate="2005-09-26" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2006-01-30" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-01-16" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-01-04" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2005-12-15" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2005-12-23" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2006-09-05" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-09-21" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-08-13" BeginDate="2006-08-01">1</step>
+      <step FlightDate="2006-09-19" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2006-08-19" BeginDate="2006-08-01">1</step>
+      <step FlightDate="2006-09-12" BeginDate="2006-09-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO152">
+    <Route RouteFK="385">
+      <step FlightDate="2006-04-03" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-02-20" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2005-12-30" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2006-05-12" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2006-03-05" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2006-04-30" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-05-28" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2006-03-02" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2006-05-16" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2006-01-26" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-01-09" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-01-22" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-02-27" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2006-02-05" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2006-02-24" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2005-12-27" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2006-07-01" BeginDate="2006-07-01">1</step>
+      <step FlightDate="2006-06-01" BeginDate="2006-06-01">1</step>
+      <step FlightDate="2006-10-06" BeginDate="2006-10-01">1</step>
+      <step FlightDate="2006-11-28" BeginDate="2006-11-01">1</step>
+      <step FlightDate="2006-12-27" BeginDate="2006-12-01">1</step>
+      <step FlightDate="2006-10-30" BeginDate="2006-10-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO37">
+    <Route RouteFK="482">
+      <step FlightDate="2005-06-13" BeginDate="2005-06-01">1</step>
+      <step FlightDate="2006-01-05" BeginDate="2006-01-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO49">
+    <Route RouteFK="799">
+      <step FlightDate="2005-11-16" BeginDate="2005-11-01">1</step>
+      <step FlightDate="2006-05-28" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2005-12-30" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2005-08-17" BeginDate="2005-08-01">1</step>
+      <step FlightDate="2006-02-05" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2006-04-03" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2006-02-24" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2006-02-27" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2005-11-24" BeginDate="2005-11-01">1</step>
+      <step FlightDate="2005-12-08" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2006-04-30" BeginDate="2006-04-01">1</step>
+      <step FlightDate="2005-12-27" BeginDate="2005-12-01">1</step>
+      <step FlightDate="2006-03-02" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2006-03-05" BeginDate="2006-03-01">1</step>
+      <step FlightDate="2005-06-21" BeginDate="2005-06-01">1</step>
+      <step FlightDate="2006-05-12" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2006-05-16" BeginDate="2006-05-01">1</step>
+      <step FlightDate="2005-07-16" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-07-19" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-07-29" BeginDate="2005-07-01">1</step>
+      <step FlightDate="2005-10-17" BeginDate="2005-10-01">1</step>
+      <step FlightDate="2005-10-30" BeginDate="2005-10-01">1</step>
+      <step FlightDate="2005-09-26" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2006-02-20" BeginDate="2006-02-01">1</step>
+      <step FlightDate="2006-01-09" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-01-26" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2006-01-22" BeginDate="2006-01-01">1</step>
+      <step FlightDate="2005-01-27" BeginDate="2005-01-01">1</step>
+      <step FlightDate="2005-10-28" BeginDate="2005-10-01">1</step>
+      <step FlightDate="2005-09-19" BeginDate="2005-09-01">1</step>
+      <step FlightDate="2006-07-06" BeginDate="2006-07-01">1</step>
+      <step FlightDate="2006-11-06" BeginDate="2006-11-01">1</step>
+      <step FlightDate="2006-12-10" BeginDate="2006-12-01">1</step>
+      <step FlightDate="2006-12-01" BeginDate="2006-12-01">1</step>
+      <step FlightDate="2006-07-01" BeginDate="2006-07-01">1</step>
+      <step FlightDate="2006-09-24" BeginDate="2006-09-01">1</step>
+      <step FlightDate="2007-02-18" BeginDate="2007-02-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO311">
+    <Route RouteFK="799">
+      <step FlightDate="2005-08-14" BeginDate="2005-08-01">1</step>
+      <step FlightDate="2005-08-21" BeginDate="2005-08-01">1</step>
+      <step FlightDate="2005-04-10" BeginDate="2005-04-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1202">
+    <Route RouteFK="731">
+      <step FlightDate="2005-02-28" BeginDate="2005-02-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO576">
+    <Route RouteFK="1020">
+      <step FlightDate="2006-04-28" BeginDate="2006-04-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO539">
+    <Route RouteFK="1226">
+      <step FlightDate="2005-03-03" BeginDate="2005-03-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO487">
+    <Route RouteFK="1966">
+      <step FlightDate="2005-07-05" BeginDate="2005-07-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1292">
+    <Route RouteFK="482">
+      <step FlightDate="2005-04-20" BeginDate="2005-04-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO377">
+    <Route RouteFK="1026">
+      <step FlightDate="2006-04-28" BeginDate="2006-04-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO492">
+    <Route RouteFK="482">
+      <step FlightDate="2006-02-22" BeginDate="2006-02-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO438">
+    <Route RouteFK="265">
+      <step FlightDate="2005-03-03" BeginDate="2005-03-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO76">
+    <Route RouteFK="497">
+      <step FlightDate="2006-02-22" BeginDate="2006-02-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1086">
+    <Route RouteFK="1945">
+      <step FlightDate="2005-07-05" BeginDate="2005-07-01">1</step>
+    </Route>
+  </Flight>
+  <Flight FlightNumberString="CO1542">
+    <Route RouteFK="1954">
+      <step FlightDate="2006-12-17" BeginDate="2006-12-01">1</step>
     </Route>
   </Flight>
 </FlightsByRoutes>

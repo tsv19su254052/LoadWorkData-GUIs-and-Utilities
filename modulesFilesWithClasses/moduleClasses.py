@@ -1,4 +1,4 @@
-#  Interpreter 3.7 -> 3.10 -> 3.12
+#  Interpreter 3.7 -> 3.10 -> 3.12 -> 3.13 -> 3.14
 
 
 from xml.etree import ElementTree
@@ -27,7 +27,7 @@ class Flags:
         self.useAirCrafts = False  # пишем авиаперелеты в БД самолетов
         self.useAirCraftsDB = True  # используем драйвер
         self.useAirFlightsDB = True  # используем драйвер
-        self.useXQuery = False
+        self.useSAX = False
         self.useMSsql = False
         self.useODBCMarkers = False
         self.useSQLServerDriverFormat = False
@@ -40,8 +40,7 @@ class States:
         # Состояния
         self.Connected_AL = False
         self.Connected_RT = False
-        self.Connected_ACFN = False
-        self.Connected_AC = False
+        self.Connected_A = False
 
 
 SE = ServerExchange
@@ -50,6 +49,7 @@ SE = ServerExchange
 class ACFN(SE):
     def __init__(self):
         super().__init__(c=None, s=None)
+        self.Result = 0
         # AirLine
         self.AirLine_ID = 1
         self.AirLineName = " "
@@ -66,7 +66,6 @@ class ACFN(SE):
         self.Position = 1  # Позиция курсора в таблице (в SQL начинается с 1)
         self.cnxn_AL_odbc = None  # подключение
         self.seek_AL_odbc = None  # курсор
-
         # AirCraft
         self.AirCraftModel = 387  # Unknown Model
         self.BuildDate = '1990-01-01'
@@ -79,14 +78,11 @@ class ACFN(SE):
         self.AirCraftCNumber = " "
         self.EndDate = '1990-01-01'
         # Подключения
-        self.cnxn_AC_mssql = None
-        self.cnxn_AC_odbc = None
-        self.cnxn_ACFN_odbc = None
+        self.cnxn_A_mssql = None
+        self.cnxn_A_odbc = None
         # Курсоры
-        self.seek_AC_mssql = None
-        self.seek_AC_odbc = None
-        self.seek_ACFN_odbc = None
-
+        self.seek_A_mssql = None
+        self.seek_A_odbc = None
         # AirPort
         self.HyperLinkToWikiPedia = " "
         self.HyperLinkToAirPortSite = " "
@@ -154,8 +150,8 @@ class ACFN(SE):
         def __init__(self):
             pass
 
-    def connectDB_AL_odbc(self, servername, driver, database):
-        if self.connectDB_odbc(servername=servername, driver=driver, database=database):
+    def connect_DB_AL_odbc(self, servername, driver, database):
+        if self.connect_DB_odbc(servername=servername, driver=driver, database=database):
             self.cnxn_AL_odbc = self.cnxn
             self.seek_AL_odbc = self.seek
             #self.getListDataBasesLocal()
@@ -163,7 +159,7 @@ class ACFN(SE):
         else:
             return False
 
-    def disconnectAL_odbc(self):
+    def disconnect_AL_odbc(self):
         try:
             # Закрываем курсор
             self.seek_AL_odbc.close()
@@ -178,7 +174,7 @@ class ACFN(SE):
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
             self.seek_AL_odbc.execute(SQLQuery)
-            SQLQuery = "SELECT AllianceUniqueNumber, AllianceName FROM dbo.AlliancesTable"  # Убрал  ORDER BY AlianceName
+            SQLQuery = "SELECT AllianceUniqueNumber, AllianceName FROM dbo.AlliancesTable"  # Убрал  ORDER BY AllianceName
             self.seek_AL_odbc.execute(SQLQuery)
             ResultSQL = self.seek_AL_odbc.fetchall()
             self.cnxn_AL_odbc.commit()
@@ -194,7 +190,7 @@ class ACFN(SE):
         try:
             SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
             self.seek_AL_odbc.execute(SQLQuery)
-            SQLQuery = "SELECT AllianceUniqueNumber FROM dbo.AlliancesTable WHERE AllianceName='" + str(name) + "' "  # Убрал  ORDER BY AlianceName
+            SQLQuery = "SELECT AllianceUniqueNumber FROM dbo.AlliancesTable WHERE AllianceName='" + str(name) + "' "  # Убрал  ORDER BY AllianceName
             self.seek_AL_odbc.execute(SQLQuery)
             ResultSQL = self.seek_AL_odbc.fetchone()
             self.cnxn_AL_odbc.commit()
@@ -327,98 +323,72 @@ class ACFN(SE):
         def __init__(self):
             pass
 
-    def connectDB_AC_odbc(self, servername, driver, database):
-        if self.connectDB_odbc(servername=servername, driver=driver, database=database):
-            self.cnxn_AC_odbc = self.cnxn
-            self.seek_AC_odbc = self.seek
+    def connect_DB_A_odbc(self, servername, driver, database):
+        if self.connect_DB_odbc(servername=servername, driver=driver, database=database):
+            self.cnxn_A_odbc = self.cnxn
+            self.seek_A_odbc = self.seek
             return True
         else:
             return False
 
-    def connectDB_AC_mssql(self, servername, database):
-        if self.connectDB_mssql(servername=servername, database=database):
-            self.cnxn_AC_mssql = self.cnxn
-            self.seek_AC_mssql = self.seek
+    def connect_DB_A_mssql(self, servername, database):
+        if self.connect_DB_mssql(servername=servername, database=database):
+            self.cnxn_A_mssql = self.cnxn
+            self.seek_A_mssql = self.seek
             return True
         else:
             return False
 
-    def connectDSN_AC_odbc(self, dsn):
-        if self.connectDSN_odbc(dsn=dsn):
-            self.cnxn_AC_odbc = self.cnxn
-            self.seek_AC_odbc = self.seek
+    def connect_DSN_A_odbc(self, dsn):
+        if self.connect_DSN_odbc(dsn=dsn):
+            self.cnxn_A_odbc = self.cnxn
+            self.seek_A_odbc = self.seek
             return True
         else:
             return False
 
-    def disconnectAC_mssql(self):
+    def disconnect_A_mssql(self):
         try:
             # Отключаемся от базы данных, курсов закрывается
-            self.cnxn_AC_mssql.close()
+            self.cnxn_A_mssql.close()
             print(" -- БД mssql отключена")
         except Exception:
             print(" -- БД mssql уже отключена")
 
-    def disconnectAC_odbc(self):
+    def disconnect_A_odbc(self):
         try:
             # Закрываем курсор
-            self.seek_AC_odbc.close()
+            self.seek_A_odbc.close()
             # Отключаемся от базы данных
-            self.cnxn_AC_odbc.close()
+            self.cnxn_A_odbc.close()
             print(" -- БД pyodbc отключена")
         except Exception:
             print(" -- БД pyodbc уже отключена")
 
-    def connectDB_ACFN_odbc(self, servername, driver, database):
-        if self.connectDB_odbc(servername=servername, driver=driver, database=database):
-            self.cnxn_ACFN_odbc = self.cnxn
-            self.seek_ACFN_odbc = self.seek
-            return True
-        else:
-            return False
-
-    def connectDSN_ACFN_odbc(self, dsn):
-        if self.connectDSN_odbc(dsn=dsn):
-            self.cnxn_ACFN_odbc = self.cnxn
-            self.seek_ACFN_odbc = self.seek
-            return True
-        else:
-            return False
-
-    def disconnectACFN_odbc(self):
-        try:
-            # Снимаем курсор
-            self.seek_ACFN_odbc.close()
-            # Отключаемся от базы данных
-            self.cnxn_ACFN_odbc.close()
-            print(" -- БД отключена")
-        except Exception:
-            print(" -- БД уже отключена")
-
-    def QueryAirCraftByRegistration(self, Registration, useAirCrafts):
+    def QueryAirCraftByRegistration(self, Registration, use_aircrafts_db):
         # Возвращает строку самолета по его регистрации
-        if useAirCrafts:
+        if use_aircrafts_db:
             try:
                 SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
-                self.seek_AC_odbc.execute(SQLQuery)
+                self.seek_A_odbc.execute(SQLQuery)
                 SQLQuery = "SELECT * FROM dbo.AirCraftsTableNew2XsdIntermediate WHERE AirCraftRegistration = '" + str(Registration) + "' "
-                self.seek_AC_odbc.execute(SQLQuery)
-                ResultSQL = self.seek_AC_odbc.fetchone()  # курсор забирает одну строку и сдвигается на строку вниз
-                self.cnxn_AC_odbc.commit()
+                self.seek_A_odbc.execute(SQLQuery)
+                ResultSQL = self.seek_A_odbc.fetchone()  # курсор забирает одну строку и сдвигается на строку вниз
+                self.cnxn_A_odbc.commit()
             except Exception:
                 ResultSQL = False
-                self.cnxn_AC_odbc.rollback()
+                self.cnxn_A_odbc.rollback()
         else:
             try:
                 SQLQuery = "SET TRANSACTION ISOLATION LEVEL READ COMMITTED"
-                self.seek_ACFN_odbc.execute(SQLQuery)
+                self.seek_A_odbc.execute(SQLQuery)
                 SQLQuery = "SELECT * FROM dbo.AirCraftsTable WHERE AirCraftRegistration = '" + str(Registration) + "' "
-                self.seek_ACFN_odbc.execute(SQLQuery)
-                ResultSQL = self.seek_ACFN_odbc.fetchone()  # курсор забирает одну строку и сдвигается на строку вниз
-                self.cnxn_ACFN_odbc.commit()
+                self.seek_A_odbc.execute(SQLQuery)
+                ResultSQL = self.seek_A_odbc.fetchone()  # курсор забирает одну строку и сдвигается на строку вниз
+                self.cnxn_A_odbc.commit()
             except Exception:
                 ResultSQL = False
-                self.cnxn_ACFN_odbc.rollback()
+                self.cnxn_A_odbc.rollback()
         return ResultSQL
 
     def InsertAirCraftByRegistration(self, Registration, ALPK, useAirCrafts):
@@ -426,29 +396,29 @@ class ACFN(SE):
         if useAirCrafts:
             try:
                 SQLQuery = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"
-                self.seek_AC_odbc.execute(SQLQuery)
+                self.seek_A_odbc.execute(SQLQuery)
                 SQLQuery = "INSERT INTO dbo.AirCraftsTableNew2XsdIntermediate (AirCraftRegistration) VALUES ('" + str(Registration) + "') "
-                self.seek_AC_odbc.execute(SQLQuery)  # записываем данные по самолету в БД
+                self.seek_A_odbc.execute(SQLQuery)  # записываем данные по самолету в БД
                 # todo Дописать авиакомпанию-оператора в поле AirFlightsByAirLines -> не надо (он в начале FlightNumberString)
                 ResultSQL = True
-                self.cnxn_AC_odbc.commit()  # фиксируем транзакцию, снимаем блокировку с запрошенных диапазонов
+                self.cnxn_A_odbc.commit()  # фиксируем транзакцию, снимаем блокировку с запрошенных диапазонов
             except Exception:
                 ResultSQL = False
-                self.cnxn_AC_odbc.rollback()  # откатываем транзакцию, снимаем блокировку с запрошенных диапазонов
+                self.cnxn_A_odbc.rollback()  # откатываем транзакцию, снимаем блокировку с запрошенных диапазонов
         else:
             try:
                 SQLQuery = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"
-                self.seek_ACFN_odbc.execute(SQLQuery)
+                self.seek_A_odbc.execute(SQLQuery)
                 if ALPK is None:
                     SQLQuery = "INSERT INTO dbo.AirCraftsTable (AirCraftRegistration) VALUES ('" + str(Registration) + "') "
                 else:
                     SQLQuery = "INSERT INTO dbo.AirCraftsTable (AirCraftRegistration, AirCraftAirLine) VALUES ('" + str(Registration) + "', " + str(ALPK) + ") "
-                self.seek_ACFN_odbc.execute(SQLQuery)  # записываем данные по самолету в БД
+                self.seek_A_odbc.execute(SQLQuery)  # записываем данные по самолету в БД
                 ResultSQL = True
-                self.cnxn_ACFN_odbc.commit()  # фиксируем транзакцию, снимаем блокировку с запрошенных диапазонов
+                self.cnxn_A_odbc.commit()  # фиксируем транзакцию, снимаем блокировку с запрошенных диапазонов
             except Exception:
                 ResultSQL = False
-                self.cnxn_ACFN_odbc.rollback()  # откатываем транзакцию, снимаем блокировку с запрошенных диапазонов
+                self.cnxn_A_odbc.rollback()  # откатываем транзакцию, снимаем блокировку с запрошенных диапазонов
         return ResultSQL
 
     def UpdateAirCraft(self, Registration, ALPK, useAirCrafts):
@@ -458,29 +428,29 @@ class ACFN(SE):
         else:
             try:
                 SQLQuery = "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ"
-                self.seek_ACFN_odbc.execute(SQLQuery)
+                self.seek_A_odbc.execute(SQLQuery)
                 SQLQuery = "UPDATE dbo.AirCraftsTable SET AirCraftAirLine = " + str(ALPK) + " WHERE AirCraftRegistration = '" + str(Registration) + "' "
-                self.seek_ACFN_odbc.execute(SQLQuery)  # записываем данные по самолету в БД
+                self.seek_A_odbc.execute(SQLQuery)  # записываем данные по самолету в БД
                 ResultSQL = True
-                self.cnxn_ACFN_odbc.commit()  # фиксируем транзакцию, снимаем блокировку с запрошенных диапазонов
+                self.cnxn_A_odbc.commit()  # фиксируем транзакцию, снимаем блокировку с запрошенных диапазонов
             except Exception:
                 ResultSQL = False
-                self.cnxn_ACFN_odbc.rollback()  # откатываем транзакцию, снимаем блокировку с запрошенных диапазонов
+                self.cnxn_A_odbc.rollback()  # откатываем транзакцию, снимаем блокировку с запрошенных диапазонов
             return ResultSQL
 
     class AirPort:
         def __init__(self):
             pass
 
-    def connectDB_RT_odbc(self, servername, driver, database):
-        if self.connectDB_odbc(servername=servername, driver=driver, database=database):
+    def connect_DB_RT_odbc(self, servername, driver, database):
+        if self.connect_DB_odbc(servername=servername, driver=driver, database=database):
             self.cnxn_RT_odbc = self.cnxn
             self.seek_RT_odbc = self.seek
             return True
         else:
             return False
 
-    def disconnectRT_odbc(self):
+    def disconnect_RT_odbc(self):
         try:
             # Закрываем курсор
             self.seek_RT_odbc.close()
@@ -836,218 +806,218 @@ class ACFN(SE):
             self.cnxn_RT_odbc.rollback()
         return Result
 
-    def ModifyAirFlight(self, ac, al, fn, dep, arr, flightdate, begindate, use_aircrafts_db, use_xquery, use_ms_sql, use_markers, use_sql_server_driver_format):
-
-        class Results:
-            def __init__(self):
-                self.Result = 0  # Коды возврата: 0 - несработка, 1 - вставили, 2 - сплюсовали, 3 - первая запись в еще пустую ячейку
-
-            def getResult(self):
-                return self.Result
-
-            def Fail(self):
-                self.Result = 0
-
-            def Added(self):
-                self.Result = 1
-
-            def Padded(self):
-                self.Result = 2
-
+    def ModifyAirFlightTable(self, ac, al, fn, dep, arr, flightdate, begindate, use_aircrafts_db):
         db_air_route = self.QueryAirRoute(dep, arr).AirRouteUniqueNumber
-        Result = 0
         if db_air_route is not None:
             db_air_craft = self.QueryAirCraftByRegistration(ac, use_aircrafts_db).AirCraftUniqueNumber
             if db_air_craft is not None:
-                if use_aircrafts_db:
-                    if use_xquery:
-                        # использует функционал XML-ного поля, использует XML-ный индекс (первичный и вторичный PATH) todo см. статью https://learn.microsoft.com/ru-ru/sql/relational-databases/xml/xml-indexes-sql-server?view=sql-server-ver16
-                        try:
-                            SP = 'SPFlightInsertOrUpdate'
-                            SPTest = 'SPFlightTest'
-                            parameters = (str(ac), str(al) + str(fn), db_air_route, str(flightdate), str(begindate), )
-                            print("\n parameters = " + str(parameters))
-                            if use_ms_sql:
-                                # fixme см. статью https://kontext.tech/article/893/call-sql-server-procedure-in-python
-                                #  https://github.com/tds-fdw/tds_fdw/issues/262
-                                #  https://github.com/mkleehammer/pyodbc/issues/184
-                                self.seek_AC_mssql.callproc(SP, parameters=parameters)
-                                Data = self.seek_AC_mssql.fetchall()  # fetchval() - pyodbc convenience method similar to cursor.fetchone()[0]
-                                self.cnxn_AC_mssql.commit()
-                            else:
-                                # fixme см. статью https://stackoverflow.com/questions/28635671/using-sql-server-stored-procedures-from-python-pyodbc
-                                #  https://code.google.com/archive/p/pyodbc/wikis/Cursor.wiki
-                                if use_markers:
-                                    # fixme см. статью https://stackoverflow.com/questions/34228152/python-execute-stored-procedure-with-parameters
-                                    #  https://www.sqlservercentral.com/articles/sql-server-and-python-tutorial
-                                    #  https://github.com/mkleehammer/pyodbc/wiki/Calling-Stored-Procedures
-                                    if use_sql_server_driver_format:
-                                        # SQL Server Driver format with markers
-                                        # todo --> Пробуем DSN-ы с разными драйверами
-                                        #  - Native Client,
-                                        #  - SQL Server,
-                                        #  - ODBC 13-ый,
-                                        #  - ODBC 17-ый (самый надежный и быстрый),
-                                        #  - ODBC 18-ый
-                                        #  и напрямую через драйвер SQL Server-а -> работает нормально
-                                        SQLQuery = "DECLARE @return_status INT = 5 \n"
-                                        #SQLQuery += "EXECUTE @return_status = dbo." + SPTest + " ?, ?, ?, ?, ? \n"
-                                        SQLQuery += "EXECUTE @return_status = dbo." + SP + " ?, ?, ?, ?, ? \n"
-                                        SQLQuery += "SELECT @return_status AS 'return_status' "
-                                    else:
-                                        # ODBC Driver format with markers
-                                        #SQLQuery = "{CALL dbo." + SPTest + " (?, ?, ?, ?, ?)} "
-                                        SQLQuery = "{CALL dbo." + SP + " (?, ?, ?, ?, ?)} "
-                                    print(" SQLQuery: \n ----\n" + str(SQLQuery))
-                                    self.seek_AC_odbc.fast_executemany = True
-                                    self.seek_AC_odbc.execute(SQLQuery, parameters)
-                                else:
-                                    if use_sql_server_driver_format:
-                                        # SQL Server Driver format
-                                        SQLQuery = "DECLARE @return_status INT = 5 \n"
-                                        #SQLQuery += "EXECUTE @return_status = dbo." + SPTest + " '" + str(ac) + "', '" + str(al) + str(fn) + "Test', " + str(db_air_route) + ", '" + str(flightdate) + "', '" + str(begindate) + "' \n"
-                                        SQLQuery += "EXECUTE @return_status = dbo." + SP + " '" + str(ac) + "', '" + str(al) + str(fn) + "', " + str(db_air_route) + ", '" + str(flightdate) + "', '" + str(begindate) + "' \n"
-                                        SQLQuery += "SELECT @return_status AS 'return_status' "
-                                    else:
-                                        # ODBC Driver format
-                                        #SQLQuery = "{CALL dbo." + SPTest + " ('" + str(ac) + "', '" + str(al) + str(fn) + "', " + str(db_air_route) + ", '" + str(flightdate) + "', '" + str(begindate) + "')} "
-                                        SQLQuery = "{CALL dbo." + SP + " ('" + str(ac) + "', '" + str(al) + str(fn) + "', " + str(db_air_route) + ", '" + str(flightdate) + "', '" + str(begindate) + "')} "
-                                    print(" SQLQuery: \n ----\n" + str(SQLQuery))
-                                    #self.seek_AC_odbc.fast_executemany = True
-                                    self.seek_AC_odbc.execute(SQLQuery)
-                                # todo см. статью https://learn.microsoft.com/en-us/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver16
-                                #  https://github.com/mkleehammer/pyodbc/wiki/Tips-and-Tricks-by-Database-Platform#passing-row-oriented-parameter-data-as-a-json-string
-                                Data = self.seek_AC_odbc.fetchall()  # fetchval() - pyodbc convenience method similar to cursor.fetchone()[0]
-                                self.cnxn_AC_odbc.commit()
-                            if Data:
-                                print(" Data = " + str(Data))
-                                Result = Data[0][5]
-                                print(" Результат хранимой процедуры = " + str(Result))
-                            else:
-                                Result = 0
-                        except Exception as exception:
-                            print(" exception = " + str(exception))
-                            if use_ms_sql:
-                                self.cnxn_AC_mssql.rollback()
-                            else:
-                                self.cnxn_AC_odbc.rollback()
-                            Result = 0
+                try:
+                    SQLQuery = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"
+                    self.seek_A_odbc.execute(SQLQuery)
+                    SQLQuery = "SELECT * FROM dbo.AirFlightsTable WITH (UPDLOCK) WHERE FlightNumberString = '" + str(al) + str(fn) + "' AND AirRoute = "
+                    SQLQuery += str(db_air_route) + " AND AirCraft = " + str(db_air_craft) + " AND FlightDate = '" + str(flightdate) + "' AND BeginDate = '" + str(begindate) + "' "
+                    self.seek_A_odbc.execute(SQLQuery)
+                    ResultQuery = self.seek_A_odbc.fetchone()
+                    if ResultQuery is None:
+                        SQLQuery = "INSERT INTO dbo.AirFlightsTable (AirRoute, AirCraft, FlightNumberString, QuantityCounted, FlightDate, BeginDate) VALUES ("
+                        SQLQuery += str(db_air_route) + ", "  # bigint
+                        SQLQuery += str(db_air_craft) + ", '"  # bigint
+                        SQLQuery += str(al) + str(fn) + "', "  # nvarchar(50)
+                        SQLQuery += str(1) + ", '" + str(flightdate) + "', '" + str(begindate) + "') "  # bigint
+                        self.Result = 1
+                    elif ResultQuery is not None:
+                        quantity = ResultQuery.QuantityCounted + 1
+                        SQLQuery = "UPDATE dbo.AirFlightsTable SET QuantityCounted = " + str(quantity)
+                        SQLQuery += " WHERE FlightNumberString = '" + str(al) + str(fn) + "' AND AirRoute = " + str(db_air_route)
+                        SQLQuery += " AND AirCraft = " + str(db_air_craft) + " AND FlightDate = '" + str(flightdate) + "' AND BeginDate = '" + str(begindate) + "' "
+                        self.Result = 2
                     else:
-                        # Работает с XML-ным полем как с двоичным или как с текстовым
-                        # fixme при полной модели восстановления БД на первых 5-ти загрузках файл журнала стал в 1000 раз больше файла данных -> сделал простую
-                        try:
-                            SQLQuery = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"
-                            self.seek_AC_odbc.execute(SQLQuery)
-                            XMLQuery = "SELECT FlightsByRoutes FROM dbo.AirCraftsTableNew2XsdIntermediate WITH (UPDLOCK) WHERE AirCraftRegistration = '" + str(ac) + "' "
-                            self.seek_AC_odbc.execute(XMLQuery)
-                            ResultXML = self.seek_AC_odbc.fetchone()
-                            QuantityCounted = 1  # количество таких авиаперелетов за этот день
-                            QuantityOnThisRoute = 1  # количестов авиаперелетов этого авиарейса по этому маршруту
-                            QuantityOnThisFlight = 1  # количество авиаперелетов этого авиарейса
-                            QuantityTotal = 1  # количество авиапрелетов с этой регистрацией
-                            step = ElementTree.Element('step', FlightDate=str(flightdate), BeginDate=str(begindate))
-                            Route = ElementTree.Element('Route', RouteFK=str(db_air_route))
-                            Flight = ElementTree.Element('Flight', FlightNumberString=str(al) + str(fn))
-                            root_tag_FlightsByRoutes = ElementTree.Element('FlightsByRoutes')
-                            paddedStep = False
-                            addedStep = False
-                            addedRoute = False
-                            addedFlight = False
-                            if ResultXML[0] is None:
-                                step.text = str(QuantityCounted)
-                                Route.append(step)
-                                #Flight.text = str(1)
-                                Flight.append(Route)
-                                #root_tag_FlightsByRoutes.text = str(1)
-                                root_tag_FlightsByRoutes.append(Flight)
-                                #Route.text = str(QuantityOnThisRoute)  # fixme в SSMS с этого места выводит в одну строчку (строка всегда в одну строчку)
-                                addedStep = True
-                                addedRoute = True
-                                addedFlight = True
+                        pass
+                    self.seek_A_odbc.execute(SQLQuery)
+                    self.cnxn_A_odbc.commit()
+                except Exception:
+                    self.cnxn_A_odbc.rollback()
+                    self.Result = 0
+                finally:
+                    pass
+            elif db_air_craft is None:
+                self.Result = 0
+            else:
+                self.Result = 0
+        elif db_air_route is None:
+            self.Result = 0
+        else:
+            self.Result = 0
+        # Коды возврата: 0 - несработка, 1 - вставили, 2 - сплюсовали
+        return self.Result
+
+    def ModifyAirFlightXML(self, ac, al, fn, dep, arr, flightdate, begindate, use_aircrafts_db, use_sax, use_ms_sql, use_markers, use_sql_server_driver_format):
+        db_air_route = self.QueryAirRoute(dep, arr).AirRouteUniqueNumber
+        if db_air_route is not None:
+            db_air_craft = self.QueryAirCraftByRegistration(ac, use_aircrafts_db).AirCraftUniqueNumber
+            if db_air_craft is not None:
+                if use_sax:
+                    # Парсим XML-ное поле как SAX: используем функционал XML-ного поля, использует XML-ные индексы todo см. статью https://learn.microsoft.com/ru-ru/sql/relational-databases/xml/xml-indexes-sql-server?view=sql-server-ver16
+                    try:
+                        SP = 'SPFlightInsertOrUpdate'
+                        SPTest = 'SPFlightTest'
+                        parameters = (str(ac), str(al) + str(fn), db_air_route, str(flightdate), str(begindate), )
+                        print("\n parameters = " + str(parameters))
+                        if use_ms_sql:
+                            # fixme см. статью https://kontext.tech/article/893/call-sql-server-procedure-in-python
+                            #  https://github.com/tds-fdw/tds_fdw/issues/262
+                            #  https://github.com/mkleehammer/pyodbc/issues/184
+                            self.seek_A_mssql.callproc(SP, parameters=parameters)
+                            Data = self.seek_A_mssql.fetchall()  # fetchval() - pyodbc convenience method similar to cursor.fetchone()[0]
+                            self.cnxn_A_mssql.commit()
+                        else:
+                            # todo --> Пробуем DSN-ы с разными драйверами
+                            #  - Native Client,
+                            #  - SQL Server,
+                            #  - ODBC 11-ый,
+                            #  - ODBC 13-ый,
+                            #  - ODBC 17-ый (самый надежный и быстрый),
+                            #  - ODBC 18-ый
+                            #  и напрямую через драйвер SQL Server-а -> работает нормально
+                            # fixme см. статью https://stackoverflow.com/questions/28635671/using-sql-server-stored-procedures-from-python-pyodbc
+                            #  https://code.google.com/archive/p/pyodbc/wikis/Cursor.wiki
+                            if use_markers:
+                                # fixme см. статью https://stackoverflow.com/questions/34228152/python-execute-stored-procedure-with-parameters
+                                #  https://www.sqlservercentral.com/articles/sql-server-and-python-tutorial
+                                #  https://github.com/mkleehammer/pyodbc/wiki/Calling-Stored-Procedures
+                                if use_sql_server_driver_format:
+                                    # SQL Server Driver format with markers
+                                    SQLQuery = "DECLARE @return_status INT = 5 \n"
+                                    #SQLQuery += "EXECUTE @return_status = dbo." + SPTest + " ?, ?, ?, ?, ? \n"
+                                    SQLQuery += "EXECUTE @return_status = dbo." + SP + " ?, ?, ?, ?, ? \n"
+                                    SQLQuery += "SELECT @return_status AS 'return_status' "
+                                else:
+                                    # ODBC Driver format with markers
+                                    #SQLQuery = "{CALL dbo." + SPTest + " (?, ?, ?, ?, ?)} "
+                                    SQLQuery = "{CALL dbo." + SP + " (?, ?, ?, ?, ?)} "
+                                print(" SQLQuery: \n ----\n" + str(SQLQuery))
+                                self.seek_A_odbc.fast_executemany = True
+                                self.seek_A_odbc.execute(SQLQuery, parameters)
                             else:
-                                root_tag_FlightsByRoutes = ElementTree.fromstring(ResultXML[0])
-                                SearchFlight = root_tag_FlightsByRoutes.findall(".//Flight")
-                                # fixme в БД наблюдаются дубликаты FlightNumberString, Route, step (цикл for ... break else ... работает не так, как ожидалось) -> добавил флаги added... , заменил else на if not added...
-                                for nodeFlight in SearchFlight:
-                                    if nodeFlight.attrib['FlightNumberString'] == str(al) + str(fn):
-                                        SearchRoute = nodeFlight.findall(".//Route")
-                                        for nodeRoute in SearchRoute:
-                                            if nodeRoute.attrib['RouteFK'] == str(db_air_route):
-                                                SearchStep = nodeRoute.findall(".//step")
-                                                for nodeStep in SearchStep:
-                                                    if nodeStep.attrib['FlightDate'] == str(flightdate) and not paddedStep:
-                                                        QuantityCounted = int(nodeStep.text) + 1
-                                                        nodeStep.text = str(QuantityCounted)
-                                                        paddedStep = True
-                                                        Result = 2
-                                                if not paddedStep:
-                                                    step.text = str(QuantityCounted)
-                                                    nodeRoute.append(step)
-                                                    addedStep = True
-                                                    Result = 1
-                                        if not paddedStep and not addedStep:
-                                            step.text = str(QuantityCounted)
-                                            Route.append(step)
-                                            nodeFlight.append(Route)
-                                            addedRoute = True
-                                            Result = 1
-                                if not paddedStep and not addedStep and not addedRoute:
-                                    step.text = str(QuantityCounted)
-                                    Route.append(step)
-                                    Flight.append(Route)
-                                    root_tag_FlightsByRoutes.append(Flight)
-                                    addedFlight = True
-                                    Result = 1
-                            xml_FlightsByRoutes_to_String = ElementTree.tostring(root_tag_FlightsByRoutes, method='xml').decode(encoding="utf-8")  # XML-ная строка
-                            XMLQuery = "UPDATE dbo.AirCraftsTableNew2XsdIntermediate SET FlightsByRoutes = '" + str(xml_FlightsByRoutes_to_String) + "' WHERE AirCraftRegistration = '" + str(ac) + "' "
-                            self.seek_AC_odbc.execute(XMLQuery)
-                            self.cnxn_AC_odbc.commit()
-                        except Exception:
-                            self.cnxn_AC_odbc.rollback()
-                            Result = 0
+                                if use_sql_server_driver_format:
+                                    # SQL Server Driver format
+                                    SQLQuery = "DECLARE @return_status INT = 5 \n"
+                                    #SQLQuery += "EXECUTE @return_status = dbo." + SPTest + " '" + str(ac) + "', '" + str(al) + str(fn) + "Test', " + str(db_air_route) + ", '" + str(flightdate) + "', '" + str(begindate) + "' \n"
+                                    SQLQuery += "EXECUTE @return_status = dbo." + SP + " '" + str(ac) + "', '" + str(al) + str(fn) + "', " + str(db_air_route) + ", '" + str(flightdate) + "', '" + str(begindate) + "' \n"
+                                    SQLQuery += "SELECT @return_status AS 'return_status' "
+                                else:
+                                    # ODBC Driver format
+                                    #SQLQuery = "{CALL dbo." + SPTest + " ('" + str(ac) + "', '" + str(al) + str(fn) + "', " + str(db_air_route) + ", '" + str(flightdate) + "', '" + str(begindate) + "')} "
+                                    SQLQuery = "{CALL dbo." + SP + " ('" + str(ac) + "', '" + str(al) + str(fn) + "', " + str(db_air_route) + ", '" + str(flightdate) + "', '" + str(begindate) + "')} "
+                                print(" SQLQuery: \n ----\n" + str(SQLQuery))
+                                #self.seek_AC_odbc.fast_executemany = True
+                                self.seek_A_odbc.execute(SQLQuery)
+                            # todo см. статью https://learn.microsoft.com/en-us/sql/relational-databases/stored-procedures/return-data-from-a-stored-procedure?view=sql-server-ver16
+                            #  https://github.com/mkleehammer/pyodbc/wiki/Tips-and-Tricks-by-Database-Platform#passing-row-oriented-parameter-data-as-a-json-string
+                            Data = self.seek_A_odbc.fetchall()  # fetchval() - pyodbc convenience method similar to cursor.fetchone()[0]
+                            self.cnxn_A_odbc.commit()
+                        if Data:
+                            print(" Data = " + str(Data))
+                            self.Result = Data[0][5]
+                            print(" Результат хранимой процедуры = " + str(self.Result))
+                        else:
+                            self.Result = 0
+                    except Exception as exception:
+                        print(" exception = " + str(exception))
+                        if use_ms_sql:
+                            self.cnxn_A_mssql.rollback()
+                        else:
+                            self.cnxn_A_odbc.rollback()
+                        self.Result = 0
                 else:
+                    # Парсим XML-ное поле как DOM
+                    # fixme при полной модели восстановления БД на первых 5-ти загрузках файл журнала стал в 1000 раз больше файла данных -> сделал простую
                     try:
                         SQLQuery = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"
-                        self.seek_ACFN_odbc.execute(SQLQuery)
-                        SQLQuery = "SELECT * FROM dbo.AirFlightsTable WITH (UPDLOCK) WHERE FlightNumberString = '" + str(al) + str(fn) + "' AND AirRoute = "
-                        SQLQuery += str(db_air_route) + " AND AirCraft = " + str(db_air_craft) + " AND FlightDate = '" + str(flightdate) + "' AND BeginDate = '" + str(begindate) + "' "
-                        self.seek_ACFN_odbc.execute(SQLQuery)
-                        ResultQuery = self.seek_ACFN_odbc.fetchone()
-                        if ResultQuery is None:
-                            SQLQuery = "INSERT INTO dbo.AirFlightsTable (AirRoute, AirCraft, FlightNumberString, QuantityCounted, FlightDate, BeginDate) VALUES ("
-                            SQLQuery += str(db_air_route) + ", "  # bigint
-                            SQLQuery += str(db_air_craft) + ", '"  # bigint
-                            SQLQuery += str(al) + str(fn) + "', "  # nvarchar(50)
-                            SQLQuery += str(1) + ", '" + str(flightdate) + "', '" + str(begindate) + "') "  # bigint
-                            Result = 1
-                        elif ResultQuery is not None:
-                            quantity = ResultQuery.QuantityCounted + 1
-                            SQLQuery = "UPDATE dbo.AirFlightsTable SET QuantityCounted = " + str(quantity)
-                            SQLQuery += " WHERE FlightNumberString = '" + str(al) + str(fn) + "' AND AirRoute = " + str(db_air_route)
-                            SQLQuery += " AND AirCraft = " + str(db_air_craft) + " AND FlightDate = '" + str(flightdate) + "' AND BeginDate = '" + str(begindate) + "' "
-                            Result = 2
+                        self.seek_A_odbc.execute(SQLQuery)
+                        XMLQuery = "SELECT FlightsByRoutes FROM dbo.AirCraftsTableNew2XsdIntermediate WITH (UPDLOCK) WHERE AirCraftRegistration = '" + str(ac) + "' "
+                        self.seek_A_odbc.execute(XMLQuery)
+                        ResultXML = self.seek_A_odbc.fetchone()
+                        QuantityCounted = 1  # количество таких авиаперелетов за этот день
+                        QuantityOnThisRoute = 1  # количестов авиаперелетов этого авиарейса по этому маршруту
+                        QuantityOnThisFlight = 1  # количество авиаперелетов этого авиарейса
+                        QuantityTotal = 1  # количество авиапрелетов с этой регистрацией
+                        step = ElementTree.Element('step', FlightDate=str(flightdate), BeginDate=str(begindate))
+                        Route = ElementTree.Element('Route', RouteFK=str(db_air_route))
+                        Flight = ElementTree.Element('Flight', FlightNumberString=str(al) + str(fn))
+                        root_tag_FlightsByRoutes = ElementTree.Element('FlightsByRoutes')
+                        paddedStep = False
+                        addedStep = False
+                        addedRoute = False
+                        addedFlight = False
+                        if ResultXML[0] is None:
+                            step.text = str(QuantityCounted)
+                            Route.append(step)
+                            #Flight.text = str(1)
+                            Flight.append(Route)
+                            #root_tag_FlightsByRoutes.text = str(1)
+                            root_tag_FlightsByRoutes.append(Flight)
+                            #Route.text = str(QuantityOnThisRoute)  # fixme в SSMS с этого места выводит в одну строчку (строка всегда в одну строчку)
+                            addedStep = True
+                            addedRoute = True
+                            addedFlight = True
+                            self.Result = 3
                         else:
-                            pass
-                        self.seek_ACFN_odbc.execute(SQLQuery)
-                        self.cnxn_ACFN_odbc.commit()
-                    except Exception:
-                        self.cnxn_ACFN_odbc.rollback()
-                        Result = 0
-                    finally:
-                        pass
+                            root_tag_FlightsByRoutes = ElementTree.fromstring(ResultXML[0])
+                            SearchFlight = root_tag_FlightsByRoutes.findall(".//Flight")
+                            # fixme в БД наблюдаются дубликаты FlightNumberString, Route, step (цикл for ... break else ... работает не так, как ожидалось) -> добавил флаги added... , заменил else на if not added...
+                            for nodeFlight in SearchFlight:
+                                if nodeFlight.attrib['FlightNumberString'] == str(al) + str(fn):
+                                    SearchRoute = nodeFlight.findall(".//Route")
+                                    for nodeRoute in SearchRoute:
+                                        if nodeRoute.attrib['RouteFK'] == str(db_air_route):
+                                            SearchStep = nodeRoute.findall(".//step")
+                                            for nodeStep in SearchStep:
+                                                if nodeStep.attrib['FlightDate'] == str(flightdate) and not paddedStep:
+                                                    QuantityCounted = int(nodeStep.text) + 1
+                                                    nodeStep.text = str(QuantityCounted)
+                                                    paddedStep = True
+                                                    self.Result = 2
+                                            if not paddedStep:
+                                                step.text = str(QuantityCounted)
+                                                nodeRoute.append(step)
+                                                addedStep = True
+                                                self.Result = 1
+                                    if not paddedStep and not addedStep:
+                                        step.text = str(QuantityCounted)
+                                        Route.append(step)
+                                        nodeFlight.append(Route)
+                                        addedRoute = True
+                                        self.Result = 1
+                            if not paddedStep and not addedStep and not addedRoute:
+                                step.text = str(QuantityCounted)
+                                Route.append(step)
+                                Flight.append(Route)
+                                root_tag_FlightsByRoutes.append(Flight)
+                                addedFlight = True
+                                self.Result = 1
+                        xml_FlightsByRoutes_to_String = ElementTree.tostring(root_tag_FlightsByRoutes, method='xml').decode(encoding="utf-8")  # XML-ная строка
+                        XMLQuery = "UPDATE dbo.AirCraftsTableNew2XsdIntermediate SET FlightsByRoutes = '" + str(xml_FlightsByRoutes_to_String) + "' WHERE AirCraftRegistration = '" + str(ac) + "' "
+                        self.seek_A_odbc.execute(XMLQuery)
+                        self.cnxn_A_odbc.commit()
+                    except Exception as exception:
+                        print(" exception = " + str(exception))
+                        self.cnxn_A_odbc.rollback()
+                        self.Result = 0
             elif db_air_craft is None:
-                Result = 0
+                self.Result = 0
             else:
-                Result = 0
+                self.Result = 0
         elif db_air_route is None:
-            Result = 0
+            self.Result = 0
         else:
-            Result = 0
-        return Result
+            self.Result = 0
+        # Коды возврата: 0 - несработка, 1 - вставили, 2 - сплюсовали, 3 - первая запись в еще пустую ячейку
+        return self.Result
 
     def checkConnection(self):
         #if self.cnxn_AL_odbc.is_connected() and (self.cnxn_AC_odbc.is_connected() or self.cnxn_ACFN_odbc.is_connected()) and self.cnxn_RT_odbc.is_connected():  # mysql
-        if self.cnxn_AL_odbc and (self.cnxn_AC_odbc or self.cnxn_ACFN_odbc) and self.cnxn_RT_odbc:
+        if self.cnxn_AL_odbc and self.cnxn_A_odbc and self.cnxn_RT_odbc:
             return True
         else:
             return False

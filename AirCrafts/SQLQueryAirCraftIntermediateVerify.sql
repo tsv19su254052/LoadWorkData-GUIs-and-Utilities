@@ -9,7 +9,7 @@ SELECT *
 */
 
 SELECT COUNT(*) AS CountTotal
-	FROM AirCraftsDBNew62.dbo.AirCraftsTableNew2XsdIntermediate  -- 84691 -> 84781
+	FROM AirCraftsDBValue62.dbo.AirCraftsTableNew2XsdIntermediate  -- 84691 -> 84781
 
 -- В базе самолетов:
 --  - В таблице самолетов "AirCraftsTableNew2Xsd" проверить и вручную привести в порядок модели самолетов и их описания (через прикладное ПО по данным с сайтов или через сайт) -> ПОЗДНЕЕ.
@@ -38,10 +38,10 @@ SELECT	AirCraftRegistration,
 		ModelName,
 		SourceCSVFile,
 		AirCraftDescription
-	FROM AirCraftsDBNew62.dbo.AirCraftsTableNew2XsdIntermediate
-		INNER JOIN AirCraftsDBNew62.dbo.AirCraftModelsTable ON AirCraftsTableNew2XsdIntermediate.AirCraftModel = AirCraftModelsTable.AirCraftModelUniqueNumber
-		INNER JOIN AirCraftsDBNew62.dbo.AirCraftManufacturersTable ON AirCraftModelsTable.Manufacturer = AirCraftManufacturersTable.AirCraftManufacturerUniqueNumber
-		WHERE ModelName = 'DC-10'
+	FROM AirCraftsDBValue62.dbo.AirCraftsTableNew2XsdIntermediate
+		INNER JOIN AirCraftsDBValue62.dbo.AirCraftModelsTable ON AirCraftsTableNew2XsdIntermediate.AirCraftModel = AirCraftModelsTable.AirCraftModelUniqueNumber
+		INNER JOIN AirCraftsDBValue62.dbo.AirCraftManufacturersTable ON AirCraftModelsTable.Manufacturer = AirCraftManufacturersTable.AirCraftManufacturerUniqueNumber
+		WHERE ModelName = 'A350'
 		-- WHERE FlightsByRoutes IS NOT NULL  -- AND AirCraftRegistration = 'nan'
 		-- WHERE FlightsByRoutes.value(('/FlightsByRoutes/Flight/Route/step/@BeginDate'), 'DATE') = '1995-01-01'  -- VARCHAR(50)
 			ORDER BY AirCraftRegistration

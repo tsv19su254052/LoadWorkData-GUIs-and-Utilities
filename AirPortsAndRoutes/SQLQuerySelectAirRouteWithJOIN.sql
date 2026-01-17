@@ -1,7 +1,10 @@
+USE AirPortsAndRoutesDBNew62
+GO
+
 /*  Маршруты аэропорта  */
 SET Transaction Isolation Level Repeatable Read
 DECLARE @AirPortIATA nchar(10)
-SET @AirPortIATA = 'SFO'  -- Код IATA исходного аэропорта - 300
+SET @AirPortIATA = 'LAX'  -- Код IATA исходного аэропорта
 SELECT -- AirPortsAndRoutesDBNew62.dbo.AirPortsTable.AirPortName AS DEPARTURE,
 	   -- AirPortsAndRoutesDBNew62.dbo.AirPortsTable.AirPortCity AS DEPARTURE_CITY,
 	   -- AirPortsAndRoutesDBNew62.dbo.AirPortsTable.AirPortCountry AS DEPARTURE_COUNTRY,
@@ -16,14 +19,16 @@ FROM AirPortsAndRoutesDBNew62.dbo.AirRoutesTable INNER JOIN
 WHERE (AirPortsAndRoutesDBNew62.dbo.AirPortsTable.AirPortCodeIATA = @AirPortIATA) -- OR (AirPortsTable_1.AirPortCodeIATA = @AirPortIATA)  -- убрал дублирование строк
 ORDER BY -- DEPARTURE_CITY,
 		 ARRIVAL_CITY
--- XSD, TPH - Tonopah
--- пусто (KXTA) - Homey (Area 51)
+-- XSD - Tonopah
+-- TPH - Tonopah
+-- пусто, KXTA - Homey (Area 51)
 -- HMN - Holloman Air Force Base
 -- LSV - Nellis Air Force Base
--- NKX - Marine Corps Air Station Miramar
--- DMA
--- VCV
+-- NKX - Miramar Marine Corps Air Station
+-- DMA - Davis–Monthan Air Force Base
+-- VCV - Southern California Logistics AirPort
 -- ABQ - Kirtland Air Force Base
--- SUU
--- EDW
--- ALM - Alamogordo
+-- SUU - Fairfield Travis Air Force Base
+-- EDW - Edwards Air Force Base
+-- ALM - Alamogordo–White Sands Regional Airport
+-- пусто, NZSP - Amundsen–Scott South Pole Station

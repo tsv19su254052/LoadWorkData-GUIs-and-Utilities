@@ -5,12 +5,13 @@ GO
 SELECT * 
   FROM dbo.AirCraftsTable
   WHERE AirCraftRegistration IS NULL
+		OR AirCraftRegistration = 'Unknow'
+		OR AirCraftRegistration = 'UNKNOW'
 		OR AirCraftRegistration = 'Unknown'
 		OR AirCraftRegistration = 'UNKNOWN'
 		OR AirCraftRegistration = 'nan'
 		OR AirCraftRegistration = 'Nan'
 		OR AirCraftRegistration = 'NAN'
-		OR AirCraftRegistration = 'UNKNOW'
   ORDER BY AirCraftRegistration
 GO
 

@@ -1,4 +1,4 @@
-#  Interpreter 3.7 -> 3.10 -> 3.11 (+) -> 3.12
+#  Interpreter 3.7 -> 3.10 -> 3.11 (+) -> 3.12 -> 3.13 -> 3.14
 
 
 import datetime
@@ -55,7 +55,6 @@ def myApplication():
     myDialog.lineEdit_Server.setEnabled(False)
     myDialog.lineEdit_Driver.setEnabled(False)
     myDialog.lineEdit_ODBCversion.setEnabled(False)
-    myDialog.lineEdit_DSN.setEnabled(False)
     myDialog.lineEdit_Schema.setEnabled(False)
     # Добавляем базы данных в выпадающий список
     listdbs = sorted(config_from_cfg.get(section='DataBases', option='AirPorts').split(','))
@@ -159,7 +158,6 @@ def myApplication():
         myDialog.lineEdit_Server.setEnabled(Key)
         myDialog.lineEdit_Driver.setEnabled(Key)
         myDialog.lineEdit_ODBCversion.setEnabled(Key)
-        myDialog.lineEdit_DSN.setEnabled(Key)
         myDialog.lineEdit_Schema.setEnabled(Key)
         myDialog.textEdit_SourceCSVFile.setEnabled(Key)
         myDialog.label_hyperlink_to_WikiPedia.setEnabled(Key)
@@ -365,22 +363,24 @@ def myApplication():
             # Добавляем атрибуты DataBase, DriverODBC
             DataBase = str(ChoiceDB)
             DriverODBC = str(ChoiceDriver)
-            if acfn.connectDB_RT_odbc(servername=config_from_cfg.get(section='Servers', option='ServerNameRemote'), driver=DriverODBC, database=DataBase):
+            if acfn.connect_DB_RT_odbc(servername=config_from_cfg.get(section='Servers', option='ServerNameRemote'), driver=DriverODBC, database=DataBase):
                 print("  База данных ", DataBase, " подключена")
                 Data = acfn.getSQLData_odbc()
                 print(" Data = " + str(Data))
                 St.Connected_RT = True
                 # SQL Server
                 myDialog.lineEdit_Server.setText(str(Data[0]))
+                myDialog.lineEdit_Server.setReadOnly(True)
                 # Драйвер
                 myDialog.lineEdit_Driver.setText(str(Data[1]))
+                myDialog.lineEdit_Driver.setReadOnly(True)
                 # версия ODBC
                 myDialog.lineEdit_ODBCversion.setText(str(Data[2]))
-                # Источник данных
-                myDialog.lineEdit_DSN.setText(str(Data[3]))
+                myDialog.lineEdit_ODBCversion.setReadOnly(True)
                 # Схема (если из-под другой учетки, то выводит имя учетки)
                 # todo Схема по умолчанию - dbo
                 myDialog.lineEdit_Schema.setText(str(Data[4]))
+                myDialog.lineEdit_Schema.setReadOnly(True)
                 # Переводим в рабочее состояние (продолжение)
                 SwitchingGUI(True)
                 myDialog.pushButton_DisconnectDB.setEnabled(True)
@@ -395,7 +395,7 @@ def myApplication():
     def PushButtonDisconnect():
         # кнопка 'Отключиться от базы данных' нажата
         if St.Connected_RT:
-            acfn.disconnectRT_odbc()
+            acfn.disconnect_RT_odbc()
             # Переводим в неактивное состояние
             myDialog.pushButton_DisconnectDB.setEnabled(False)
             # Снимаем флаги

@@ -1,4 +1,4 @@
-#  Interpreter 3.7 -> 3.10 -> 3.12
+#  Interpreter 3.7 -> 3.10 -> 3.12 -> 3.13 -> 3.14
 
 
 # QtSQL медленнее, чем pyodbc
@@ -47,7 +47,6 @@ def myApplication():
     myDialog.lineEdit_Server.setEnabled(False)
     myDialog.lineEdit_Driver.setEnabled(False)
     myDialog.lineEdit_ODBCversion.setEnabled(False)
-    myDialog.lineEdit_DSN.setEnabled(False)
     myDialog.lineEdit_Schema.setEnabled(False)
     myDialog.lineEdit_AirLineCodeIATA.setEnabled(False)
     myDialog.lineEdit_AirLineCodeIATA.setFrame(True)
@@ -160,7 +159,7 @@ def myApplication():
             # Добавляем атрибуты DataBase, DriverODBC
             DataBase = str(ChoiceDB)
             DriverODBC = str(ChoiceDriver)
-            if acfn.connectDB_AL_odbc(servername=config_from_cfg.get(section='Servers', option='ServerNameRemote'), driver=DriverODBC, database=DataBase):
+            if acfn.connect_DB_AL_odbc(servername=config_from_cfg.get(section='Servers', option='ServerNameRemote'), driver=DriverODBC, database=DataBase):
                 print("  База данных ", DataBase, " подключена")
                 Data = acfn.getSQLData_odbc()
                 print(" Data = " + str(Data))
@@ -173,19 +172,24 @@ def myApplication():
                 # SQL Server
                 myDialog.lineEdit_Server.setText(str(Data[0]))
                 myDialog.lineEdit_Server.setEnabled(True)
+                myDialog.lineEdit_Server.setReadOnly(True)
                 # Драйвер
                 myDialog.lineEdit_Driver.setText(str(Data[1]))
                 myDialog.lineEdit_Driver.setEnabled(True)
+                myDialog.lineEdit_Driver.setReadOnly(True)
                 # версия ODBC
                 myDialog.lineEdit_ODBCversion.setText(str(Data[2]))
                 myDialog.lineEdit_ODBCversion.setEnabled(True)
-                # Источник данных
-                myDialog.lineEdit_DSN.setText(str(Data[3]))
-                myDialog.lineEdit_DSN.setEnabled(True)
+                myDialog.lineEdit_ODBCversion.setReadOnly(True)
+                # Источник данных todo не используется, можно убрать
+                #myDialog.lineEdit_DSN.setText(str(Data[3]))
+                #myDialog.lineEdit_DSN.setEnabled(True)
+                #myDialog.lineEdit_DSN.setReadOnly(True)
                 # Схема (если из-под другой учетки, то выводит имя учетки)
                 # todo Схема по умолчанию - dbo
                 myDialog.lineEdit_Schema.setText(str(Data[4]))
                 myDialog.lineEdit_Schema.setEnabled(True)
+                myDialog.lineEdit_Schema.setReadOnly(True)
             else:
                 # Переводим в рабочее состояние
                 myDialog.pushButton_SelectDB.setEnabled(True)
@@ -197,7 +201,7 @@ def myApplication():
     def PushButtonDisconnect():
         # кнопка "Отключиться от базы данных"
         if St.Connected_AL:
-            acfn.disconnectAL_odbc()
+            acfn.disconnect_AL_odbc()
             # Снимаем флаги
             St.Connected_AL = False
             # Переключаем в исходное состояние
@@ -209,7 +213,6 @@ def myApplication():
             myDialog.lineEdit_Server.setEnabled(False)
             myDialog.lineEdit_Driver.setEnabled(False)
             myDialog.lineEdit_ODBCversion.setEnabled(False)
-            myDialog.lineEdit_DSN.setEnabled(False)
             myDialog.lineEdit_Schema.setEnabled(False)
             myDialog.lineEdit_AirLineCodeIATA.setEnabled(False)
             myDialog.lineEdit_AirLineCodeICAO.setEnabled(False)
@@ -295,6 +298,7 @@ def myApplication():
         myDialog.lineEdit_AirLineAlias.setText(str(acfn.AirLineAlias))
         # Выводим позицию
         myDialog.lineEdit_Position.setText(str(acfn.Position))
+        myDialog.lineEdit_Position.setReadOnly(True)
         myDialog.textEdit_AirLineDescription.clear()
         myDialog.textEdit_AirLineDescription.append(str(acfn.AirLineDescription))
         print("Поля ввода заполнены\n")

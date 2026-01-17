@@ -12,9 +12,11 @@
 			Вставка из "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes/ContactTypes.xsd"
 		</xsd:documentation>
 	</xsd:annotation>
+
 	<!--  the following imports are not needed. They simply provide readability  -->
 	<xsd:import namespace="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactRecord"/>
 	<xsd:import namespace="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes"/>
+
 	<xsd:complexType name="specialInstructionsType" mixed="true">
 		<xsd:sequence>
 			<xsd:any processContents="strict" namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded"/>
