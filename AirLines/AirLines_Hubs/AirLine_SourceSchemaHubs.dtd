@@ -1,7 +1,0 @@
-﻿<!DOCTYPE AirLine_Codes [
-		<!ELEMENT AirLine_Codes (AirPort_FK_IATA|AirPort_FK_ICAO)*>
-		<!ELEMENT AirPort_FK_IATA (#PCDATA)>
-		<!ELEMENT AirPort_FK_ICAO (#PCDATA)>
-		]>
-
-

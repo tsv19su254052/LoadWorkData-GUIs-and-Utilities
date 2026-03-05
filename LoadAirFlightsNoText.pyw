@@ -547,12 +547,17 @@ def myApplication():
         CountFlightsPadded = 0
         CountFlightsInserted = 0
         CountFlightsFailed = 0
+        CountFlightsAddedXML = 0
+        CountFlightsPaddedXML = 0
+        CountFlightsInsertedXML = 0
+        CountFlightsFailedXML = 0
         CountProgressBarFailed = 0
         # Распределение плотности перезапросов сервера
         DistributionDensityAirLines = []
         DistributionDensityAirCrafts = []
         DistributionDensityAirRoutes = []
         DistributionDensityAirFlights = []
+        DistributionDensityAirFlightsXML = []
         Density = config_from_cfg.getint(section='ConstantParameters', option='Density')  # раз в секунду
         # attemptRetryCount = 750 * Density
         attemptRetryCount = config_from_cfg.getint(section='ConstantParameters', option='attemptRetryCount')
@@ -561,6 +566,7 @@ def myApplication():
             DistributionDensityAirCrafts.append(0)
             DistributionDensityAirRoutes.append(0)
             DistributionDensityAirFlights.append(0)
+            DistributionDensityAirFlightsXML.append(0)
         # Дата и время сейчас
         Now = time.time()
         DateTime = time.ctime(Now)
@@ -763,7 +769,7 @@ def myApplication():
             print(colorama.Fore.BLUE + " Авиаперелет", str(AL) + str(FN), end=" ")
             if not Fl.SetInputDate:
                 FD = Fl.BeginDate
-            deadlockCount = 0  # Счетчик попыток -> Обнуляем
+            deadlockCount = 0  # Обнуляем Счетчик попыток
             # Цикл попыток
             # todo Этот и следующий цикл попыток запустить разными потоками
             for attemptNumber in range(attemptRetryCount):
@@ -777,7 +783,6 @@ def myApplication():
                             # todo между транзакциями маршрут и самолет еще раз перезапросить внутри вызываемой функции - СДЕЛАЛ
                             ResultModify = acfn.ModifyAirFlightTable(AC, AL, FN, Dep, Arr, FD, Fl.BeginDate, Fl.useAirCrafts)
                             if ResultModify == 0:
-                                # fixme оболочка зависает и слетает
                                 #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # fixme оболочка зависает и слетает
                                 print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                                 logger.debug(" - несработка вставки (увеличения)\t " + str(AC) + "\t\tавиаперелета\t " + str(AL) + str(FN) + "\t " + str(Dep) + "-" + str(Arr) + "\t " + str(FD))
@@ -834,47 +839,46 @@ def myApplication():
                                 # todo между транзакциями маршрут и самолет еще раз перезапросить внутри вызываемой функции - СДЕЛАЛ
                                 ResultModify = acfn.ModifyAirFlightXML(AC, AL, FN, Dep, Arr, FD, Fl.BeginDate, Fl.useAirCrafts, Fl.useSAX, Fl.useMSsql, Fl.useODBCMarkers, Fl.useSQLServerDriverFormat)
                                 if ResultModify == 0:
-                                    # fixme оболочка зависает и слетает
                                     print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                                    logger.debug(" - несработка дозаписи, увеличения, вставки\t " + str(AC) + "\t\tавиаперелета\t " + str(AL) + str(FN) + "\t " + str(Dep) + "-" + str(Arr) + "\t " + str(FD))
+                                    logger.debug(" - несработка дозаписи (увеличения, вставки)\t " + str(AC) + "\t\tавиаперелета\t " + str(AL) + str(FN) + "\t " + str(Dep) + "-" + str(Arr) + "\t " + str(FD))
                                     time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                                 if ResultModify == 1:
-                                    CountFlightsAdded += 1
+                                    CountFlightsAddedXML += 1
                                     print(colorama.Fore.GREEN + "вставился", end=" ")
                                     break
                                 if ResultModify == 2:
-                                    CountFlightsPadded += 1
+                                    CountFlightsPaddedXML += 1
                                     print(colorama.Fore.GREEN + "сплюсовался", end=" ")
                                     break
                                 if ResultModify == 3:
-                                    CountFlightsInserted += 1
+                                    CountFlightsInsertedXML += 1
                                     print(colorama.Fore.GREEN + "записался с нуля новый", end=" ")
                                     break
                             elif DBAirRoute is None:
-                                CountFlightsFailed += 1
+                                CountFlightsFailedXML += 1
                                 break
                             else:
                                 print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                                 logger.debug(" - перезапрос маршрута\t " + str(AC) + "\t " + str(AL) + str(FN) + "\t " + str(Dep) + "-" + str(Arr) + "\t " + str(FD))
                                 time.sleep(attemptNumber / Density)
                         elif DBAirCraft is None:
-                            CountFlightsFailed += 1
+                            CountFlightsFailedXML += 1
                             break
                         else:
                             print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                             logger.debug(" - перезапрос самолета\t " + str(AC) + "\t " + str(AL) + str(FN) + "\t " + str(Dep) + "-" + str(Arr) + "\t " + str(FD))
                             time.sleep(attemptNumber / Density)
                     elif DBAirLine is None:
-                        CountFlightsFailed += 1
+                        CountFlightsFailedXML += 1
                         break
                     else:
                         print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
                         logger.debug(" - перезапрос авиакомпании\t " + str(AC) + "\t " + str(AL) + str(FN) + "\t " + str(Dep) + "-" + str(Arr) + "\t " + str(FD))
                         time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                 else:
-                    CountFlightsFailed += 1
+                    CountFlightsFailedXML += 1
                 print(" ")
-                DistributionDensityAirFlights[deadlockCount] += 1
+                DistributionDensityAirFlightsXML[deadlockCount] += 1
             completion += 1
             Execute = round(100 * completion / len(DataFrameFromCSV.index), 2)  # вычисляем и округляем процент выполнения до 2 цифр после запятой
             # fixme При слишком частом обновлении виджета графическая оболочка подвисает, зависает или слетает (обработка исключения не помогает) -> Исправил
@@ -895,19 +899,21 @@ def myApplication():
         EndTime = datetime.datetime.now()
         # Убираем с конца столбцы с нулями
         for Index in reversed(range(attemptRetryCount)):
-            if DistributionDensityAirLines[Index] == 0 and DistributionDensityAirCrafts[Index] == 0 and DistributionDensityAirRoutes[Index] == 0 and DistributionDensityAirFlights[Index] == 0:
+            if DistributionDensityAirLines[Index] == 0 and DistributionDensityAirCrafts[Index] == 0 and DistributionDensityAirRoutes[Index] == 0 and DistributionDensityAirFlights[Index] == 0 and DistributionDensityAirFlightsXML[Index] == 0:
                 DistributionDensityAirLines.pop(Index)
                 DistributionDensityAirCrafts.pop(Index)
                 DistributionDensityAirRoutes.pop(Index)
                 DistributionDensityAirFlights.pop(Index)
+                DistributionDensityAirFlightsXML.pop(Index)
             else:
                 break
         # Собираем списки в DataFrame
         DataFrameDistributionDensity = pandas.DataFrame([DistributionDensityAirLines,
                                                          DistributionDensityAirCrafts,
                                                          DistributionDensityAirRoutes,
-                                                         DistributionDensityAirFlights],
-                                                        index=[" - авиакомпании", " - самолеты", " - маршруты", " - авиаперелеты"])
+                                                         DistributionDensityAirFlights,
+                                                         DistributionDensityAirFlightsXML],
+                                                        index=[" - авиакомпании", " - самолеты", " - маршруты", " - авиаперелеты (таблица)", " - авиаперелеты (структура)"])
         DataFrameDistributionDensity.index.name = "Базы данных:"
         if St.Connected_AL and St.Connected_RT and St.Connected_A:
             myDialog.label_execute.setText("Загрузка окончена")
@@ -988,13 +994,21 @@ def myApplication():
                 OutputString += str(set(ListAirPortsNotFounded))
                 OutputString += " \n"
             if CountFlightsAdded:
-                OutputString += " - вставились " + str(CountFlightsAdded) + " авиаперелеты \n"
-            if CountFlightsInserted:
-                OutputString += " - записались с нуля " + str(CountFlightsInserted) + " авиаперелеты \n"
-            if CountFlightsFailed:
-                OutputString += " - не вставились " + str(CountFlightsFailed) + " авиаперелеты \n"
+                OutputString += " - вставились " + str(CountFlightsAdded) + " авиаперелеты (таблица) \n"
             if CountFlightsPadded:
-                OutputString += " - сплюсовались " + str(CountFlightsPadded) + " авиаперелеты \n"
+                OutputString += " - сплюсовались " + str(CountFlightsPadded) + " авиаперелеты (таблица) \n"
+            if CountFlightsInserted:
+                OutputString += " - записались с нуля " + str(CountFlightsInserted) + " авиаперелеты (таблица) \n"
+            if CountFlightsFailed:
+                OutputString += " - не вставились " + str(CountFlightsFailed) + " авиаперелеты (таблица) \n"
+            if CountFlightsAddedXML:
+                OutputString += " - вставились " + str(CountFlightsAddedXML) + " авиаперелеты (структура) \n"
+            if CountFlightsPaddedXML:
+                OutputString += " - сплюсовались " + str(CountFlightsPaddedXML) + " авиаперелеты (структура) \n"
+            if CountFlightsInsertedXML:
+                OutputString += " - записались с нуля " + str(CountFlightsInsertedXML) + " авиаперелеты (структура) \n"
+            if CountFlightsFailedXML:
+                OutputString += " - не вставились " + str(CountFlightsFailedXML) + " авиаперелеты (структура) \n"
             OutputString += " - перезапросы сервера: \n" + str(DataFrameDistributionDensity) + " \n"
             # Дописываем в журнал (обычным способом)
             # fixme Большая строка не дописывается, скрипт долго висит -> Исправил

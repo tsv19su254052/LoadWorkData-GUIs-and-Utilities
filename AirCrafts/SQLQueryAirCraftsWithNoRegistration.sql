@@ -1,9 +1,9 @@
 -- :CONNECT develop-server.movistar.vrn.skylink.local
-USE AirFlightsDBNew72WorkBase
+USE AirCraftsDBValue62
 GO
 
 SELECT * 
-  FROM dbo.AirCraftsTable
+  FROM dbo.AirCraftsTableNew2Xsd
   WHERE AirCraftRegistration IS NULL
 		OR AirCraftRegistration = 'Unknow'
 		OR AirCraftRegistration = 'UNKNOW'
