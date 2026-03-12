@@ -5,7 +5,7 @@ import pyodbc  # v. 5.3.0 - fixme вызов хранимых процедур E
 import pymssql # v. 2.3.0 работает тяжелее - fixme не подключается, поставить mssql-python и попробовать ее
 import mssql_python  # v. 1.1.0
 # todo Вероятно придется много переделать, чтобы не вызывать по 2 раза. Не работает с XML-ными полями см. https://docs.sqlalchemy.org/en/20/dialects/mssql.html#sqlalchemy.dialects.mssql.XML
-from sqlalchemy import create_engine
+#from sqlalchemy import create_engine
 
 
 # Делаем предков

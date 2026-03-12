@@ -785,7 +785,7 @@ def myApplication():
                             if ResultModify == 0:
                                 #myDialog.label_execute.setStyleSheet("border: 3px solid; border-color: red")  # fixme оболочка зависает и слетает
                                 print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                                logger.debug(" - не учтен (таблица)\t " + str(AC) + "\t\tавиаперелет\t " + str(AL) + str(FN) + "\t " + str(Dep) + "-" + str(Arr) + "\t " + str(FD))
+                                logger.debug(" - не учтен\t " + str(AC) + "\t\tавиаперелет\t " + str(AL) + str(FN) + "\t " + str(Dep) + "-" + str(Arr) + "\t " + str(FD) + "\t (таблица)")
                                 time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                             if ResultModify == 1:
                                 CountFlightsAdded += 1
@@ -840,7 +840,7 @@ def myApplication():
                                 ResultModify = acfn.ModifyAirFlightXML(AC, AL, FN, Dep, Arr, FD, Fl.BeginDate, Fl.useAirCrafts, Fl.useSAX, Fl.useMSsql, Fl.useODBCMarkers, Fl.useSQLServerDriverFormat)
                                 if ResultModify == 0:
                                     print(colorama.Fore.LIGHTYELLOW_EX + "?", end=" ")
-                                    logger.debug(" - не учтен (структура)\t " + str(AC) + "\t\tавиаперелет\t " + str(AL) + str(FN) + "\t " + str(Dep) + "-" + str(Arr) + "\t " + str(FD))
+                                    logger.debug(" - не учтен\t " + str(AC) + "\t\tавиаперелет\t " + str(AL) + str(FN) + "\t " + str(Dep) + "-" + str(Arr) + "\t " + str(FD) + "\t (структура)")
                                     time.sleep(attemptNumber / Density)  # пытаемся уйти от взаимоблокировки
                                 if ResultModify == 1:
                                     CountFlightsAddedXML += 1
