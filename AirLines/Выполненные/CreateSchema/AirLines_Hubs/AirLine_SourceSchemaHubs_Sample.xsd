@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Вверху сводный перечень пространств имен, todo Дополнить шапку из сгенерированной XSD-схемы -->
+<xs:schema  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+
+			attributeFormDefault="unqualified"
+			elementFormDefault="qualified" 
+			targetNamespace="https://www.w3schools.com">
+
+	<xs:annotation>
+		<xs:documentation>
+			Сводная схема по хабам
+		</xs:documentation>
+	</xs:annotation>
+
+	<!-- Ругается на "restriction" -->
+	<xs:element name="AirLine_Codes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="Hub">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AirPort_FK_IATA" />
+								<!-- тэг не работает -->
+								<xs:restriction base="xs:normalizedString">
+									<xs:pattern value="([a-z][A-Z][0-9])*"/>
+									<xs:whiteSpace value="collapse"/>
+									<xs:minLength value="2"/>
+									<xs:maxLength value="5"/>
+								</xs:restriction>
+							<xs:element name="AirPort_FK_ICAO" type="xs:normalizedString" />
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- todo Вставить элементы из сгенерированных XSD-схем -->
+	<!-- Начало вставки -->
+
+	<xs:element name="AirLine_Codes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="Hub">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AirPort_FK_IATA">
+								<xs:complexType>
+									<xs:simpleContent>
+										<!-- откидываем пробелы в начале и в конце, переводы строк, табуляции -->
+										<xs:extension base="xs:token">
+											<xs:attribute name="enabled" type="xs:boolean" use="required" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="AirPort_FK_ICAO">
+								<xs:complexType>
+									<xs:simpleContent>
+										<!-- откидываем пробелы в начале и в конце, переводы строк, табуляции -->
+										<xs:extension base="xs:token">
+											<xs:attribute name="enabled" type="xs:boolean" use="required" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Окончание вставки -->
+
+	<!-- Реверс для проверки (префикс xs -> xsd) -->
+	<xsd:element name="AirLine_Codes">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:restriction base="xsd:anyType">
+					<xsd:sequence>
+						<xsd:element name="Hub" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:complexContent>
+									<xsd:restriction base="xsd:anyType">
+										<xsd:sequence>
+											<xsd:element name="AirPort_FK_IATA">
+												<xsd:complexType>
+													<xsd:simpleContent>
+														<xsd:extension base="xsd:token">
+															<xsd:attribute name="enabled" type="xsd:boolean" use="required" />
+														</xsd:extension>
+													</xsd:simpleContent>
+												</xsd:complexType>
+											</xsd:element>
+											<xsd:element name="AirPort_FK_ICAO">
+												<xsd:complexType>
+													<xsd:simpleContent>
+														<xsd:extension base="xsd:token">
+															<xsd:attribute name="enabled" type="xsd:boolean" use="required" />
+														</xsd:extension>
+													</xsd:simpleContent>
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:restriction>
+								</xsd:complexContent>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:restriction>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+</xs:schema>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="AirLine_Codes" type="AirLine_CodesType">
+    <xs:annotation>
+      <xs:documentation> AeroLogic </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AirPort_FK_IATAType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="enabled" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="AirPort_FK_ICAOType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="enabled" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="HubType">
+    <xs:sequence>
+      <xs:element type="AirPort_FK_IATAType" name="AirPort_FK_IATA"/>
+      <xs:element type="AirPort_FK_ICAOType" name="AirPort_FK_ICAO"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AirLine_CodesType">
+    <xs:sequence>
+      <xs:element type="HubType" name="Hub" maxOccurs="unbounded" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation> Frankfurt International Airport (Rhein-Main)  Flughafen Leipzig/Halle </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Вверху сводный перечень пространств имен, todo Дополнить шапку из сгенерированной XSD-схемы -->
+<xs:schema  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:ns="https://www.w3schools.com"
+			xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+			xmlns:xml="http://www.w3.org/XML/1998/namespace"
+			xmlns:fn="http://www.w3.org/2004/07/xpath-functions"
+			xmlns:fnnew="http://www.w3.org/2005/xpath-functions"
+			xmlns:map="http://www.w3.org/2005/xpath-functions/map"
+			xmlns:array="http://www.w3.org/2005/xpath-functions/array"
+			xmlns:math="http://www.w3.org/2005/xpath-functions/math"
+			xmlns:local="http://www.w3.org/2005/xquery-local-functions"
+			xmlns:xdt="http://www.w3.org/2004/07/xpath-datatypes"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			xmlns:xi="http://www.w3.org/2001/XInclude"
+			xmlns:css="http://www.w3.org/1996/css"
+			xmlns:collation="http://www.w3.org/2013/collation/UCA?strength=secondary"
+			xmlns:xsv="http://www.w3.org/2007/XMLSchema-versioning"
+			xmlns:xproc="http://www.w3.org/ns/xproc"
+			xmlns:xproc-step="http://www.w3.org/ns/xproc-step"
+			xmlns:err="http://www.w3.org/ns/xproc-error"
+			xmlns:errnew="http://www.w3.org/2005/xqt-errors"
+			xmlns:errnew2="http://www.w3.org/2012/xquery"
+			xmlns:xhtml="http://www.w3.org/1999/xhtml"
+
+			xmlns:soapex="http://schemas.xmlsoap.org/soap/envelope"
+
+			xmlns:saxon="http://saxon.sf.net"
+
+			xmlns:schematron="http://purl.oclc.org/dsdl/schematron"
+
+			xmlns:set="http://transpect.io/xml2tex"
+			xmlns:tr="http://transpect.io"
+
+			xmlns:pxf="http://exproc.org/proposed/steps/file"
+
+			xmlns:rng="http://relaxng.org/ns/structure/1.0"
+			xmlns:rnga="http://relaxng.org/ns/compatibility/annotations/1.0"
+
+			xmlns:ml="http://xmlcalabash.com/ns/extensions/marklogic"
+
+			xmlns:pkg="http://expath.org/ns/pkg"
+
+			xmlns:t="http://www.jenitennison.com/xslt/xspec"
+			xmlns:test="http://www.jenitennison.com/xslt/unit-test"
+
+			attributeFormDefault="unqualified"
+			elementFormDefault="qualified">
+	<!-- В базу импортировалось пространство имен "ns" -->
+
+	<xs:annotation>
+		<xs:documentation>
+			==== Сводная схема по хабам ====
+		</xs:documentation>
+	</xs:annotation>
+
+	<!-- Импортирую внутри пространства имен "xs" еще пространства имен:
+		xmlns:sqltypes="https://schemas.microsoft.com/sqlserver/2004/sqltypes"
+		xmlns:soap="https://schemas.microsoft.com/sqlserver/2004/SOAP"
+		xmlns:ms="urn:schemas-microsoft-com:mapping-schema"
+		xmlns:dt="urn:schemas-microsoft-com:datatypes"
+		xmlns:sql="urn:schemas-microsoft-com:xml-sql"
+	-->
+
+	<!-- todo Вставить элементы из сгенерированных XSD-схем -->
+	<!-- Начало вставки -->
+
+	<xs:element name="AirLine_Codes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="Hub">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AirPort_FK_IATA">
+								<xs:complexType>
+									<xs:simpleContent>
+										<!-- откидываем пробелы в начале и в конце, переводы строк, табуляции -->
+										<xs:extension base="xs:token">
+											<xs:attribute name="enabled" type="xs:boolean" use="required" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="AirPort_FK_ICAO">
+								<xs:complexType>
+									<xs:simpleContent>
+										<!-- откидываем пробелы в начале и в конце, переводы строк, табуляции -->
+										<xs:extension base="xs:token">
+											<xs:attribute name="enabled" type="xs:boolean" use="required" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Окончание вставки -->
+	<!-- todo Собранный перечень элементов вставить в скрипт привязки коллекции схем. Пропускать большие XML-ные файлы через большие и сложные схемы - не очень здорово, трудно искать несоответствия схеме -->
+
+	<!-- todo Как искать значение по веткам и подветкам в XML-ном файле? Как вставить новую подветку, если значение не найдено? Как добавить еще одну подветку, если значение найдено? Как найти аттрибут с указанным значением? Как изменить значение найденного аттрибута? -->
+
+</xs:schema>

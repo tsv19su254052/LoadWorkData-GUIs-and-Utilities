@@ -1,0 +1,101 @@
+﻿<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:ns="https://www.w3schools.com"
+			xmlns:xml="http://www.w3.org/XML/1998/namespace"
+			xmlns:fn="http://www.w3.org/2004/07/xpath-functions"
+			xmlns:sqltypes="https://schemas.microsoft.com/sqlserver/2004/sqltypes"
+			xmlns:xdt="http://www.w3.org/2004/07/xpath-datatypes"
+			xmlns:soap="https://schemas.microsoft.com/sqlserver/2004/SOAP"
+			xmlns:ms="urn:schemas-microsoft-com:mapping-schema"
+			xmlns:dt="urn:schemas-microsoft-com:datatypes"
+			xmlns:sql="urn:schemas-microsoft-com:xml-sql">
+	<!-- t (вместе со свойством схемы "targetNamespace"), xsd, xsi, ns - префиксы пространства имен (краткие псевдонимы вместо их URI) -->
+	<xsd:annotation>
+		<xsd:documentation>
+			XSD-схема полная --
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<!-- Регистрационный номер (англ. Tail Number, далее по тексту "Регистрация") -->
+	<xsd:element name="AirCraftRegistrationXML">
+		<xsd:complexType>
+			<!-- больше одного тэга "AirCraftRegistrationXML"-->
+			<xsd:sequence maxOccurs="unbounded">
+				<xsd:element name="step">
+					<xsd:complexType>
+						<!-- больше одного подтэга "step"-->
+						<xsd:sequence maxOccurs="unbounded">
+							<xsd:element name="BeginDate" type="xsd:date" />
+						</xsd:sequence>
+						<xsd:attribute name="AirCraftRegistrationFK" type="xsd:string" />
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- Авиакомпания-оператор -->
+	<xsd:element name="AirLineOperatorXML">
+		<xsd:complexType>
+			<xsd:sequence maxOccurs="unbounded">
+				<xsd:element name="step">
+					<xsd:complexType>
+						<xsd:sequence maxOccurs="unbounded">
+							<xsd:element name="BeginDate" type="xsd:date" />
+						</xsd:sequence>
+						<xsd:attribute name="AirLineOperatorFK" type="xsd:unsignedLong" />
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- Авиакомпания-владелец (арендатор) -->
+	<xsd:element name="AirLineOwnerXML">
+		<xsd:complexType>
+			<xsd:sequence maxOccurs="unbounded">
+				<xsd:element name="step">
+					<xsd:complexType>
+						<xsd:sequence maxOccurs="unbounded">
+							<xsd:element name="BeginDate" type="xsd:date" />
+						</xsd:sequence>
+						<xsd:attribute name="AirLineOwnerFK" type="xsd:unsignedLong" />
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- Авиакомпания-арендодатель -->
+	<xsd:element name="AirLineLandLordXML">
+		<xsd:complexType>
+			<xsd:sequence maxOccurs="unbounded">
+				<xsd:element name="step">
+					<xsd:complexType>
+						<xsd:sequence maxOccurs="unbounded">
+							<xsd:element name="BeginDate" type="xsd:date" />
+						</xsd:sequence>
+						<xsd:attribute name="AirLineLandLordFK" type="xsd:unsignedLong" />
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- Авиакомпания-лизингодатель -->
+	<xsd:element name="AirLineLessorXML">
+		<xsd:complexType>
+			<xsd:sequence maxOccurs="unbounded">
+				<xsd:element name="step">
+					<xsd:complexType>
+						<xsd:sequence maxOccurs="unbounded">
+							<xsd:element name="BeginDate" type="xsd:date" />
+						</xsd:sequence>
+						<xsd:attribute name="AirLineLessorFK" type="xsd:unsignedLong" />
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>
