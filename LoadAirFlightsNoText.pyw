@@ -16,7 +16,7 @@ import pathlib
 import colorama
 import termcolor
 
-# Импорт модуля библиотек индивидуальной разработки
+# Импорт библиотек индивидуальной разработки
 from modulesFilesWithClasses.moduleClasses import FileNames, Flags, States, ACFN
 from modulesFilesWithClasses.moduleClassesUIsSources import Ui_DialogLoadAirFlightsWithAirCrafts
 # todo  - Сделать пользовательскую наработку (не библиотеку и не пакет) отдельным репозиторием
