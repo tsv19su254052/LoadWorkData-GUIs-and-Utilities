@@ -1,10 +1,13 @@
 USE AirCraftsDBValue62
 GO
 
+DECLARE @Quantity INT
+SET @Quantity = 2  --  оличество повторных перелетов с тем же рейсом, по тому же маршруту и в тот же день (возможно ошибка занесени€ данных в базу)
+
 SET Transaction Isolation Level Read Committed
 SELECT	AirCraftRegistration,
 		FlightsByRoutes,
-		FlightsByRoutes.value('count(for $steps in /FlightsByRoutes/Flight/Route/step where $steps >= 2 return $steps)', 'BIGINT') AS CountOfFlightsWithMoreThanOneFlight,
+		FlightsByRoutes.value('count(for $steps in /FlightsByRoutes/Flight/Route/step where $steps >= sql:variable("@Quantity") return $steps)', 'BIGINT') AS CountOfFlightsWithMoreThanOneFlight,
 		AirCraftLineNumber_LN_OLD AS LN_OLD,  -- —толбцы отсюда и ниже возможно недостоверны (данные с разных самолетов с одной регистрвцией налазили друг на друга)
 		AirCraftLineNumber_LN_NEW AS LN_NEW,
 		AirCraftLineNumber_MSN AS MSN,
@@ -16,8 +19,6 @@ SELECT	AirCraftRegistration,
 	FROM AirCraftsTableNew2XsdIntermediate
 		INNER JOIN AirCraftModelsTable ON AirCraftsTableNew2XsdIntermediate.AirCraftModel = AirCraftModelsTable.AirCraftModelUniqueNumber
 		INNER JOIN AirCraftManufacturersTable ON AirCraftModelsTable.Manufacturer = AirCraftManufacturersTable.AirCraftManufacturerUniqueNumber
-		WHERE FlightsByRoutes.exist('for $steps in /FlightsByRoutes/Flight/Route/step where $steps >= 2 return $steps') = 1  -- нагружает базу и tempdb
+		WHERE FlightsByRoutes.exist('for $steps in /FlightsByRoutes/Flight/Route/step where $steps >= sql:variable("@Quantity") return $steps') = 1  -- нагружает базу и tempdb
 		-- WHERE FlightsByRoutes IS NOT NULL  -- fixme выводит и пустые строки тоже
 			ORDER BY AirCraftRegistration  -- 3674
-
--- врем€ выполнени€ -  14 ... 22 минуты (на новой базе под нагрузкой)

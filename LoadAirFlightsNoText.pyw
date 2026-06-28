@@ -1,4 +1,4 @@
-#  Interpreter 3.7 -> 3.10 -> 3.12 -> 3.13 -> 3.14 (Qt Designer не открывается)
+#  Interpreter 3.7 -> 3.10 -> 3.12 -> 3.13 (+) -> 3.14 (Qt Designer не открывается)
 
 
 import pandas
