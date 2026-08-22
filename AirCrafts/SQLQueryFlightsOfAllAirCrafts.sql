@@ -2,6 +2,7 @@ USE AirCraftsDBValue62
 GO
 
 SET Transaction Isolation Level Read Committed
+
 -- 10876 -> 11956 -> 12749 -> 12759 -> 12907 -> 12921 -> 12955 -> 13253
 
 -- Идея такая: 

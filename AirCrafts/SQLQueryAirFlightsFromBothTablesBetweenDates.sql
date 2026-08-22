@@ -3,15 +3,16 @@ GO
 
 DECLARE @begindate DATE, @enddate DATE, @currentdate DATE
 -- Даем диапазон дат
-SET @begindate = '2012-02-01'
+SET @begindate = '2012-10-01'
 SET @enddate = '2027-01-01'
 
 SET Transaction Isolation Level Read Committed
+
 SELECT COUNT(*) AS LinesCountFromFlightsTable
 -- SELECT FlightNumberString, QuantityCounted, FlightDate, BeginDate, LoadDate
 	FROM AirFlightsTable
 		-- WHERE FlightDate BETWEEN @begindate AND @enddate
-		WHERE FlightDate >= @begindate AND FlightDate < @enddate  -- (3394763 -> 3650830 -> 4038628 -> 4609583 -> 4767867 -> 5328661 -> 5739850 -> 5903038)
+		WHERE FlightDate >= @begindate AND FlightDate < @enddate  -- (3394763 -> 3650830 -> 4038628 -> 4609583 -> 4767867 -> 5328661 -> 5739850 -> 5903038 -> 6079669 -> 7412818)
 
 SELECT	AirCraftRegistration,
 		FlightsByRoutes,
@@ -33,6 +34,6 @@ SELECT	AirCraftRegistration,
 		INNER JOIN AirCraftManufacturersTable ON AirCraftModelsTable.Manufacturer = AirCraftManufacturersTable.AirCraftManufacturerUniqueNumber
 		WHERE FlightsByRoutes.exist('/FlightsByRoutes/Flight/Route/step[@FlightDate >= sql:variable("@begindate") and @FlightDate < sql:variable("@enddate")]') = 1  -- нагружает базу и tempdb
 		-- WHERE FlightsByRoutes IS NOT NULL  -- fixme выводит и пустые строки тоже
-			ORDER BY AirCraftRegistration  -- 4987
+			ORDER BY AirCraftRegistration  -- 4999
 
 -- время выполнения - 64 минуты (на новой базе под нагрузкой)

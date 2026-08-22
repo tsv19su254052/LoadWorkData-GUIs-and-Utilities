@@ -2,9 +2,10 @@ USE AirCraftsDBValue62
 GO
 
 DECLARE @Quantity INT
-SET @Quantity = 2  --  оличество повторных перелетов с тем же рейсом, по тому же маршруту и в тот же день (возможно ошибка занесени€ данных в базу)
+SET @Quantity = 3  --  оличество повторных перелетов с тем же рейсом, по тому же маршруту и в тот же день (возможно ошибка занесени€ данных в базу) = 3674
 
 SET Transaction Isolation Level Read Committed
+
 SELECT	AirCraftRegistration,
 		FlightsByRoutes,
 		FlightsByRoutes.value('count(for $steps in /FlightsByRoutes/Flight/Route/step where $steps >= sql:variable("@Quantity") return $steps)', 'BIGINT') AS CountOfFlightsWithMoreThanOneFlight,
@@ -21,4 +22,4 @@ SELECT	AirCraftRegistration,
 		INNER JOIN AirCraftManufacturersTable ON AirCraftModelsTable.Manufacturer = AirCraftManufacturersTable.AirCraftManufacturerUniqueNumber
 		WHERE FlightsByRoutes.exist('for $steps in /FlightsByRoutes/Flight/Route/step where $steps >= sql:variable("@Quantity") return $steps') = 1  -- нагружает базу и tempdb
 		-- WHERE FlightsByRoutes IS NOT NULL  -- fixme выводит и пустые строки тоже
-			ORDER BY AirCraftRegistration  -- 3674
+			ORDER BY AirCraftRegistration
